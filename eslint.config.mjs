@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Self-contained package with its own tooling/tsconfig — not part of the app.
+    "trend-engine/**",
   ]),
 ]);
 
