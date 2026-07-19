@@ -107,7 +107,8 @@ test('regenerates once, filters retry violations, reads taste history, and persi
     );
 
     assert.equal(requests.length, 2, 'quality failures must cause exactly one regeneration');
-    assert.match(requests[0]?.system ?? '', /each pitch must have a curiosity-gap headline/);
+    assert.match(requests[0]?.system ?? '', /curiosity-gap headline/);
+    assert.match(requests[0]?.system ?? '', /WHO CARES/);
     assert.match(requests[0]?.user ?? '', /OWNER TASTE HISTORY/);
     assert.match(requests[0]?.user ?? '', /More incentive-driven cross-domain angles/);
     assert.doesNotMatch(requests[0]?.user ?? '', /"feedback":"Feedback 0"/);
