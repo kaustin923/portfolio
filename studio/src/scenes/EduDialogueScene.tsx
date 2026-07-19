@@ -12,13 +12,17 @@ import {TOKENS} from '../tokens';
 import {relativeProgress} from './EducationalShared';
 import {SceneField} from './shared';
 
-const KineticHeadline = ({text, progress, right}: {text: string; progress: number; right: boolean}) => (
-  <div style={{position: 'relative', minHeight: 430, boxSizing: 'border-box', padding: '58px 58px 72px', border: `4px solid ${TOKENS.color.pending}`, borderRadius: TOKENS.radius.card, background: TOKENS.color.bone, color: TOKENS.color.ink, boxShadow: `${right ? -18 : 18}px 18px 0 ${TOKENS.color.pendingSoft}`, overflow: 'hidden'}}>
-    <div style={{position: 'absolute', top: 25, right: 28, fontFamily: TOKENS.font.mono, fontSize: 17, fontWeight: 700, letterSpacing: '.16em'}}>KINETIC / HEADLINE</div>
-    <div style={{marginTop: 62, fontFamily: TOKENS.font.display, fontSize: text.length > 70 ? 54 : text.length > 44 ? 63 : 73, lineHeight: .9, letterSpacing: '-.05em', textTransform: 'uppercase', textAlign: right ? 'right' : 'left', transform: `translateX(${interpolate(progress, [0, 1], [right ? 90 : -90, 0])}px)`, opacity: progress}}>{text}</div>
-    <div style={{position: 'absolute', left: right ? `${100 - progress * 100}%` : 0, right: right ? 0 : `${100 - progress * 100}%`, bottom: 0, height: 15, background: TOKENS.color.pending}} />
-  </div>
-);
+const KineticStatement = ({text, progress}: {text: string; progress: number}) => {
+  const fontSize = text.length > 76 ? 68 : text.length > 48 ? 78 : 92;
+  return (
+    <div style={{width: '100%', textAlign: 'center', transform: `translateY(${interpolate(progress, [0, 1], [70, 0])}px)`, opacity: progress}}>
+      <div style={{maxWidth: 850, margin: '0 auto', fontFamily: TOKENS.font.display, fontSize, lineHeight: .92, letterSpacing: '-.052em', textTransform: 'uppercase', textWrap: 'balance'}}>
+        {text}
+      </div>
+      <div style={{width: `${progress * 170}px`, height: 10, margin: '42px auto 0', background: TOKENS.color.pending, boxShadow: `0 0 24px ${TOKENS.color.pendingSoft}`}} />
+    </div>
+  );
+};
 
 const StatBig = ({value, label, sub, progress}: Extract<Viz, {kind: 'statBig'}> & {progress: number}) => (
   <div style={{height: 455, boxSizing: 'border-box', position: 'relative', padding: '43px 48px', borderRadius: TOKENS.radius.card, border: `3px solid ${TOKENS.color.pending}`, background: `linear-gradient(135deg, ${TOKENS.color.pendingSoft}, rgba(13,15,20,.84) 64%)`, overflow: 'hidden', boxShadow: `0 0 36px ${TOKENS.color.pendingSoft}`}}>
@@ -29,9 +33,7 @@ const StatBig = ({value, label, sub, progress}: Extract<Viz, {kind: 'statBig'}> 
   </div>
 );
 
-const StructuredVisual = ({viz, text, progress, right}: {viz?: Viz; text: string; progress: number; right: boolean}) => {
-  if (!viz) return <KineticHeadline text={text} progress={progress} right={right} />;
-
+const StructuredVisual = ({viz, progress}: {viz: Viz; progress: number}) => {
   switch (viz.kind) {
     case 'rangeBar':
       return <RangeBar label={viz.label} unit={viz.unit} low={viz.low} high={viz.high} compare={viz.compare} badge={viz.badge} progress={progress} />;
@@ -62,8 +64,9 @@ const TitleMoment = ({viz, frame, duration, lineIndex, speaker}: {viz: Extract<V
     <SceneField>
       <div style={{position: 'absolute', inset: 0, background: `linear-gradient(145deg, ${TOKENS.color.pendingBlue} 0%, ${TOKENS.color.ink} 72%)`}} />
       <div style={{position: 'absolute', left: -90, top: 96, width: 520, height: 520, border: `90px solid ${TOKENS.color.pending}`, borderRadius: '50%', opacity: .11, transform: `scale(${.75 + reveal * .25})`}} />
-      <div style={{position: 'absolute', top: 98, left: 96, right: 96, display: 'flex', alignItems: 'center', gap: 18, fontFamily: TOKENS.font.mono, color: TOKENS.color.bone, fontSize: 20, fontWeight: 700, letterSpacing: '.17em'}}>
+      <div style={{position: 'absolute', top: 98, left: 96, right: 96, display: 'flex', alignItems: 'center', gap: 16, fontFamily: TOKENS.font.mono, color: speaker === 'jessica' ? TOKENS.color.pending : TOKENS.color.bone, fontSize: 20, fontWeight: 700, letterSpacing: '.17em'}}>
         <span style={{width: 42, height: 8, background: TOKENS.color.pending}} />
+        <span style={{display: 'grid', placeItems: 'center', width: 38, height: 38, borderRadius: 7, background: speaker === 'jessica' ? TOKENS.color.pending : TOKENS.color.bone, color: TOKENS.color.ink, fontSize: 21, fontWeight: 800, letterSpacing: 0}}>{speaker === 'jessica' ? 'J' : 'G'}</span>
         <span>{String(lineIndex + 1).padStart(2, '0')} / {speaker.toUpperCase()}</span>
         <span style={{height: 2, flex: 1, background: TOKENS.color.boneHairline}} />
       </div>
@@ -77,7 +80,7 @@ const TitleMoment = ({viz, frame, duration, lineIndex, speaker}: {viz: Extract<V
           <FlipClock label={viz.dateChip.toUpperCase()} compact frameOverride={Math.max(0, frame - chipStart)} />
         </div>
       ) : null}
-      <div style={{position: 'absolute', left: 96, right: 96, top: 1450, display: 'flex', justifyContent: 'space-between', color: TOKENS.color.boneMuted, fontFamily: TOKENS.font.mono, fontSize: 18, letterSpacing: '.14em'}}><span>FULL-BLEED / TITLE</span><span>DATA EXPLAINER</span></div>
+      <div style={{position: 'absolute', left: 96, right: 96, top: 1325, display: 'flex', justifyContent: 'space-between', color: TOKENS.color.boneMuted, fontFamily: TOKENS.font.mono, fontSize: 18, letterSpacing: '.14em'}}><span>FULL-BLEED / TITLE</span><span>DATA EXPLAINER</span></div>
     </SceneField>
   );
 };
@@ -99,7 +102,7 @@ export const EduDialogueScene = ({
   const jessica = line.speaker === 'jessica';
   const enter = spring({frame, fps, config: {damping: 15, stiffness: 170, mass: .78}});
   const draw = relativeProgress(frame, duration, .08, .7);
-  const bias = jessica ? 'left' : 'right';
+  const hasViz = Boolean(line.viz);
 
   if (line.viz?.kind === 'title') {
     return <TitleMoment viz={line.viz} frame={frame} duration={duration} lineIndex={lineIndex} speaker={line.speaker} />;
@@ -107,20 +110,18 @@ export const EduDialogueScene = ({
 
   return (
     <SceneField>
-      <div style={{position: 'absolute', top: 112, left: 96, right: 96, display: 'flex', flexDirection: jessica ? 'row' : 'row-reverse', alignItems: 'center', gap: 18}}>
+      <div style={{position: 'absolute', top: 112, left: 96, right: 96, height: 48, display: 'flex', flexDirection: jessica ? 'row' : 'row-reverse', alignItems: 'center', gap: 16}}>
         <div style={{width: 42, height: 8, background: TOKENS.color.pending}} />
-        <div style={{fontFamily: TOKENS.font.mono, color: TOKENS.color.pending, fontSize: 22, fontWeight: 700, letterSpacing: '.17em'}}>{String(lineIndex + 1).padStart(2, '0')} / {line.speaker.toUpperCase()}</div>
+        <div style={{display: 'grid', placeItems: 'center', width: 38, height: 38, borderRadius: 7, background: jessica ? TOKENS.color.pending : TOKENS.color.bone, color: TOKENS.color.ink, fontFamily: TOKENS.font.mono, fontSize: 21, fontWeight: 800}}>{jessica ? 'J' : 'G'}</div>
+        <div style={{fontFamily: TOKENS.font.mono, color: jessica ? TOKENS.color.pending : TOKENS.color.bone, fontSize: 22, fontWeight: 700, letterSpacing: '.17em'}}>{String(lineIndex + 1).padStart(2, '0')} / {line.speaker.toUpperCase()}</div>
         <div style={{height: 2, flex: 1, background: TOKENS.color.boneHairline}} />
       </div>
-      <div style={{position: 'absolute', top: 235, left: jessica ? 96 : 178, right: jessica ? 178 : 96, fontFamily: TOKENS.font.display, fontSize: line.text.length > 58 ? 58 : 69, lineHeight: .92, letterSpacing: '-.048em', textAlign: bias, textTransform: 'uppercase', transform: `translateX(${interpolate(enter, [0, 1], [jessica ? -90 : 90, 0])}px)`, opacity: enter}}>
-        {line.text}
-      </div>
-      <div style={{position: 'absolute', top: 620, left: 96, right: 96, minHeight: 500, display: 'flex', justifyContent: jessica ? 'flex-start' : 'flex-end', alignItems: 'center', transform: `translateY(${interpolate(enter, [0, 1], [100, 0])}px) rotate(${interpolate(enter, [0, 1], [jessica ? -2 : 2, 0])}deg)`, opacity: enter}}>
-        <div style={{width: '100%'}}><StructuredVisual viz={line.viz} text={line.text} progress={draw} right={!jessica} /></div>
-      </div>
-      <div style={{position: 'absolute', left: jessica ? 96 : undefined, right: jessica ? undefined : 96, top: 1395, display: 'flex', flexDirection: jessica ? 'row' : 'row-reverse', alignItems: 'center', gap: 14, color: TOKENS.color.boneMuted, fontFamily: TOKENS.font.mono, fontSize: 19, letterSpacing: '.15em'}}>
-        <span style={{display: 'grid', placeItems: 'center', width: 38, height: 38, borderRadius: 7, background: jessica ? TOKENS.color.pending : TOKENS.color.bone, color: TOKENS.color.ink, fontWeight: 800, letterSpacing: 0}}>{jessica ? 'J' : 'G'}</span>
-        <span>{bias.toUpperCase()} CHANNEL / ACTIVE</span>
+      <div style={{position: 'absolute', top: 270, left: 96, right: 96, height: 1050, display: 'flex', alignItems: 'center', justifyContent: 'center', transform: `translateY(${interpolate(enter, [0, 1], [90, 0])}px)`, opacity: enter}}>
+        {hasViz ? (
+          <div style={{width: '100%'}}><StructuredVisual viz={line.viz!} progress={draw} /></div>
+        ) : (
+          <KineticStatement text={line.text} progress={enter} />
+        )}
       </div>
     </SceneField>
   );

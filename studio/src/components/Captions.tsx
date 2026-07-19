@@ -20,12 +20,12 @@ export const Captions = ({pages, theme, frameOverride}: {pages: CaptionPage[]; t
       <div
         style={{
           maxWidth: 888,
-          padding: '15px 24px 17px',
+          padding: dialogue ? '18px 27px 20px' : '15px 24px 17px',
           color: speakerColor,
           background: 'rgba(13,15,20,.9)',
           border: `2px solid ${dialogue ? speakerColor : TOKENS.color.boneHairline}`,
           fontFamily: TOKENS.font.caption,
-          fontSize: 54,
+          fontSize: dialogue ? 60 : 54,
           fontWeight: 700,
           lineHeight: 1.06,
           textAlign: dialogue ? 'left' : 'center',
@@ -34,11 +34,11 @@ export const Captions = ({pages, theme, frameOverride}: {pages: CaptionPage[]; t
           boxShadow: dialogue ? `8px 8px 0 rgba(13,15,20,.38), 0 0 24px ${themeTokens.accentSoft}` : '8px 8px 0 rgba(13,15,20,.38)',
           display: 'flex',
           alignItems: 'flex-start',
-          gap: dialogue ? 16 : 0,
+          gap: dialogue ? 18 : 0,
         }}
       >
         {dialogue ? (
-          <span style={{display: 'grid', flex: '0 0 auto', placeItems: 'center', width: 42, height: 42, marginTop: 3, borderRadius: 8, color: TOKENS.color.ink, background: speakerColor, fontFamily: TOKENS.font.mono, fontSize: 24, fontWeight: 800, letterSpacing: 0}}>
+          <span style={{display: 'grid', flex: '0 0 auto', placeItems: 'center', width: 46, height: 46, marginTop: 4, borderRadius: 8, color: TOKENS.color.ink, background: speakerColor, fontFamily: TOKENS.font.mono, fontSize: 26, fontWeight: 800, letterSpacing: 0}}>
             {jessica ? 'J' : 'G'}
           </span>
         ) : null}

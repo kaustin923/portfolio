@@ -1,0 +1,3689 @@
+{
+  "durationMs": 54360,
+  "durationInFrames": 1631,
+  "words": [
+    {
+      "text": "You",
+      "startMs": 0,
+      "endMs": 80,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "win",
+      "startMs": 120,
+      "endMs": 240,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "your",
+      "startMs": 272,
+      "endMs": 400,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "fantasy",
+      "startMs": 460,
+      "endMs": 880,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "league",
+      "startMs": 926,
+      "endMs": 1200,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "in",
+      "startMs": 1280,
+      "endMs": 1440,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "August",
+      "startMs": 1543,
+      "endMs": 2160,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "—",
+      "startMs": 2160,
+      "endMs": 2660,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "and",
+      "startMs": 2660,
+      "endMs": 2720,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "it's",
+      "startMs": 2773,
+      "endMs": 2960,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "not",
+      "startMs": 3020,
+      "endMs": 3200,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "by",
+      "startMs": 3227,
+      "endMs": 3280,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "drafting",
+      "startMs": 3342,
+      "endMs": 3840,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "the",
+      "startMs": 3860,
+      "endMs": 3920,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "big",
+      "startMs": 3980,
+      "endMs": 4160,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "names.",
+      "startMs": 4240,
+      "endMs": 4719,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "Here's",
+      "startMs": 4719,
+      "endMs": 5040,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "the",
+      "startMs": 5060,
+      "endMs": 5120,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "whole",
+      "startMs": 5147,
+      "endMs": 5280,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "secret:",
+      "startMs": 5337,
+      "endMs": 6000,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "fantasy",
+      "startMs": 6050,
+      "endMs": 6400,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "points",
+      "startMs": 6469,
+      "endMs": 6880,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "come",
+      "startMs": 6944,
+      "endMs": 7200,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "from",
+      "startMs": 7264,
+      "endMs": 7520,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "touches.",
+      "startMs": 7600,
+      "endMs": 8320,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "The",
+      "startMs": 8460,
+      "endMs": 8880,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "ball.",
+      "startMs": 8976,
+      "endMs": 9720,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "More",
+      "startMs": 9792,
+      "endMs": 10080,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "touches,",
+      "startMs": 10150,
+      "endMs": 10880,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "more",
+      "startMs": 10928,
+      "endMs": 11120,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "points.",
+      "startMs": 11189,
+      "endMs": 11680,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "That's",
+      "startMs": 11792,
+      "endMs": 12320,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "it.",
+      "startMs": 12400,
+      "endMs": 12560,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "Okay,",
+      "startMs": 12560,
+      "endMs": 13041,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "so",
+      "startMs": 13148,
+      "endMs": 13361,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "how",
+      "startMs": 13481,
+      "endMs": 13841,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "do",
+      "startMs": 13868,
+      "endMs": 13921,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "I",
+      "startMs": 14001,
+      "endMs": 14081,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "find",
+      "startMs": 14113,
+      "endMs": 14241,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "the",
+      "startMs": 14281,
+      "endMs": 14401,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "guy",
+      "startMs": 14481,
+      "endMs": 14721,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "who's",
+      "startMs": 14761,
+      "endMs": 14961,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "about",
+      "startMs": 14988,
+      "endMs": 15121,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "to",
+      "startMs": 15174,
+      "endMs": 15281,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "get",
+      "startMs": 15341,
+      "endMs": 15521,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "a",
+      "startMs": 15641,
+      "endMs": 15761,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "ton",
+      "startMs": 15861,
+      "endMs": 16161,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "of",
+      "startMs": 16241,
+      "endMs": 16401,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "touches?",
+      "startMs": 16481,
+      "endMs": 18241,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "You",
+      "startMs": 18241,
+      "endMs": 18401,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "look",
+      "startMs": 18433,
+      "endMs": 18561,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "for",
+      "startMs": 18601,
+      "endMs": 18721,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "an",
+      "startMs": 18748,
+      "endMs": 18801,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "empty",
+      "startMs": 18854,
+      "endMs": 19121,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "job.",
+      "startMs": 19221,
+      "endMs": 19601,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "When",
+      "startMs": 19761,
+      "endMs": 20401,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "a",
+      "startMs": 20441,
+      "endMs": 20481,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "starting",
+      "startMs": 20517,
+      "endMs": 20801,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "running",
+      "startMs": 20831,
+      "endMs": 21041,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "back",
+      "startMs": 21089,
+      "endMs": 21281,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "leaves",
+      "startMs": 21315,
+      "endMs": 21521,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "a",
+      "startMs": 21561,
+      "endMs": 21601,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "team,",
+      "startMs": 21681,
+      "endMs": 22561,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "someone",
+      "startMs": 22611,
+      "endMs": 22961,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "inherits",
+      "startMs": 23023,
+      "endMs": 23521,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "all",
+      "startMs": 23601,
+      "endMs": 23841,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "of",
+      "startMs": 23868,
+      "endMs": 23921,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "those",
+      "startMs": 23961,
+      "endMs": 24161,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "touches.",
+      "startMs": 24221,
+      "endMs": 25201,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "So",
+      "startMs": 25201,
+      "endMs": 26161,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "who's",
+      "startMs": 26221,
+      "endMs": 26481,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "got",
+      "startMs": 26521,
+      "endMs": 26641,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "an",
+      "startMs": 26668,
+      "endMs": 26721,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "empty",
+      "startMs": 26774,
+      "endMs": 27041,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "job",
+      "startMs": 27121,
+      "endMs": 27361,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "this",
+      "startMs": 27393,
+      "endMs": 27521,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "year?",
+      "startMs": 27585,
+      "endMs": 27921,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "Bhayshul",
+      "startMs": 27921,
+      "endMs": 29361,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "Tuten.",
+      "startMs": 29441,
+      "endMs": 30201,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "The",
+      "startMs": 30291,
+      "endMs": 30561,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "Jaguars",
+      "startMs": 30621,
+      "endMs": 31041,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "let",
+      "startMs": 31081,
+      "endMs": 31201,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "Travis",
+      "startMs": 31258,
+      "endMs": 31601,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "Etienne",
+      "startMs": 31654,
+      "endMs": 32081,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "walk",
+      "startMs": 32161,
+      "endMs": 32481,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "—",
+      "startMs": 32481,
+      "endMs": 32849,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "that's",
+      "startMs": 32849,
+      "endMs": 33201,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "eleven",
+      "startMs": 33281,
+      "endMs": 33761,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "hundred",
+      "startMs": 33791,
+      "endMs": 34001,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "yards,",
+      "startMs": 34094,
+      "endMs": 34881,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "gone.",
+      "startMs": 34977,
+      "endMs": 35761,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "Tuten's",
+      "startMs": 35961,
+      "endMs": 36481,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "their",
+      "startMs": 36508,
+      "endMs": 36641,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "number",
+      "startMs": 36675,
+      "endMs": 36881,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "one",
+      "startMs": 36941,
+      "endMs": 37121,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "now,",
+      "startMs": 37181,
+      "endMs": 37841,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "and",
+      "startMs": 37861,
+      "endMs": 37921,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "he",
+      "startMs": 37948,
+      "endMs": 38001,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "ran",
+      "startMs": 38061,
+      "endMs": 38241,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "the",
+      "startMs": 38281,
+      "endMs": 38401,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "fastest",
+      "startMs": 38471,
+      "endMs": 38961,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "forty",
+      "startMs": 39028,
+      "endMs": 39361,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "of",
+      "startMs": 39441,
+      "endMs": 39601,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "any",
+      "startMs": 39681,
+      "endMs": 39921,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "back",
+      "startMs": 40001,
+      "endMs": 40321,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "in",
+      "startMs": 40401,
+      "endMs": 40561,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "his",
+      "startMs": 40581,
+      "endMs": 40641,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "draft",
+      "startMs": 40708,
+      "endMs": 41041,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "class.",
+      "startMs": 41108,
+      "endMs": 41520,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "And",
+      "startMs": 41520,
+      "endMs": 41681,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "everyone's",
+      "startMs": 41725,
+      "endMs": 42161,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "still",
+      "startMs": 42201,
+      "endMs": 42401,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "sleeping",
+      "startMs": 42445,
+      "endMs": 42801,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "on",
+      "startMs": 42854,
+      "endMs": 42961,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "him?",
+      "startMs": 43001,
+      "endMs": 43201,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "Because",
+      "startMs": 43201,
+      "endMs": 44401,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "he",
+      "startMs": 44428,
+      "endMs": 44481,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "was",
+      "startMs": 44521,
+      "endMs": 44641,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "a",
+      "startMs": 44681,
+      "endMs": 44721,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "backup",
+      "startMs": 44778,
+      "endMs": 45121,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "last",
+      "startMs": 45169,
+      "endMs": 45361,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "year,",
+      "startMs": 45393,
+      "endMs": 45601,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "so",
+      "startMs": 45654,
+      "endMs": 45761,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "he's",
+      "startMs": 45814,
+      "endMs": 46001,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "cheap.",
+      "startMs": 46068,
+      "endMs": 46481,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "That's",
+      "startMs": 46609,
+      "endMs": 47201,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "the",
+      "startMs": 47221,
+      "endMs": 47281,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "game",
+      "startMs": 47361,
+      "endMs": 47681,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "—",
+      "startMs": 47681,
+      "endMs": 48294,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "draft",
+      "startMs": 48294,
+      "endMs": 48561,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "the",
+      "startMs": 48581,
+      "endMs": 48641,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "job",
+      "startMs": 48741,
+      "endMs": 49041,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "before",
+      "startMs": 49075,
+      "endMs": 49281,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "the",
+      "startMs": 49301,
+      "endMs": 49361,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "price",
+      "startMs": 49428,
+      "endMs": 49761,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "catches",
+      "startMs": 49821,
+      "endMs": 50241,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "up.",
+      "startMs": 50348,
+      "endMs": 50561,
+      "speaker": "george",
+      "lineIndex": 7
+    }
+  ],
+  "captions": [
+    {
+      "id": "caption-1",
+      "text": "You win your fantasy",
+      "startMs": 0,
+      "endMs": 880,
+      "words": [
+        {
+          "text": "You",
+          "startMs": 0,
+          "endMs": 80,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "win",
+          "startMs": 120,
+          "endMs": 240,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "your",
+          "startMs": 272,
+          "endMs": 400,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "fantasy",
+          "startMs": 460,
+          "endMs": 880,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-2",
+      "text": "league in",
+      "startMs": 926,
+      "endMs": 1523,
+      "words": [
+        {
+          "text": "league",
+          "startMs": 926,
+          "endMs": 1200,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "in",
+          "startMs": 1280,
+          "endMs": 1440,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-3",
+      "text": "August —",
+      "startMs": 1543,
+      "endMs": 2640,
+      "words": [
+        {
+          "text": "August",
+          "startMs": 1543,
+          "endMs": 2160,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "—",
+          "startMs": 2160,
+          "endMs": 2660,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-4",
+      "text": "and it's not by",
+      "startMs": 2660,
+      "endMs": 3280,
+      "words": [
+        {
+          "text": "and",
+          "startMs": 2660,
+          "endMs": 2720,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "it's",
+          "startMs": 2773,
+          "endMs": 2960,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "not",
+          "startMs": 3020,
+          "endMs": 3200,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "by",
+          "startMs": 3227,
+          "endMs": 3280,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-5",
+      "text": "drafting the big",
+      "startMs": 3342,
+      "endMs": 4160,
+      "words": [
+        {
+          "text": "drafting",
+          "startMs": 3342,
+          "endMs": 3840,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "the",
+          "startMs": 3860,
+          "endMs": 3920,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "big",
+          "startMs": 3980,
+          "endMs": 4160,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-6",
+      "text": "names.",
+      "startMs": 4240,
+      "endMs": 4699,
+      "words": [
+        {
+          "text": "names.",
+          "startMs": 4240,
+          "endMs": 4719,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-7",
+      "text": "Here's the whole",
+      "startMs": 4719,
+      "endMs": 5317,
+      "words": [
+        {
+          "text": "Here's",
+          "startMs": 4719,
+          "endMs": 5040,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "the",
+          "startMs": 5060,
+          "endMs": 5120,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "whole",
+          "startMs": 5147,
+          "endMs": 5280,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-8",
+      "text": "secret: fantasy",
+      "startMs": 5337,
+      "endMs": 6400,
+      "words": [
+        {
+          "text": "secret:",
+          "startMs": 5337,
+          "endMs": 6000,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "fantasy",
+          "startMs": 6050,
+          "endMs": 6400,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-9",
+      "text": "points come",
+      "startMs": 6469,
+      "endMs": 7200,
+      "words": [
+        {
+          "text": "points",
+          "startMs": 6469,
+          "endMs": 6880,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "come",
+          "startMs": 6944,
+          "endMs": 7200,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-10",
+      "text": "from touches.",
+      "startMs": 7264,
+      "endMs": 8320,
+      "words": [
+        {
+          "text": "from",
+          "startMs": 7264,
+          "endMs": 7520,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "touches.",
+          "startMs": 7600,
+          "endMs": 8320,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-11",
+      "text": "The ball.",
+      "startMs": 8460,
+      "endMs": 9720,
+      "words": [
+        {
+          "text": "The",
+          "startMs": 8460,
+          "endMs": 8880,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "ball.",
+          "startMs": 8976,
+          "endMs": 9720,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-12",
+      "text": "More touches,",
+      "startMs": 9792,
+      "endMs": 10880,
+      "words": [
+        {
+          "text": "More",
+          "startMs": 9792,
+          "endMs": 10080,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "touches,",
+          "startMs": 10150,
+          "endMs": 10880,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-13",
+      "text": "more points.",
+      "startMs": 10928,
+      "endMs": 11680,
+      "words": [
+        {
+          "text": "more",
+          "startMs": 10928,
+          "endMs": 11120,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "points.",
+          "startMs": 11189,
+          "endMs": 11680,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-14",
+      "text": "That's it.",
+      "startMs": 11792,
+      "endMs": 12540,
+      "words": [
+        {
+          "text": "That's",
+          "startMs": 11792,
+          "endMs": 12320,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "it.",
+          "startMs": 12400,
+          "endMs": 12560,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-15",
+      "text": "Okay, so",
+      "startMs": 12560,
+      "endMs": 13361,
+      "words": [
+        {
+          "text": "Okay,",
+          "startMs": 12560,
+          "endMs": 13041,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "so",
+          "startMs": 13148,
+          "endMs": 13361,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-16",
+      "text": "how do I find",
+      "startMs": 13481,
+      "endMs": 14241,
+      "words": [
+        {
+          "text": "how",
+          "startMs": 13481,
+          "endMs": 13841,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "do",
+          "startMs": 13868,
+          "endMs": 13921,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "I",
+          "startMs": 14001,
+          "endMs": 14081,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "find",
+          "startMs": 14113,
+          "endMs": 14241,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-17",
+      "text": "the guy who's about",
+      "startMs": 14281,
+      "endMs": 15121,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 14281,
+          "endMs": 14401,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "guy",
+          "startMs": 14481,
+          "endMs": 14721,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "who's",
+          "startMs": 14761,
+          "endMs": 14961,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "about",
+          "startMs": 14988,
+          "endMs": 15121,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-18",
+      "text": "to get a",
+      "startMs": 15174,
+      "endMs": 15794,
+      "words": [
+        {
+          "text": "to",
+          "startMs": 15174,
+          "endMs": 15281,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "get",
+          "startMs": 15341,
+          "endMs": 15521,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "a",
+          "startMs": 15641,
+          "endMs": 15761,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-19",
+      "text": "ton of",
+      "startMs": 15861,
+      "endMs": 16461,
+      "words": [
+        {
+          "text": "ton",
+          "startMs": 15861,
+          "endMs": 16161,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "of",
+          "startMs": 16241,
+          "endMs": 16401,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-20",
+      "text": "touches?",
+      "startMs": 16481,
+      "endMs": 18221,
+      "words": [
+        {
+          "text": "touches?",
+          "startMs": 16481,
+          "endMs": 18241,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-21",
+      "text": "You look for an",
+      "startMs": 18241,
+      "endMs": 18834,
+      "words": [
+        {
+          "text": "You",
+          "startMs": 18241,
+          "endMs": 18401,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "look",
+          "startMs": 18433,
+          "endMs": 18561,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "for",
+          "startMs": 18601,
+          "endMs": 18721,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "an",
+          "startMs": 18748,
+          "endMs": 18801,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-22",
+      "text": "empty job.",
+      "startMs": 18854,
+      "endMs": 19601,
+      "words": [
+        {
+          "text": "empty",
+          "startMs": 18854,
+          "endMs": 19121,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "job.",
+          "startMs": 19221,
+          "endMs": 19601,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-23",
+      "text": "When a",
+      "startMs": 19761,
+      "endMs": 20481,
+      "words": [
+        {
+          "text": "When",
+          "startMs": 19761,
+          "endMs": 20401,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "a",
+          "startMs": 20441,
+          "endMs": 20481,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-24",
+      "text": "starting running back",
+      "startMs": 20517,
+      "endMs": 21281,
+      "words": [
+        {
+          "text": "starting",
+          "startMs": 20517,
+          "endMs": 20801,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "running",
+          "startMs": 20831,
+          "endMs": 21041,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "back",
+          "startMs": 21089,
+          "endMs": 21281,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-25",
+      "text": "leaves a",
+      "startMs": 21315,
+      "endMs": 21875,
+      "words": [
+        {
+          "text": "leaves",
+          "startMs": 21315,
+          "endMs": 21521,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "a",
+          "startMs": 21561,
+          "endMs": 21601,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-26",
+      "text": "team, someone",
+      "startMs": 21681,
+      "endMs": 22961,
+      "words": [
+        {
+          "text": "team,",
+          "startMs": 21681,
+          "endMs": 22561,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "someone",
+          "startMs": 22611,
+          "endMs": 22961,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-27",
+      "text": "inherits all",
+      "startMs": 23023,
+      "endMs": 23841,
+      "words": [
+        {
+          "text": "inherits",
+          "startMs": 23023,
+          "endMs": 23521,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "all",
+          "startMs": 23601,
+          "endMs": 23841,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-28",
+      "text": "of those",
+      "startMs": 23868,
+      "endMs": 24428,
+      "words": [
+        {
+          "text": "of",
+          "startMs": 23868,
+          "endMs": 23921,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "those",
+          "startMs": 23961,
+          "endMs": 24161,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-29",
+      "text": "touches.",
+      "startMs": 24221,
+      "endMs": 25181,
+      "words": [
+        {
+          "text": "touches.",
+          "startMs": 24221,
+          "endMs": 25201,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-30",
+      "text": "So who's",
+      "startMs": 25201,
+      "endMs": 26481,
+      "words": [
+        {
+          "text": "So",
+          "startMs": 25201,
+          "endMs": 26161,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "who's",
+          "startMs": 26221,
+          "endMs": 26481,
+          "speaker": "jessica",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-31",
+      "text": "got an empty job",
+      "startMs": 26521,
+      "endMs": 27361,
+      "words": [
+        {
+          "text": "got",
+          "startMs": 26521,
+          "endMs": 26641,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "an",
+          "startMs": 26668,
+          "endMs": 26721,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "empty",
+          "startMs": 26774,
+          "endMs": 27041,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "job",
+          "startMs": 27121,
+          "endMs": 27361,
+          "speaker": "jessica",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-32",
+      "text": "this year?",
+      "startMs": 27393,
+      "endMs": 27901,
+      "words": [
+        {
+          "text": "this",
+          "startMs": 27393,
+          "endMs": 27521,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "year?",
+          "startMs": 27585,
+          "endMs": 27921,
+          "speaker": "jessica",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-33",
+      "text": "Bhayshul Tuten.",
+      "startMs": 27921,
+      "endMs": 30201,
+      "words": [
+        {
+          "text": "Bhayshul",
+          "startMs": 27921,
+          "endMs": 29361,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Tuten.",
+          "startMs": 29441,
+          "endMs": 30201,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-34",
+      "text": "The Jaguars",
+      "startMs": 30291,
+      "endMs": 31041,
+      "words": [
+        {
+          "text": "The",
+          "startMs": 30291,
+          "endMs": 30561,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Jaguars",
+          "startMs": 30621,
+          "endMs": 31041,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-35",
+      "text": "let Travis",
+      "startMs": 31081,
+      "endMs": 31641,
+      "words": [
+        {
+          "text": "let",
+          "startMs": 31081,
+          "endMs": 31201,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Travis",
+          "startMs": 31258,
+          "endMs": 31601,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-36",
+      "text": "Etienne walk",
+      "startMs": 31654,
+      "endMs": 32461,
+      "words": [
+        {
+          "text": "Etienne",
+          "startMs": 31654,
+          "endMs": 32081,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "walk",
+          "startMs": 32161,
+          "endMs": 32481,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-37",
+      "text": "— that's",
+      "startMs": 32481,
+      "endMs": 33201,
+      "words": [
+        {
+          "text": "—",
+          "startMs": 32481,
+          "endMs": 32849,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "that's",
+          "startMs": 32849,
+          "endMs": 33201,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-38",
+      "text": "eleven hundred",
+      "startMs": 33281,
+      "endMs": 34001,
+      "words": [
+        {
+          "text": "eleven",
+          "startMs": 33281,
+          "endMs": 33761,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "hundred",
+          "startMs": 33791,
+          "endMs": 34001,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-39",
+      "text": "yards, gone.",
+      "startMs": 34094,
+      "endMs": 35761,
+      "words": [
+        {
+          "text": "yards,",
+          "startMs": 34094,
+          "endMs": 34881,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "gone.",
+          "startMs": 34977,
+          "endMs": 35761,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-40",
+      "text": "Tuten's their",
+      "startMs": 35961,
+      "endMs": 36641,
+      "words": [
+        {
+          "text": "Tuten's",
+          "startMs": 35961,
+          "endMs": 36481,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "their",
+          "startMs": 36508,
+          "endMs": 36641,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-41",
+      "text": "number one",
+      "startMs": 36675,
+      "endMs": 37235,
+      "words": [
+        {
+          "text": "number",
+          "startMs": 36675,
+          "endMs": 36881,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "one",
+          "startMs": 36941,
+          "endMs": 37121,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-42",
+      "text": "now, and he",
+      "startMs": 37181,
+      "endMs": 38001,
+      "words": [
+        {
+          "text": "now,",
+          "startMs": 37181,
+          "endMs": 37841,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "and",
+          "startMs": 37861,
+          "endMs": 37921,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "he",
+          "startMs": 37948,
+          "endMs": 38001,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-43",
+      "text": "ran the",
+      "startMs": 38061,
+      "endMs": 38621,
+      "words": [
+        {
+          "text": "ran",
+          "startMs": 38061,
+          "endMs": 38241,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "the",
+          "startMs": 38281,
+          "endMs": 38401,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-44",
+      "text": "fastest forty",
+      "startMs": 38471,
+      "endMs": 39361,
+      "words": [
+        {
+          "text": "fastest",
+          "startMs": 38471,
+          "endMs": 38961,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "forty",
+          "startMs": 39028,
+          "endMs": 39361,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-45",
+      "text": "of any back",
+      "startMs": 39441,
+      "endMs": 40321,
+      "words": [
+        {
+          "text": "of",
+          "startMs": 39441,
+          "endMs": 39601,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "any",
+          "startMs": 39681,
+          "endMs": 39921,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "back",
+          "startMs": 40001,
+          "endMs": 40321,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-46",
+      "text": "in his draft",
+      "startMs": 40401,
+      "endMs": 41041,
+      "words": [
+        {
+          "text": "in",
+          "startMs": 40401,
+          "endMs": 40561,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "his",
+          "startMs": 40581,
+          "endMs": 40641,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "draft",
+          "startMs": 40708,
+          "endMs": 41041,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-47",
+      "text": "class.",
+      "startMs": 41108,
+      "endMs": 41500,
+      "words": [
+        {
+          "text": "class.",
+          "startMs": 41108,
+          "endMs": 41520,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-48",
+      "text": "And everyone's",
+      "startMs": 41520,
+      "endMs": 42161,
+      "words": [
+        {
+          "text": "And",
+          "startMs": 41520,
+          "endMs": 41681,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "everyone's",
+          "startMs": 41725,
+          "endMs": 42161,
+          "speaker": "jessica",
+          "lineIndex": 6
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "id": "caption-49",
+      "text": "still sleeping on",
+      "startMs": 42201,
+      "endMs": 42961,
+      "words": [
+        {
+          "text": "still",
+          "startMs": 42201,
+          "endMs": 42401,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "sleeping",
+          "startMs": 42445,
+          "endMs": 42801,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "on",
+          "startMs": 42854,
+          "endMs": 42961,
+          "speaker": "jessica",
+          "lineIndex": 6
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "id": "caption-50",
+      "text": "him?",
+      "startMs": 43001,
+      "endMs": 43181,
+      "words": [
+        {
+          "text": "him?",
+          "startMs": 43001,
+          "endMs": 43201,
+          "speaker": "jessica",
+          "lineIndex": 6
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "id": "caption-51",
+      "text": "Because he",
+      "startMs": 43201,
+      "endMs": 44481,
+      "words": [
+        {
+          "text": "Because",
+          "startMs": 43201,
+          "endMs": 44401,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "he",
+          "startMs": 44428,
+          "endMs": 44481,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-52",
+      "text": "was a backup last",
+      "startMs": 44521,
+      "endMs": 45361,
+      "words": [
+        {
+          "text": "was",
+          "startMs": 44521,
+          "endMs": 44641,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "a",
+          "startMs": 44681,
+          "endMs": 44721,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "backup",
+          "startMs": 44778,
+          "endMs": 45121,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "last",
+          "startMs": 45169,
+          "endMs": 45361,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-53",
+      "text": "year, so he's",
+      "startMs": 45393,
+      "endMs": 46013,
+      "words": [
+        {
+          "text": "year,",
+          "startMs": 45393,
+          "endMs": 45601,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "so",
+          "startMs": 45654,
+          "endMs": 45761,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "he's",
+          "startMs": 45814,
+          "endMs": 46001,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-54",
+      "text": "cheap. That's",
+      "startMs": 46068,
+      "endMs": 47201,
+      "words": [
+        {
+          "text": "cheap.",
+          "startMs": 46068,
+          "endMs": 46481,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "That's",
+          "startMs": 46609,
+          "endMs": 47201,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-55",
+      "text": "the game",
+      "startMs": 47221,
+      "endMs": 47781,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 47221,
+          "endMs": 47281,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "game",
+          "startMs": 47361,
+          "endMs": 47681,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-56",
+      "text": "— draft",
+      "startMs": 47681,
+      "endMs": 48561,
+      "words": [
+        {
+          "text": "—",
+          "startMs": 47681,
+          "endMs": 48294,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "draft",
+          "startMs": 48294,
+          "endMs": 48561,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-57",
+      "text": "the job before the",
+      "startMs": 48581,
+      "endMs": 49361,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 48581,
+          "endMs": 48641,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "job",
+          "startMs": 48741,
+          "endMs": 49041,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "before",
+          "startMs": 49075,
+          "endMs": 49281,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "the",
+          "startMs": 49301,
+          "endMs": 49361,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-58",
+      "text": "price catches",
+      "startMs": 49428,
+      "endMs": 50241,
+      "words": [
+        {
+          "text": "price",
+          "startMs": 49428,
+          "endMs": 49761,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "catches",
+          "startMs": 49821,
+          "endMs": 50241,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-59",
+      "text": "up.",
+      "startMs": 50348,
+      "endMs": 50968,
+      "words": [
+        {
+          "text": "up.",
+          "startMs": 50348,
+          "endMs": 50561,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    }
+  ],
+  "cues": [
+    {
+      "id": "line-1",
+      "cue": "You win your fantasy league in August — and it's not by drafting the big names.",
+      "startMs": 0,
+      "endMs": 4719,
+      "score": 1,
+      "matchedText": "You win your fantasy league in August — and it's not by drafting the big names.",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "line-2",
+      "cue": "Here's the whole secret: fantasy points come from touches. The ball. More touches, more points. That's it.",
+      "startMs": 4719,
+      "endMs": 12560,
+      "score": 1,
+      "matchedText": "Here's the whole secret: fantasy points come from touches. The ball. More touches, more points. That's it.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "line-3",
+      "cue": "Okay, so how do I find the guy who's about to get a ton of touches?",
+      "startMs": 12560,
+      "endMs": 18241,
+      "score": 1,
+      "matchedText": "Okay, so how do I find the guy who's about to get a ton of touches?",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "line-4",
+      "cue": "You look for an empty job. When a starting running back leaves a team, someone inherits all of those touches.",
+      "startMs": 18241,
+      "endMs": 25201,
+      "score": 1,
+      "matchedText": "You look for an empty job. When a starting running back leaves a team, someone inherits all of those touches.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "line-5",
+      "cue": "So who's got an empty job this year?",
+      "startMs": 25201,
+      "endMs": 27921,
+      "score": 1,
+      "matchedText": "So who's got an empty job this year?",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "line-6",
+      "cue": "Bhayshul Tuten. The Jaguars let Travis Etienne walk — that's eleven hundred yards, gone. Tuten's their number one now, and he ran the fastest forty of any back in his draft class.",
+      "startMs": 27921,
+      "endMs": 41520,
+      "score": 1,
+      "matchedText": "Bhayshul Tuten. The Jaguars let Travis Etienne walk — that's eleven hundred yards, gone. Tuten's their number one now, and he ran the fastest forty of any back in his draft class.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "line-7",
+      "cue": "And everyone's still sleeping on him?",
+      "startMs": 41520,
+      "endMs": 43201,
+      "score": 1,
+      "matchedText": "And everyone's still sleeping on him?",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "id": "line-8",
+      "cue": "Because he was a backup last year, so he's cheap. That's the game — draft the job before the price catches up.",
+      "startMs": 43201,
+      "endMs": 54360,
+      "score": 1,
+      "matchedText": "Because he was a backup last year, so he's cheap. That's the game — draft the job before the price catches up.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 7
+    }
+  ],
+  "lineTimings": [
+    {
+      "id": "line-1",
+      "lineIndex": 0,
+      "speaker": "jessica",
+      "text": "You win your fantasy league in August — and it's not by drafting the big names.",
+      "visual": "title",
+      "viz": {
+        "kind": "title",
+        "big": "WON IN AUGUST",
+        "sub": "THE FANTASY TELL NOBODY WATCHES"
+      },
+      "startMs": 0,
+      "endMs": 4719,
+      "words": [
+        {
+          "text": "You",
+          "startMs": 0,
+          "endMs": 80,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "win",
+          "startMs": 120,
+          "endMs": 240,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "your",
+          "startMs": 272,
+          "endMs": 400,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "fantasy",
+          "startMs": 460,
+          "endMs": 880,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "league",
+          "startMs": 926,
+          "endMs": 1200,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "in",
+          "startMs": 1280,
+          "endMs": 1440,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "August",
+          "startMs": 1543,
+          "endMs": 2160,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "—",
+          "startMs": 2160,
+          "endMs": 2660,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "and",
+          "startMs": 2660,
+          "endMs": 2720,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "it's",
+          "startMs": 2773,
+          "endMs": 2960,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "not",
+          "startMs": 3020,
+          "endMs": 3200,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "by",
+          "startMs": 3227,
+          "endMs": 3280,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "drafting",
+          "startMs": 3342,
+          "endMs": 3840,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "the",
+          "startMs": 3860,
+          "endMs": 3920,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "big",
+          "startMs": 3980,
+          "endMs": 4160,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "names.",
+          "startMs": 4240,
+          "endMs": 4719,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "line-2",
+      "lineIndex": 1,
+      "speaker": "george",
+      "text": "Here's the whole secret: fantasy points come from touches. The ball. More touches, more points. That's it.",
+      "visual": "simple truth",
+      "viz": {
+        "kind": "statBig",
+        "value": "TOUCHES = POINTS",
+        "label": "THE ONLY MATH THAT MATTERS",
+        "sub": "the guy who gets the ball wins"
+      },
+      "startMs": 4719,
+      "endMs": 12560,
+      "words": [
+        {
+          "text": "Here's",
+          "startMs": 4719,
+          "endMs": 5040,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "the",
+          "startMs": 5060,
+          "endMs": 5120,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "whole",
+          "startMs": 5147,
+          "endMs": 5280,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "secret:",
+          "startMs": 5337,
+          "endMs": 6000,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "fantasy",
+          "startMs": 6050,
+          "endMs": 6400,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "points",
+          "startMs": 6469,
+          "endMs": 6880,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "come",
+          "startMs": 6944,
+          "endMs": 7200,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "from",
+          "startMs": 7264,
+          "endMs": 7520,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "touches.",
+          "startMs": 7600,
+          "endMs": 8320,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "The",
+          "startMs": 8460,
+          "endMs": 8880,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "ball.",
+          "startMs": 8976,
+          "endMs": 9720,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "More",
+          "startMs": 9792,
+          "endMs": 10080,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "touches,",
+          "startMs": 10150,
+          "endMs": 10880,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "more",
+          "startMs": 10928,
+          "endMs": 11120,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "points.",
+          "startMs": 11189,
+          "endMs": 11680,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "That's",
+          "startMs": 11792,
+          "endMs": 12320,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "it.",
+          "startMs": 12400,
+          "endMs": 12560,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "line-3",
+      "lineIndex": 2,
+      "speaker": "jessica",
+      "text": "Okay, so how do I find the guy who's about to get a ton of touches?",
+      "visual": "question beat",
+      "startMs": 12560,
+      "endMs": 18241,
+      "words": [
+        {
+          "text": "Okay,",
+          "startMs": 12560,
+          "endMs": 13041,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "so",
+          "startMs": 13148,
+          "endMs": 13361,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "how",
+          "startMs": 13481,
+          "endMs": 13841,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "do",
+          "startMs": 13868,
+          "endMs": 13921,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "I",
+          "startMs": 14001,
+          "endMs": 14081,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "find",
+          "startMs": 14113,
+          "endMs": 14241,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "the",
+          "startMs": 14281,
+          "endMs": 14401,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "guy",
+          "startMs": 14481,
+          "endMs": 14721,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "who's",
+          "startMs": 14761,
+          "endMs": 14961,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "about",
+          "startMs": 14988,
+          "endMs": 15121,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "to",
+          "startMs": 15174,
+          "endMs": 15281,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "get",
+          "startMs": 15341,
+          "endMs": 15521,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "a",
+          "startMs": 15641,
+          "endMs": 15761,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "ton",
+          "startMs": 15861,
+          "endMs": 16161,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "of",
+          "startMs": 16241,
+          "endMs": 16401,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "touches?",
+          "startMs": 16481,
+          "endMs": 18241,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "line-4",
+      "lineIndex": 3,
+      "speaker": "george",
+      "text": "You look for an empty job. When a starting running back leaves a team, someone inherits all of those touches.",
+      "visual": "empty job",
+      "viz": {
+        "kind": "statBig",
+        "value": "AN EMPTY JOB",
+        "label": "A STARTER LEAVES →",
+        "sub": "all those touches are up for grabs"
+      },
+      "startMs": 18241,
+      "endMs": 25201,
+      "words": [
+        {
+          "text": "You",
+          "startMs": 18241,
+          "endMs": 18401,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "look",
+          "startMs": 18433,
+          "endMs": 18561,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "for",
+          "startMs": 18601,
+          "endMs": 18721,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "an",
+          "startMs": 18748,
+          "endMs": 18801,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "empty",
+          "startMs": 18854,
+          "endMs": 19121,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "job.",
+          "startMs": 19221,
+          "endMs": 19601,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "When",
+          "startMs": 19761,
+          "endMs": 20401,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "a",
+          "startMs": 20441,
+          "endMs": 20481,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "starting",
+          "startMs": 20517,
+          "endMs": 20801,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "running",
+          "startMs": 20831,
+          "endMs": 21041,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "back",
+          "startMs": 21089,
+          "endMs": 21281,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "leaves",
+          "startMs": 21315,
+          "endMs": 21521,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "a",
+          "startMs": 21561,
+          "endMs": 21601,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "team,",
+          "startMs": 21681,
+          "endMs": 22561,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "someone",
+          "startMs": 22611,
+          "endMs": 22961,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "inherits",
+          "startMs": 23023,
+          "endMs": 23521,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "all",
+          "startMs": 23601,
+          "endMs": 23841,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "of",
+          "startMs": 23868,
+          "endMs": 23921,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "those",
+          "startMs": 23961,
+          "endMs": 24161,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "touches.",
+          "startMs": 24221,
+          "endMs": 25201,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "line-5",
+      "lineIndex": 4,
+      "speaker": "jessica",
+      "text": "So who's got an empty job this year?",
+      "visual": "who beat",
+      "startMs": 25201,
+      "endMs": 27921,
+      "words": [
+        {
+          "text": "So",
+          "startMs": 25201,
+          "endMs": 26161,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "who's",
+          "startMs": 26221,
+          "endMs": 26481,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "got",
+          "startMs": 26521,
+          "endMs": 26641,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "an",
+          "startMs": 26668,
+          "endMs": 26721,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "empty",
+          "startMs": 26774,
+          "endMs": 27041,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "job",
+          "startMs": 27121,
+          "endMs": 27361,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "this",
+          "startMs": 27393,
+          "endMs": 27521,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "year?",
+          "startMs": 27585,
+          "endMs": 27921,
+          "speaker": "jessica",
+          "lineIndex": 4
+        }
+      ]
+    },
+    {
+      "id": "line-6",
+      "lineIndex": 5,
+      "speaker": "george",
+      "text": "Bhayshul Tuten. The Jaguars let Travis Etienne walk — that's eleven hundred yards, gone. Tuten's their number one now, and he ran the fastest forty of any back in his draft class.",
+      "visual": "vacated split",
+      "viz": {
+        "kind": "split",
+        "left": {
+          "label": "GONE — ETIENNE",
+          "value": "1,107 YDS"
+        },
+        "right": {
+          "label": "NEW RB1 — TUTEN",
+          "value": "FASTEST 40"
+        },
+        "stamp": "THE JOB IS OPEN"
+      },
+      "startMs": 27921,
+      "endMs": 41520,
+      "words": [
+        {
+          "text": "Bhayshul",
+          "startMs": 27921,
+          "endMs": 29361,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Tuten.",
+          "startMs": 29441,
+          "endMs": 30201,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "The",
+          "startMs": 30291,
+          "endMs": 30561,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Jaguars",
+          "startMs": 30621,
+          "endMs": 31041,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "let",
+          "startMs": 31081,
+          "endMs": 31201,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Travis",
+          "startMs": 31258,
+          "endMs": 31601,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Etienne",
+          "startMs": 31654,
+          "endMs": 32081,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "walk",
+          "startMs": 32161,
+          "endMs": 32481,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "—",
+          "startMs": 32481,
+          "endMs": 32849,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "that's",
+          "startMs": 32849,
+          "endMs": 33201,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "eleven",
+          "startMs": 33281,
+          "endMs": 33761,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "hundred",
+          "startMs": 33791,
+          "endMs": 34001,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "yards,",
+          "startMs": 34094,
+          "endMs": 34881,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "gone.",
+          "startMs": 34977,
+          "endMs": 35761,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Tuten's",
+          "startMs": 35961,
+          "endMs": 36481,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "their",
+          "startMs": 36508,
+          "endMs": 36641,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "number",
+          "startMs": 36675,
+          "endMs": 36881,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "one",
+          "startMs": 36941,
+          "endMs": 37121,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "now,",
+          "startMs": 37181,
+          "endMs": 37841,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "and",
+          "startMs": 37861,
+          "endMs": 37921,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "he",
+          "startMs": 37948,
+          "endMs": 38001,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "ran",
+          "startMs": 38061,
+          "endMs": 38241,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "the",
+          "startMs": 38281,
+          "endMs": 38401,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "fastest",
+          "startMs": 38471,
+          "endMs": 38961,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "forty",
+          "startMs": 39028,
+          "endMs": 39361,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "of",
+          "startMs": 39441,
+          "endMs": 39601,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "any",
+          "startMs": 39681,
+          "endMs": 39921,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "back",
+          "startMs": 40001,
+          "endMs": 40321,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "in",
+          "startMs": 40401,
+          "endMs": 40561,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "his",
+          "startMs": 40581,
+          "endMs": 40641,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "draft",
+          "startMs": 40708,
+          "endMs": 41041,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "class.",
+          "startMs": 41108,
+          "endMs": 41520,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ]
+    },
+    {
+      "id": "line-7",
+      "lineIndex": 6,
+      "speaker": "jessica",
+      "text": "And everyone's still sleeping on him?",
+      "visual": "sleeping beat",
+      "startMs": 41520,
+      "endMs": 43201,
+      "words": [
+        {
+          "text": "And",
+          "startMs": 41520,
+          "endMs": 41681,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "everyone's",
+          "startMs": 41725,
+          "endMs": 42161,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "still",
+          "startMs": 42201,
+          "endMs": 42401,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "sleeping",
+          "startMs": 42445,
+          "endMs": 42801,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "on",
+          "startMs": 42854,
+          "endMs": 42961,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "him?",
+          "startMs": 43001,
+          "endMs": 43201,
+          "speaker": "jessica",
+          "lineIndex": 6
+        }
+      ]
+    },
+    {
+      "id": "line-8",
+      "lineIndex": 7,
+      "speaker": "george",
+      "text": "Because he was a backup last year, so he's cheap. That's the game — draft the job before the price catches up.",
+      "visual": "payoff",
+      "viz": {
+        "kind": "title",
+        "big": "DRAFT THE JOB.",
+        "sub": "NOT THE NAME."
+      },
+      "startMs": 43201,
+      "endMs": 50561,
+      "words": [
+        {
+          "text": "Because",
+          "startMs": 43201,
+          "endMs": 44401,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "he",
+          "startMs": 44428,
+          "endMs": 44481,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "was",
+          "startMs": 44521,
+          "endMs": 44641,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "a",
+          "startMs": 44681,
+          "endMs": 44721,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "backup",
+          "startMs": 44778,
+          "endMs": 45121,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "last",
+          "startMs": 45169,
+          "endMs": 45361,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "year,",
+          "startMs": 45393,
+          "endMs": 45601,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "so",
+          "startMs": 45654,
+          "endMs": 45761,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "he's",
+          "startMs": 45814,
+          "endMs": 46001,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "cheap.",
+          "startMs": 46068,
+          "endMs": 46481,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "That's",
+          "startMs": 46609,
+          "endMs": 47201,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "the",
+          "startMs": 47221,
+          "endMs": 47281,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "game",
+          "startMs": 47361,
+          "endMs": 47681,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "—",
+          "startMs": 47681,
+          "endMs": 48294,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "draft",
+          "startMs": 48294,
+          "endMs": 48561,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "the",
+          "startMs": 48581,
+          "endMs": 48641,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "job",
+          "startMs": 48741,
+          "endMs": 49041,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "before",
+          "startMs": 49075,
+          "endMs": 49281,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "the",
+          "startMs": 49301,
+          "endMs": 49361,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "price",
+          "startMs": 49428,
+          "endMs": 49761,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "catches",
+          "startMs": 49821,
+          "endMs": 50241,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "up.",
+          "startMs": 50348,
+          "endMs": 50561,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ]
+    }
+  ]
+}
