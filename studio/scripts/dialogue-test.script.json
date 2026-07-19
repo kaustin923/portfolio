@@ -1,6 +1,7 @@
 {
   "id": "dialogue-test",
   "title": "TWO VOICES / ONE SYSTEM",
+  "playbackSpeed": 1.0,
   "theme": {
     "name": "Signal Red",
     "accent": "#E0342B",

@@ -1,6 +1,7 @@
 {
   "id": "ep-001-offline-speech",
   "title": "YOUR PHONE LEARNED TO LISTEN OFFLINE",
+  "playbackSpeed": 1.0,
   "voice": {"name": "ElevenLabs", "rate": 178},
   "narration": "Put your phone in airplane mode. It can still transcribe every word you say. Here's what changed: speech AI used to live on giant servers. Engineers shrank those models until they fit on the chip already in your pocket — same ability, a fraction of the size. That shrink is a privacy shift: your voice becomes text on the device, so the recording never leaves your hand. And offline means everywhere — live captions in a subway, translation on a plane, voice notes with zero signal. Your phone's mic just became a private interpreter that works anywhere. The next wave of apps will quietly assume this. You're just early.",
   "scenes": [

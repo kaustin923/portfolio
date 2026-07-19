@@ -2,7 +2,7 @@
 
 import {spawn} from 'node:child_process';
 import {existsSync} from 'node:fs';
-import {mkdir, readFile, stat, unlink, writeFile} from 'node:fs/promises';
+import {mkdir, readFile, rename, stat, unlink, writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import process from 'node:process';
@@ -185,6 +185,10 @@ const validateScript = (value) => {
       }
     }
   }
+  if (value.playbackSpeed !== undefined) {
+    requireNumber(value.playbackSpeed, 'Script playbackSpeed');
+  }
+  value.playbackSpeed = Math.min(1.6, Math.max(1, value.playbackSpeed ?? 1.3));
   const dialogue = Array.isArray(value.lines) && value.lines.length > 0;
   if (dialogue) {
     requireString(value.dialogueModel, 'Script dialogueModel', true);
@@ -347,6 +351,19 @@ const loudnormFinalMix = async ({input, output}) => {
     '-af', `${secondPassFilter},alimiter=limit=${AAC_CEILING_GUARD}:attack=5:release=50:level=false`,
     '-movflags', '+faststart', output,
   ], {label: 'Final mux and loudness normalization — pass 2 of 2', quiet: true});
+};
+
+const applyPlaybackSpeed = async ({input, output, speed}) => {
+  await run(FFMPEG, [
+    '-y', '-i', input,
+    '-filter_complex', `[0:v]setpts=PTS/${speed}[v];[0:a]atempo=${speed}[a]`,
+    '-map', '[v]', '-map', '[a]',
+    '-c:v', 'libx264', '-pix_fmt', 'yuv420p',
+    '-c:a', 'aac', '-b:a', '192k',
+    output,
+  ], {label: `Applying ${speed.toFixed(2)}x playback speed`, quiet: true});
+  const media = await probeMedia(output);
+  console.log(`[studio] Final duration after speed-up: ${media.duration.toFixed(2)}s`);
 };
 
 const makeSyntheticWords = (narration, durationMs) => {
@@ -831,6 +848,8 @@ const renderEpisode = async ({episode, timing, assetBase, output}) => {
   console.log(`[studio] Rendering ${composition.durationInFrames} frames at ${composition.width}x${composition.height}/${composition.fps}fps`);
   let lastPercent = -1;
   const intermediateOutput = path.join(path.dirname(output), `.${path.basename(output)}.rendering-${process.pid}.mp4`);
+  const normalizedOutput = path.join(path.dirname(output), `.${path.basename(output)}.normalized-${process.pid}.mp4`);
+  const speedOutput = path.join(path.dirname(output), `.${path.basename(output)}.speeding-${process.pid}.mp4`);
   const commonRenderOptions = {
     composition,
     serveUrl,
@@ -864,9 +883,17 @@ const renderEpisode = async ({episode, timing, assetBase, output}) => {
       await renderMedia({...commonRenderOptions, crf: 19, hardwareAcceleration: 'disable'});
     }
     process.stdout.write('\r[studio] Render 100%\n');
-    await loudnormFinalMix({input: intermediateOutput, output});
+    if (episode.playbackSpeed === 1) {
+      await loudnormFinalMix({input: intermediateOutput, output});
+    } else {
+      await loudnormFinalMix({input: intermediateOutput, output: normalizedOutput});
+      await applyPlaybackSpeed({input: normalizedOutput, output: speedOutput, speed: episode.playbackSpeed});
+      await rename(speedOutput, output);
+    }
   } finally {
     await unlink(intermediateOutput).catch(() => undefined);
+    await unlink(normalizedOutput).catch(() => undefined);
+    await unlink(speedOutput).catch(() => undefined);
   }
 };
 

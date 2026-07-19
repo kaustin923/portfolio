@@ -97,6 +97,7 @@ export type SceneScript = {
 export type EpisodeScriptInput = {
   id: string;
   title: string;
+  playbackSpeed?: number;
   voice?: VoiceConfig;
   narration?: string;
   scenes?: SceneScript[];
@@ -295,6 +296,10 @@ export const assertEpisodeScript = (value: unknown): EpisodeScript => {
       if (!candidate.theme[key]?.trim()) throw new Error(`Script theme requires non-empty ${key}.`);
     }
   }
+  if (candidate.playbackSpeed !== undefined) {
+    assertNumber(candidate.playbackSpeed, 'Script playbackSpeed');
+  }
+  const playbackSpeed = Math.min(1.6, Math.max(1, candidate.playbackSpeed ?? 1.3));
   const dialogue = Array.isArray(candidate.lines) && candidate.lines.length > 0;
   if (dialogue) {
     assertString(candidate.dialogueModel, 'Script dialogueModel', true);
@@ -324,6 +329,7 @@ export const assertEpisodeScript = (value: unknown): EpisodeScript => {
       ...candidate,
       id: candidate.id,
       title: candidate.title,
+      playbackSpeed,
       narration: candidate.lines!.map((line) => line.text.trim()).join(' '),
       dialogueModel: candidate.dialogueModel?.trim() || 'eleven_v3',
       dialogueSettings: candidate.dialogueSettings ?? {stability: 0.65},
@@ -350,5 +356,6 @@ export const assertEpisodeScript = (value: unknown): EpisodeScript => {
       throw new Error(`Scene ${index + 1} requires id and cue.`);
     }
   }
+  candidate.playbackSpeed = playbackSpeed;
   return candidate as EpisodeScript;
 };
