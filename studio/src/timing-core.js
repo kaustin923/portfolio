@@ -138,21 +138,69 @@ export const buildCaptionPages = (words) => {
       text: bucket.map((word) => word.text).join(' ').replace(/\s+([,.!?;:%])/g, '$1'),
       startMs: first.startMs,
       endMs: Math.max(last.endMs, first.startMs + 620),
+      words: bucket,
+      ...(first.speaker ? {speaker: first.speaker} : {}),
+      ...(Number.isInteger(first.lineIndex) ? {lineIndex: first.lineIndex} : {}),
     });
     bucket = [];
   };
   for (const word of words) {
     const previous = bucket[bucket.length - 1];
     const gap = previous ? word.startMs - previous.endMs : 0;
-    if (bucket.length >= 2 && (gap > 330 || /[.!?;:]$/.test(previous?.text ?? '') || word.endMs - bucket[0].startMs > 880)) flush();
+    const lineChanged = previous && (
+      word.speaker !== previous.speaker
+      || (Number.isInteger(word.lineIndex) && word.lineIndex !== previous.lineIndex)
+    );
+    if (lineChanged || (bucket.length >= 2 && (gap > 330 || /[.!?;:]$/.test(previous?.text ?? '') || word.endMs - bucket[0].startMs > 880))) flush();
     bucket.push(word);
     if (bucket.length >= 4 || (bucket.length >= 2 && /[.!?;:]$/.test(word.text))) flush();
   }
   flush();
-  return pages.map((page, index, all) => ({
-    ...page,
-    endMs: Math.max(page.startMs + 560, Math.min(page.endMs, (all[index + 1]?.startMs ?? page.endMs + 160) - 20)),
-  }));
+  return pages.map((page, index, all) => {
+    const next = all[index + 1];
+    const lineChanges = next && (
+      next.speaker !== page.speaker
+      || (Number.isInteger(next.lineIndex) && next.lineIndex !== page.lineIndex)
+    );
+    const minimumDuration = lineChanges ? 80 : 560;
+    return {
+      ...page,
+      endMs: Math.max(page.startMs + minimumDuration, Math.min(page.endMs, (next?.startMs ?? page.endMs + 160) - 20)),
+    };
+  });
+};
+
+const assignWordsToDialogueLines = (words, lineTimings) => words.map((word) => {
+  const midpoint = (word.startMs + word.endMs) / 2;
+  const containing = lineTimings.find((line) => midpoint >= line.startMs && midpoint <= line.endMs);
+  const line = containing ?? lineTimings.reduce((nearest, candidate) => {
+    const distance = midpoint < candidate.startMs
+      ? candidate.startMs - midpoint
+      : midpoint > candidate.endMs
+        ? midpoint - candidate.endMs
+        : 0;
+    return !nearest || distance < nearest.distance ? {line: candidate, distance} : nearest;
+  }, null)?.line;
+  return line ? {...word, speaker: line.speaker, lineIndex: line.lineIndex} : word;
+});
+
+const assignAuthoredWordsToDialogueLines = (words, lineTimings) => {
+  const authoredWordCount = lineTimings.reduce(
+    (sum, line) => sum + line.text.trim().split(/\s+/).filter(Boolean).length,
+    0,
+  );
+  if (authoredWordCount !== words.length) return assignWordsToDialogueLines(words, lineTimings);
+  let cursor = 0;
+  return lineTimings.flatMap((line) => {
+    const count = line.text.trim().split(/\s+/).filter(Boolean).length;
+    const assigned = words.slice(cursor, cursor + count).map((word) => ({
+      ...word,
+      speaker: line.speaker,
+      lineIndex: line.lineIndex,
+    }));
+    cursor += count;
+    return assigned;
+  });
 };
 
 const tokenSimilarity = (a, b) => {
@@ -247,8 +295,35 @@ export const alignNarrationToWords = (narration, words) => {
   }));
 };
 
-export const resolveEpisodeTiming = ({words, scenes, narration, durationMs, fps = 30, threshold = 0.54}) => {
-  words = alignNarrationToWords(narration, words) ?? words;
+export const resolveEpisodeTiming = ({words, scenes, narration, durationMs, lineTimings = [], fps = 30, threshold = 0.54}) => {
+  const authoredWords = alignNarrationToWords(narration, words);
+  words = authoredWords ?? words;
+  const tailMs = 360;
+  if (lineTimings.length > 0) {
+    words = authoredWords
+      ? assignAuthoredWordsToDialogueLines(words, lineTimings)
+      : assignWordsToDialogueLines(words, lineTimings);
+    const cues = lineTimings.map((line, index) => ({
+      id: line.id,
+      cue: line.text,
+      startMs: line.startMs,
+      endMs: lineTimings[index + 1]?.startMs ?? durationMs + tailMs,
+      score: 1,
+      matchedText: line.text,
+      fallback: false,
+      speaker: line.speaker,
+      lineIndex: line.lineIndex,
+    }));
+    const finalDurationMs = durationMs + tailMs;
+    return {
+      durationMs: finalDurationMs,
+      durationInFrames: Math.ceil((finalDurationMs / 1000) * fps),
+      words,
+      captions: buildCaptionPages(words),
+      cues,
+      lineTimings,
+    };
+  }
   const fallbackStarts = narrationFallbackStarts(scenes, narration, durationMs);
   const matches = scenes.map((scene, index) => {
     const result = findCue(scene.cue, words);
@@ -270,7 +345,6 @@ export const resolveEpisodeTiming = ({words, scenes, narration, durationMs, fps 
     }
     matches[index].startMs = clamp(matches[index].startMs, matches[index - 1].startMs + 180, durationMs - 180);
   }
-  const tailMs = 360;
   const cues = matches.map((match, index) => ({
     ...match,
     endMs: index < matches.length - 1 ? matches[index + 1].startMs : durationMs + tailMs,

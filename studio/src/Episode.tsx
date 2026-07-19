@@ -1,6 +1,7 @@
+import type {CSSProperties} from 'react';
 import {AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import {Captions} from './components/Captions';
-import type {EpisodeProps, ResolvedCue, SceneScript} from './schema';
+import type {DialogueLineScript, EpisodeProps, ResolvedCue, SceneScript} from './schema';
 import {CallOneScene} from './scenes/CallOneScene';
 import {CallThreeScene} from './scenes/CallThreeScene';
 import {CallTwoScene} from './scenes/CallTwoScene';
@@ -13,12 +14,17 @@ import {EduHookScene} from './scenes/EduHookScene';
 import {EduOutroScene} from './scenes/EduOutroScene';
 import {EduPrivacyScene} from './scenes/EduPrivacyScene';
 import {EduShrinkScene} from './scenes/EduShrinkScene';
+import {EduDialogueScene} from './scenes/EduDialogueScene';
 import {longShotImpactFrame, receiptStampFrame, receiptTickFrame} from './scenes/beats';
+import {resolveThemeTokens} from './tokens';
 
 const amplitude = (db: number) => Math.pow(10, db / 20);
 const msToFrame = (ms: number) => Math.round((ms / 1000) * 30);
 
-const SceneForCue = ({cue, duration, scene}: {cue: ResolvedCue; duration: number; scene?: SceneScript}) => {
+const SceneForCue = ({cue, duration, scene, line}: {cue: ResolvedCue; duration: number; scene?: SceneScript; line?: DialogueLineScript}) => {
+  if (scene?.type === 'edu-dialogue' && line) {
+    return <EduDialogueScene duration={duration} line={line} lineIndex={cue.lineIndex ?? 0} />;
+  }
   if (scene?.type === 'edu-hook') return <EduHookScene duration={duration} />;
   if (scene?.type === 'edu-cloud') return <EduCloudScene duration={duration} />;
   if (scene?.type === 'edu-shrink') return <EduShrinkScene duration={duration} />;
@@ -86,28 +92,42 @@ const Soundtrack = ({assetBase, cues}: {assetBase: string; cues: ResolvedCue[]})
 
 export const Episode = ({episode, timing, assetBase}: EpisodeProps) => {
   const frame = useCurrentFrame();
+  const theme = resolveThemeTokens(episode.theme);
+  const themeStyle = {
+    '--episode-accent': theme.accent,
+    '--episode-accent-soft': theme.accentSoft,
+  } as CSSProperties;
   const firstCue = timing.cues[0];
   const firstDuration = firstCue ? Math.max(1, Math.min(timing.durationInFrames, msToFrame(firstCue.endMs)) - msToFrame(firstCue.startMs)) : 1;
   const educational = episode.scenes[0]?.type === 'edu-hook';
+  const dialogue = episode.scenes[0]?.type === 'edu-dialogue' && Boolean(episode.lines?.[0]);
   return (
-    <AbsoluteFill>
+    <AbsoluteFill style={themeStyle}>
       {timing.cues.map((cue) => {
         const scene = episode.scenes.find((candidate) => candidate.id === cue.id);
+        const lineIndex = cue.lineIndex ?? (typeof scene?.lineIndex === 'number' ? scene.lineIndex : undefined);
+        const line = lineIndex === undefined ? undefined : episode.lines?.[lineIndex];
         const start = msToFrame(cue.startMs);
         const end = Math.min(timing.durationInFrames, msToFrame(cue.endMs));
         const duration = Math.max(1, end - start);
         return (
           <Sequence key={cue.id} from={start} durationInFrames={duration} name={cue.id}>
-            <SceneForCue cue={cue} duration={duration} scene={scene} />
+            <SceneForCue cue={cue} duration={duration} scene={scene} line={line} />
           </Sequence>
         );
       })}
-      <Captions pages={timing.captions} />
+      <Captions pages={timing.captions} theme={episode.theme} />
       <Soundtrack assetBase={assetBase} cues={timing.cues} />
       {frame === timing.durationInFrames - 1 ? (
         <AbsoluteFill style={{zIndex: 999}}>
-          {educational ? <EduHookScene duration={firstDuration} frameOverride={0} /> : <HookScene frameOverride={0} />}
-          <Captions pages={timing.captions} frameOverride={0} />
+          {dialogue ? (
+            <EduDialogueScene duration={firstDuration} line={episode.lines![0]} lineIndex={0} frameOverride={0} />
+          ) : educational ? (
+            <EduHookScene duration={firstDuration} frameOverride={0} />
+          ) : (
+            <HookScene frameOverride={0} />
+          )}
+          <Captions pages={timing.captions} theme={episode.theme} frameOverride={0} />
         </AbsoluteFill>
       ) : null}
       <div style={{display: 'none'}}>{episode.title}</div>

@@ -3,9 +3,10 @@ import { join } from 'node:path';
 
 import { config } from './config.js';
 import { structured } from './llm.js';
+import { parseEventPeg } from './pitchVerify.js';
 import type { Pitch, PitchStatus, PitchVertical, Topic } from './types.js';
 
-const PITCH_QUALITY_BAR = `each pitch must have a curiosity-gap headline (≤9 words, would stop a scroll as silent text), a one-sentence stakes line (why care TODAY), an unexpected angle (cross-domain collisions like finance×entertainment beat straight coverage; 'the machine/money/psychology behind X' beats 'X explained'), an event peg with date when possible, and a vertical tag (finance/sports/tech/culture). Pitches must be DIVERSE (no two same vertical+format) and NEVER generic ('X explained' headlines are auto-rejected — regenerate once).`;
+const PITCH_QUALITY_BAR = `each pitch must have a curiosity-gap headline (≤9 words, would stop a scroll as silent text), a one-sentence stakes line (why care TODAY), an unexpected angle (cross-domain collisions like finance×entertainment beat straight coverage; 'the machine/money/psychology behind X' beats 'X explained'), and a vertical tag (finance/sports/tech/culture). eventPeg must be null unless the story is pegged to a named event with an explicit full date; when present it MUST use "<event name> on YYYY-MM-DD". Never use "upcoming", "date pending", an unknown date, or a past event as a future peg. Pitches must be DIVERSE (no two same vertical+format) and NEVER generic ('X explained' headlines are auto-rejected — regenerate once).`;
 
 const SYSTEM = `You are the pitch editor for a bold short-form media studio. Turn the
 highest-opportunity forecast topics into specific, surprising stories that can win
@@ -210,6 +211,11 @@ function draftViolations(pitches: PitchDraft[]): string[] {
       violations.push(`${label} has an empty format`);
       return;
     }
+    if (pitch.eventPeg !== null && parseEventPeg(pitch.eventPeg) == null) {
+      violations.push(
+        `${label} eventPeg lacks an explicit full date; use "<event name> on YYYY-MM-DD" or null`,
+      );
+    }
     const key = pairKey(pitch);
     const first = firstPairIndex.get(key);
     if (first != null) {
@@ -233,7 +239,8 @@ function validDrafts(pitches: PitchDraft[]): PitchDraft[] {
       wordCount(pitch.headline) > 9 ||
       GENERIC_HEADLINE_PATTERNS.some((pattern) => pattern.test(pitch.headline)) ||
       typeof pitch.format !== 'string' ||
-      !pitch.format.trim()
+      !pitch.format.trim() ||
+      (pitch.eventPeg !== null && parseEventPeg(pitch.eventPeg) == null)
     ) {
       continue;
     }
@@ -286,7 +293,7 @@ function dryRunDrafts(topics: Topic[]): PitchDraft[] {
       headline,
       stakes: `This forecast has a live opportunity window ${topic.postWindow}.`,
       angle: topic.suggestedAngle,
-      eventPeg: topic.catalyst,
+      eventPeg: topic.catalyst && parseEventPeg(topic.catalyst) ? topic.catalyst : null,
       vertical: VERTICALS[index % VERTICALS.length] ?? 'finance',
       format: DRY_RUN_FORMATS[index % DRY_RUN_FORMATS.length] ?? 'analysis',
     };

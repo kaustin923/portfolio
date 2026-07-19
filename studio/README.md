@@ -56,6 +56,26 @@ Create a JSON file in `scripts/` with an ID, title, voice, narration, and an ord
 
 Run `npx studio render scripts/your.script.json`. The CLI prints every resolved scene boundary and marks proportional fallbacks as warnings. New scene IDs can be mapped in `src/Episode.tsx`; reusable visual behavior belongs in `src/components/`.
 
+Dialogue episodes use ordered `lines` in place of the single `voice`, `narration`, and `scenes` fields. Each line is synthesized separately with ElevenLabs, joined with a 140 ms gap, and mapped to an automatically generated `edu-dialogue` scene. `voices` is optional and defaults to Jessica (`cgSgspJ2msm6clMCkdW9`) and George (`JBFqnCBsd6RMkjVDRZzb`). The API key is read from `../trend-engine/.env` at runtime.
+
+```json
+{
+  "id": "dialogue-example",
+  "title": "TWO VOICES",
+  "theme": {
+    "name": "Signal Red",
+    "accent": "#E0342B",
+    "accentSoft": "rgba(224,52,43,.24)"
+  },
+  "lines": [
+    {"speaker": "jessica", "text": "Start with the phone.", "visual": "phone waveform"},
+    {"speaker": "george", "text": "Then show the result.", "visual": "bar chart"}
+  ]
+}
+```
+
+Dialogue line offsets are written to `public/generated/<episode-id>/lines.json`. Theme fields only replace the accent and soft-accent hues; unthemed scripts keep the original gold palette.
+
 ## Demo output
 
 The included episode is `scripts/demo.script.json`, and its finished render is `out/demo.mp4`.

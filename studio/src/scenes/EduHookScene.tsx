@@ -30,7 +30,7 @@ export const EduHookScene = ({duration, frameOverride}: {duration: number; frame
         <PhoneFrame width={548} height={940} glow={glow > .35}>
           <div style={{position: 'absolute', left: 50, right: 50, top: 72, display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
             <div style={{fontFamily: TOKENS.font.mono, color: TOKENS.color.bone, fontSize: 22, fontWeight: 700, letterSpacing: '.08em'}}>AIRPLANE MODE</div>
-            <div style={{width: 104, height: 56, padding: 6, boxSizing: 'border-box', borderRadius: 30, background: toggle > .5 ? TOKENS.color.pending : 'rgba(242,237,228,.2)', boxShadow: `0 0 ${28 * glow}px rgba(217,164,65,.7)`}}>
+            <div style={{width: 104, height: 56, padding: 6, boxSizing: 'border-box', borderRadius: 30, background: toggle > .5 ? TOKENS.color.pending : 'rgba(242,237,228,.2)', boxShadow: `0 0 ${28 * glow}px ${TOKENS.color.pendingSoft}`}}>
               <div style={{width: 44, height: 44, borderRadius: 22, background: TOKENS.color.bone, transform: `translateX(${interpolate(toggle, [0,1], [0,48])}px)`, display: 'grid', placeItems: 'center'}}>
                 <svg viewBox="0 0 36 36" width="27" height="27"><path d="m4 19 12 2-4 10 4 1 6-10 9 2 2-3-10-6 1-10-4-1-4 9-9-3Z" fill={TOKENS.color.ink}/></svg>
               </div>

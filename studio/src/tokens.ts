@@ -1,10 +1,25 @@
+import type {EpisodeTheme} from './schema';
+
+export const DEFAULT_THEME = {
+  name: 'Called It Gold',
+  accent: '#D9A441',
+  accentSoft: 'rgba(217,164,65,.24)',
+} as const;
+
+export const resolveThemeTokens = (theme?: EpisodeTheme) => ({
+  name: theme?.name ?? DEFAULT_THEME.name,
+  accent: theme?.accent ?? DEFAULT_THEME.accent,
+  accentSoft: theme?.accentSoft ?? DEFAULT_THEME.accentSoft,
+});
+
 export const TOKENS = {
   color: {
     ink: '#0D0F14',
     bone: '#F2EDE4',
     hit: '#2FBF71',
     miss: '#E5484D',
-    pending: '#D9A441',
+    pending: 'var(--episode-accent, #D9A441)',
+    pendingSoft: 'var(--episode-accent-soft, rgba(217,164,65,.24))',
     boneHairline: 'rgba(242, 237, 228, 0.22)',
     boneMuted: 'rgba(242, 237, 228, 0.62)',
     inkMuted: 'rgba(13, 15, 20, 0.68)',

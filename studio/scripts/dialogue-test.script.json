@@ -1,0 +1,45 @@
+{
+  "id": "dialogue-test",
+  "title": "TWO VOICES / ONE SYSTEM",
+  "theme": {
+    "name": "Signal Red",
+    "accent": "#E0342B",
+    "accentSoft": "rgba(224,52,43,.24)"
+  },
+  "voices": {
+    "jessica": {"voiceId": "cgSgspJ2msm6clMCkdW9"},
+    "george": {"voiceId": "JBFqnCBsd6RMkjVDRZzb"}
+  },
+  "lines": [
+    {
+      "speaker": "jessica",
+      "text": "George, why do AI demos feel the same?",
+      "visual": "phone waveform reacting to two speakers"
+    },
+    {
+      "speaker": "george",
+      "text": "One voice does all the talking.",
+      "visual": "counter showing one voice"
+    },
+    {
+      "speaker": "jessica",
+      "text": "Let's split speakers and color each beat.",
+      "visual": "card with two speaker channels"
+    },
+    {
+      "speaker": "george",
+      "text": "Charts right, counters left. Better.",
+      "visual": "bar chart comparing one voice and two voices"
+    },
+    {
+      "speaker": "jessica",
+      "text": "Captions follow whoever has the floor.",
+      "visual": "active words hand the spotlight back and forth"
+    },
+    {
+      "speaker": "george",
+      "text": "Now it feels like a conversation.",
+      "visual": "phone audio waveform resolving into two voices"
+    }
+  ]
+}

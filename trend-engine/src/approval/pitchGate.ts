@@ -3,6 +3,10 @@ import {
   appendPitchFeedback,
   appendPitchRecords,
 } from '../pitcher.js';
+import {
+  renderExplicitEventPeg,
+  verifyEventPitches,
+} from '../pitchVerify.js';
 import type { Pitch } from '../types.js';
 import {
   escapeMarkdownV2,
@@ -159,7 +163,10 @@ export function parsePitchReplies(
   return parsed.length > 0 ? parsed : null;
 }
 
-function renderPitchBatch(pitches: Pitch[]): string {
+export function renderPitchBatch(
+  pitches: Pitch[],
+  today = new Date().toISOString().slice(0, 10),
+): string {
   const timeoutMinutes = pitchTimeoutMinutes();
   const lines = ['🗳 *Pitch review — reply naturally*', ''];
 
@@ -169,7 +176,8 @@ function renderPitchBatch(pitches: Pitch[]): string {
       `stakes: ${escapeMarkdownV2(pitch.stakes)}`,
       `angle: ${escapeMarkdownV2(pitch.angle)}`,
     );
-    if (pitch.eventPeg) lines.push(`peg: ${escapeMarkdownV2(pitch.eventPeg)}`);
+    const eventPeg = renderExplicitEventPeg(pitch.eventPeg, today);
+    if (eventPeg) lines.push(`peg: ${escapeMarkdownV2(eventPeg)}`);
     lines.push(
       `\\[${escapeMarkdownV2(pitch.vertical)} · ${escapeMarkdownV2(pitch.format)}\\]`,
       '',
@@ -183,10 +191,13 @@ function renderPitchBatch(pitches: Pitch[]): string {
 }
 
 /** Send exactly one MarkdownV2 message containing the whole pitch batch. */
-export async function sendPitchBatch(pitches: Pitch[]): Promise<number> {
+export async function sendPitchBatch(
+  pitches: Pitch[],
+  today = new Date().toISOString().slice(0, 10),
+): Promise<number> {
   const sent = await telegramPost('sendMessage', {
     chat_id: config.approval.telegramChatId,
-    text: renderPitchBatch(pitches),
+    text: renderPitchBatch(pitches, today),
     parse_mode: 'MarkdownV2',
   });
   const result = isRecord(sent.result) ? sent.result : undefined;
@@ -294,14 +305,29 @@ async function expirePendingPitches(
 /** Send, collect, and append-only persist the Stage-1 human pitch decisions. */
 export async function runPitchGate(
   pitches: Pitch[],
-  opts: { dir?: string } = {},
+  opts: { dir?: string; today?: string } = {},
 ): Promise<Pitch[]> {
   if (isApprovalPollActive()) {
     throw new Error('Cannot start pitch review while another Telegram approval poll is active');
   }
 
-  const updatedPitches = pitches.map((pitch) => ({ ...pitch }));
-  const card = renderPitchBatch(updatedPitches);
+  const today = opts.today ?? new Date().toISOString().slice(0, 10);
+  const verification = await verifyEventPitches(
+    pitches.map((pitch) => ({ ...pitch })),
+    today,
+  );
+  if (verification.records.length > 0) {
+    await appendPitchRecords(verification.records, opts.dir);
+  }
+
+  const updatedPitches = verification.allowed;
+  const mergeWithBlocked = (decided: Pitch[]): Pitch[] => {
+    const byId = new Map(
+      [...decided, ...verification.blocked].map((pitch) => [pitch.id, pitch]),
+    );
+    return pitches.map((pitch) => byId.get(pitch.id) ?? pitch);
+  };
+  const card = renderPitchBatch(updatedPitches, today);
 
   if (config.dryRun) {
     const decidedAt = new Date().toISOString();
@@ -315,15 +341,16 @@ export async function runPitchGate(
     console.log(card.replace(/\*/g, ''));
     console.log('──────────────────────────────────────────────────────\n');
     if (approved.length > 0) await appendPitchRecords(approved, opts.dir);
-    return approved;
+    return mergeWithBlocked(approved);
   }
+
+  if (updatedPitches.length === 0) return mergeWithBlocked([]);
 
   if (!config.approval.telegramBotToken || !config.approval.telegramChatId) {
     throw new Error('TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set for live approval');
   }
 
-  if (updatedPitches.length === 0) return updatedPitches;
-  const cardMessageId = await sendPitchBatch(updatedPitches);
+  const cardMessageId = await sendPitchBatch(updatedPitches, today);
 
   markExternalPollActive(true);
   try {
@@ -389,7 +416,7 @@ export async function runPitchGate(
     if (decided.size < updatedPitches.length) {
       await expirePendingPitches(updatedPitches, decided, opts.dir);
     }
-    return updatedPitches;
+    return mergeWithBlocked(updatedPitches);
   } finally {
     markExternalPollActive(false);
   }

@@ -38,7 +38,7 @@ export const EduOutroScene = ({duration}: {duration: number}) => {
               const ringProgress = (pulse + ring / 3) % 1;
               return <div key={ring} style={{position: 'absolute', width: 150 + ringProgress * 160, height: 150 + ringProgress * 160, borderRadius: 200, border: `5px solid ${TOKENS.color.pending}`, opacity: 1-ringProgress, transform: `scale(${.75+ringProgress*.45})`}} />;
             })}
-            <div style={{width: 156, height: 156, borderRadius: 82, background: TOKENS.color.pending, display: 'grid', placeItems: 'center', boxShadow: '0 0 38px rgba(217,164,65,.52)'}}>
+            <div style={{width: 156, height: 156, borderRadius: 82, background: TOKENS.color.pending, display: 'grid', placeItems: 'center', boxShadow: `0 0 38px ${TOKENS.color.pendingSoft}`}}>
               <svg viewBox="0 0 100 120" width="70" height="84"><rect x="28" y="5" width="44" height="72" rx="23" fill={TOKENS.color.ink}/><path d="M13 60v5c0 28 16 43 37 43s37-15 37-43v-5M50 108v12" fill="none" stroke={TOKENS.color.ink} strokeWidth="10" strokeLinecap="round"/></svg>
             </div>
           </div>

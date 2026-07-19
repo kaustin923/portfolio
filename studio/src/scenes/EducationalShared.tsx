@@ -48,7 +48,7 @@ export const PhoneFrame = ({
       borderRadius: width * .105,
       border: `5px solid ${glow ? TOKENS.color.pending : TOKENS.color.bone}`,
       background: '#11151C',
-      boxShadow: glow ? `0 0 44px rgba(217,164,65,.35), inset 0 0 30px rgba(217,164,65,.08)` : '0 28px 50px rgba(0,0,0,.38)',
+      boxShadow: glow ? `0 0 44px ${TOKENS.color.pendingSoft}, inset 0 0 30px ${TOKENS.color.pendingSoft}` : '0 28px 50px rgba(0,0,0,.38)',
       overflow: 'hidden',
       ...style,
     }}

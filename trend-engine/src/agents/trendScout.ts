@@ -49,7 +49,16 @@ Rules:
 - Prefer topics where we can be early: a catalyst 1–4 weeks out with rising but
   not-yet-flooded interest is ideal.
 - Favor defensible angles (explainer / original take) over "repost the clip".
-- Do not invent signals or events that were not provided.`;
+- Do not invent signals or events that were not provided.
+- HARD DATE RULE: catalyst may be non-null ONLY when the supplied evidence names
+  an explicit full calendar date strictly later than Today. Never infer a date,
+  project an unknown event into the future, or turn "upcoming", "date pending",
+  "TBD", an undated calendar entry, or a past date into a future catalyst.
+- Drop unknown-date topics. A past event may be retained ONLY as a clearly
+  labeled AFTERMATH/RETROSPECTIVE angle: set catalyst=null, use stage=declining
+  (the schema representation of aftermath), recommendation=skip-saturated, and
+  begin the summary and suggestedAngle with "AFTERMATH —". It must never enter
+  a prepare/post-now future-event path.`;
 
 const SCHEMA = {
   type: 'object',

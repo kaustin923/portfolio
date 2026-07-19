@@ -17,7 +17,7 @@ export const EduCloudScene = ({duration}: {duration: number}) => {
         <div style={{position: 'absolute', top: -92, left: 238}}><CloudIcon /></div>
         <div style={{position: 'absolute', inset: '32px 0 0', padding: 30, border: `4px solid ${TOKENS.color.bone}`, borderRadius: 18, background: 'rgba(242,237,228,.035)', boxShadow: '0 24px 0 rgba(0,0,0,.22)'}}>
           {Array.from({length: 5}, (_, index) => (
-            <div key={index} style={{height: 72, marginBottom: 18, border: `3px solid ${TOKENS.color.boneHairline}`, background: index === Math.floor(frame / 7) % 5 ? `rgba(217,164,65,${pulse})` : 'rgba(242,237,228,.045)', display: 'flex', alignItems: 'center', padding: '0 22px', boxSizing: 'border-box'}}>
+            <div key={index} style={{height: 72, marginBottom: 18, border: `3px solid ${TOKENS.color.boneHairline}`, background: index === Math.floor(frame / 7) % 5 ? TOKENS.color.pendingSoft : 'rgba(242,237,228,.045)', display: 'flex', alignItems: 'center', padding: '0 22px', boxSizing: 'border-box', opacity: index === Math.floor(frame / 7) % 5 ? pulse + .2 : 1}}>
               <div style={{display: 'flex', gap: 9}}>{[0,1,2].map((dot) => <span key={dot} style={{width: 12, height: 12, borderRadius: 6, background: dot === 0 ? TOKENS.color.pending : TOKENS.color.boneMuted}} />)}</div>
               <div style={{marginLeft: 26, height: 8, flex: 1, background: `repeating-linear-gradient(90deg, ${TOKENS.color.boneMuted} 0 28px, transparent 28px 40px)`}} />
             </div>

@@ -25,6 +25,11 @@ const FPS = 30;
 const KOKORO_CACHE = path.join(STUDIO_DIR, '.cache/kokoro');
 const LOUDNORM = {integrated: -14, truePeak: -1.5, range: 11};
 const AAC_CEILING_GUARD = 0.82;
+const DIALOGUE_GAP_MS = 140;
+const DEFAULT_DIALOGUE_VOICES = {
+  jessica: {voiceId: 'cgSgspJ2msm6clMCkdW9'},
+  george: {voiceId: 'JBFqnCBsd6RMkjVDRZzb'},
+};
 
 const usage = () => {
   console.log('Usage: npx studio render <script.json> [--out path] [--voice name] [--rate wpm] [--reuse-audio]');
@@ -54,13 +59,56 @@ const parseArgs = (argv) => {
 
 const validateScript = (value) => {
   if (!value || typeof value !== 'object') throw new Error('Script must be a JSON object.');
-  for (const key of ['id', 'title', 'narration']) {
+  for (const key of ['id', 'title']) {
     if (typeof value[key] !== 'string' || !value[key].trim()) throw new Error(`Script requires a non-empty ${key}.`);
   }
-  if (!value.voice || typeof value.voice.name !== 'string' || !Number.isFinite(value.voice.rate)) {
-    throw new Error('Script voice requires a name and numeric rate.');
+  if (value.theme !== undefined) {
+    if (!value.theme || typeof value.theme !== 'object') throw new Error('Script theme must be an object.');
+    for (const key of ['name', 'accent', 'accentSoft']) {
+      if (typeof value.theme[key] !== 'string' || !value.theme[key].trim()) {
+        throw new Error(`Script theme requires a non-empty ${key}.`);
+      }
+    }
   }
-  if (!Array.isArray(value.scenes) || value.scenes.length === 0) throw new Error('Script requires scenes.');
+  const dialogue = Array.isArray(value.lines) && value.lines.length > 0;
+  if (dialogue) {
+    const authoredScenes = Array.isArray(value.scenes) ? value.scenes : [];
+    for (const [index, line] of value.lines.entries()) {
+      if (!line || !['jessica', 'george'].includes(line.speaker)) {
+        throw new Error(`Dialogue line ${index + 1} speaker must be jessica or george.`);
+      }
+      for (const key of ['text', 'visual']) {
+        if (typeof line[key] !== 'string' || !line[key].trim()) {
+          throw new Error(`Dialogue line ${index + 1} requires non-empty ${key}.`);
+        }
+      }
+    }
+    const voices = {};
+    for (const speaker of ['jessica', 'george']) {
+      const configured = value.voices?.[speaker]?.voiceId ?? DEFAULT_DIALOGUE_VOICES[speaker].voiceId;
+      if (typeof configured !== 'string' || !configured.trim()) {
+        throw new Error(`Dialogue voice ${speaker} requires a non-empty voiceId.`);
+      }
+      voices[speaker] = {voiceId: configured.trim()};
+    }
+    value.voices = voices;
+    value.narration = value.lines.map((line) => line.text.trim()).join(' ');
+    value.scenes = value.lines.map((line, index) => ({
+      ...(authoredScenes[index] ?? {}),
+      id: authoredScenes[index]?.id || `line-${index + 1}`,
+      cue: authoredScenes[index]?.cue || line.text,
+      type: authoredScenes[index]?.type || 'edu-dialogue',
+      lineIndex: index,
+    }));
+  } else {
+    if (typeof value.narration !== 'string' || !value.narration.trim()) {
+      throw new Error('Script requires non-empty narration or dialogue lines.');
+    }
+    if (!value.voice || typeof value.voice.name !== 'string' || !Number.isFinite(value.voice.rate)) {
+      throw new Error('Script voice requires a name and numeric rate.');
+    }
+    if (!Array.isArray(value.scenes) || value.scenes.length === 0) throw new Error('Script requires scenes.');
+  }
   for (const scene of value.scenes) {
     if (!scene?.id || !scene?.cue) throw new Error('Every scene requires id and cue.');
   }
@@ -106,7 +154,7 @@ const selectVoice = async (requested) => {
   throw new Error('Neither Samantha nor Daniel is installed.');
 };
 
-const readElevenLabsCredentials = async () => {
+const readElevenLabsCredentials = async ({defaultVoiceRequired = false} = {}) => {
   let contents;
   try {
     contents = await readFile(TREND_ENV, 'utf8');
@@ -128,7 +176,7 @@ const readElevenLabsCredentials = async () => {
   }
   const apiKey = values.get('ELEVENLABS_API_KEY');
   const voiceId = values.get('ELEVENLABS_VOICE_ID');
-  if (!apiKey || !voiceId) throw new Error('Required ElevenLabs credentials are unavailable.');
+  if (!apiKey || (defaultVoiceRequired && !voiceId)) throw new Error('Required ElevenLabs credentials are unavailable.');
   return {apiKey, voiceId};
 };
 
@@ -185,6 +233,16 @@ const makeSyntheticWords = (narration, durationMs) => {
   }));
 };
 
+const makeSyntheticDialogueWords = (lineTimings) => lineTimings.flatMap((line) => {
+  const words = line.text.trim().split(/\s+/).filter(Boolean);
+  const durationMs = line.endMs - line.startMs;
+  return words.map((text, index) => ({
+    text,
+    startMs: Math.round(line.startMs + (durationMs * index) / words.length),
+    endMs: Math.round(line.startMs + (durationMs * (index + 0.9)) / words.length),
+  }));
+});
+
 const synthesizeOfflineFallback = async ({episode, output, voice, rate, forced = false}) => {
   console.warn(
     forced
@@ -227,11 +285,7 @@ const synthesizeOfflineFallback = async ({episode, output, voice, rate, forced =
   await run(AFCONVERT, [rawWav, output, '-f', 'AIFF', '-d', 'BEI16@22050', '-c', '1'], {quiet: true});
 };
 
-const synthesizeElevenLabs = async ({episode, generatedDir}) => {
-  const mp3 = path.join(generatedDir, 'vo.mp3');
-  const wav = path.join(generatedDir, 'vo.wav');
-  const whisperWav = path.join(generatedDir, 'vo16k.wav');
-  const {apiKey, voiceId} = await readElevenLabsCredentials();
+const requestElevenLabsAudio = async ({apiKey, voiceId, text}) => {
   let response;
   try {
     response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(voiceId)}`, {
@@ -241,7 +295,7 @@ const synthesizeElevenLabs = async ({episode, generatedDir}) => {
         'Content-Type': 'application/json',
         Accept: 'audio/mpeg',
       },
-      body: JSON.stringify({text: episode.narration, model_id: 'eleven_multilingual_v2'}),
+      body: JSON.stringify({text, model_id: 'eleven_multilingual_v2'}),
     });
   } catch {
     throw new Error('ElevenLabs request failed before receiving an HTTP response.');
@@ -249,7 +303,15 @@ const synthesizeElevenLabs = async ({episode, generatedDir}) => {
   if (!response.ok) throw new Error(`ElevenLabs request failed with HTTP ${response.status}.`);
   const audio = Buffer.from(await response.arrayBuffer());
   if (audio.length === 0) throw new Error('ElevenLabs returned an empty audio response.');
-  await writeFile(mp3, audio);
+  return audio;
+};
+
+const synthesizeElevenLabs = async ({episode, generatedDir}) => {
+  const mp3 = path.join(generatedDir, 'vo.mp3');
+  const wav = path.join(generatedDir, 'vo.wav');
+  const whisperWav = path.join(generatedDir, 'vo16k.wav');
+  const {apiKey, voiceId} = await readElevenLabsCredentials({defaultVoiceRequired: true});
+  await writeFile(mp3, await requestElevenLabsAudio({apiKey, voiceId, text: episode.narration}));
   await run(FFMPEG, ['-y', '-v', 'error', '-i', mp3, '-ar', '44100', '-ac', '1', '-c:a', 'pcm_s16le', wav], {label: 'Converting ElevenLabs 44.1 kHz master WAV', quiet: true});
   await run(FFMPEG, ['-y', '-v', 'error', '-i', mp3, '-ar', '16000', '-ac', '1', '-c:a', 'pcm_s16le', whisperWav], {label: 'Converting ElevenLabs 16 kHz Whisper WAV', quiet: true});
   const media = await probeMedia(wav);
@@ -257,7 +319,74 @@ const synthesizeElevenLabs = async ({episode, generatedDir}) => {
   return {wav, whisperWav, durationMs: Math.round(media.duration * 1000)};
 };
 
+const escapeFfconcatPath = (file) => file.replaceAll("'", "'\\''");
+
+const synthesizeDialogue = async ({episode, generatedDir}) => {
+  const dialogueDir = path.join(generatedDir, 'dialogue');
+  const wav = path.join(generatedDir, 'vo.wav');
+  const whisperWav = path.join(generatedDir, 'vo16k.wav');
+  const gapWav = path.join(dialogueDir, `gap-${DIALOGUE_GAP_MS}ms.wav`);
+  const concatFile = path.join(dialogueDir, 'concat.txt');
+  await mkdir(dialogueDir, {recursive: true});
+  const {apiKey} = await readElevenLabsCredentials();
+  const lineFiles = [];
+  const lineTimings = [];
+  let cursorSeconds = 0;
+  for (const [index, line] of episode.lines.entries()) {
+    const stem = `line-${String(index + 1).padStart(2, '0')}`;
+    const mp3 = path.join(dialogueDir, `${stem}.mp3`);
+    const lineWav = path.join(dialogueDir, `${stem}.wav`);
+    console.log(`[studio] ElevenLabs dialogue line ${index + 1}/${episode.lines.length} — ${line.speaker}`);
+    const voiceId = episode.voices[line.speaker].voiceId;
+    await writeFile(mp3, await requestElevenLabsAudio({apiKey, voiceId, text: line.text}));
+    await run(FFMPEG, [
+      '-y', '-v', 'error', '-i', mp3,
+      '-ar', '44100', '-ac', '1', '-c:a', 'pcm_s16le', lineWav,
+    ], {quiet: true});
+    const media = await probeMedia(lineWav);
+    if (!Number.isFinite(media.duration) || media.duration <= 0) {
+      throw new Error(`ffprobe could not measure dialogue line ${index + 1}.`);
+    }
+    const startMs = Math.round(cursorSeconds * 1000);
+    const endMs = Math.round((cursorSeconds + media.duration) * 1000);
+    lineTimings.push({
+      id: episode.scenes[index].id,
+      lineIndex: index,
+      speaker: line.speaker,
+      text: line.text,
+      visual: line.visual,
+      startMs,
+      endMs,
+    });
+    lineFiles.push(lineWav);
+    cursorSeconds += media.duration + (index < episode.lines.length - 1 ? DIALOGUE_GAP_MS / 1000 : 0);
+  }
+  await run(FFMPEG, [
+    '-y', '-v', 'error', '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=mono',
+    '-t', (DIALOGUE_GAP_MS / 1000).toFixed(3), '-c:a', 'pcm_s16le', gapWav,
+  ], {quiet: true});
+  const concatEntries = [];
+  for (const [index, lineFile] of lineFiles.entries()) {
+    concatEntries.push(`file '${escapeFfconcatPath(lineFile)}'`);
+    if (index < lineFiles.length - 1) concatEntries.push(`file '${escapeFfconcatPath(gapWav)}'`);
+  }
+  await writeFile(concatFile, `${concatEntries.join('\n')}\n`);
+  await run(FFMPEG, [
+    '-y', '-v', 'error', '-f', 'concat', '-safe', '0', '-i', concatFile,
+    '-ar', '44100', '-ac', '1', '-c:a', 'pcm_s16le', wav,
+  ], {label: `Concatenating dialogue with ${DIALOGUE_GAP_MS} ms gaps`, quiet: true});
+  await run(FFMPEG, [
+    '-y', '-v', 'error', '-i', wav,
+    '-ar', '16000', '-ac', '1', '-c:a', 'pcm_s16le', whisperWav,
+  ], {label: 'Converting full dialogue track for Whisper', quiet: true});
+  const media = await probeMedia(wav);
+  if (!Number.isFinite(media.duration) || media.duration <= 0) throw new Error('ffprobe could not measure dialogue duration.');
+  await writeFile(path.join(generatedDir, 'lines.json'), `${JSON.stringify(lineTimings, null, 2)}\n`);
+  return {wav, whisperWav, durationMs: Math.round(media.duration * 1000), lineTimings};
+};
+
 const synthesizeNarration = async ({episode, generatedDir, voice, rate}) => {
+  if (episode.lines?.length) return synthesizeDialogue({episode, generatedDir});
   if (voice === 'ElevenLabs') return synthesizeElevenLabs({episode, generatedDir});
   const aiff = path.join(generatedDir, 'vo.aiff');
   const wav = path.join(generatedDir, 'vo.wav');
@@ -283,7 +412,7 @@ const synthesizeNarration = async ({episode, generatedDir, voice, rate}) => {
   return {wav, whisperWav, durationMs: Math.round(media.duration * 1000)};
 };
 
-const reuseNarration = async ({generatedDir}) => {
+const reuseNarration = async ({episode, generatedDir}) => {
   const wav = path.join(generatedDir, 'vo.wav');
   const whisperWav = path.join(generatedDir, 'vo16k.wav');
   if (!existsSync(wav) || !existsSync(whisperWav)) {
@@ -292,10 +421,21 @@ const reuseNarration = async ({generatedDir}) => {
   const media = await probeMedia(wav);
   if (!Number.isFinite(media.duration) || media.duration <= 0) throw new Error('ffprobe could not measure reused narration duration.');
   console.log('[studio] Reusing existing narration audio; TTS is skipped.');
-  return {wav, whisperWav, durationMs: Math.round(media.duration * 1000)};
+  let lineTimings = [];
+  if (episode.lines?.length) {
+    try {
+      lineTimings = JSON.parse(await readFile(path.join(generatedDir, 'lines.json'), 'utf8'));
+    } catch {
+      throw new Error('--reuse-audio for dialogue requires the existing lines.json timing artifact.');
+    }
+    if (!Array.isArray(lineTimings) || lineTimings.length !== episode.lines.length) {
+      throw new Error('Reused dialogue line timings do not match this script.');
+    }
+  }
+  return {wav, whisperWav, durationMs: Math.round(media.duration * 1000), lineTimings};
 };
 
-const transcribe = async ({episode, generatedDir, whisperWav, durationMs}) => {
+const transcribe = async ({episode, generatedDir, whisperWav, durationMs, lineTimings = []}) => {
   const outBase = path.join(generatedDir, 'whisper');
   let words = [];
   try {
@@ -312,7 +452,9 @@ const transcribe = async ({episode, generatedDir, whisperWav, durationMs}) => {
   } catch (error) {
     console.warn(`[studio] Timestamp warning: ${error.message}`);
     console.warn('[studio] Falling back to deterministic narration-proportional word timing.');
-    words = makeSyntheticWords(episode.narration, durationMs);
+    words = lineTimings.length > 0
+      ? makeSyntheticDialogueWords(lineTimings)
+      : makeSyntheticWords(episode.narration, durationMs);
   }
   return words;
 };
@@ -414,21 +556,29 @@ const main = async () => {
   const output = path.resolve(process.cwd(), args.out ?? path.join('out', `${safeId}.mp4`));
   await mkdir(generatedDir, {recursive: true});
   await mkdir(path.dirname(output), {recursive: true});
-  const voice = await selectVoice(args.voice ?? episode.voice.name);
-  const rate = args.rate ?? episode.voice.rate;
-  episode.voice = {...episode.voice, name: voice, rate};
+  const dialogue = episode.lines?.length > 0;
+  const voice = dialogue ? 'ElevenLabs' : await selectVoice(args.voice ?? episode.voice.name);
+  const rate = dialogue ? null : args.rate ?? episode.voice.rate;
+  if (!dialogue) episode.voice = {...episode.voice, name: voice, rate};
   console.log(`[studio] Episode ${episode.id}`);
-  const {whisperWav, durationMs} = args.reuseAudio
-    ? await reuseNarration({generatedDir})
+  const {whisperWav, durationMs, lineTimings = []} = args.reuseAudio
+    ? await reuseNarration({episode, generatedDir})
     : await synthesizeNarration({episode, generatedDir, voice, rate});
-  const words = await transcribe({episode, generatedDir, whisperWav, durationMs});
-  const timing = resolveEpisodeTiming({words, scenes: episode.scenes, narration: episode.narration, durationMs, fps: FPS});
+  const words = await transcribe({episode, generatedDir, whisperWav, durationMs, lineTimings});
+  const timing = resolveEpisodeTiming({
+    words,
+    scenes: episode.scenes,
+    narration: episode.narration,
+    durationMs,
+    lineTimings,
+    fps: FPS,
+  });
   await writeFile(path.join(generatedDir, 'words.json'), `${JSON.stringify(words, null, 2)}\n`);
   await writeFile(path.join(generatedDir, 'cues.json'), `${JSON.stringify(timing, null, 2)}\n`);
   console.log('\n[studio] Resolved scene cues');
   for (const cue of timing.cues) {
     const warning = cue.fallback ? '  WARNING: proportional fallback' : '';
-    console.log(`  ${cue.id.padEnd(9)} ${(cue.startMs / 1000).toFixed(2).padStart(6)}s → ${(cue.endMs / 1000).toFixed(2).padStart(6)}s  score=${cue.score.toFixed(3)}${warning}`);
+    console.log(`  ${String(cue.id).padEnd(9)} ${(cue.startMs / 1000).toFixed(2).padStart(6)}s → ${(cue.endMs / 1000).toFixed(2).padStart(6)}s  score=${cue.score.toFixed(3)}${warning}`);
   }
   await makeSfx();
   await renderEpisode({episode, timing, assetBase: `generated/${safeId}`, output});

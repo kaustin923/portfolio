@@ -1,4 +1,4 @@
-import type {CaptionPage, EpisodeTiming, SceneScript, WordTiming} from './schema';
+import type {CaptionPage, DialogueLineTiming, EpisodeTiming, SceneScript, WordTiming} from './schema';
 
 export const normalizeTokens: (value: unknown) => string[];
 export const extractWhisperWords: (payload: unknown) => WordTiming[];
@@ -9,6 +9,7 @@ export const resolveEpisodeTiming: (args: {
   scenes: SceneScript[];
   narration: string;
   durationMs: number;
+  lineTimings?: DialogueLineTiming[];
   fps?: number;
   threshold?: number;
 }) => EpisodeTiming;
