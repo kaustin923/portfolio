@@ -162,5 +162,32 @@ export async function publish(
     const lastResult = results[results.length - 1]!;
     await appendPublishReceipt(draft, decision, caption, lastResult);
   }
+
+  // BEGIN manual-outbox
+  if (!config.dryRun && decision.status === 'approved') {
+    const allFailedForMissingCredentials =
+      results.length > 0 &&
+      results.every(
+        (result) =>
+          result.status === 'error' &&
+          typeof result.error === 'string' &&
+          /Missing required env for .+ publishing/.test(result.error),
+      );
+    try {
+      const { writeManualPostKit } = await import('../outbox.js');
+      await writeManualPostKit({
+        draft,
+        decision,
+        caption,
+        reason: allFailedForMissingCredentials ? 'missing-credentials' : 'approved',
+      });
+    } catch (err) {
+      console.warn(
+        '[outbox] failed to write manual-post kit:',
+        err instanceof Error ? err.message : String(err),
+      );
+    }
+  }
+  // END manual-outbox
   return results;
 }

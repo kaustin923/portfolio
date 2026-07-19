@@ -159,10 +159,12 @@ export async function probeAudioDurationSec(filePath: string): Promise<number> {
 export interface FfmpegCapabilities {
   drawtext: boolean;
   subtitles: boolean;
+  loudnorm: boolean;
 }
 
 let capabilitiesPromise: Promise<FfmpegCapabilities> | undefined;
 let capabilityProbeCount = 0;
+let loudnormAnalysisCount = 0;
 
 export function detectCapabilities(): Promise<FfmpegCapabilities> {
   if (!capabilitiesPromise) {
@@ -178,12 +180,13 @@ export function detectCapabilities(): Promise<FfmpegCapabilities> {
         return {
           drawtext: filters.includes(' drawtext '),
           subtitles: filters.includes(' subtitles '),
+          loudnorm: filters.includes(' loudnorm '),
         };
       })
       // A capability *probe* must never throw: if ffmpeg is absent or the probe
       // fails, report "no capabilities" so DRY_RUN stays fully offline. Live
       // rendering still fails loudly at probe()/runFfmpeg() when ffmpeg is missing.
-      .catch(() => ({ drawtext: false, subtitles: false }));
+      .catch(() => ({ drawtext: false, subtitles: false, loudnorm: false }));
   }
   return capabilitiesPromise;
 }
@@ -196,6 +199,48 @@ export function resetCapabilitiesCache(): void {
 /** Number of real ffmpeg filter probes started by this module. */
 export function getCapabilityProbeCount(): number {
   return capabilityProbeCount;
+}
+
+export interface LoudnormStats {
+  input_i: number;
+  input_tp: number;
+  input_lra: number;
+  input_thresh: number;
+  target_offset: number;
+}
+
+/** Extract the final JSON statistics block emitted by ffmpeg's loudnorm filter. */
+export function parseLoudnormStats(stderr: string): LoudnormStats | null {
+  const block = stderr.match(/\{[\s\S]*?\}/g)?.at(-1);
+  if (!block) return null;
+
+  try {
+    const parsed = JSON.parse(block) as unknown;
+    if (typeof parsed !== 'object' || parsed == null) return null;
+    const record = parsed as Record<string, unknown>;
+    const stats: LoudnormStats = {
+      input_i: Number(record.input_i),
+      input_tp: Number(record.input_tp),
+      input_lra: Number(record.input_lra),
+      input_thresh: Number(record.input_thresh),
+      target_offset: Number(record.target_offset),
+    };
+    return Object.values(stats).every((value) => Number.isFinite(value))
+      ? stats
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Build the measured second-pass loudnorm filter for the vertical render. */
+export function buildLoudnormFilter(m: LoudnormStats): string {
+  return `loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true`;
+}
+
+/** Number of loudnorm analysis passes started by this module. */
+export function getLoudnormAnalysisCount(): number {
+  return loudnormAnalysisCount;
 }
 
 export async function downloadToFile(url: string, destPath: string): Promise<void> {
@@ -245,6 +290,34 @@ export async function renderToVertical(opts: {
     'fps=30',
   ];
   const capabilities = await detectCapabilities();
+  let loudnormFilter: string | undefined;
+  if (input.hasAudio && capabilities.loudnorm) {
+    loudnormAnalysisCount += 1;
+    try {
+      const { stderr } = await runFfmpeg([
+        '-hide_banner',
+        '-i',
+        opts.inputPath,
+        '-t',
+        String(Math.min(opts.maxSec, 179)),
+        '-map',
+        '0:a:0',
+        '-af',
+        'loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json',
+        '-f',
+        'null',
+        '-',
+      ]);
+      const stats = parseLoudnormStats(stderr);
+      if (stats) {
+        loudnormFilter = buildLoudnormFilter(stats);
+      } else {
+        console.warn('[editor] loudness analysis returned invalid statistics; continuing without normalization.');
+      }
+    } catch {
+      console.warn('[editor] loudness analysis failed; continuing without normalization.');
+    }
+  }
   let captionTextPath: string | undefined;
   let attributionHandledByAss = false;
 
@@ -288,9 +361,9 @@ export async function renderToVertical(opts: {
     );
   }
 
+  args.push('-vf', filterParts.join(','));
+  if (loudnormFilter) args.push('-af', loudnormFilter);
   args.push(
-    '-vf',
-    filterParts.join(','),
     '-t',
     String(Math.min(opts.maxSec, 179)),
     '-c:v',

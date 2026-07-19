@@ -2,12 +2,20 @@ import { readFile } from 'node:fs/promises';
 
 import { config } from '../config.js';
 import type { TrendSignal } from '../types.js';
-import { fetchT, type SourcesFetch } from './index.js';
+import { fetchT, getSourcesFetch, type SourcesFetch } from './index.js';
 
 const UA = `trend-engine/0.1 (personal research; contact: ${process.env.CONTACT_EMAIL ?? 'unset'})`;
 const now = () => new Date().toISOString();
 
 const SRC = 'gdelt' as const;
+
+export const GDELT_TIMEOUT_MS = 15_000;
+
+const gdeltFetchT: SourcesFetch = (input, init = {}) =>
+  getSourcesFetch()(input, {
+    ...init,
+    signal: AbortSignal.timeout(GDELT_TIMEOUT_MS),
+  });
 
 interface GdeltPoint {
   date?: string;
@@ -36,7 +44,7 @@ function candidateTerms(terms: string[]): string[] {
     if (!term || seen.has(key)) continue;
     seen.add(key);
     candidates.push(term);
-    if (candidates.length === 10) break;
+    if (candidates.length === 5) break;
   }
   return candidates;
 }
@@ -63,7 +71,7 @@ async function collectTerm(term: string, fetcher: SourcesFetch): Promise<TrendSi
   const endpoint = new URL('https://api.gdeltproject.org/api/v2/doc/doc');
   endpoint.searchParams.set('query', /\s/.test(term) ? `"${term}"` : term);
   endpoint.searchParams.set('mode', 'timelinevol');
-  endpoint.searchParams.set('timespan', '7d');
+  endpoint.searchParams.set('timespan', '3d');
   endpoint.searchParams.set('format', 'json');
 
   const res = await fetcher(endpoint, { headers: { 'User-Agent': UA } });
@@ -91,12 +99,13 @@ async function collectTerm(term: string, fetcher: SourcesFetch): Promise<TrendSi
   }];
 }
 
-/** GDELT seven-day timeline acceleration for harvested candidate terms. */
+/** GDELT three-day timeline acceleration for harvested candidate terms. */
 export async function collectGdelt(
   terms: string[],
   fetcher: SourcesFetch = fetchT,
 ): Promise<TrendSignal[]> {
   if (config.dryRun) return fixture('gdelt');
+  if (fetcher === fetchT) fetcher = gdeltFetchT;
 
   const candidates = candidateTerms(terms);
   const results = await Promise.allSettled(

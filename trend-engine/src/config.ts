@@ -73,6 +73,10 @@ export const config = {
     ]),
   },
 
+  outbox: {
+    open: bool('OUTBOX_OPEN', false),
+  },
+
   licensing: {
     /** Monthly cap on paid-licensed clips (Jukin/Pond5/Storyful); 0 = no licensed clips. */
     monthlyClipBudget: num('LICENSED_CLIP_BUDGET', 0),
