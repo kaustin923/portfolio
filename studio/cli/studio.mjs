@@ -8,7 +8,12 @@ import path from 'node:path';
 import process from 'node:process';
 import {bundle} from '@remotion/bundler';
 import {ensureBrowser, renderMedia, selectComposition} from '@remotion/renderer';
-import {extractWhisperWords, resolveEpisodeTiming} from '../src/timing-core.js';
+import {
+  alignDialogueLinesToWords,
+  alignNarrationToWords,
+  extractWhisperWords,
+  resolveEpisodeTiming,
+} from '../src/timing-core.js';
 
 const STUDIO_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SAY = '/usr/bin/say';
@@ -25,7 +30,6 @@ const FPS = 30;
 const KOKORO_CACHE = path.join(STUDIO_DIR, '.cache/kokoro');
 const LOUDNORM = {integrated: -14, truePeak: -1.5, range: 11};
 const AAC_CEILING_GUARD = 0.82;
-const DIALOGUE_GAP_MS = 140;
 const DEFAULT_DIALOGUE_VOICES = {
   jessica: {voiceId: 'cgSgspJ2msm6clMCkdW9'},
   george: {voiceId: 'JBFqnCBsd6RMkjVDRZzb'},
@@ -183,6 +187,13 @@ const validateScript = (value) => {
   }
   const dialogue = Array.isArray(value.lines) && value.lines.length > 0;
   if (dialogue) {
+    requireString(value.dialogueModel, 'Script dialogueModel', true);
+    if (value.dialogueSettings !== undefined) {
+      if (!isRecord(value.dialogueSettings)) throw new Error('Script dialogueSettings must be an object.');
+      if (value.dialogueSettings.stability !== undefined) {
+        requireNumber(value.dialogueSettings.stability, 'Script dialogueSettings.stability');
+      }
+    }
     const authoredScenes = Array.isArray(value.scenes) ? value.scenes : [];
     for (const [index, line] of value.lines.entries()) {
       if (!line || !['jessica', 'george'].includes(line.speaker)) {
@@ -204,6 +215,8 @@ const validateScript = (value) => {
       voices[speaker] = {voiceId: configured.trim()};
     }
     value.voices = voices;
+    value.dialogueModel = value.dialogueModel?.trim() || 'eleven_v3';
+    value.dialogueSettings = value.dialogueSettings ?? {stability: 0.65};
     value.narration = value.lines.map((line) => line.text.trim()).join(' ');
     value.scenes = value.lines.map((line, index) => ({
       ...(authoredScenes[index] ?? {}),
@@ -418,6 +431,138 @@ const requestElevenLabsAudio = async ({apiKey, voiceId, text}) => {
   return audio;
 };
 
+const dialogueRequestBody = (episode) => ({
+  inputs: episode.lines.map((line) => ({
+    text: line.text,
+    voice_id: episode.voices[line.speaker].voiceId,
+  })),
+  model_id: episode.dialogueModel ?? 'eleven_v3',
+  settings: episode.dialogueSettings ?? {stability: 0.65},
+});
+
+const fetchElevenLabsDialogue = async ({apiKey, endpoint, episode, accept}) => {
+  try {
+    return await fetch(`https://api.elevenlabs.io/v1/text-to-dialogue${endpoint}`, {
+      method: 'POST',
+      headers: {
+        'xi-api-key': apiKey,
+        'Content-Type': 'application/json',
+        Accept: accept,
+      },
+      body: JSON.stringify(dialogueRequestBody(episode)),
+    });
+  } catch {
+    throw new Error('ElevenLabs dialogue request failed before receiving an HTTP response.');
+  }
+};
+
+const extractDialogueAlignmentWords = (alignment, boundaryIndexes = []) => {
+  const characters = alignment?.characters;
+  const starts = alignment?.character_start_times_seconds ?? alignment?.characterStartTimesSeconds;
+  const ends = alignment?.character_end_times_seconds ?? alignment?.characterEndTimesSeconds;
+  if (!Array.isArray(characters) || !Array.isArray(starts) || !Array.isArray(ends)) return [];
+  const boundaries = new Set(boundaryIndexes);
+  const words = [];
+  let current = null;
+  const flush = () => {
+    if (current?.text.trim()) words.push({...current, text: current.text.trim()});
+    current = null;
+  };
+  for (let index = 0; index < characters.length; index++) {
+    if (boundaries.has(index)) flush();
+    const text = String(characters[index] ?? '');
+    const startSeconds = Number(starts[index]);
+    const endSeconds = Number(ends[index]);
+    if (!text.trim()) {
+      flush();
+      continue;
+    }
+    if (!Number.isFinite(startSeconds) || !Number.isFinite(endSeconds)) continue;
+    if (!current) {
+      current = {text, startMs: Math.round(startSeconds * 1000), endMs: Math.round(endSeconds * 1000)};
+    } else {
+      current.text += text;
+      current.endMs = Math.round(endSeconds * 1000);
+    }
+  }
+  flush();
+  return words;
+};
+
+const extractElevenLabsDialogueTiming = (payload, lineCount) => {
+  const segments = Array.isArray(payload?.voice_segments) ? payload.voice_segments : [];
+  const grouped = Array.from({length: lineCount}, () => []);
+  for (const segment of segments) {
+    const inputIndex = Number(segment?.dialogue_input_index ?? segment?.dialogueInputIndex);
+    const startSeconds = Number(segment?.start_time_seconds ?? segment?.startTimeSeconds);
+    const endSeconds = Number(segment?.end_time_seconds ?? segment?.endTimeSeconds);
+    if (
+      Number.isInteger(inputIndex)
+      && inputIndex >= 0
+      && inputIndex < lineCount
+      && Number.isFinite(startSeconds)
+      && Number.isFinite(endSeconds)
+      && endSeconds > startSeconds
+    ) {
+      grouped[inputIndex].push({startMs: Math.round(startSeconds * 1000), endMs: Math.round(endSeconds * 1000)});
+    }
+  }
+  const lineOffsets = grouped.every((entries) => entries.length > 0)
+    ? grouped.map((entries) => ({
+        startMs: Math.min(...entries.map((entry) => entry.startMs)),
+        endMs: Math.max(...entries.map((entry) => entry.endMs)),
+      }))
+    : null;
+  const boundaryIndexes = segments
+    .map((segment) => Number(segment?.character_start_index ?? segment?.characterStartIndex))
+    .filter((value) => Number.isInteger(value) && value > 0);
+  const alignment = payload?.alignment ?? payload?.normalized_alignment ?? payload?.normalizedAlignment;
+  return {lineOffsets, words: extractDialogueAlignmentWords(alignment, boundaryIndexes)};
+};
+
+const decodeBase64Audio = (value) => {
+  if (typeof value !== 'string' || !value) throw new Error('ElevenLabs dialogue timestamps response contained no audio.');
+  const audio = Buffer.from(value.replace(/^data:[^;]+;base64,/, ''), 'base64');
+  if (audio.length === 0) throw new Error('ElevenLabs returned an empty dialogue audio response.');
+  return audio;
+};
+
+const requestElevenLabsDialogue = async ({apiKey, episode}) => {
+  const timestampResponse = await fetchElevenLabsDialogue({
+    apiKey,
+    endpoint: '/with-timestamps',
+    episode,
+    accept: 'application/json',
+  });
+  if (timestampResponse.ok) {
+    const contentType = timestampResponse.headers.get('content-type') ?? '';
+    if (contentType.includes('audio/')) {
+      const audio = Buffer.from(await timestampResponse.arrayBuffer());
+      if (audio.length === 0) throw new Error('ElevenLabs returned an empty dialogue audio response.');
+      return {audio, timing: null};
+    }
+    let payload;
+    try {
+      payload = await timestampResponse.json();
+    } catch {
+      throw new Error('ElevenLabs dialogue timestamps response was not valid JSON.');
+    }
+    return {
+      audio: decodeBase64Audio(payload.audio_base64 ?? payload.audioBase64),
+      timing: extractElevenLabsDialogueTiming(payload, episode.lines.length),
+    };
+  }
+  if (![404, 405, 501].includes(timestampResponse.status)) {
+    throw new Error(`ElevenLabs dialogue request failed with HTTP ${timestampResponse.status}.`);
+  }
+  console.warn('[studio] ElevenLabs dialogue timestamps are unavailable; using Whisper line alignment.');
+  const response = await fetchElevenLabsDialogue({apiKey, endpoint: '', episode, accept: 'audio/mpeg'});
+  if (!response.ok) throw new Error(`ElevenLabs dialogue request failed with HTTP ${response.status}.`);
+  const audio = Buffer.from(await response.arrayBuffer());
+  if (audio.length === 0) throw new Error('ElevenLabs returned an empty dialogue audio response.');
+  return {audio, timing: null};
+};
+
 const synthesizeElevenLabs = async ({episode, generatedDir}) => {
   const mp3 = path.join(generatedDir, 'vo.mp3');
   const wav = path.join(generatedDir, 'vo.wav');
@@ -431,71 +576,123 @@ const synthesizeElevenLabs = async ({episode, generatedDir}) => {
   return {wav, whisperWav, durationMs: Math.round(media.duration * 1000)};
 };
 
-const escapeFfconcatPath = (file) => file.replaceAll("'", "'\\''");
-
 const synthesizeDialogue = async ({episode, generatedDir}) => {
-  const dialogueDir = path.join(generatedDir, 'dialogue');
+  const mp3 = path.join(generatedDir, 'vo.mp3');
   const wav = path.join(generatedDir, 'vo.wav');
   const whisperWav = path.join(generatedDir, 'vo16k.wav');
-  const gapWav = path.join(dialogueDir, `gap-${DIALOGUE_GAP_MS}ms.wav`);
-  const concatFile = path.join(dialogueDir, 'concat.txt');
-  await mkdir(dialogueDir, {recursive: true});
   const {apiKey} = await readElevenLabsCredentials();
-  const lineFiles = [];
-  const lineTimings = [];
-  let cursorSeconds = 0;
-  for (const [index, line] of episode.lines.entries()) {
-    const stem = `line-${String(index + 1).padStart(2, '0')}`;
-    const mp3 = path.join(dialogueDir, `${stem}.mp3`);
-    const lineWav = path.join(dialogueDir, `${stem}.wav`);
-    console.log(`[studio] ElevenLabs dialogue line ${index + 1}/${episode.lines.length} — ${line.speaker}`);
-    const voiceId = episode.voices[line.speaker].voiceId;
-    await writeFile(mp3, await requestElevenLabsAudio({apiKey, voiceId, text: line.text}));
-    await run(FFMPEG, [
-      '-y', '-v', 'error', '-i', mp3,
-      '-ar', '44100', '-ac', '1', '-c:a', 'pcm_s16le', lineWav,
-    ], {quiet: true});
-    const media = await probeMedia(lineWav);
-    if (!Number.isFinite(media.duration) || media.duration <= 0) {
-      throw new Error(`ffprobe could not measure dialogue line ${index + 1}.`);
-    }
-    const startMs = Math.round(cursorSeconds * 1000);
-    const endMs = Math.round((cursorSeconds + media.duration) * 1000);
-    lineTimings.push({
-      id: episode.scenes[index].id,
-      lineIndex: index,
-      speaker: line.speaker,
-      text: line.text,
-      visual: line.visual,
-      ...(line.viz ? {viz: line.viz} : {}),
-      startMs,
-      endMs,
-    });
-    lineFiles.push(lineWav);
-    cursorSeconds += media.duration + (index < episode.lines.length - 1 ? DIALOGUE_GAP_MS / 1000 : 0);
-  }
+  console.log(`[studio] ElevenLabs Text-to-Dialogue — one natural take, ${episode.lines.length} turns`);
+  const {audio, timing} = await requestElevenLabsDialogue({apiKey, episode});
+  await writeFile(mp3, audio);
   await run(FFMPEG, [
-    '-y', '-v', 'error', '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=mono',
-    '-t', (DIALOGUE_GAP_MS / 1000).toFixed(3), '-c:a', 'pcm_s16le', gapWav,
-  ], {quiet: true});
-  const concatEntries = [];
-  for (const [index, lineFile] of lineFiles.entries()) {
-    concatEntries.push(`file '${escapeFfconcatPath(lineFile)}'`);
-    if (index < lineFiles.length - 1) concatEntries.push(`file '${escapeFfconcatPath(gapWav)}'`);
-  }
-  await writeFile(concatFile, `${concatEntries.join('\n')}\n`);
-  await run(FFMPEG, [
-    '-y', '-v', 'error', '-f', 'concat', '-safe', '0', '-i', concatFile,
+    '-y', '-v', 'error', '-i', mp3,
     '-ar', '44100', '-ac', '1', '-c:a', 'pcm_s16le', wav,
-  ], {label: `Concatenating dialogue with ${DIALOGUE_GAP_MS} ms gaps`, quiet: true});
+  ], {label: 'Converting Text-to-Dialogue 44.1 kHz master WAV', quiet: true});
   await run(FFMPEG, [
-    '-y', '-v', 'error', '-i', wav,
+    '-y', '-v', 'error', '-i', mp3,
     '-ar', '16000', '-ac', '1', '-c:a', 'pcm_s16le', whisperWav,
-  ], {label: 'Converting full dialogue track for Whisper', quiet: true});
+  ], {label: 'Converting Text-to-Dialogue 16 kHz Whisper WAV', quiet: true});
   const media = await probeMedia(wav);
   if (!Number.isFinite(media.duration) || media.duration <= 0) throw new Error('ffprobe could not measure dialogue duration.');
-  await writeFile(path.join(generatedDir, 'lines.json'), `${JSON.stringify(lineTimings, null, 2)}\n`);
-  return {wav, whisperWav, durationMs: Math.round(media.duration * 1000), lineTimings};
+  return {wav, whisperWav, durationMs: Math.round(media.duration * 1000), dialogueTiming: timing};
+};
+
+const splitWordsByDialogueLine = (lines, words) => {
+  const counts = lines.map((line) => line.text.trim().split(/\s+/).filter(Boolean).length);
+  if (counts.reduce((sum, count) => sum + count, 0) !== words.length) return null;
+  let cursor = 0;
+  return counts.map((count) => {
+    const lineWords = words.slice(cursor, cursor + count);
+    cursor += count;
+    return lineWords;
+  });
+};
+
+const makeWordsForSpan = (text, startMs, endMs) => {
+  const displayWords = text.trim().split(/\s+/).filter(Boolean);
+  const span = Math.max(1, endMs - startMs);
+  return displayWords.map((word, index) => ({
+    text: word,
+    startMs: Math.round(startMs + (span * index) / displayWords.length),
+    endMs: Math.round(startMs + (span * (index + 0.9)) / displayWords.length),
+  }));
+};
+
+const providerOffsetsAreUsable = (offsets, lineCount, durationMs) => {
+  if (!Array.isArray(offsets) || offsets.length !== lineCount) return false;
+  return offsets.every((offset, index) => (
+    Number.isFinite(offset?.startMs)
+    && Number.isFinite(offset?.endMs)
+    && offset.startMs >= 0
+    && offset.endMs > offset.startMs
+    && offset.startMs < durationMs
+    && offset.endMs <= durationMs + 250
+    && (index === 0 || offset.startMs >= offsets[index - 1].startMs)
+  ));
+};
+
+const makeDialogueLineTiming = ({episode, index, startMs, endMs, words}) => {
+  const line = episode.lines[index];
+  return {
+    id: episode.scenes[index].id,
+    lineIndex: index,
+    speaker: line.speaker,
+    text: line.text,
+    visual: line.visual,
+    ...(line.viz ? {viz: line.viz} : {}),
+    startMs,
+    endMs,
+    words: words.map((word) => ({...word, speaker: line.speaker, lineIndex: index})),
+  };
+};
+
+const resolveDialogueLineTimings = ({episode, words, durationMs, dialogueTiming}) => {
+  if (providerOffsetsAreUsable(dialogueTiming?.lineOffsets, episode.lines.length, durationMs)) {
+    const providerWords = dialogueTiming.words?.length
+      ? alignNarrationToWords(episode.narration, dialogueTiming.words)
+      : null;
+    const authoredWords = providerWords ?? alignNarrationToWords(episode.narration, words);
+    const splitWords = authoredWords ? splitWordsByDialogueLine(episode.lines, authoredWords) : null;
+    const lineTimings = dialogueTiming.lineOffsets.map((offset, index) => {
+      const startMs = Math.min(Math.max(0, offset.startMs), Math.max(0, durationMs - 40));
+      const endMs = Math.max(startMs + 40, Math.min(durationMs, offset.endMs));
+      const matchedWords = splitWords?.[index]
+        ?? words.filter((word) => {
+          const midpoint = (word.startMs + word.endMs) / 2;
+          return midpoint >= startMs && midpoint <= endMs;
+        });
+      return makeDialogueLineTiming({
+        episode,
+        index,
+        startMs,
+        endMs,
+        words: matchedWords.length > 0
+          ? matchedWords
+          : makeWordsForSpan(episode.lines[index].text, startMs, endMs),
+      });
+    });
+    console.log('[studio] Using ElevenLabs dialogue and character timestamps.');
+    return {lineTimings, words: authoredWords ?? words};
+  }
+
+  const aligned = alignDialogueLinesToWords({lines: episode.lines, words, durationMs});
+  const fallbackIndex = aligned.findIndex((line) => line.fallback);
+  if (fallbackIndex >= 0) {
+    console.warn(
+      `[studio] Dialogue alignment warning: line ${fallbackIndex + 1} had no confident Whisper match; `
+      + 'using a proportional split for it and the remaining lines.',
+    );
+  } else {
+    console.log('[studio] Dialogue lines aligned to the combined Whisper transcript.');
+  }
+  const lineTimings = aligned.map((timing, index) => makeDialogueLineTiming({
+    episode,
+    index,
+    startMs: timing.startMs,
+    endMs: timing.endMs,
+    words: timing.words,
+  }));
+  return {lineTimings, words: lineTimings.flatMap((line) => line.words)};
 };
 
 const synthesizeNarration = async ({episode, generatedDir, voice, rate}) => {
@@ -533,6 +730,10 @@ const reuseNarration = async ({episode, generatedDir}) => {
   }
   const media = await probeMedia(wav);
   if (!Number.isFinite(media.duration) || media.duration <= 0) throw new Error('ffprobe could not measure reused narration duration.');
+  const whisperMedia = await probeMedia(whisperWav);
+  if (!Number.isFinite(whisperMedia.duration) || Math.abs(whisperMedia.duration - media.duration) > 0.3) {
+    throw new Error('Reused vo.wav and vo16k.wav durations do not match.');
+  }
   console.log('[studio] Reusing existing narration audio; TTS is skipped.');
   let lineTimings = [];
   if (episode.lines?.length) {
@@ -543,6 +744,21 @@ const reuseNarration = async ({episode, generatedDir}) => {
     }
     if (!Array.isArray(lineTimings) || lineTimings.length !== episode.lines.length) {
       throw new Error('Reused dialogue line timings do not match this script.');
+    }
+    for (const [index, timing] of lineTimings.entries()) {
+      const line = episode.lines[index];
+      if (
+        timing?.lineIndex !== index
+        || timing?.speaker !== line.speaker
+        || timing?.text?.trim() !== line.text.trim()
+        || timing?.id !== episode.scenes[index].id
+        || !Number.isFinite(timing?.startMs)
+        || !Number.isFinite(timing?.endMs)
+        || timing.endMs <= timing.startMs
+        || (index > 0 && timing.startMs < lineTimings[index - 1].startMs)
+      ) {
+        throw new Error(`Reused dialogue line ${index + 1} does not match this script or audio timeline.`);
+      }
     }
   }
   return {wav, whisperWav, durationMs: Math.round(media.duration * 1000), lineTimings};
@@ -674,10 +890,21 @@ const main = async () => {
   const rate = dialogue ? null : args.rate ?? episode.voice.rate;
   if (!dialogue) episode.voice = {...episode.voice, name: voice, rate};
   console.log(`[studio] Episode ${episode.id}`);
-  const {whisperWav, durationMs, lineTimings = []} = args.reuseAudio
+  const narrationResult = args.reuseAudio
     ? await reuseNarration({episode, generatedDir})
     : await synthesizeNarration({episode, generatedDir, voice, rate});
-  const words = await transcribe({episode, generatedDir, whisperWav, durationMs, lineTimings});
+  const {whisperWav, durationMs, dialogueTiming} = narrationResult;
+  let lineTimings = narrationResult.lineTimings ?? [];
+  let words = await transcribe({episode, generatedDir, whisperWav, durationMs, lineTimings});
+  if (dialogue && !args.reuseAudio) {
+    const resolvedDialogue = resolveDialogueLineTimings({episode, words, durationMs, dialogueTiming});
+    lineTimings = resolvedDialogue.lineTimings;
+    words = resolvedDialogue.words;
+    await writeFile(path.join(generatedDir, 'lines.json'), `${JSON.stringify(lineTimings, null, 2)}\n`);
+  } else if (dialogue) {
+    const artifactWords = lineTimings.flatMap((line) => Array.isArray(line.words) ? line.words : []);
+    if (artifactWords.length > 0) words = artifactWords;
+  }
   const timing = resolveEpisodeTiming({
     words,
     scenes: episode.scenes,

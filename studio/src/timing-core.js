@@ -209,6 +209,107 @@ const tokenSimilarity = (a, b) => {
   return 1 - levenshtein(a, b) / Math.max(a.length, b.length);
 };
 
+const fuzzyLcsScore = (authoredTokens, heardTokens) => {
+  if (authoredTokens.length === 0 || heardTokens.length === 0) return 0;
+  const rows = Array.from({length: authoredTokens.length + 1}, () => new Float64Array(heardTokens.length + 1));
+  for (let i = 1; i <= authoredTokens.length; i++) {
+    for (let j = 1; j <= heardTokens.length; j++) {
+      const similarity = tokenSimilarity(authoredTokens[i - 1], heardTokens[j - 1]);
+      rows[i][j] = Math.max(
+        rows[i - 1][j],
+        rows[i][j - 1],
+        rows[i - 1][j - 1] + (similarity >= 0.68 ? similarity : 0),
+      );
+    }
+  }
+  const matched = rows[authoredTokens.length][heardTokens.length];
+  const coverage = matched / authoredTokens.length;
+  const precision = matched / heardTokens.length;
+  return coverage * 0.76 + precision * 0.24;
+};
+
+const findNextDialogueRun = (lineText, words, cursor) => {
+  const authoredTokens = normalizeTokens(lineText);
+  if (authoredTokens.length === 0 || cursor >= words.length) return null;
+  const maxStart = Math.min(words.length - 1, cursor + 5);
+  const minLength = Math.max(1, Math.floor(authoredTokens.length * 0.58) - 2);
+  const maxLength = Math.max(minLength, Math.ceil(authoredTokens.length * 1.55) + 4);
+  let best = null;
+  for (let start = cursor; start <= maxStart; start++) {
+    for (let length = minLength; length <= maxLength && start + length <= words.length; length++) {
+      const candidateWords = words.slice(start, start + length);
+      const heardTokens = normalizeTokens(candidateWords.map((word) => word.text).join(' '));
+      const lcs = fuzzyLcsScore(authoredTokens, heardTokens);
+      const edit = similarity(authoredTokens, heardTokens);
+      const score = lcs * 0.72 + edit * 0.28 - (start - cursor) * 0.012;
+      if (!best || score > best.score) best = {start, end: start + length - 1, score};
+    }
+  }
+  return best && best.score >= 0.58 ? best : null;
+};
+
+const makeProportionalLineWords = (text, startMs, endMs) => {
+  const displayWords = String(text).trim().split(/\s+/).filter(Boolean);
+  const span = Math.max(1, endMs - startMs);
+  return displayWords.map((word, index) => ({
+    text: word,
+    startMs: Math.round(startMs + (span * index) / displayWords.length),
+    endMs: Math.round(startMs + (span * (index + 0.9)) / displayWords.length),
+  }));
+};
+
+// Walk dialogue in authored order and align each line to the next plausible
+// Whisper run. Once confidence drops, divide the remaining audio by authored
+// token count so one weak ASR line cannot reorder the rest of the conversation.
+export const alignDialogueLinesToWords = ({lines, words, durationMs}) => {
+  const results = [];
+  let cursor = 0;
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+    const line = lines[lineIndex];
+    const match = findNextDialogueRun(line.text, words, cursor);
+    if (!match) {
+      const remaining = lines.slice(lineIndex);
+      const minimumRemainingMs = remaining.length * 40;
+      const remainingStart = Math.min(
+        Math.max(0, durationMs - minimumRemainingMs),
+        Math.max(results.at(-1)?.endMs ?? 0, words[cursor]?.startMs ?? 0),
+      );
+      const weights = remaining.map((candidate) => Math.max(1, normalizeTokens(candidate.text).length));
+      const totalWeight = weights.reduce((sum, weight) => sum + weight, 0);
+      const flexibleMs = Math.max(0, durationMs - remainingStart - minimumRemainingMs);
+      let startMs = remainingStart;
+      remaining.forEach((candidate, offset) => {
+        const isLast = offset === remaining.length - 1;
+        const endMs = isLast
+          ? durationMs
+          : Math.round(startMs + 40 + flexibleMs * (weights[offset] / totalWeight));
+        results.push({
+          startMs,
+          endMs,
+          words: makeProportionalLineWords(candidate.text, startMs, endMs),
+          score: 0,
+          fallback: true,
+        });
+        startMs = endMs;
+      });
+      return results;
+    }
+    const matchedWords = words.slice(match.start, match.end + 1);
+    const startMs = matchedWords[0].startMs;
+    const endMs = matchedWords.at(-1).endMs;
+    const authoredWords = alignNarrationToWords(line.text, matchedWords);
+    results.push({
+      startMs,
+      endMs: Math.max(startMs + 40, endMs),
+      words: authoredWords ?? matchedWords,
+      score: Number(match.score.toFixed(3)),
+      fallback: false,
+    });
+    cursor = match.end + 1;
+  }
+  return results;
+};
+
 // Align the authored narration onto whisper word timings so burned-in captions
 // always show the written words (whisper mis-hearings keep their timing only).
 export const alignNarrationToWords = (narration, words) => {

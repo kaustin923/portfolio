@@ -10,6 +10,7 @@
     "postinstall": "chmod +x cli/chrome-single-process.sh cli/studio.mjs && remotion browser ensure && node cli/setup-tts.mjs",
     "preview": "remotion studio src/index.ts",
     "render:demo": "node cli/studio.mjs render scripts/demo.script.json --out out/demo.mp4",
+    "test": "node --test",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

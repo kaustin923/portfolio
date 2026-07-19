@@ -56,7 +56,7 @@ Create a JSON file in `scripts/` with an ID, title, voice, narration, and an ord
 
 Run `npx studio render scripts/your.script.json`. The CLI prints every resolved scene boundary and marks proportional fallbacks as warnings. New scene IDs can be mapped in `src/Episode.tsx`; reusable visual behavior belongs in `src/components/`.
 
-Dialogue episodes use ordered `lines` in place of the single `voice`, `narration`, and `scenes` fields. Each line is synthesized separately with ElevenLabs, joined with a 140 ms gap, and mapped to an automatically generated `edu-dialogue` scene. `voices` is optional and defaults to Jessica (`cgSgspJ2msm6clMCkdW9`) and George (`JBFqnCBsd6RMkjVDRZzb`). The API key is read from `../trend-engine/.env` at runtime.
+Dialogue episodes use ordered `lines` in place of the single `voice`, `narration`, and `scenes` fields. The full ordered conversation is synthesized as one natural take with ElevenLabs Text-to-Dialogue and mapped to automatically generated `edu-dialogue` scenes. Native dialogue timestamps drive line and caption ownership when available; Whisper word alignment supplies the fallback. `dialogueModel` defaults to `eleven_v3`, `dialogueSettings` defaults to `{"stability": 0.65}`, and `voices` defaults to Jessica (`cgSgspJ2msm6clMCkdW9`) and George (`JBFqnCBsd6RMkjVDRZzb`). The API key is read from `../trend-engine/.env` at runtime.
 
 ```json
 {
@@ -74,7 +74,7 @@ Dialogue episodes use ordered `lines` in place of the single `voice`, `narration
 }
 ```
 
-Dialogue line offsets are written to `public/generated/<episode-id>/lines.json`. Theme fields only replace the accent and soft-accent hues; unthemed scripts keep the original gold palette.
+Dialogue line offsets and their word timings are written to `public/generated/<episode-id>/lines.json`. Theme fields only replace the accent and soft-accent hues; unthemed scripts keep the original gold palette.
 
 ## Demo output
 

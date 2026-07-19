@@ -63,6 +63,11 @@ export type DialogueVoiceConfig = {
 
 export type DialogueVoices = Record<DialogueSpeaker, DialogueVoiceConfig>;
 
+export type DialogueSettings = {
+  stability?: number;
+  [key: string]: unknown;
+};
+
 export type EpisodeTheme = {
   name: string;
   accent: string;
@@ -97,6 +102,8 @@ export type EpisodeScriptInput = {
   scenes?: SceneScript[];
   lines?: DialogueLineScript[];
   voices?: Partial<DialogueVoices>;
+  dialogueModel?: string;
+  dialogueSettings?: DialogueSettings;
   theme?: EpisodeTheme;
 };
 
@@ -129,6 +136,7 @@ export type DialogueLineTiming = DialogueLineScript & {
   lineIndex: number;
   startMs: number;
   endMs: number;
+  words?: WordTiming[];
 };
 
 export type ResolvedCue = {
@@ -289,6 +297,13 @@ export const assertEpisodeScript = (value: unknown): EpisodeScript => {
   }
   const dialogue = Array.isArray(candidate.lines) && candidate.lines.length > 0;
   if (dialogue) {
+    assertString(candidate.dialogueModel, 'Script dialogueModel', true);
+    if (candidate.dialogueSettings !== undefined) {
+      if (!isRecord(candidate.dialogueSettings)) throw new Error('Script dialogueSettings must be an object.');
+      if (candidate.dialogueSettings.stability !== undefined) {
+        assertNumber(candidate.dialogueSettings.stability, 'Script dialogueSettings.stability');
+      }
+    }
     for (const [index, line] of candidate.lines!.entries()) {
       if (!['jessica', 'george'].includes(line?.speaker) || !line?.text?.trim() || !line?.visual?.trim()) {
         throw new Error(`Dialogue line ${index + 1} requires speaker, text, and visual.`);
@@ -310,6 +325,8 @@ export const assertEpisodeScript = (value: unknown): EpisodeScript => {
       id: candidate.id,
       title: candidate.title,
       narration: candidate.lines!.map((line) => line.text.trim()).join(' '),
+      dialogueModel: candidate.dialogueModel?.trim() || 'eleven_v3',
+      dialogueSettings: candidate.dialogueSettings ?? {stability: 0.65},
       scenes: candidate.lines!.map((line, index) => ({
         ...(authoredScenes[index] ?? {}),
         id: authoredScenes[index]?.id || `line-${index + 1}`,

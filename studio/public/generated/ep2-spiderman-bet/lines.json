@@ -3,108 +3,2065 @@
     "id": "line-1",
     "lineIndex": 0,
     "speaker": "jessica",
-    "text": "Theater chains just bet their whole year on Spider-Man.",
-    "visual": "Deep-blue full-bleed card; bold white text 'ONE MOVIE. ONE QUARTER.' with a web-red underline sweeping in left-to-right; a date chip flips to 'JULY 31, 2026'",
+    "text": "Okay, so movie theaters just bet their entire year on one Spider-Man movie?",
+    "visual": "opening title",
+    "viz": {
+      "kind": "title",
+      "big": "ONE MOVIE. ONE QUARTER.",
+      "sub": "THE THEATER-CHAIN BET",
+      "dateChip": "JULY 31, 2026"
+    },
     "startMs": 0,
-    "endMs": 2926
+    "endMs": 5200,
+    "words": [
+      {
+        "text": "Okay,",
+        "startMs": 0,
+        "endMs": 640,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "so",
+        "startMs": 720,
+        "endMs": 880,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "movie",
+        "startMs": 920,
+        "endMs": 1120,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "theaters",
+        "startMs": 1173,
+        "endMs": 1600,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "just",
+        "startMs": 1648,
+        "endMs": 1840,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "bet",
+        "startMs": 1900,
+        "endMs": 2080,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "their",
+        "startMs": 2107,
+        "endMs": 2240,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "entire",
+        "startMs": 2331,
+        "endMs": 2880,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "year",
+        "startMs": 2944,
+        "endMs": 3200,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "on",
+        "startMs": 3307,
+        "endMs": 3520,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "one",
+        "startMs": 3660,
+        "endMs": 4080,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "Spider-Man",
+        "startMs": 4149,
+        "endMs": 4720,
+        "speaker": "jessica",
+        "lineIndex": 0
+      },
+      {
+        "text": "movie?",
+        "startMs": 4787,
+        "endMs": 5200,
+        "speaker": "jessica",
+        "lineIndex": 0
+      }
+    ]
   },
   {
     "id": "line-2",
     "lineIndex": 1,
     "speaker": "george",
-    "text": "Spider-Man: Brand New Day, July 31. Tracking says a $180–190 million opening — biggest of 2026.",
-    "visual": "Animated horizontal range bar filling from $0 to a $180M–$190M band in web-red; a gray tick at $159.7M labeled 'Toy Story 5 — 2026's current #1' gets overtaken, badge pops: 'BIGGEST OF 2026'",
-    "startMs": 3066,
-    "endMs": 11936
+    "text": "Basically, yeah. Brand New Day drops July thirty-first, and the tracking has it opening somewhere around a hundred-eighty to a hundred-ninety million. That's the biggest of the whole year.",
+    "visual": "range bar with Toy Story compare",
+    "viz": {
+      "kind": "rangeBar",
+      "label": "OPENING WEEKEND — DEADLINE TRACKING",
+      "unit": "M",
+      "low": 180,
+      "high": 190,
+      "compare": {
+        "label": "TOY STORY 5 — 2026'S #1",
+        "value": 160
+      },
+      "badge": "BIGGEST OF 2026"
+    },
+    "startMs": 5200,
+    "endMs": 17201,
+    "words": [
+      {
+        "text": "Basically,",
+        "startMs": 5200,
+        "endMs": 6480,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "yeah.",
+        "startMs": 6544,
+        "endMs": 6880,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "Brand",
+        "startMs": 7080,
+        "endMs": 8080,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "New",
+        "startMs": 8120,
+        "endMs": 8240,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "Day",
+        "startMs": 8300,
+        "endMs": 8480,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "drops",
+        "startMs": 8547,
+        "endMs": 8880,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "July",
+        "startMs": 8944,
+        "endMs": 9200,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "thirty-first,",
+        "startMs": 9234,
+        "endMs": 10160,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "and",
+        "startMs": 10180,
+        "endMs": 10240,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "the",
+        "startMs": 10280,
+        "endMs": 10400,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "tracking",
+        "startMs": 10444,
+        "endMs": 10800,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "has",
+        "startMs": 10840,
+        "endMs": 10960,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "it",
+        "startMs": 10987,
+        "endMs": 11040,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "opening",
+        "startMs": 11090,
+        "endMs": 11440,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "somewhere",
+        "startMs": 11488,
+        "endMs": 11920,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "around",
+        "startMs": 12046,
+        "endMs": 12800,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "a",
+        "startMs": 13000,
+        "endMs": 13200,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "hundred-eighty",
+        "startMs": 13230,
+        "endMs": 13800,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "to",
+        "startMs": 13840,
+        "endMs": 13920,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "a",
+        "startMs": 13960,
+        "endMs": 14000,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "hundred-ninety",
+        "startMs": 14030,
+        "endMs": 14560,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "million.",
+        "startMs": 14610,
+        "endMs": 15040,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "That's",
+        "startMs": 15200,
+        "endMs": 15880,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "the",
+        "startMs": 15890,
+        "endMs": 15930,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "biggest",
+        "startMs": 15970,
+        "endMs": 16320,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "of",
+        "startMs": 16347,
+        "endMs": 16400,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "the",
+        "startMs": 16420,
+        "endMs": 16480,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "whole",
+        "startMs": 16520,
+        "endMs": 16720,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "year.",
+        "startMs": 16800,
+        "endMs": 17201,
+        "speaker": "george",
+        "lineIndex": 1
+      }
+    ]
   },
   {
     "id": "line-3",
     "lineIndex": 2,
     "speaker": "jessica",
-    "text": "That sounds... fine?",
-    "visual": "The range bar shrinks to a small corner card; a big pulsing '?' in soft blue over the words 'fine... right?'",
-    "startMs": 12076,
-    "endMs": 13608
+    "text": "I mean, that sounds great though, right? Why is that a bet?",
+    "visual": "skeptical beat",
+    "startMs": 17201,
+    "endMs": 21519,
+    "words": [
+      {
+        "text": "I",
+        "startMs": 17201,
+        "endMs": 18080,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "mean,",
+        "startMs": 18128,
+        "endMs": 18560,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "that",
+        "startMs": 18592,
+        "endMs": 18720,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "sounds",
+        "startMs": 18766,
+        "endMs": 19040,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "great",
+        "startMs": 19093,
+        "endMs": 19360,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "though,",
+        "startMs": 19383,
+        "endMs": 19600,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "right?",
+        "startMs": 19653,
+        "endMs": 20000,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "Why",
+        "startMs": 20180,
+        "endMs": 20720,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "is",
+        "startMs": 20773,
+        "endMs": 20880,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "that",
+        "startMs": 20896,
+        "endMs": 20960,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "a",
+        "startMs": 21000,
+        "endMs": 21040,
+        "speaker": "jessica",
+        "lineIndex": 2
+      },
+      {
+        "text": "bet?",
+        "startMs": 21120,
+        "endMs": 21519,
+        "speaker": "jessica",
+        "lineIndex": 2
+      }
+    ]
   },
   {
     "id": "line-4",
     "lineIndex": 3,
     "speaker": "george",
-    "text": "AMC lost $632 million last year. Their own math: every $100M more at the box office adds $18M.",
-    "visual": "Counter crashes from $0 to -$632.4M in red ('AMC net loss, FY2025 — SEC filing'); then an equation animates: '+$100M industry box office → +$18M AMC EBITDA' with stacking coin blocks per $100M",
-    "startMs": 13748,
-    "endMs": 22711
+    "text": "Here's the thing — AMC lost six hundred and thirty-two million dollars last year. And by their own math, every extra hundred million at the box office only adds about eighteen million to their bottom line.",
+    "visual": "loss counter",
+    "viz": {
+      "kind": "counter",
+      "label": "AMC NET LOSS — FY2025, SEC FILING",
+      "prefix": "$",
+      "to": 632.4,
+      "unit": "M",
+      "negative": true,
+      "sub": "+$100M BOX OFFICE  →  +$18M AMC EBITDA"
+    },
+    "startMs": 21519,
+    "endMs": 34480,
+    "words": [
+      {
+        "text": "Here's",
+        "startMs": 21519,
+        "endMs": 21920,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "the",
+        "startMs": 21960,
+        "endMs": 22080,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "thing",
+        "startMs": 22120,
+        "endMs": 22320,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "—",
+        "startMs": 22320,
+        "endMs": 23240,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "AMC",
+        "startMs": 23240,
+        "endMs": 23600,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "lost",
+        "startMs": 23696,
+        "endMs": 24080,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "six",
+        "startMs": 24200,
+        "endMs": 24560,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "hundred",
+        "startMs": 24590,
+        "endMs": 24800,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "and",
+        "startMs": 24860,
+        "endMs": 25040,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "thirty-two",
+        "startMs": 25063,
+        "endMs": 25440,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "million",
+        "startMs": 25490,
+        "endMs": 25840,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "dollars",
+        "startMs": 25900,
+        "endMs": 26320,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "last",
+        "startMs": 26384,
+        "endMs": 26640,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "year.",
+        "startMs": 26688,
+        "endMs": 27120,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "And",
+        "startMs": 27260,
+        "endMs": 27680,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "by",
+        "startMs": 27733,
+        "endMs": 27840,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "their",
+        "startMs": 27867,
+        "endMs": 28000,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "own",
+        "startMs": 28040,
+        "endMs": 28160,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "math,",
+        "startMs": 28256,
+        "endMs": 28880,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "every",
+        "startMs": 28920,
+        "endMs": 29120,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "extra",
+        "startMs": 29173,
+        "endMs": 29440,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "hundred",
+        "startMs": 29470,
+        "endMs": 29680,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "million",
+        "startMs": 29720,
+        "endMs": 30000,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "at",
+        "startMs": 30053,
+        "endMs": 30160,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "the",
+        "startMs": 30180,
+        "endMs": 30240,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "box",
+        "startMs": 30320,
+        "endMs": 30560,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "office",
+        "startMs": 30606,
+        "endMs": 30880,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "only",
+        "startMs": 30960,
+        "endMs": 31280,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "adds",
+        "startMs": 31344,
+        "endMs": 31600,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "about",
+        "startMs": 31693,
+        "endMs": 32160,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "eighteen",
+        "startMs": 32231,
+        "endMs": 32800,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "million",
+        "startMs": 32860,
+        "endMs": 33280,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "to",
+        "startMs": 33387,
+        "endMs": 33600,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "their",
+        "startMs": 33627,
+        "endMs": 33760,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "bottom",
+        "startMs": 33806,
+        "endMs": 34080,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "line.",
+        "startMs": 34160,
+        "endMs": 34480,
+        "speaker": "george",
+        "lineIndex": 3
+      }
+    ]
   },
   {
     "id": "line-5",
     "lineIndex": 4,
     "speaker": "jessica",
-    "text": "So they need this huge.",
-    "visual": "A 'STAKES' meter needle sweeps from LOW to MAX, tinting the frame edge web-red",
-    "startMs": 22851,
-    "endMs": 24291
+    "text": "Oh wow. So they don't just want this to be big — they kind of need it to be huge.",
+    "visual": "stakes meter",
+    "viz": {
+      "kind": "meter",
+      "from": "LOW",
+      "to": "MAX",
+      "label": "STAKES FOR AMC"
+    },
+    "startMs": 34480,
+    "endMs": 40799,
+    "words": [
+      {
+        "text": "Oh",
+        "startMs": 34480,
+        "endMs": 35520,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "wow.",
+        "startMs": 35620,
+        "endMs": 36000,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "So",
+        "startMs": 36293,
+        "endMs": 36880,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "they",
+        "startMs": 36912,
+        "endMs": 37040,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "don't",
+        "startMs": 37060,
+        "endMs": 37200,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "just",
+        "startMs": 37232,
+        "endMs": 37360,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "want",
+        "startMs": 37392,
+        "endMs": 37520,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "this",
+        "startMs": 37568,
+        "endMs": 37760,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "to",
+        "startMs": 37787,
+        "endMs": 37840,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "be",
+        "startMs": 37867,
+        "endMs": 37920,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "big",
+        "startMs": 38040,
+        "endMs": 38400,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "—",
+        "startMs": 38400,
+        "endMs": 38992,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "they",
+        "startMs": 38992,
+        "endMs": 39120,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "kind",
+        "startMs": 39184,
+        "endMs": 39440,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "of",
+        "startMs": 39467,
+        "endMs": 39520,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "need",
+        "startMs": 39552,
+        "endMs": 39680,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "it",
+        "startMs": 39707,
+        "endMs": 39760,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "to",
+        "startMs": 39813,
+        "endMs": 39920,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "be",
+        "startMs": 39947,
+        "endMs": 40000,
+        "speaker": "jessica",
+        "lineIndex": 4
+      },
+      {
+        "text": "huge.",
+        "startMs": 40144,
+        "endMs": 40799,
+        "speaker": "jessica",
+        "lineIndex": 4
+      }
+    ]
   },
   {
     "id": "line-6",
     "lineIndex": 5,
     "speaker": "george",
-    "text": "Good news: best first-day presales in five years. Fandango top-ten all-time.",
-    "visual": "Leaderboard of 2026 first-day pre-sellers (The Odyssey, Mandalorian & Grogu, Project Hail Mary); 'Brand New Day' row slides to #1 in red; stamp: 'FANDANGO TOP-10 ALL-TIME' + 'best first day since 2021'",
-    "startMs": 24431,
-    "endMs": 30096
+    "text": "Right. And the early signs are actually really good — the first-day presales are the best they've seen in five years. That puts it in Fandango's top ten of all time.",
+    "visual": "presale leaderboard",
+    "viz": {
+      "kind": "leaderboard",
+      "rows": [
+        {
+          "label": "THE ODYSSEY"
+        },
+        {
+          "label": "MANDALORIAN & GROGU"
+        },
+        {
+          "label": "PROJECT HAIL MARY"
+        },
+        {
+          "label": "SPIDER-MAN: BRAND NEW DAY",
+          "highlight": true
+        }
+      ],
+      "stamp": "BEST FIRST DAY SINCE 2021"
+    },
+    "startMs": 40799,
+    "endMs": 52560,
+    "words": [
+      {
+        "text": "Right.",
+        "startMs": 40799,
+        "endMs": 42160,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "And",
+        "startMs": 42300,
+        "endMs": 42720,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "the",
+        "startMs": 42740,
+        "endMs": 42800,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "early",
+        "startMs": 42853,
+        "endMs": 43120,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "signs",
+        "startMs": 43187,
+        "endMs": 43520,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "are",
+        "startMs": 43540,
+        "endMs": 43600,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "actually",
+        "startMs": 43644,
+        "endMs": 44000,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "really",
+        "startMs": 44046,
+        "endMs": 44320,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "good",
+        "startMs": 44400,
+        "endMs": 44720,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "—",
+        "startMs": 44720,
+        "endMs": 45460,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "the",
+        "startMs": 45460,
+        "endMs": 45520,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "first-day",
+        "startMs": 45560,
+        "endMs": 45920,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "presales",
+        "startMs": 46000,
+        "endMs": 46560,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "are",
+        "startMs": 46620,
+        "endMs": 46800,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "the",
+        "startMs": 46820,
+        "endMs": 46880,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "best",
+        "startMs": 46944,
+        "endMs": 47200,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "they've",
+        "startMs": 47232,
+        "endMs": 47440,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "seen",
+        "startMs": 47504,
+        "endMs": 47760,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "in",
+        "startMs": 47840,
+        "endMs": 48000,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "five",
+        "startMs": 48112,
+        "endMs": 48560,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "years.",
+        "startMs": 48640,
+        "endMs": 49360,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "That",
+        "startMs": 49472,
+        "endMs": 49920,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "puts",
+        "startMs": 49968,
+        "endMs": 50160,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "it",
+        "startMs": 50187,
+        "endMs": 50240,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "in",
+        "startMs": 50293,
+        "endMs": 50400,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "Fandango's",
+        "startMs": 50480,
+        "endMs": 51200,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "top",
+        "startMs": 51260,
+        "endMs": 51440,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "ten",
+        "startMs": 51520,
+        "endMs": 51760,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "of",
+        "startMs": 51787,
+        "endMs": 51840,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "all",
+        "startMs": 51880,
+        "endMs": 52000,
+        "speaker": "george",
+        "lineIndex": 5
+      },
+      {
+        "text": "time.",
+        "startMs": 52096,
+        "endMs": 52560,
+        "speaker": "george",
+        "lineIndex": 5
+      }
+    ]
   },
   {
     "id": "line-7",
     "lineIndex": 6,
     "speaker": "jessica",
-    "text": "Then what's the catch?",
-    "visual": "Leaderboard freezes mid-shine; brief red glitch/scratch effect; the word 'CATCH:' types out",
-    "startMs": 30236,
-    "endMs": 31537
+    "text": "Okay, but I feel like there's a catch coming.",
+    "visual": "tension beat",
+    "startMs": 52560,
+    "endMs": 56160,
+    "words": [
+      {
+        "text": "Okay,",
+        "startMs": 52560,
+        "endMs": 54240,
+        "speaker": "jessica",
+        "lineIndex": 6
+      },
+      {
+        "text": "but",
+        "startMs": 54300,
+        "endMs": 54480,
+        "speaker": "jessica",
+        "lineIndex": 6
+      },
+      {
+        "text": "I",
+        "startMs": 54600,
+        "endMs": 54720,
+        "speaker": "jessica",
+        "lineIndex": 6
+      },
+      {
+        "text": "feel",
+        "startMs": 54768,
+        "endMs": 54960,
+        "speaker": "jessica",
+        "lineIndex": 6
+      },
+      {
+        "text": "like",
+        "startMs": 55008,
+        "endMs": 55200,
+        "speaker": "jessica",
+        "lineIndex": 6
+      },
+      {
+        "text": "there's",
+        "startMs": 55213,
+        "endMs": 55360,
+        "speaker": "jessica",
+        "lineIndex": 6
+      },
+      {
+        "text": "a",
+        "startMs": 55400,
+        "endMs": 55440,
+        "speaker": "jessica",
+        "lineIndex": 6
+      },
+      {
+        "text": "catch",
+        "startMs": 55493,
+        "endMs": 55760,
+        "speaker": "jessica",
+        "lineIndex": 6
+      },
+      {
+        "text": "coming.",
+        "startMs": 55817,
+        "endMs": 56160,
+        "speaker": "jessica",
+        "lineIndex": 6
+      }
+    ]
   },
   {
     "id": "line-8",
     "lineIndex": 7,
     "speaker": "george",
-    "text": "Zero US IMAX screens opening weekend — Nolan's Odyssey locked them all.",
-    "visual": "Grid of screen icons labeled IMAX; each fills with 'ODYSSEY' in blue one by one; a counter reads 'BRAND NEW DAY US IMAX SCREENS: 0'; footnote chip: 'exclusive multi-week window'",
-    "startMs": 31677,
-    "endMs": 36785
+    "text": "There is. It's not getting a single IMAX screen opening weekend — Christopher Nolan's new movie locked up every one of them for a three-week run.",
+    "visual": "imax grid",
+    "viz": {
+      "kind": "grid",
+      "total": 24,
+      "filled": 24,
+      "filledLabel": "ODYSSEY",
+      "resultLabel": "BRAND NEW DAY  US IMAX SCREENS: 0",
+      "caption": "3-WEEK EXCLUSIVE WINDOW"
+    },
+    "startMs": 56160,
+    "endMs": 65600,
+    "words": [
+      {
+        "text": "There",
+        "startMs": 56160,
+        "endMs": 56992,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "is.",
+        "startMs": 57200,
+        "endMs": 57600,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "It's",
+        "startMs": 58080,
+        "endMs": 58400,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "not",
+        "startMs": 58440,
+        "endMs": 58560,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "getting",
+        "startMs": 58590,
+        "endMs": 58800,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "a",
+        "startMs": 58840,
+        "endMs": 58880,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "single",
+        "startMs": 58926,
+        "endMs": 59200,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "IMAX",
+        "startMs": 59307,
+        "endMs": 59680,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "screen",
+        "startMs": 59737,
+        "endMs": 60080,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "opening",
+        "startMs": 60130,
+        "endMs": 60480,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "weekend",
+        "startMs": 60580,
+        "endMs": 61280,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "—",
+        "startMs": 61280,
+        "endMs": 61713,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "Christopher",
+        "startMs": 61713,
+        "endMs": 62080,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "Nolan's",
+        "startMs": 62133,
+        "endMs": 62480,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "new",
+        "startMs": 62520,
+        "endMs": 62640,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "movie",
+        "startMs": 62693,
+        "endMs": 62960,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "locked",
+        "startMs": 63006,
+        "endMs": 63280,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "up",
+        "startMs": 63360,
+        "endMs": 63520,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "every",
+        "startMs": 63587,
+        "endMs": 63920,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "one",
+        "startMs": 63980,
+        "endMs": 64160,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "of",
+        "startMs": 64187,
+        "endMs": 64240,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "them",
+        "startMs": 64272,
+        "endMs": 64400,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "for",
+        "startMs": 64440,
+        "endMs": 64560,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "a",
+        "startMs": 64600,
+        "endMs": 64640,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "three-week",
+        "startMs": 64693,
+        "endMs": 65200,
+        "speaker": "george",
+        "lineIndex": 7
+      },
+      {
+        "text": "run.",
+        "startMs": 65300,
+        "endMs": 65600,
+        "speaker": "george",
+        "lineIndex": 7
+      }
+    ]
   },
   {
     "id": "line-9",
     "lineIndex": 8,
     "speaker": "jessica",
-    "text": "And forecasters can't even agree?",
-    "visual": "Two arrows tug in opposite directions over a blank axis labeled 'opening weekend forecast', gap between them flashing '~$50–60M apart'",
-    "startMs": 36925,
-    "endMs": 38736
+    "text": "So even the experts must be all over the place on this one.",
+    "visual": "disagreement beat",
+    "startMs": 65600,
+    "endMs": 69840,
+    "words": [
+      {
+        "text": "So",
+        "startMs": 65600,
+        "endMs": 66801,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "even",
+        "startMs": 66881,
+        "endMs": 67201,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "the",
+        "startMs": 67221,
+        "endMs": 67281,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "experts",
+        "startMs": 67351,
+        "endMs": 67841,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "must",
+        "startMs": 67889,
+        "endMs": 68081,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "be",
+        "startMs": 68108,
+        "endMs": 68161,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "all",
+        "startMs": 68241,
+        "endMs": 68481,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "over",
+        "startMs": 68529,
+        "endMs": 68721,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "the",
+        "startMs": 68741,
+        "endMs": 68801,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "place",
+        "startMs": 68854,
+        "endMs": 69121,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "on",
+        "startMs": 69174,
+        "endMs": 69281,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "this",
+        "startMs": 69313,
+        "endMs": 69441,
+        "speaker": "jessica",
+        "lineIndex": 8
+      },
+      {
+        "text": "one.",
+        "startMs": 69521,
+        "endMs": 69840,
+        "speaker": "jessica",
+        "lineIndex": 8
+      }
+    ]
   },
   {
     "id": "line-10",
     "lineIndex": 9,
     "speaker": "george",
-    "text": "Boxoffice Pro says $230–250 million. The comp is No Way Home's $260M — only nine films ever opened above $200M.",
-    "visual": "Dual range bars: Deadline $180–190M (blue) vs Boxoffice Pro $230–250M (red); dashed line drops in at $260.1M labeled 'No Way Home, 2021'; annotation fades up: 'only 9 films ever opened above $200M domestic'",
-    "startMs": 38876,
-    "endMs": 48861
+    "text": "Completely split. Boxoffice Pro thinks it could hit two-thirty to two-fifty. For comparison, No Way Home did two hundred sixty — and only nine movies in history have ever opened above two hundred.",
+    "visual": "dual forecast vs No Way Home",
+    "viz": {
+      "kind": "compareBars",
+      "unit": "M",
+      "bars": [
+        {
+          "label": "DEADLINE",
+          "value": 185,
+          "tone": "blue"
+        },
+        {
+          "label": "BOXOFFICE PRO",
+          "value": 240,
+          "tone": "accent"
+        }
+      ],
+      "reference": {
+        "label": "NO WAY HOME, 2021",
+        "value": 260
+      }
+    },
+    "startMs": 69840,
+    "endMs": 84880,
+    "words": [
+      {
+        "text": "Completely",
+        "startMs": 69840,
+        "endMs": 71361,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "split.",
+        "startMs": 71454,
+        "endMs": 72081,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "Boxoffice",
+        "startMs": 72321,
+        "endMs": 73281,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "Pro",
+        "startMs": 73361,
+        "endMs": 73601,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "thinks",
+        "startMs": 73647,
+        "endMs": 73921,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "it",
+        "startMs": 73948,
+        "endMs": 74001,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "could",
+        "startMs": 74041,
+        "endMs": 74241,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "hit",
+        "startMs": 74321,
+        "endMs": 74561,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "two-thirty",
+        "startMs": 74641,
+        "endMs": 75121,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "to",
+        "startMs": 75228,
+        "endMs": 75441,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "two-fifty.",
+        "startMs": 75461,
+        "endMs": 76721,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "For",
+        "startMs": 76741,
+        "endMs": 76801,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "comparison,",
+        "startMs": 76874,
+        "endMs": 78001,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "No",
+        "startMs": 78081,
+        "endMs": 78241,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "Way",
+        "startMs": 78301,
+        "endMs": 78481,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "Home",
+        "startMs": 78561,
+        "endMs": 78881,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "did",
+        "startMs": 78961,
+        "endMs": 79201,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "two",
+        "startMs": 79241,
+        "endMs": 79361,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "hundred",
+        "startMs": 79391,
+        "endMs": 79601,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "sixty",
+        "startMs": 79761,
+        "endMs": 80561,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "—",
+        "startMs": 80561,
+        "endMs": 80901,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "and",
+        "startMs": 80901,
+        "endMs": 80961,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "only",
+        "startMs": 81009,
+        "endMs": 81201,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "nine",
+        "startMs": 81265,
+        "endMs": 81521,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "movies",
+        "startMs": 81578,
+        "endMs": 81921,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "in",
+        "startMs": 81974,
+        "endMs": 82081,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "history",
+        "startMs": 82141,
+        "endMs": 82561,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "have",
+        "startMs": 82673,
+        "endMs": 83121,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "ever",
+        "startMs": 83185,
+        "endMs": 83441,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "opened",
+        "startMs": 83498,
+        "endMs": 83841,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "above",
+        "startMs": 83894,
+        "endMs": 84161,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "two",
+        "startMs": 84221,
+        "endMs": 84401,
+        "speaker": "george",
+        "lineIndex": 9
+      },
+      {
+        "text": "hundred.",
+        "startMs": 84451,
+        "endMs": 84880,
+        "speaker": "george",
+        "lineIndex": 9
+      }
+    ]
   },
   {
     "id": "line-11",
     "lineIndex": 10,
     "speaker": "jessica",
-    "text": "And if it misses?",
-    "visual": "The forecast chart dims to grayscale; a red down-arrow traces below the $180M band; screen edge darkens",
-    "startMs": 49001,
-    "endMs": 50162
+    "text": "And if it doesn't hit those numbers?",
+    "visual": "downturn beat",
+    "startMs": 84880,
+    "endMs": 86640,
+    "words": [
+      {
+        "text": "And",
+        "startMs": 84880,
+        "endMs": 85041,
+        "speaker": "jessica",
+        "lineIndex": 10
+      },
+      {
+        "text": "if",
+        "startMs": 85094,
+        "endMs": 85201,
+        "speaker": "jessica",
+        "lineIndex": 10
+      },
+      {
+        "text": "it",
+        "startMs": 85254,
+        "endMs": 85361,
+        "speaker": "jessica",
+        "lineIndex": 10
+      },
+      {
+        "text": "doesn't",
+        "startMs": 85401,
+        "endMs": 85681,
+        "speaker": "jessica",
+        "lineIndex": 10
+      },
+      {
+        "text": "hit",
+        "startMs": 85721,
+        "endMs": 85841,
+        "speaker": "jessica",
+        "lineIndex": 10
+      },
+      {
+        "text": "those",
+        "startMs": 85881,
+        "endMs": 86081,
+        "speaker": "jessica",
+        "lineIndex": 10
+      },
+      {
+        "text": "numbers?",
+        "startMs": 86141,
+        "endMs": 86640,
+        "speaker": "jessica",
+        "lineIndex": 10
+      }
+    ]
   },
   {
     "id": "line-12",
     "lineIndex": 11,
     "speaker": "george",
-    "text": "AMC: four billion in debt, stock under two bucks. This isn't a premiere — it's the whole bet.",
-    "visual": "Split card: towering '$4B DEBT' bar in blue beside a tiny stock ticker '$1.94 ▼46% off 52-wk high'; final stamp slams in web-red on deep blue: 'THE SPIDER-MAN BET — JULY 31', echoing the opening title card",
-    "startMs": 50302,
-    "endMs": 56386
+    "text": "Then it gets scary fast. AMC is sitting on four billion in debt with the stock under two bucks. So this really isn't just a movie premiere for them — it's the whole bet.",
+    "visual": "final split stamp",
+    "viz": {
+      "kind": "split",
+      "left": {
+        "label": "AMC DEBT",
+        "value": "$4.09B"
+      },
+      "right": {
+        "label": "AMC STOCK",
+        "value": "$1.95"
+      },
+      "stamp": "THE SPIDER-MAN BET — JULY 31"
+    },
+    "startMs": 86640,
+    "endMs": 98401,
+    "words": [
+      {
+        "text": "Then",
+        "startMs": 86640,
+        "endMs": 87761,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "it",
+        "startMs": 87788,
+        "endMs": 87841,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "gets",
+        "startMs": 87889,
+        "endMs": 88081,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "scary",
+        "startMs": 88161,
+        "endMs": 88561,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "fast.",
+        "startMs": 88657,
+        "endMs": 89361,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "AMC",
+        "startMs": 89561,
+        "endMs": 90161,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "is",
+        "startMs": 90214,
+        "endMs": 90321,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "sitting",
+        "startMs": 90351,
+        "endMs": 90561,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "on",
+        "startMs": 90614,
+        "endMs": 90721,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "four",
+        "startMs": 90785,
+        "endMs": 91041,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "billion",
+        "startMs": 91091,
+        "endMs": 91441,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "in",
+        "startMs": 91468,
+        "endMs": 91521,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "debt",
+        "startMs": 91601,
+        "endMs": 91921,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "with",
+        "startMs": 92001,
+        "endMs": 92321,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "the",
+        "startMs": 92341,
+        "endMs": 92401,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "stock",
+        "startMs": 92468,
+        "endMs": 92801,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "under",
+        "startMs": 92854,
+        "endMs": 93121,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "two",
+        "startMs": 93181,
+        "endMs": 93361,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "bucks.",
+        "startMs": 93441,
+        "endMs": 93921,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "So",
+        "startMs": 94134,
+        "endMs": 94561,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "this",
+        "startMs": 94593,
+        "endMs": 94721,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "really",
+        "startMs": 94755,
+        "endMs": 94961,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "isn't",
+        "startMs": 95001,
+        "endMs": 95201,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "just",
+        "startMs": 95233,
+        "endMs": 95361,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "a",
+        "startMs": 95441,
+        "endMs": 95521,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "movie",
+        "startMs": 95588,
+        "endMs": 95921,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "premiere",
+        "startMs": 95965,
+        "endMs": 96321,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "for",
+        "startMs": 96361,
+        "endMs": 96481,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "them",
+        "startMs": 96529,
+        "endMs": 96721,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "—",
+        "startMs": 96721,
+        "endMs": 97334,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "it's",
+        "startMs": 97334,
+        "endMs": 97521,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "the",
+        "startMs": 97541,
+        "endMs": 97601,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "whole",
+        "startMs": 97654,
+        "endMs": 97921,
+        "speaker": "george",
+        "lineIndex": 11
+      },
+      {
+        "text": "bet.",
+        "startMs": 98021,
+        "endMs": 98401,
+        "speaker": "george",
+        "lineIndex": 11
+      }
+    ]
   }
 ]
