@@ -20,6 +20,34 @@ export interface StructuredRequest {
   /** JSON Schema — plain types + enums + arrays, `additionalProperties:false`. */
   schema: Record<string, unknown>;
   maxTokens?: number;
+  /** Internal: set on the single self-retry after truncation/parse failure. */
+  _retried?: boolean;
+}
+
+/**
+ * Parse model output that should be JSON but may carry prose fringes or a
+ * trailing-comma slip (seen live from the Opus fallback path). Extraction +
+ * repair only — never invents content.
+ */
+export function parseModelJson<T>(text: string): T {
+  try {
+    return JSON.parse(text) as T;
+  } catch {
+    const start = text.indexOf('{');
+    const end = text.lastIndexOf('}');
+    if (start === -1 || end <= start) throw new Error(`No JSON object found in model output (${text.length} chars)`);
+    const sliced = text.slice(start, end + 1);
+    try {
+      return JSON.parse(sliced) as T;
+    } catch (err) {
+      const repaired = sliced.replace(/,\s*([}\]])/g, '$1');
+      try {
+        return JSON.parse(repaired) as T;
+      } catch {
+        throw err;
+      }
+    }
+  }
 }
 
 /** The contract every agent depends on. Real impl below; mock impl in testing/. */
@@ -84,9 +112,30 @@ export const anthropicLLM: LLM = {
       throw new Error(`Fable declined the request (refusal${cat ? `: ${cat}` : ''}).`);
     }
 
+    if (res.stop_reason === 'max_tokens') {
+      // Truncated output can never parse — retry once with a bigger budget.
+      if (!req._retried) {
+        return anthropicLLM.structured<T>({ ...req, maxTokens: (req.maxTokens ?? 16000) * 2, _retried: true });
+      }
+      throw new Error('Structured output truncated at max_tokens twice — giving up');
+    }
+
     const text = textOf(res as any);
     if (!text) throw new Error('Model returned no text block for structured request');
-    return JSON.parse(text) as T;
+    try {
+      return parseModelJson<T>(text);
+    } catch (err) {
+      // One corrective retry: the fallback-model path does not always honor the
+      // JSON-schema format strictly; tell the model exactly what went wrong.
+      if (!req._retried) {
+        return anthropicLLM.structured<T>({
+          ...req,
+          user: `${req.user}\n\nYour previous reply was not valid JSON (${(err as Error).message.slice(0, 120)}). Reply with ONLY the complete, valid JSON object.`,
+          _retried: true,
+        });
+      }
+      throw err;
+    }
   },
 
   async research(prompt: string): Promise<string> {
