@@ -1,0 +1,36 @@
+{
+  "name": "studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "studio": "./cli/studio.mjs"
+  },
+  "scripts": {
+    "postinstall": "chmod +x cli/chrome-single-process.sh cli/studio.mjs && remotion browser ensure && node cli/setup-tts.mjs",
+    "preview": "remotion studio src/index.ts",
+    "render:demo": "node cli/studio.mjs render scripts/demo.script.json --out out/demo.mp4",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource/archivo-black": "5.3.0",
+    "@fontsource/ibm-plex-mono": "5.3.0",
+    "@fontsource/inter": "5.3.0",
+    "@huggingface/transformers": "3.8.1",
+    "@remotion/bundler": "4.0.494",
+    "@remotion/cli": "4.0.494",
+    "@remotion/renderer": "4.0.494",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "remotion": "4.0.494",
+    "kokoro-js": "1.2.1"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

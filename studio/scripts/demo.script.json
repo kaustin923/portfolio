@@ -1,0 +1,17 @@
+{
+  "id": "ep-052-summerslam",
+  "title": "SUMMERSLAM 2026 — 3 CALLS",
+  "voice": {
+    "name": "Kokoro",
+    "rate": 182
+  },
+  "narration": "Thirteen days to SummerSlam. Our record calling this stuff early: thirty-one and nine. Three calls tonight — the last one ends a legend. First, we grade ourselves. June thirtieth, we called Sami Zayn holding the title all summer. Punk took it July sixth. Stamp it: miss. But that miss flips call one. Champions who win a belt within thirty days of a stadium show lose it there — seven of nine times. So: Cody Rhodes, new champion. Seventy-two percent. Call two. Reigns Rollins, match five of the stadium series. Rubber match booking favors Rollins. Sixty-one. Call three: Oba Femi pins Brock Lesnar inside the Cell. Twenty-eight percent. We're taking it anyway. Clip this. August second, every card gets graded — live.",
+  "scenes": [
+    {"id": "hook", "type": "hook", "cue": "Thirteen days"},
+    {"id": "receipt", "type": "receipt", "cue": "First, we grade"},
+    {"id": "call-1", "type": "call-1", "cue": "Champions who win"},
+    {"id": "call-2", "type": "call-2", "cue": "Call two"},
+    {"id": "call-3", "type": "call-3", "cue": "Call three"},
+    {"id": "loop", "type": "loop", "cue": "Clip this"}
+  ]
+}
