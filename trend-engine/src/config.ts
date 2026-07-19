@@ -106,6 +106,11 @@ export const config = {
     voice: process.env.TTS_VOICE ?? '',
     /** Words per minute. Zero uses the system voice's default rate. */
     rate: num('TTS_RATE', 0),
+    elevenLabs: {
+      apiKey: process.env.ELEVENLABS_API_KEY ?? '',
+      voiceId: process.env.ELEVENLABS_VOICE_ID ?? '',
+      modelId: process.env.ELEVENLABS_MODEL_ID ?? 'eleven_multilingual_v2',
+    },
     whisperBin: process.env.WHISPER_BIN ?? '',
     whisperModel: process.env.WHISPER_MODEL ?? '',
   },
