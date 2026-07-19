@@ -12,7 +12,7 @@
 
 import { config, modeBanner } from './config.js';
 import { checkCompliance } from './agents/compliance.js';
-import { draftClip } from './agents/editor.js';
+import { draftClip, draftOriginal } from './agents/editor.js';
 import { trackResults } from './agents/monitor.js';
 import { publish } from './agents/publisher.js';
 import { findClips } from './agents/sourcing.js';
@@ -26,12 +26,16 @@ import {
   wasRecentlyPublished,
   type RunState,
 } from './state.js';
-import type { PostMetrics, Topic } from './types.js';
+import type { ClipDraft, PostMetrics, Topic } from './types.js';
+
+const NO_ELIGIBLE_ORIGINAL_BROLL =
+  'Original drafts require commercial-use stock, CC0, or public-domain b-roll with no attribution requirement.';
 
 export interface RunReport {
   topicsConsidered: number;
   rawSignals: number;
   published: number;
+  originals: number;
   rejected: number;
   blocked: number;
   failed: number;
@@ -39,28 +43,14 @@ export interface RunReport {
   metrics: PostMetrics[];
 }
 
-async function processTopic(
+async function processDraft(
   topic: Topic,
+  draft: ClipDraft,
   report: RunReport,
   state: RunState,
   key: string,
+  original: boolean,
 ): Promise<void> {
-  console.log(`\n▶ ${topic.title}  (${topic.opportunityScore}/100 · ${topic.stage} · ${topic.recommendation})`);
-  console.log(`  window: ${topic.postWindow} (lead ${topic.leadTimeDays}d${topic.catalyst ? `, catalyst: ${topic.catalyst}` : ''})`);
-  console.log(`  angle:  ${topic.suggestedAngle}`);
-
-  // 1. Source a licensed clip (best-licensed candidate first).
-  const candidates = await findClips(topic);
-  const candidate = candidates[0];
-  if (!candidate) {
-    console.log('  no licensed source found — skipping');
-    return;
-  }
-  console.log(`  source: ${candidate.provider} (${candidate.license.type})`);
-
-  // 2. Edit + caption.
-  const draft = await draftClip(topic, candidate);
-
   // 3. Compliance gate — hard stop for anything without a defensible license.
   const compliance = checkCompliance(draft);
   if (!compliance.approved) {
@@ -83,6 +73,7 @@ async function processTopic(
 
   // 5. Publish to every target platform via official APIs.
   const results = await publish(draft, decision);
+  if (original) report.originals++;
   const ok = results.filter((r) => r.status === 'published').length;
   report.published += ok;
   console.log(`  ✅ published to ${ok}/${results.length} platforms`);
@@ -107,6 +98,51 @@ async function processTopic(
   report.metrics.push(...metrics);
 }
 
+async function processTopic(
+  topic: Topic,
+  report: RunReport,
+  state: RunState,
+  key: string,
+  produceSourced: boolean,
+  produceOriginal: boolean,
+): Promise<void> {
+  console.log(`\n▶ ${topic.title}  (${topic.opportunityScore}/100 · ${topic.stage} · ${topic.recommendation})`);
+  console.log(`  window: ${topic.postWindow} (lead ${topic.leadTimeDays}d${topic.catalyst ? `, catalyst: ${topic.catalyst}` : ''})`);
+  console.log(`  angle:  ${topic.suggestedAngle}`);
+
+  // 1. Source once so the sourced and original paths share the same candidates.
+  const candidates = await findClips(topic);
+  if (produceSourced) {
+    const candidate = candidates[0];
+    if (!candidate) {
+      console.log('  no licensed source found — skipping');
+    } else {
+      console.log(`  source: ${candidate.provider} (${candidate.license.type})`);
+
+      // 2. Edit + caption.
+      const draft = await draftClip(topic, candidate);
+      await processDraft(topic, draft, report, state, key, false);
+    }
+  }
+
+  if (produceOriginal) {
+    try {
+      const draft = await draftOriginal(topic, candidates);
+      await processDraft(topic, draft, report, state, `original:${topicKey(topic.title)}`, true);
+    } catch (err) {
+      if (err instanceof Error && err.message === NO_ELIGIBLE_ORIGINAL_BROLL) {
+        console.log('  ⏭ no eligible b-roll for original — skipping');
+        return;
+      }
+      report.failed++;
+      console.error(
+        `  ✖ original failed: ${topic.title}:`,
+        err instanceof Error ? err.message : String(err),
+      );
+    }
+  }
+}
+
 export async function runOnce(): Promise<RunReport> {
   console.log(modeBanner());
 
@@ -114,6 +150,7 @@ export async function runOnce(): Promise<RunReport> {
     topicsConsidered: 0,
     rawSignals: 0,
     published: 0,
+    originals: 0,
     rejected: 0,
     blocked: 0,
     failed: 0,
@@ -141,17 +178,29 @@ export async function runOnce(): Promise<RunReport> {
 
   // Turn the top N into clips.
   const toProcess = scout.topics.slice(0, config.topicsPerRun);
-  for (const topic of toProcess) {
+  const originalsToProduce = Math.min(config.originalsPerRun, toProcess.length);
+  for (const [index, topic] of toProcess.entries()) {
     const key = topicKey(topic.title);
+    const originalKey = `original:${key}`;
+    let produceSourced = true;
+    let produceOriginal = index < originalsToProduce;
+
     if (wasRecentlyPublished(state, key)) {
       report.deduped++;
-      console.log('  ⏭ skipping (published within dedupe window)');
-      continue;
+      produceSourced = false;
+      console.log('  ⏭ skipping sourced clip (published within dedupe window)');
+    } else {
+      report.topicsConsidered++;
     }
+    if (produceOriginal && wasRecentlyPublished(state, originalKey)) {
+      report.deduped++;
+      produceOriginal = false;
+      console.log('  ⏭ skipping original (published within dedupe window)');
+    }
+    if (!produceSourced && !produceOriginal) continue;
 
-    report.topicsConsidered++;
     try {
-      await processTopic(topic, report, state, key);
+      await processTopic(topic, report, state, key, produceSourced, produceOriginal);
     } catch (err) {
       report.failed++;
       console.error(

@@ -7,7 +7,13 @@ import { pipeline } from 'node:stream/promises';
 
 import { config } from '../config.js';
 import type { AspectRatio } from '../types.js';
-import { buildAss, escapeDrawtext, SAFE_AREA, wrapText } from './captions.js';
+import {
+  buildAss,
+  escapeDrawtext,
+  escapeFilterFilename,
+  SAFE_AREA,
+  wrapText,
+} from './captions.js';
 
 export interface ProcessResult {
   stdout: string;
@@ -219,7 +225,7 @@ export function dimensionsFor(aspectRatio: AspectRatio): { width: number; height
 /** Build the drawtext textfile filter without allowing `%{...}` expansion. */
 export function captionTextfileFilter(textFilePath: string, width: number): string {
   const fontsize = Math.round(width * 0.045);
-  return `drawtext=expansion=none:textfile=${escapeDrawtext(textFilePath)}:x=(w-tw)/2:y=h*0.72:fontsize=${fontsize}:fontcolor=white:borderw=2:bordercolor=black:box=1:boxcolor=black@0.55:line_spacing=10`;
+  return `drawtext=expansion=none:textfile=${escapeFilterFilename(textFilePath)}:x=(w-tw)/2:y=h*0.72:fontsize=${fontsize}:fontcolor=white:borderw=2:bordercolor=black:box=1:boxcolor=black@0.55:line_spacing=10`;
 }
 
 export async function renderToVertical(opts: {
@@ -245,7 +251,7 @@ export async function renderToVertical(opts: {
   if (opts.caption && capabilities.subtitles) {
     const assPath = `${opts.outputPath}.ass`;
     await writeFile(assPath, buildAss(opts.caption, opts.attributionText, opts.maxSec));
-    filterParts.push(`subtitles=${escapeDrawtext(assPath)}`);
+    filterParts.push(`subtitles=${escapeFilterFilename(assPath)}`);
     attributionHandledByAss = opts.attributionText !== undefined;
   } else if (opts.caption && capabilities.drawtext) {
     const fontsize = Math.round(width * 0.045);

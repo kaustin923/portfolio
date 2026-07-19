@@ -36,6 +36,7 @@ export type TelegramFetchFn = (
 ) => Promise<Response>;
 
 let injectedTelegramFetch: TelegramFetchFn | undefined;
+const pendingDecisions = new Map<string, ApprovalDecision>();
 
 /** Every live Telegram request goes through this seam so tests stay offline. */
 export function getTelegramFetch(): TelegramFetchFn {
@@ -48,6 +49,11 @@ export function setTelegramFetch(fn: TelegramFetchFn): void {
 
 export function resetTelegramFetch(): void {
   injectedTelegramFetch = undefined;
+}
+
+/** Clear decisions consumed by another draft's active long poll (primarily for tests). */
+export function resetPendingDecisions(): void {
+  pendingDecisions.clear();
 }
 
 /** Escape Telegram's complete MarkdownV2 reserved-character set (and backslash itself). */
@@ -106,12 +112,13 @@ export interface ApprovalRecord {
   editedCaption?: string;
 }
 
-/** Append an auditable approval decision without making persistence a gate failure. */
+/** Append an auditable approval decision, optionally failing closed in strict mode. */
 export async function appendApprovalRecord(record: ApprovalRecord): Promise<void> {
   try {
     await mkdir(config.dataDir, { recursive: true });
     await appendFile(`${config.dataDir}approvals.jsonl`, `${JSON.stringify(record)}\n`);
   } catch (err) {
+    if (/^(1|true|yes|on)$/i.test(process.env.APPROVALS_AUDIT_STRICT ?? '')) throw err;
     console.warn('[telegram] failed to persist approval record:', err);
   }
 }
@@ -170,8 +177,15 @@ async function trySendVideoReview(
 
     const form = new FormData();
     form.append('chat_id', config.approval.telegramChatId);
-    form.append('caption', card.slice(0, MEDIA_CAPTION_LIMIT));
-    form.append('parse_mode', 'MarkdownV2');
+    if (card.length > MEDIA_CAPTION_LIMIT) {
+      const plainCaption = card
+        .replace(/\\([_*\[\]()~`>#+\-=|{}.!\\])/g, '$1')
+        .slice(0, MEDIA_CAPTION_LIMIT);
+      form.append('caption', plainCaption.endsWith('\\') ? plainCaption.slice(0, -1) : plainCaption);
+    } else {
+      form.append('caption', card);
+      form.append('parse_mode', 'MarkdownV2');
+    }
     form.append('reply_markup', JSON.stringify(approvalKeyboard(draft.id)));
     form.append('video', new Blob([await readFile(draft.outputPath)]), basename(draft.outputPath));
 
@@ -243,6 +257,12 @@ export async function pollForDecision(
   draftId: string,
   messageId?: number,
 ): Promise<ApprovalDecision> {
+  const pendingDecision = pendingDecisions.get(draftId);
+  if (pendingDecision) {
+    pendingDecisions.delete(draftId);
+    return pendingDecision;
+  }
+
   const deadline = Date.now() + config.approval.timeoutMinutes * 60_000;
   let offset = await loadTelegramOffset();
   let pendingRejection:
@@ -261,6 +281,30 @@ export async function pollForDecision(
     try {
       for (const u of updates?.result ?? []) {
         if (typeof u.update_id === 'number') offset = Math.max(offset, u.update_id + 1);
+
+        const cb = u.callback_query;
+        if (cb?.data && !cb.data.endsWith(`:${draftId}`)) {
+          const separator = cb.data.indexOf(':');
+          const action = separator < 0 ? cb.data : cb.data.slice(0, separator);
+          const callbackDraftId = separator < 0 ? '' : cb.data.slice(separator + 1);
+          const decidedBy = cb.from?.username ?? String(cb.from?.id);
+
+          await tg('answerCallbackQuery', {
+            callback_query_id: cb.id,
+            text: 'Recorded for its own review',
+          });
+
+          if (callbackDraftId && action === 'approve') {
+            pendingDecisions.set(callbackDraftId, { status: 'approved', decidedBy });
+          } else if (callbackDraftId && action === 'reject') {
+            pendingDecisions.set(callbackDraftId, {
+              status: 'rejected',
+              decidedBy,
+              note: 'decided while another review was active',
+            });
+          }
+          continue;
+        }
 
         if (pendingRejection) {
           const reasonMessage = u.message;
@@ -283,7 +327,6 @@ export async function pollForDecision(
         }
 
         // Button press
-        const cb = u.callback_query;
         if (cb?.data?.endsWith(`:${draftId}`)) {
           const action = cb.data.split(':')[0];
           const decidedBy = cb.from?.username ?? String(cb.from?.id);

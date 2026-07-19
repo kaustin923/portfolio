@@ -1,0 +1,324 @@
+{
+ "rulebook": {
+  "survivorship_explainer": "\"Everyone does it\" is a survivorship illusion built on four mechanisms you can't see from the outside. (1) Most of the big clip pages are LICENSED \u2014 the streamer-clip economy is permissioned distribution at industrial scale (N3on paid $1.4M in 5 weeks to 303 clippers; Clavicular pays ~$650K/month to 1,500 clippers; Kick runs an official program that did 3B views in a month; Whop campaigns pay $200\u20131,500 per million views). Those accounts never get struck because the rights owner is the one paying them. (2) The unlicensed ones that persist are usually earning nothing: on YouTube, 99.5% of copyright enforcement is Content ID claims, and rights holders chose MONETIZE on >90% of 2.5B claims in 2025 \u2014 the video stays up, the channel looks fine, and Warner Bros., Sony, and the NBA quietly collect 100% of the ad revenue. The claim system removes the money before a strike is ever needed. Persistence is not profit. (3) The ones that die, die invisibly: TikTok permanently bans at 3 strikes and operators churn fresh accounts, so the graveyard is hidden behind replacements; YouTube terminations happen when a rights holder escalates to formal takedowns (3 in 90 days = channel gone \u2014 see the CFL highlights channel, Toei's 150-strike barrage, Screen Culture/KH Studio). Sports leagues and Japanese anime holders strike rather than claim \u2014 that's the kill zone. (4) Since mid-2025 a second, non-copyright enforcement layer is actively hunting reposters even when no rights holder complains: YouTube's \"inauthentic content\" policy terminated 16 channels with 4.7B views and 35M subs in January 2026; Meta demoted/demonetized 500K accounts and removed 10M profiles; X now redirects impressions from reposted videos to the original creator and publicly demonetized 4M-follower aggregators. Bottom line: nobody is durably monetizing other people's premium content via platform ad revenue without permission. The visible clip accounts are paid distributors, silently-harvested hosts, or dead accounts walking. We build for the licensed and original lanes, not the illusion.",
+  "rules": [
+   {
+    "tier": "green",
+    "format": "Original commentary/analysis over self-made graphics, maps, charts, and owner-shot footage",
+    "verdict": "Core format \u2014 build and automate freely; this is the monetization backbone.",
+    "why": "Fully owner-originated content clears copyright by definition and clears every platform originality test (YouTube 'meaningful difference', TikTok originality score, Meta 'filmed or produced directly by a creator', X originality standards). The only threat is the inauthentic-content layer, which targets templated sameness, not this format itself.",
+    "conditions": [
+     "Per-video distinct script, hook, and structure \u2014 no fixed visual/script template repeated across uploads (YouTube's July 2025/2026 inauthentic-content examples are exactly templated mass production)",
+     "Identifiable authorial voice across the channel (consistent persona, real editorial point of view)",
+     "Disclose AI/synthetic elements where platform toggles exist",
+     "Keep production records (script, edit timeline) for the YPP appeal dossier"
+    ]
+   },
+   {
+    "tier": "green",
+    "format": "TTS/AI-voiceover + licensed stock b-roll 'faceless originals' (current pipeline)",
+    "verdict": "Legally safe and monetizable, but sits squarely in the inauthentic-content risk profile \u2014 differentiation is mandatory, not optional.",
+    "why": "No rights are infringed, but stock + synthetic narration at volume is the published example set for YouTube's inauthentic-content policy and Meta's unoriginal-content demotion. TikTok/Meta/X will suppress minimally-edited stock compilations even when fully licensed \u2014 legality and monetizability are separate axes.",
+    "conditions": [
+     "Every video needs load-bearing original input: authored script with distinct storyline/analysis, per-video on-screen text, varied editing \u2014 never caption-plus-music-bed over stock",
+     "Stock assets containing recognizable people, logos, brands, events, or celebrities are editorial-only on Pexels/Pixabay \u2014 flag and replace for anything ad-adjacent; neither platform indemnifies you (residual publicity-rights/trademark risk sits with us)",
+     "Rotate visual styles and hooks across the catalog; assume a human YPP reviewer skims your top and newest videos looking for sameness",
+     "Set AI-disclosure toggles; keep asset provenance receipts per video"
+    ]
+   },
+   {
+    "tier": "green",
+    "format": "US government / public-domain footage builds (NASA, DVIDS, verified Prelinger/Internet Archive)",
+    "verdict": "Free, instant, API-automatable \u2014 the best zero-cost topical lane for space/military/weather/history.",
+    "why": "NASA content is generally uncopyrighted and usable in monetized videos; DVIDS is explicitly free for commercial use with a public API; ~65% of Prelinger/Archive holdings are US public domain. No rights holder exists to claim or strike.",
+    "conditions": [
+     "No implied government endorsement \u2014 include the non-endorsement disclaimer",
+     "NASA insignia/logos are NOT public domain \u2014 strip or avoid; obscure military unit markings in anything ad-adjacent",
+     "Identifiable astronauts/personnel carry publicity-rights risk in commercial contexts \u2014 one-sentence residual risk: a recognizable person in a monetized video can still generate a right-of-publicity claim even when the footage is PD",
+     "Internet Archive items require per-item PD verification \u2014 no bulk ingestion without a verification note in the provenance ledger"
+    ]
+   },
+   {
+    "tier": "green",
+    "format": "AI-generated video segments (Veo, Runway, Pika paid tiers) inside edited, human-authored videos",
+    "verdict": "Approved as an ingredient, never as the whole dish.",
+    "why": "Paid tiers grant commercial rights and output ownership (Runway $15/mo+, Veo ~$0.03\u20130.40/sec, Pika $8/mo+). But mass-produced templated AI output is the exact target of YouTube's inauthentic-content enforcement (Jan 2026 wave: 16 channels, 4.7B views terminated), and purely AI output has no copyright protection, so competitors can reuse it freely.",
+    "conditions": [
+     "Paid commercial tiers only \u2014 free tiers prohibit commercial use",
+     "Mandatory synthetic-content disclosure toggle on every platform that has one",
+     "AI clips must be components inside an edited video with human-authored script/narrative \u2014 never full AI videos at volume",
+     "Abstract the generation vendor behind an internal interface \u2014 Sora's April 2026 shutdown proves vendor risk; never single-vendor",
+     "Log generation records (prompt, vendor, date) in the provenance ledger"
+    ]
+   },
+   {
+    "tier": "green",
+    "format": "Paid clipping-campaign content (Whop Content Rewards, Kick's program, direct streamer/podcast deals)",
+    "verdict": "The one legitimate 'clip channel' model \u2014 permission is the product; bolt on as a separate revenue lane.",
+    "why": "The streamer owns the copyright and pays for distribution ($40\u201350 per 100K views in N3on's campaign; ~$200\u20131,500 per 1M views on Whop). Payment comes from the campaign, not AdSense, so YPP/Rewards eligibility is irrelevant and strikes never come. This is why those accounts persist.",
+    "conditions": [
+     "Written campaign terms or platform-mediated deal (Whop/Kick) on file before the first post \u2014 screenshot DMs are weak evidence",
+     "Follow campaign asset/branding rules exactly; payment disputes are contractual, not copyright",
+     "Run on dedicated accounts, not the main monetized channels \u2014 clip volume on a YPP channel invites reused-content review even with permission (YouTube ignores permission by policy)",
+     "Expect platform monetization on these posts to be zero or claimed; the campaign fee is the revenue"
+    ]
+   },
+   {
+    "tier": "yellow",
+    "format": "Targeted-critique commentary over third-party clips (Hosseinzadeh / Equals Three / Denims pattern)",
+    "verdict": "Viable and court-tested, but only with the full condition set enforced per video \u2014 and claims are an operating cost, not an anomaly.",
+    "why": "Courts protect commentary that TARGETS the borrowed clip and interrupts it frequently (h3h3 2017; Equals Three 2015; Denims, June 2026 \u2014 200+ pauses across a 102-min source). Passive playthrough loses (Kaceytron admission, Frogan default). But Content ID cannot detect fair use \u2014 claims land regardless, and the Denims ruling is under Ninth Circuit appeal, so one sentence of residual risk: even a textbook-compliant video can draw a claim, a takedown, or in the worst case a lawsuit that costs years to win (Triller v. h3h3 took 3+ years over 42 seconds).",
+    "conditions": [
+     "Commentary must target the specific clip's content/claims/production \u2014 not use it as backdrop",
+     "Interruption cadence: never let the clip run uninterrupted more than ~45\u201360 seconds",
+     "Added original runtime \u2265 1:1 versus clip runtime (winners ran 2\u20134x)",
+     "Affirmative fourth-factor evidence: link and verbally direct viewers to the original; never strip credits or say anything resembling 'watch here instead' (that exact language produced the Kaceytron/Frogan losses)",
+     "No stream-ripped capture \u2014 Cordova v. Huneault (Feb 2026) makes yt-dlp-style ripping independent DMCA \u00a71201 liability that fair use does not cure; use licensed/API-provided material or counsel-approved capture, and log acquisition method",
+     "Expect Content ID claims: dispute within 5 days (escrow protects revenue from day one), select fair-use rationale, expect >65% release/timeout odds; any formal TAKEDOWN is a stop-the-line event",
+     "Prohibited source verticals even in this format: sports game footage, fresh anime, PPV/live events, storm footage (Viral DRM) \u2014 these are litigated or strike-first categories",
+     "Human reviewer confirms every condition on the approval card before posting; no auto-publish"
+    ]
+   },
+   {
+    "tier": "yellow",
+    "format": "Licensed viral/UGC/newswire clips (Jukin $99\u2013299, Pond5 $59\u2013149, Storyful, Newsflare) as anchors in transformed videos",
+    "verdict": "The clean legal path to genuine viral footage \u2014 use selectively on high-expected-value videos because the license only solves copyright, not originality.",
+    "why": "Self-serve licensing converts the riskiest content class (Jukin/ViralHog actively hunt reuploads with claims and licensing demands) into documented permission. But YouTube's reused-content policy explicitly applies 'even if you have permission' \u2014 a licensed clip with no added narrative still fails monetization review.",
+    "conditions": [
+     "License tier must match use: Jukin $99 = monetized single channel, $299 = all channels; Pond5 editorial clips are editorial-context only \u2014 no ad-style use",
+     "Store the order ID/receipt in the provenance ledger, keyed to the video",
+     "The video must still pass the transformation bar: commentary/narrative around the clip, clip is evidence not the product",
+     "Budget rule: only license clips that anchor videos with clear above-average expected value (at 1 clip/day this is $1,800\u20139,000/month \u2014 selectivity is forced)",
+     "Human verifies license scope covers all target platforms before cross-posting"
+    ]
+   },
+   {
+    "tier": "yellow",
+    "format": "Sports content via official league programs ONLY (NFL Access Pass, NBA creator program, WSC Sports for Creators, MLB Film Room embeds)",
+    "verdict": "Apply and wait; publish nothing resembling game footage until accepted.",
+    "why": "Leagues monetize the clip market directly (NBA creator archive access, MLB Film Room, FIFA-YouTube 2026), so fair-use factor four almost always favors them, and they enforce in near-real time \u2014 the NFL and leagues are the most termination-prone strike source that exists. Programs flip this: NFL Access Pass creators get pre-approved footage with explicit monetization.",
+    "conditions": [
+     "Apply to WSC Sports for Creators (subscription-based, negotiated pricing) and monitor NFL/NBA program expansions",
+     "Until accepted: sports topics use only owner-made graphics, licensed stills, AI visualizations, stats analysis, and talk formats with zero broadcast footage",
+     "MLB Film Room only via native sharing/embeds as designed \u2014 not downloaded re-uploads",
+     "Inside any program, the program's content rules override every other rule in this book"
+    ]
+   },
+   {
+    "tier": "yellow",
+    "format": "Trailer and EPK press-kit material inside genuinely transformative commentary/review",
+    "verdict": "A reach tool, never a revenue tool \u2014 plan for $0 platform ad revenue on these videos on YouTube.",
+    "why": "Studios' enforced posture on trailers is Content ID 'monetize': the studio takes 100% of ad revenue while usually withholding strikes (Deadline documented WBD and Sony doing exactly this), and straight trailer reposts fail YPP reused-content review anyway (Screen Culture and KH Studio were demonetized, then terminated). EPK portals license assets for editorial coverage with credit, not arbitrary re-cutting.",
+    "conditions": [
+     "Only inside real review/commentary formats meeting the same targeted-critique thresholds as the fair-use rule",
+     "Register a media identity for EPK.TV/MediaMax access; stay within coverage-with-credit terms",
+     "Value case must be audience growth, sponsorship, or cross-promotion \u2014 model AdSense on these at zero",
+     "If a studio escalates beyond a claim to a takedown, drop the format for that studio immediately"
+    ]
+   },
+   {
+    "tier": "yellow",
+    "format": "CC-BY / Creative Commons footage sourced via Openverse or YouTube's CC filter",
+    "verdict": "Discovery layer only \u2014 every clip gets human verification at the original source; never a bulk feed.",
+    "why": "Openverse states it does not verify license status or attribution accuracy; YouTube CC labels are self-declared. License-laundered reuploads, uncleared embedded music, and Content ID auto-claims against legitimate CC reuse are all documented failure modes.",
+    "conditions": [
+     "Human verifies the uploader is the original creator (channel history, earliest upload date, cross-platform presence)",
+     "Check for embedded music \u2014 a video's CC license does not clear its soundtrack",
+     "Attribution rendered per CC-BY requirements in description and/or on screen",
+     "Store a verification note (who checked, what was checked, date) in the provenance ledger",
+     "Expect occasional false Content ID claims anyway; route through the standard dispute workflow"
+    ]
+   },
+   {
+    "tier": "yellow",
+    "format": "Platform-native remix features (TikTok Duet/Stitch, IG Remix, YouTube Green Screen/Cut/Collab) used manually in-app with owner-original core content",
+    "verdict": "Legally clean, monetization-limited \u2014 use for engagement and trend participation, not revenue.",
+    "why": "In-app reuse is ToS-licensed between users and respects creator opt-outs, eliminating copyright risk. But the license exists only inside the app \u2014 no API can invoke these features \u2014 and monetization is capped: TikTok categorically excludes duets/stitches from Creator Rewards; YouTube requires the remixed Short to contain your own original content as its core to earn anything.",
+    "conditions": [
+     "Manual in-app posting only \u2014 the pipeline cannot and must not simulate these via download/re-upload (that is a raw reupload, red tier)",
+     "Owner-original commentary/footage must be the core of the post (e.g., green-screen analysis over the source)",
+     "Respect that the underlying license is revocable via the source creator's settings",
+     "Treat these posts as audience-building; exclude them from revenue projections"
+    ]
+   },
+   {
+    "tier": "red",
+    "format": "Raw reuploads / freebooting of any third-party content, including via posting APIs",
+    "verdict": "Never. This is the format every enforcement system on every platform is built to catch.",
+    "why": "The ToS reuse license does not extend to downloading and re-uploading \u2014 that is plain infringement plus an unoriginal-content violation. YouTube claims siphon 100% of revenue or takedowns strike (3/90d = termination); TikTok permanently bans at 3 strikes; Meta suspends monetization and throttles all distribution; X redirects impressions to the original creator and publicly demonetized 4M-follower aggregators in May 2026.",
+    "conditions": [
+     "No exceptions \u2014 a human approval click does not change the copyright status of a stolen file",
+     "Watermarked source material is a per-se unoriginality signal on TikTok/Meta and was the stated evidence in X's Disclose.tv demonetization \u2014 the compliance gate rejects any inbound asset bearing another platform's watermark"
+    ]
+   },
+   {
+    "tier": "red",
+    "format": "Unlicensed sports broadcast highlights, especially within ~48 hours of a game",
+    "verdict": "Never without a league program \u2014 this is the single highest-strike-risk content that exists.",
+    "why": "Fresh highlights are time-decaying licensed inventory the leagues sell themselves; factor four is unwinnable, NFL takedowns land minutes after upload, leagues petitioned USPTO for instantaneous takedown regimes, and league strikes have terminated whole channels (CFL highlights channel, 2023). The Premier League detected ~900K unauthorized clips in one season \u2014 under-enforcement on small accounts is backlog, not safety.",
+    "conditions": [
+     "Redirect all sports demand to the yellow league-program rule or footage-free analysis formats",
+     "No 'just this once' for viral moments \u2014 live/PPV events draw suits regardless of merits (Triller sued over 42 seconds)"
+    ]
+   },
+   {
+    "tier": "red",
+    "format": "Music-driven edits using commercial tracks not licensed for the rendered file",
+    "verdict": "Never in API-posted files. Music is the pipeline's biggest silent trap.",
+    "why": "Every platform's in-app music library is licensed for personal, in-app use only, and API-posted video gets NO library access \u2014 audio must be baked in, so any commercial track in a rendered file is unlicensed by default and will be muted/claimed/demonetized (TikTok matching, Meta Rights Manager, X DMCA). Content ID catches music at near-100%, and the UMG-TikTok blackout proved even in-app licenses can be revoked retroactively, muting millions of compliant videos overnight.",
+    "conditions": [
+     "Only owner-licensed music in rendered files: paid library subscriptions (Epidemic/Artlist-class) with stored receipts, true royalty-free/PD with provenance, or YouTube Audio Library tracks (checking scope \u2014 standard license is YouTube-only; CC-BY tracks work cross-platform with credit)",
+     "Never source 'trending sounds' from downloads",
+     "Trending-audio strategies happen only via manual in-app posting with platform-library tracks, accepting personal-use limits",
+     "Meta density rule: high music-to-content density gets blocked/muted even with some license coverage \u2014 music stays a bed, never the product"
+    ]
+   },
+   {
+    "tier": "red",
+    "format": "Compilations, caption-only clip curation, silent/non-verbal reaction, and templated mass production",
+    "verdict": "Never \u2014 this fails even when every asset is licensed, because the enforcement axis is originality, not copyright.",
+    "why": "YouTube's policy names 'clips edited together with little or no narrative,' shorts compiled from other social media, and reactions 'without added voice commentary' as disallowed; TikTok defines compilations and subtitle-only overlays as unoriginal and FYF-ineligible; Meta's March 2026 standard says watching along 'without adding anything meaningful' is unoriginal. The January 2026 termination wave (16 channels, ~$10M/yr revenue) was this policy, with no rights holder complaint involved.",
+    "conditions": [
+     "Practitioner-derived red lines the compliance gate enforces: source footage never carried by captions/music/light overlays alone; no fixed template across uploads; no image-slideshow formats; no video where source material plays silent",
+     "Initial YPP approval is not a safe harbor \u2014 re-review strips channels later, so these formats are banned permanently, not just pre-approval"
+    ]
+   },
+   {
+    "tier": "red",
+    "format": "Anime, film, and TV scene reposts (Toei/Aniplex/Crunchyroll IP; Hollywood clips outside critique format)",
+    "verdict": "Never \u2014 anime rights holders are the second termination-prone niche after sports, and Hollywood clips are revenue-dead at best.",
+    "why": "Japanese rights holders strike rather than claim (Toei hit one reviewer with 150 claims/strikes; Crunchyroll reported 680M+ URL takedowns; enforcement waves intensified into 2026). Hollywood film/TV clips are claim-certain with revenue siphoned to the studio, and boutique agencies hunt reuploads with licensing demands. One sentence of residual risk: even genuine critique of anime carries elevated strike risk because these holders demonstrably ignore fair-use norms and strike first.",
+    "conditions": [
+     "Film/TV material only enters via the yellow trailer/EPK rule or the targeted-critique rule with its full condition set \u2014 and anime is excluded even there until enforcement posture changes",
+     "Any strike from this category permanently blacklists the rights holder's catalog in the source router"
+    ]
+   }
+  ],
+  "platform_requirements": [
+   {
+    "platform": "YouTube (long-form + Shorts)",
+    "monetization_threshold": "Full YPP: 1,000 subs + 4,000 public watch hours (12mo) OR 10M public Shorts views (90d). Early-access tier: 500 subs + 3 uploads + 3,000 hours or 3M Shorts views (fan funding/Shopping only, no ad share). Both gated by human policy review of the channel. Shorts revenue = 45% of allocated pool, accrues only after accepting the Shorts Monetization Module (not retroactive).",
+    "originality_rule": "Reused-content policy is a viewer-visibility test, explicitly independent of copyright/permission/fair use \u2014 reviewers must see a 'meaningful difference' (commentary, narrative editing, creator presence). Inauthentic-content policy (July 2025, clarified July 2026) separately bans mass-produced/templated output, generic AI slop, and non-verbal reaction. Non-original Shorts (unedited clips, reuploads, compilations with nothing added) earn zero per-Short even inside YPP.",
+    "music_rule": "Audio Library is Content-ID-safe and monetizable (standard license YouTube-only; CC-BY tracks cross-platform with credit). Native Shorts music picker is licensed for Shorts. Creator Music (US, long-form only) shifts to no-cost and rev-share tracks \u2014 paid buy-out licenses end August 10, 2026. Any other commercial track = certain Content ID claim.",
+    "notes": "Content ID claims are survivable (revenue lost, channel intact); formal takedowns are the kill vector \u2014 3 in 90 days terminates the channel. Dispute claims aggressively: uploaders won 67% of disputes in 2025 and <1% of escalated cases ever become lawsuits. Keep third-party-containing Shorts at \u226460s (claimed Shorts over 1 minute are auto-blocked). Initial YPP approval is not a safe harbor \u2014 periodic re-review strips channels; keep the appeal dossier (production records + ability to produce the unlisted 'how I made this' video). Timelines: ~1 month per review, 21-day appeal window, 30/90-day reapplication cooldowns."
+   },
+   {
+    "platform": "TikTok",
+    "monetization_threshold": "Creator Rewards: 18+, PERSONAL account (business excluded), 10K followers, 100K views in trailing 30 days, eligible regions (US/UK/FR/DE/JP/KR/BR). Only videos over 1 minute with 1,000+ For You feed views earn. Rewards formula scores originality, play duration, search value, engagement.",
+    "originality_rule": "'Unoriginal content' = copied or minimal-input content: compilations, reposts, subtitle-only overlays, mashups. Visible watermarks are a per-se unoriginality signal. Flagged videos are excluded from rewards and de-recommended from the For You feed. Duets/Stitches and Photo Mode posts are categorically reward-ineligible even though ToS-licensed.",
+    "music_rule": "General Music Library is personal, non-commercial, in-app use only; commercial/branded content requires the Commercial Music Library (~1M tracks) or original audio, with a Music Usage Confirmation attestation. Videos with copyrighted music over 1 minute or pure lip-syncs are reward-ineligible. API-posted files get NO library access \u2014 audio must be baked in under our own license.",
+    "notes": "3 copyright strikes = permanent ban (strikes expire after 90 days). No Content ID equivalent \u2014 enforcement is DMCA plus audio matching/muting. Critical API constraint: unaudited API clients are forced to SELF_ONLY (private) posts and capped at 5 posting users/24h \u2014 the posting app must pass TikTok's audit before assuming public reach, and commercial-content disclosure toggles must be exposed. UMG blackout precedent: platform music licenses are revocable retroactively."
+   },
+   {
+    "platform": "Meta (Facebook + Instagram)",
+    "monetization_threshold": "Facebook Content Monetization (successor to in-stream/Reels bonuses) is INVITE-BASED with explicit originality standards; Instagram bonuses are seasonal and invite-only (no open application). No self-serve threshold exists \u2014 eligibility is earned via sustained original output plus Partner + Content Monetization Policy compliance.",
+    "originality_rule": "March 2026 standard: 'original' = content filmed or produced directly by the creator; third-party material counts only with meaningful added value (analysis, fresh information, substantial storytelling) \u2014 facial-expression react-alongs are explicitly unoriginal. Repeat reuse = monetization suspension PLUS distribution throttling on everything the account shares; duplicate videos are auto-detected and down-ranked in favor of the original. 'Limited originality of content' is one of the most common monetization restriction flags and catches even licensed footage and compilations.",
+    "music_rule": "Licensed-library music is personal-use; business/commercial accounts get only the royalty-free Sound Collection. High music density gets content blocked/muted/ineligible for Music Revenue Share; 'music listening experience' videos can get pages deleted. The IG Content Publishing API cannot attach library tracks \u2014 music must be embedded in the file and independently licensed.",
+    "notes": "Rights Manager fingerprint-matches audio/video/images across both FB and IG (Block / Monitor / Claim Ad Earnings per match) \u2014 this silently reroutes clip-page money. Watermarked/recycled clips are suppressed in Reels recommendations. As we grow, apply for Rights Manager defensively to catch freebooting of our originals. Treat Meta revenue as a variable bonus lane, not a plannable stream, until an invite lands."
+   },
+   {
+    "platform": "X",
+    "monetization_threshold": "Creator Revenue Sharing: active Premium (or Verified Org) subscription + 500 verified followers + 5M verified (Premium-user) impressions in trailing 3 months. Payouts from Premium-user engagement, ~$8.50 per 1M verified impressions reported; $30 minimum, biweekly. Amplify pre-roll is separate and invite-only.",
+    "originality_rule": "Content Monetization Standards exclude recycled/unoriginal content, near-duplicate posts, engagement bait, and copyrighted media you don't own. May 2026 shift: X redirects impressions/monetization from reposted videos to the original creator and cut aggregator payouts (public demonetizations of @Rainmaker1973 and Disclose.tv). Official guidance: reposted videos are not monetized; quote-posts with meaningful commentary can be.",
+    "music_rule": "No platform music license exists for users at all \u2014 the NMPA suit settled July 2026 with no public license resulting. Any commercial music in an uploaded video is unlicensed by default; enforcement is DMCA takedown plus monetization suppression. Only owner-licensed or PD audio in files posted to X.",
+    "notes": "X is the laxest on takedowns but enforces via payout: copyright-heavy and aggregator content gets demonetized, not removed. Effective March 3, 2026, undisclosed AI-generated armed-conflict videos trigger a 90-day revenue-share suspension \u2014 the AI-disclosure flag matters here too. Lowest revenue ceiling of the four; treat as incremental distribution with pocket-money monetization."
+   }
+  ],
+  "engine_changes": [
+   "MUSIC GATE (hard block): the renderer refuses any audio track without a license record in the provenance ledger \u2014 allowed sources are paid-library subscriptions with stored receipts, CC-BY with rendered credit, PD with verification note, or YouTube Audio Library (scope-checked: standard license = YouTube-only builds). 'Trending sound' files are rejected at ingestion. Platform-library tracks are only ever used in manual in-app posts, never in rendered files.",
+   "PROVENANCE LEDGER EXTENSION: every asset gets source, license type, receipt/order ID (Jukin/Pond5/stock/AI-generation record), and ACQUISITION METHOD \u2014 with stream-ripped capture (yt-dlp-class) banned outright per DMCA \u00a71201 (Cordova v. Huneault). This ledger doubles as the YPP appeal dossier.",
+   "EDITORIAL-STOCK FILTER: automated pre-publish scan flags free-stock assets containing recognizable people, logos, brands, events, or celebrities \u2192 route to editorial-only handling or replacement; strip NASA insignia; obscure military unit markings in ad-adjacent content; add non-endorsement disclaimers on gov-footage videos.",
+   "TIER ROUTER ON THE TELEGRAM APPROVAL CARD: green formats show a standard approve button; yellow formats render the format's full condition checklist on the card and require an explicit human YES with each condition ticked (e.g., for critique format: 'commentary targets clip / max uninterrupted run \u226460s / added runtime \u22651:1 / credit link present / capture method logged'); red formats are blocked at ingestion and never reach the card.",
+   "WATERMARK DETECTION: reject inbound assets bearing another platform's watermark; render clean per-platform masters from the project source rather than re-exporting one platform's output (watermarks are per-se unoriginality signals on TikTok/Meta and were X's stated evidence in the Disclose.tv demonetization).",
+   "ANTI-TEMPLATE VARIATION ENGINE: enforce per-video distinct script/hook/structure, rotate visual templates on a schedule, and maintain a channel-level authorial voice \u2014 plus per-platform AI-disclosure toggles set automatically. This targets the inauthentic-content layer, which is now the bigger practical threat than copyright for our volume.",
+   "LENGTH RULES PER PLATFORM: any video containing third-party matchable material caps at 60 seconds for YouTube Shorts (claimed Shorts >1 min auto-block); TikTok monetization-track videos must exceed 1 minute \u2014 the router picks per-platform cuts accordingly.",
+   "CLAIM/STRIKE OPERATIONS MODULE: Content ID claim \u2192 automatic 5-day-window dispute workflow with fair-use/license rationale and escrow tracking; formal TAKEDOWN \u2192 stop-the-line: pause the affected channel/format, alert the owner, blacklist the rights holder's catalog in the source router; dashboard tracks strikes against the 90-day expiry clocks per platform (YouTube 3/90d, TikTok 3/90d).",
+   "TIKTOK API PREFLIGHT: verify the posting app's audit status before assuming public visibility (unaudited = SELF_ONLY private posts); expose commercial-content disclosure toggles; ensure the rewards-track account is a personal, not business, account.",
+   "AI-GENERATION ABSTRACTION LAYER: all AI video vendors behind one internal interface with paid-commercial-tier enforcement and per-clip generation records (Sora's shutdown is the cautionary tale); AI segments capped as components inside human-authored edits.",
+   "LICENSED-CLIP BUDGET GATE: yellow-tier licensed clips (Jukin/Pond5/Storyful) require an expected-value note on the approval card and a monthly budget cap, since marginal cost is $59\u2013299/clip.",
+   "DEFENSIVE RIGHTS TOOLING (as we scale): apply for Meta Rights Manager once eligible to catch freebooting of our originals across FB/IG; use YouTube's Copyright Match Tool; file per-video DMCA on TikTok/X; note X now auto-redirects impressions from reposts of our media to us.",
+   "MANUAL-ONLY LANE: in-app remix features (Duet/Stitch/Remix/Green Screen) and platform-library trending audio exist only in a human manual-posting lane \u2014 the pipeline never simulates them via file re-upload."
+  ],
+  "monetization_roadmap": "PHASE 0 (immediate, month 0): revenue does not wait for platform thresholds. Join paid clipping campaigns (Whop Content Rewards, Kick's program, direct streamer deals) on dedicated accounts \u2014 $200\u20131,500 per 1M views paid from campaign budgets with zero eligibility gates. This is the only 'clip content' lane we run, and it's cash-flow positive from the first viral post. Simultaneously, buy any Creator Music paid licenses we might want before the August 10, 2026 cutoff. PHASE 1 (months 0\u20134): post 2\u20133x/day green-tier only (TTS+stock originals, PD/gov builds, self-made-graphics commentary, AI-component videos) across all four platforms from one project source with clean per-platform masters. Targets: X first \u2014 Premium + 500 verified followers + 5M verified impressions/3mo is realistically reachable in 1\u20133 months at this cadence; expect pocket money (~$8.50/1M verified impressions), treat it as a pipeline health signal, not income. TikTok second \u2014 10K followers + 100K views/30d is a 2\u20134 month build if content lands; keep the rewards account personal, and remember only >1-minute videos earn, so produce a daily long-cut alongside Shorts cuts. PHASE 2 (months 3\u20138): YouTube is the real prize and the slowest gate. Sequence deliberately: apply to YPP on an unambiguous original catalog (reviewers skim the main theme, top videos, newest uploads \u2014 introduce nothing clip-adjacent before acceptance). The early-access tier (500 subs + 3M Shorts views/90d) may land around month 3\u20135; full ad-share tier (1,000 subs + 4,000 hours or 10M Shorts views/90d) realistically months 4\u20138 at our cadence, driven mostly by whether Shorts hit. Accept the Shorts Monetization Module the day of acceptance \u2014 accrual is not retroactive. Meta runs in parallel as a lottery ticket: full policy compliance and originality signals, but Content Monetization is invite-only, so model Meta revenue at zero until an invite arrives. PHASE 3 (after YPP acceptance + ~2 months of stable baseline revenue): introduce yellow-tier formats one at a time \u2014 targeted-critique commentary first (highest ceiling, best case law), licensed viral clips second (budget-gated), trailer/EPK reach plays third (modeled at $0 AdSense). The claim-management overhead (dispute workflows, escrow tracking, occasional released videos) is only worth it when a format's expected RPM\u00d7views exceeds green-tier baseline by a clear margin \u2014 in practice that means waiting until the channel has enough traffic that a critique video reliably clears several thousand views. Apply to WSC Sports for Creators and watch NFL/NBA program expansions throughout; sports stays footage-free until a program accepts us. STEADY STATE (months 8+): green-tier originals as the monetization base (YouTube ad share + TikTok rewards), clipping campaigns as the licensed-distribution side business, yellow-tier critique as the growth-and-upside layer, X and Meta as incremental. Every platform program is a revocable privilege, not a contract \u2014 the diversification IS the strategy.",
+  "open_risks": [
+   "YouTube says it is 'in the early stages' of extending Shorts revenue-splitting beyond music to other third-party content categories \u2014 if video rightsholder splits arrive, the economics of every clip-adjacent format change and tool-based remixing may become the only sane path.",
+   "The Denims full-length-reaction fair-use ruling (June 2026) is under Ninth Circuit appeal \u2014 if reversed or narrowed, our critique-format thresholds (built on it plus Hosseinzadeh/Equals Three) need immediate tightening.",
+   "Inauthentic-content enforcement is algorithmic, retroactive, and opaque with no DMCA-style due process \u2014 a compliant TTS+stock channel could still be swept in a future wave, and the January 2026 actions came with no warning and withheld revenue.",
+   "Meta monetization has no application path \u2014 full compliance guarantees nothing; an invite may simply never come.",
+   "Platform music licenses are revocable retroactively (UMG-TikTok muted millions of compliant videos overnight), and every monetization program reserves unilateral eligibility changes \u2014 X has already cut aggregator payouts twice in one year.",
+   "Bogus takedowns are a real hazard: >6% of YouTube webform requests were flagged as likely false ownership assertions, and troll enforcers (Viral DRM: 17+ suits in 2025) run takedown-then-settle campaigns \u2014 a compliant channel can still eat strikes and legal fees.",
+   "Post-Cox v. Sony (March 2026), platforms face less legal pressure over repeat infringers \u2014 the claim-first equilibrium looks stable, but platform policy can shift either direction without notice and policy, not law, is what actually governs us.",
+   "Purely AI-generated output has no copyright protection under US human-authorship doctrine \u2014 competitors can freely reuse our AI segments, and the broader AI-content policy landscape (disclosure rules, X's conflict-video suspensions) is still moving quarterly.",
+   "DMCA \u00a71201 capture-method liability (Cordova, Feb 2026) is one district-court ruling \u2014 its scope could expand to more acquisition methods or get overturned; our no-ripping rule is calibrated to today's single data point.",
+   "All fair-use analysis is US law; enforcement posture and legal exposure differ in other jurisdictions our content reaches, and geo-targeted claims/blocks (the Toei resolution model) remain possible.",
+   "Publicity-rights and trademark exposure from free-stock and PD footage of recognizable people/brands is uninsured \u2014 neither Pexels/Pixabay nor government archives indemnify us, and our editorial-only filter reduces but does not eliminate it."
+  ]
+ },
+ "research_summaries": [
+  {
+   "summary": "ENFORCEMENT REALITY FOR CLIP/REPOST ACCOUNTS (2024-2026): The honest answer to \"everyone does it \u2014 what happens to them?\" is: on YouTube, ~99.5% of copyright enforcement is Content ID claims, and rights holders choose to MONETIZE (siphon the ad revenue) on >90% of claims rather than block or strike. So the typical clip channel visibly persists but earns $0 AdSense on claimed videos \u2014 the studio/label/league quietly collects instead (Deadline documented Warner Bros. and Sony doing exactly this on trailer/recap channels). Strikes and terminations only happen when a rights holder escalates to a formal takedown (webform/DMCA) \u2014 3 takedown-strikes in 90 days = channel termination \u2014 and takedowns are a rounding error (~295K webform requests vs 2.5B Content ID claims in 2025). Aggressive strikers are predictable: NFL and other sports leagues, Japanese anime rights holders (Toei struck 150 videos on one reviewer; Aniplex/Crunchyroll waves intensified into 2026), and boutique licensing agencies (Jukin/ViralHog). The visible \"persisters\" fall into five buckets: (1) LICENSED/PERMISSIONED \u2014 the streamer-clipping economy is explicit permission at industrial scale (N3on paid $1.4M in 5 weeks to 303 clippers; Clavicular pays ~$650K/month to 1,500 clippers posting ~70K clips/month; Kick runs an official clipping program that did 3B views in one month; Whop \"Content Rewards\" pays $200-1,500 per million views); (2) CLAIMED-BUT-TOLERATED \u2014 revenue siphoned via Content ID/Rights Manager, channel survives on sponsors/growth (NBA's de facto stance; movie recap channels); (3) TOO SMALL / WRONG PLATFORM TO POLICE \u2014 X is the laxest (NMPA sued X over ~1,500 works infringed \"hundreds of thousands\" of times; case quietly settled July 2026), Instagram meme/clip pages persist because Rights Manager only matches content of enrolled rights holders; (4) PLATFORM-NATIVE REMIX \u2014 TikTok/Reels/Shorts music libraries and stitch/duet/remix features make in-app reuse licensed by design (but NOT third-party video footage); (5) SURVIVORSHIP ILLUSION \u2014 TikTok bans at 3 strikes but operators churn accounts; claimed YouTube videos stay up, looking like impunity. A separate, growing second enforcement layer is monetization-integrity, not copyright: YouTube's July 2025 \"inauthentic content\" policy (16 channels, 4.7B views, 35M subs terminated by Jan 2026) and Meta's July 2025 unoriginal-content crackdown (10M profiles removed, 500K accounts demoted/demonetized) hit reposters even when no rights holder complains. Legally, SCOTUS's unanimous Cox v. Sony (Mar 25, 2026) narrowed platform/ISP contributory liability, reducing legal pressure on platforms to terminate repeat infringers \u2014 but platform policy, not court risk, is what actually governs clip accounts, and fewer than 1% of even fully-escalated YouTube disputes ever become lawsuits.",
+   "sources": [
+    "https://support.google.com/youtube/answer/2797370?hl=en (How Content ID works)",
+    "https://support.google.com/youtube/answer/6013276?hl=en (Learn about Content ID claims)",
+    "https://support.google.com/youtube/answer/2814000?hl=en (Understand copyright strikes \u2014 3 strikes/90 days)",
+    "https://support.google.com/youtube/answer/1311402?hl=en (Qualify for Content ID)",
+    "https://support.google.com/youtube/answer/1311392?hl=en (YouTube channel monetization policies \u2014 reused/inauthentic content)",
+    "https://support.google.com/youtube/answer/13053317?hl=en (Manage Shorts as a rights holder \u2014 60s block rule)",
+    "https://support.google.com/youtube/answer/12504220?hl=en (YouTube Shorts monetization policies)",
+    "https://blog.youtube/news-and-events/updates-to-manual-claiming-policies/ (manual claiming: timestamps, short/unintentional music)"
+   ]
+  },
+  {
+   "summary": "YouTube's written rules for clip-adjacent monetization are stable and more permissive than folklore suggests, but enforcement runs through two human-review gates that apply a visibility test, not a legality test. The reused content policy (unchanged by the July 15, 2025 'inauthentic content' rename and re-confirmed unchanged in the July 2026 clarification) is explicitly NOT about copyright, permission, or fair use \u2014 YouTube states channels can fail it 'even if you have permission from the original creator.' The operative standard is whether a reviewer/viewer can tell there is a 'meaningful difference' between your video and the source: continuous voice commentary, visible creator presence, narrative editing, or educational framing. Clips, compilations, reactions, and commentary remain monetizable formats by explicit statement from YouTube's creator liaison; what fails is source footage carried by captions/music/light overlays, non-verbal reactions, template pipelines, and compilations 'with little or no narrative.' Enforcement evidence from 2025-2026 (Screen Culture/KH Studio demonetized then terminated, 16 AI-slop channels with 35M combined subscribers terminated Jan 2026, practitioner-forum consensus that caption-only clip channels get rejected or later stripped) shows YouTube enforces at YPP application, at periodic re-review, and reactively after press coverage \u2014 initial approval is not a safe harbor. On Shorts, YouTube's own remix tools (Sound, Cut, Green Screen, Collab, Reimagine) solve the copyright/licensing problem via ToS but NOT the monetization problem: non-original Shorts ('unedited clips from others' movies or TV shows, reuploading other creators' content... or compilations with no original content added') are ineligible for revenue sharing regardless of how they were made, and Shorts revenue only accrues after the creator accepts the Shorts Monetization Module (45% of allocated pool revenue; currently only licensed music, not other third-party video, dilutes the pool). Music is fully solvable: the Audio Library is Content-ID-safe and monetizable (standard license is YouTube-only; CC-BY tracks need credit), Shorts get licensed commercial music through the native picker, and Creator Music (US YPP, long-form only) shifts to no-cost and revenue-share tracks only, with paid licenses ending August 10, 2026. Notably, most of the 'clip channels everywhere' the owner sees are not surviving YPP review \u2014 they monetize outside YPP via owner-authorized clipping campaigns (Whop/Vyro-style, $0.50-$25 per 1,000 views or flat retainers), which is a separate, permission-based economy.",
+   "sources": [
+    "https://support.google.com/youtube/answer/1311392?hl=en (YouTube channel monetization policies \u2014 reused content + inauthentic content)",
+    "https://support.google.com/youtube/community-guide/271248162?hl=en (YouTube official FAQ: Reused Content & the Partner Program, incl. appeal-video instructions)",
+    "https://support.google.com/youtube/answer/12504220?hl=en (YouTube Shorts monetization policies \u2014 non-original Shorts, Creator Pool, music splits)",
+    "https://support.google.com/youtube/answer/10623810?hl=en (Create Shorts with remixed content \u2014 Sound/Cut/Green Screen/Collab/Reimagine, licensing, opt-outs)",
+    "https://support.google.com/youtube/answer/9235730?hl=en (My channel was rejected for monetization FAQs \u2014 reapply 30/90 days, 21-day appeal)",
+    "https://support.google.com/youtube/answer/12843009?hl=en (Changes to YouTube Partner Program terms \u2014 Base Terms + monetization Modules)",
+    "https://support.google.com/youtube/answer/11610212?hl=en (Get started with Creator Music \u2014 US YPP, paid-license phase-out Aug 10, 2026)",
+    "https://support.google.com/youtube/answer/3376882?hl=en (Audio Library \u2014 Content-ID-safe, license types, attribution)"
+   ]
+  },
+  {
+   "summary": "LENS 3 findings (TikTok / Instagram-Meta / X, as of July 2026): All three platforms have converged on the same enforcement posture in 2025-26 \u2014 in-app reuse features (Duet/Stitch/Remix/Repost) are ToS-licensed between users, but that license is conditioned on the original creator's settings and exercised only THROUGH the platform's own tools; it does not extend to downloading a video and re-uploading it via API, which is plain copyright infringement plus an \"unoriginal content\" policy violation. None of the platforms' content-posting APIs can even invoke the reuse features (no duet/stitch/remix endpoints), so an automated pipeline cannot obtain the in-app license programmatically. On monetization: TikTok's Creator Rewards formula scores \"originality\" directly and excludes duets/stitches and watermarked content entirely; Meta (July 2025 Facebook crackdown + March 2026 \"Rewarding Original Creators\" update) suspends monetization and throttles distribution for accounts that repeatedly reuse others' content without \"meaningful enhancement,\" backed by automated duplicate detection and Rights Manager fingerprint matching across FB+IG; X (which historically had NO proactive matching \u2014 DMCA-only, a fact central to the NMPA publishers' lawsuit that settled/dismissed July 16, 2026) began in May 2026 redirecting impressions from reposted videos to original creators and publicly demonetized 4M+ follower aggregator accounts (@Rainmaker1973, Disclose.tv), with X staff stating \"You will not be monetized if you repost videos originally from other creators. Quote-posts can still be monetized if they add meaningful commentary.\" Music is the #1 silent trap: every platform's in-app music library is licensed for personal, non-commercial, in-app use only; commercial/monetized/branded content requires TikTok's Commercial Music Library, Meta's Sound Collection, or your own sync+master licenses; API-posted video must have audio baked into the file and gets NO access to platform-licensed libraries, so any commercial track in an API-posted file is unlicensed and will be muted/claimed/demonetized by TikTok's matching, Meta Rights Manager, or (on X) DMCA + monetization suppression. The UMG-TikTok blackout (Feb-May 2024, millions of videos muted overnight) proves even in-app licenses are revocable. Critically, \"legal\" and \"monetizable\" are separate axes: fully-licensed stock/CC compilations can still be flagged unoriginal and demonetized if not meaningfully transformed \u2014 the owner's original/stock/CC/PD pipeline is legally safe but must add visible original input (voiceover, on-screen presence, editing, analysis) to stay monetizable under 2026 originality rules.",
+   "sources": [
+    "https://www.tiktok.com/legal/page/us/terms-of-service/en (ToS \u00a73.5 user-to-user license)",
+    "https://www.tiktok.com/creator-academy/article/tiktok-originality-policy",
+    "https://www.tiktok.com/community-guidelines/en/integrity-authenticity",
+    "https://support.tiktok.com/en/business-and-creator/creator-rewards-program/creator-rewards-program",
+    "https://support.tiktok.com/en/business-and-creator/creator-and-business-accounts/commercial-use-of-music-on-tiktok",
+    "https://ads.tiktok.com/help/article/commercial-music-library?lang=en",
+    "https://developers.tiktok.com/doc/content-sharing-guidelines (unaudited client restrictions)",
+    "https://developers.tiktok.com/doc/content-posting-api-get-started"
+   ]
+  },
+  {
+   "summary": "Fair use for commentary/reaction/clip content is real, litigated, and \u2014 as of June 2026 \u2014 stronger than ever for genuine critique formats, while remaining predictably fatal for passive reposts. The controlling pattern across Hosseinzadeh v. Klein (S.D.N.Y. 2017), Equals Three v. Jukin (C.D. Cal. 2015), and the brand-new TED Entertainment v. Saber \"Denims\" ruling (C.D. Cal., June 29, 2026) is that courts protect content whose commentary TARGETS the borrowed clip and interrupts it frequently, and they deny protection where the clip is the entertainment product itself. The same 2025-26 Klein litigation shows both sides: Denims won fair use as a matter of law despite playing an entire 102-minute video, because she paused 200+ times with critical commentary; Kaceytron settled with an admission of infringement and Frogan lost by default, after streaming the video nearly in full with minimal commentary plus statements about denying Klein revenue (explicit market-substitution intent). Post-Warhol (2023), commercial use for the SAME purpose as the original weighs against fair use \u2014 which strengthens critique/reaction formats (a compelling justification) and dooms highlight compilations and music-driven edits (same entertainment purpose, real licensing markets). Sports clips are the uniquely aggressive category because leagues monetize the clip market directly (NBA creator program, MLB Film Room, FIFA-YouTube 2026 deal), so factor four almost always favors them, and they enforce in near-real time. Critically, defensible-in-court is not claim-free: Content ID is a contractual matching system where the claimant adjudicates its own claim; it processed 2.2B claims in 2024 (99%+ automated), under 1% were disputed, and over 65% of disputes resolved for the uploader \u2014 mostly by claimant release or timeout. A February 2026 N.D. Cal. ruling (Cordova v. Huneault) adds a new trap: stream-ripping YouTube video can violate DMCA \u00a71201 anti-circumvention regardless of fair use, so HOW footage is captured now carries independent legal risk.",
+   "sources": [
+    "https://www.copyright.gov/fair-use/summaries/hosseinzadeh-klein-sdny2017.pdf",
+    "https://techcrunch.com/2017/08/23/judge-sides-with-youtubers-ethan-and-hila-klein-in-copyright-lawsuit/",
+    "https://www.tubefilter.com/2017/08/23/h3h3productions-copyright-case-fair-use-ethan-hila-klein/",
+    "https://jolt.law.harvard.edu/digest/analyzing-the-equals-three-v-jukin-media-opinion",
+    "https://www.leagle.com/decision/inadvfdco160726000572",
+    "https://www.dwt.com/blogs/media-law-monitor/2016/07/fair-use-viral-videos-and-correcting-the-record-ab",
+    "https://torrentfreak.com/triller-hits-h3-podcast-with-50m-jake-paul-piracy-lawsuit-judge-guts-original-complaint-210511/",
+    "https://www.hollywoodreporter.com/business/digital/triller-troll-reviews-suit-tossed-by-judge-1235075271/"
+   ]
+  },
+  {
+   "summary": "LENS 5 \u2014 Legal acquisition routes for topical/trending footage (July 2026), ranked by cost, speed, and automation-compatibility:\n\nTIER 1 (free, instant, API-automatable): US government/public-domain archives. NASA content is \"generally not subject to copyright\" and usable in monetized videos as editorial/informational content, with three hard limits: no implied NASA endorsement, NASA insignia/logos are NOT public domain, and identifiable people (astronauts/employees) carry publicity-rights risk. DVIDS (DoD \u2014 now styling itself \"Department of War\" in 2026 terms) is explicitly \"free for commercial use\" including via its public API, but requires a non-endorsement disclaimer and requests obscuring unit markings in advertising contexts. Internet Archive/Prelinger: ~65% of holdings are US public domain, but not all \u2014 no written agreements for the free copies, so per-item verification is needed. These are the only routes that are simultaneously free, fast, and pipeline-friendly, but coverage is topical only for space/military/weather/history/government news.\n\nTIER 2 (cheap, instant, fully automatable, but disclosure-gated): AI video generation. Runway grants full commercial rights and output ownership on any paid plan (Standard $15/mo; free tier is non-commercial; trains on your content by default outside Enterprise; C2PA watermark embedded). Google Veo: user owns output, commercial use permitted; API pricing roughly $0.03\u20130.40/sec (~$1.20\u20133.20 per 8-second clip; Lite tier is pennies), Google AI Pro $19.99/mo, Ultra $249.99/mo; every output carries an invisible SynthID watermark and YouTube requires the altered/synthetic-content disclosure. Pika: commercial use starts at the $8/mo Basic plan; free tier prohibited. Critical 2026 fact: OpenAI SHUT DOWN Sora \u2014 app/web ended April 26, 2026, API ends September 24, 2026 \u2014 never build a pipeline dependency on it. The monetization gate is YouTube's July 15, 2025 \"inauthentic content\" policy: mass-produced templated AI output is demonetized (a January 2026 enforcement wave removed major channels), so AI clips must be one ingredient in an edited, original video, with the disclosure toggle set. Also: purely AI-generated output likely has NO copyright protection (no human authorship), so competitors can freely re-use it.\n\nTIER 3 (low-hundreds per clip, self-serve, semi-automatable): paid UGC/newswire clip licensing. Jukin Licensing (Trusted Media Brands, ~65k+ viral clips incl. FailArmy catalog) has true self-serve tiers: $49 watermarked/non-monetized, $99 monetized single channel, $299 all channels \u2014 the cleanest legal path to genuine viral footage for a solo operator. Pond5 sells editorial clips (including Reuters and Newsflare content) self-serve at $59 (Standard) / $149 (Premium) \u2014 the cheap back door into newswire footage, though editorial-context use only. ViralHog sells direct with case-by-case publisher pricing ($0 to thousands). Storyful (News Corp) opened video.storyful.com to registered buyers with credit-card/Stripe checkout \u2014 solo creators can get approved, rates visible post-registration. Newsflare (590k+ verified clips) quotes per-use via its commercial team; typical brand-use payouts (~\u00a325\u2013100 to filmers) imply modest per-clip costs. By contrast, AP and Reuters direct are enterprise-gated: Reuters Connect runs five-figure annual contracts with sales-gated onboarding; AP Archive/Video Hub is custom-quoted for news organizations; Getty editorial video is $199\u2013499/clip or $5,750/600-download subscriptions \u2014 not solo-viable except through the Pond5 resale channel.\n\nTIER 4 (free but access- or revenue-gated): studio promo material and trailers. EPKs/press portals (EPK.TV, MediaMax) distribute trailers, clips, and b-roll expressly for editorial coverage \u2014 registration requires stating a media-outlet use and approval; assets remain copyrighted and licensed for coverage with credit, not for arbitrary commercial re-cutting. Trailers: what studios SAY \u2014 trailers are copyrighted, no repost license exists; what they ENFORCE \u2014 on YouTube they typically let Content ID \"monetize/track\" rather than strike, meaning the STUDIO takes the ad revenue and the uploader keeps nothing, and YouTube separately demonetized fake/repost trailer channels (Screen Culture/KH Studio crackdown). So trailer reposting is traffic-safe-ish but revenue-dead on YouTube, and policy-violating as \"reused content\" for YPP.\n\nTIER 5 (best content, closed doors): sports league programs. NFL Access Pass gives selected creators pre-approved footage with explicit monetization (200M+ views to date; extended to \"Access Pass for Legends\" in 2025) \u2014 invite-only. NBA (Feb 2026) opened 25,000 hours of 2014\u20132024 footage plus 2,500 hours/season \u2014 but initially to just six named YouTube creators. MLB Film Room offers 3.5M+ self-serve clips with native social sharing/embeds, a deliberate loosening, but geared to fan/embed use rather than licensed monetized re-uploads. WSC Sports for Creators (launched 2023, expanded with a creator subscription tier in 2025) is the only scalable licensed-highlights service, but pricing is unpublished/negotiated on top of enterprise deals that run seven figures for leagues; expect a real subscription cost and an application process. Without one of these programs, straight highlight uploads are instantly Content ID-claimed.\n\nTIER 6 (free but hazardous at scale): CC-BY discovery. Openverse's own terms state it \"does not verify\" licensing status or attribution accuracy \u2014 it aggregates metadata only, and video coverage is thin. YouTube's CC filter surfaces videos whose CC-BY marking is self-declared: license-laundered reuploads are common, embedded music is not cleared by the video's CC license, and CC-marked videos can still be enrolled in Content ID and auto-claim your video. CC search is usable only as a discovery layer with per-clip human verification at the original source \u2014 it is not automation-safe as a bulk feed.\n\nTRAPS: Pexels/Pixabay \"free\" stock is a commercial-use minefield for exactly the topical content this pipeline wants \u2014 Pixabay licenses anything with logos, brands, recognizable products, events, or celebrities as EDITORIAL ONLY (no advertising/commercial application); Pexels prohibits implying endorsement and neither platform verifies that uploaders had model releases or even owned the footage, and neither indemnifies you. NASA/DVIDS insignia and identifiable-personnel rules mirror this. The safe architecture: free-stock only for generic b-roll; PD/gov for institutional topics; paid self-serve licensing (Jukin/Pond5/Storyful) for viral/news moments; AI generation for illustrative visuals with disclosure; league programs or licensed abstention for sports.",
+   "sources": [
+    "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+    "https://www.dvidshub.net/about/copyright",
+    "https://api.dvidshub.net/docs/copyright",
+    "https://www.pexels.com/license/",
+    "https://pixabay.com/blog/posts/pixabay-license-what-is-allowed-and-what-is-not-4/",
+    "https://www.tubefilter.com/2020/08/11/jukin-launches-self-service-platform-license-videos/",
+    "https://www.jukinmedia.com/licensing",
+    "https://storyful.imagencloud.com/faqs"
+   ]
+  }
+ ]
+}

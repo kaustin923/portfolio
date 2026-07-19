@@ -25,6 +25,12 @@ export function escapeDrawtext(text: string): string {
   return optionEscaped.replace(/[\\'[\],;]/g, (char) => `\\${char}`);
 }
 
+/** Escape a filename through the filter option and filtergraph tokenizers. */
+export function escapeFilterFilename(path: string): string {
+  const optionEscaped = path.replace(/[\\':]/g, (char) => `\\${char}`);
+  return optionEscaped.replace(/[\\'[\],;]/g, (char) => `\\${char}`);
+}
+
 /** Greedy word wrapping with hard breaks for tokens wider than a line. */
 export function wrapText(text: string, maxChars: number): string[] {
   const width = Math.max(1, Math.floor(maxChars));

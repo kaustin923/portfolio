@@ -91,9 +91,14 @@ test('full pipeline runs end-to-end and publishes only actionable topics', async
   assert.equal(report.blocked, 0, 'nothing blocked (sourcing prefers original content)');
   assert.equal(report.rejected, 0, 'nothing rejected in DRY_RUN auto-approve');
 
-  // topicsPerRun actionable topics × N platforms, all "published" in DRY_RUN.
-  const expected = report.topicsConsidered * config.publishing.defaultPlatforms.length;
-  assert.equal(report.published, expected, 'published = topics × platforms');
+  // Sourced + original drafts × N platforms, all "published" in DRY_RUN.
+  const expected =
+    (report.topicsConsidered + report.originals) * config.publishing.defaultPlatforms.length;
+  assert.equal(report.published, expected, 'published = (topics + originals) × platforms');
   assert.ok(report.topicsConsidered > 0, 'at least one actionable topic was processed');
+  assert.ok(
+    report.metrics.some((metric) => metric.postId.includes('draft-original-')),
+    'at least one original draft flowed through publishing and monitoring',
+  );
   assert.equal(report.metrics.length, report.published, 'monitor recorded metrics for each post');
 });

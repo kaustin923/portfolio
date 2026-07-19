@@ -22,9 +22,52 @@ interface InstagramUploadResponse {
   success?: boolean;
 }
 
+interface InstagramPublishingLimitResponse {
+  data?: Array<{
+    quota_usage?: number;
+    config?: {
+      quota_total?: number;
+      quota_duration?: number;
+    };
+  }>;
+}
+
 export interface InstagramPublishOptions {
   pollIntervalMs?: number;
   timeoutMs?: number;
+}
+
+export async function preflightInstagram(): Promise<{ ok: boolean; reason?: string }> {
+  const env = requireEnv('Instagram', ['IG_USER_ID', 'IG_ACCESS_TOKEN']);
+  const userId = env.IG_USER_ID!;
+  const accessToken = env.IG_ACCESS_TOKEN!;
+
+  try {
+    const response = await getFetch()(
+      `${GRAPH}/${encodeURIComponent(userId)}/content_publishing_limit?fields=quota_usage,config`,
+      { headers: { Authorization: `Bearer ${accessToken}` } },
+    );
+    const json = await expectJson<InstagramPublishingLimitResponse>(
+      response,
+      'Instagram content publishing limit preflight',
+    );
+    const limit = json.data?.[0];
+    const usage = limit?.quota_usage;
+    const total = limit?.config?.quota_total;
+    if (typeof usage === 'number' && typeof total === 'number' && usage >= total) {
+      return {
+        ok: false,
+        reason: `IG content_publishing_limit reached (${usage}/${total})`,
+      };
+    }
+    return { ok: true };
+  } catch (err) {
+    console.warn(
+      '[publish:instagram-reels] quota preflight failed open:',
+      err instanceof Error ? err.message : String(err),
+    );
+    return { ok: true };
+  }
 }
 
 export async function publishInstagram(

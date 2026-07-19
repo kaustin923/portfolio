@@ -16,6 +16,10 @@ interface VideoResponse {
   id?: string;
 }
 
+export function youTubeInsertUnits(): number {
+  return config.quotas.youtubeInsertUnits;
+}
+
 export async function publishYouTube(
   draft: ClipDraft,
   caption: string,

@@ -99,6 +99,13 @@ export function makeMockLLM(overrides: Partial<{ forecasts: Topic[] }> = {}): LL
       if ('topics' in p) {
         return { topics: overrides.forecasts ?? FORECASTS } as T;
       }
+      if ('script' in p) {
+        return {
+          script: 'Mock narration sentence one. Mock narration sentence two.',
+          caption: 'Mock original caption',
+          hashtags: ['test', 'original'],
+        } as T;
+      }
       if ('caption' in p) {
         return { caption: 'Mock caption for tests', hashtags: ['test', 'mock'] } as T;
       }

@@ -5,9 +5,9 @@
   "type": "module",
   "description": "Multi-agent workflow: trend detection → licensed sourcing → clipping → human-approved multi-platform publishing.",
   "scripts": {
-    "scout": "tsx src/index.ts scout",
-    "start": "tsx src/index.ts run",
-    "daemon": "tsx src/index.ts daemon",
+    "scout": "node --env-file-if-exists=.env --import tsx src/index.ts scout",
+    "start": "node --env-file-if-exists=.env --import tsx src/index.ts run",
+    "daemon": "node --env-file-if-exists=.env --import tsx src/index.ts daemon",
     "typecheck": "tsc --noEmit",
     "test": "node --import tsx --test --test-concurrency=1 test/*.test.ts"
   },

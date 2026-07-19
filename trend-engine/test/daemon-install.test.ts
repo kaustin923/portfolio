@@ -43,7 +43,7 @@ test('daemon installer contains the required launchd configuration and safe quot
   assert.match(script, /RunAtLoad/);
   assert.match(script, /StartInterval/);
   assert.match(script, /LOG_PATH="\$DATA_DIR"\/daemon\.log/);
-  assert.match(script, /<key>StandardOutPath<\/key>\s*<string>\$LOG_PATH<\/string>/);
+  assert.match(script, /<key>StandardOutPath<\/key>\s*<string>\$\(xml_escape "\$LOG_PATH"\)<\/string>/);
   assert.match(script, /\/opt\/homebrew\/bin/);
 
   const repoRootExpansions = script.match(/\$REPO_ROOT/g) ?? [];
@@ -52,7 +52,7 @@ test('daemon installer contains the required launchd configuration and safe quot
   assert.equal(repoRootExpansions.length, quotedRepoRootExpansions.length);
 
   assert.doesNotMatch(script, /\bgit\s/);
-  assert.match(script, /exec "\$NPM_BIN" start/);
+  assert.match(script, /exec \$\(printf '%q' "\$NPM_BIN"\) start/);
   assert.doesNotMatch(script, /exec "\$NPM_BIN" run daemon/);
 });
 

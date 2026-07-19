@@ -6,6 +6,8 @@ import { composeCaption, expectJson, expectOk, getFetch, requireEnv, sleep } fro
 
 const INIT_URL = 'https://open.tiktokapis.com/v2/post/publish/video/init/';
 const STATUS_URL = 'https://open.tiktokapis.com/v2/post/publish/status/fetch/';
+const CREATOR_INFO_URL =
+  'https://open.tiktokapis.com/v2/post/publish/creator_info/query/';
 const MAX_SINGLE_CHUNK_BYTES = 64 * 1024 * 1024;
 const LARGE_FILE_CHUNK_BYTES = 10_000_000;
 
@@ -32,9 +34,69 @@ interface TikTokStatusResponse {
   error?: TikTokError;
 }
 
+interface TikTokCreatorInfoResponse {
+  data?: {
+    privacy_level_options?: string[];
+    max_video_post_duration_sec?: number;
+  };
+  error?: TikTokError;
+}
+
 export interface TikTokPublishOptions {
   pollIntervalMs?: number;
   timeoutMs?: number;
+}
+
+export async function preflightTikTok(): Promise<{
+  ok: boolean;
+  reason?: string;
+  maxVideoPostDurationSec?: number;
+}> {
+  const env = requireEnv('TikTok', ['TIKTOK_ACCESS_TOKEN']);
+  const accessToken = env.TIKTOK_ACCESS_TOKEN!;
+
+  try {
+    const response = await getFetch()(CREATOR_INFO_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    });
+    const json = await expectJson<TikTokCreatorInfoResponse>(
+      response,
+      'TikTok creator info preflight',
+    );
+    const code = json.error?.code;
+    if (code && code !== 'ok') {
+      const message = json.error?.message;
+      return { ok: false, reason: message ? `${code}: ${message}` : code };
+    }
+
+    const privacyOptions = json.data?.privacy_level_options ?? [];
+    if (!privacyOptions.includes('SELF_ONLY')) {
+      return {
+        ok: false,
+        reason: 'TikTok creator_info does not allow required SELF_ONLY privacy level',
+      };
+    }
+
+    const maxVideoPostDurationSec = json.data?.max_video_post_duration_sec;
+    if (typeof maxVideoPostDurationSec === 'number') {
+      console.log(
+        `[publish:tiktok] creator maximum video duration: ${maxVideoPostDurationSec}s`,
+      );
+      return { ok: true, maxVideoPostDurationSec };
+    }
+    return { ok: true };
+  } catch (err) {
+    console.warn(
+      '[publish:tiktok] creator info preflight failed open:',
+      err instanceof Error ? err.message : String(err),
+    );
+    return { ok: true };
+  }
 }
 
 function throwTikTokError(json: { error?: TikTokError }, context: string): void {

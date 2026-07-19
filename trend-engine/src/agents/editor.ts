@@ -13,7 +13,7 @@ import { dirname, extname } from 'node:path';
 
 import { config } from '../config.js';
 import { structured } from '../llm.js';
-import { buildTimedAss, escapeDrawtext } from '../media/captions.js';
+import { buildTimedAss, escapeFilterFilename } from '../media/captions.js';
 import {
   detectCapabilities,
   dimensionsFor,
@@ -238,7 +238,7 @@ async function assembleOriginalVideo(opts: {
   }
 
   if (opts.burnCaptions) {
-    filters.push(`[${videoLabel}]subtitles=${escapeDrawtext(opts.assPath)}[captioned]`);
+    filters.push(`[${videoLabel}]subtitles=${escapeFilterFilename(opts.assPath)}[captioned]`);
     videoLabel = 'captioned';
   }
 

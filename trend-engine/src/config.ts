@@ -63,6 +63,7 @@ export const config = {
 
   /** How many of the top topics to actually try to turn into clips per run. */
   topicsPerRun: num('TOPICS_PER_RUN', 3),
+  originalsPerRun: num('ORIGINALS_PER_RUN', 1),
 
   publishing: {
     defaultPlatforms: list<Platform>('PUBLISH_PLATFORMS', [
@@ -104,6 +105,12 @@ export const config = {
   dataDir: trailingSeparator(
     process.env.DATA_DIR ?? fileURLToPath(new URL('../data/', import.meta.url)),
   ),
+
+  quotas: {
+    maxPostsPerDayPerPlatform: num('MAX_POSTS_PER_DAY_PER_PLATFORM', 8),
+    youtubeDailyUnits: num('YOUTUBE_DAILY_QUOTA_UNITS', 10000),
+    youtubeInsertUnits: 1600,
+  },
 } as const;
 
 /** A friendly one-line banner so it's always obvious which mode you're in. */

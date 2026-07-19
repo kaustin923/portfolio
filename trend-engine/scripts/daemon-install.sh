@@ -12,7 +12,16 @@ LOG_PATH="$DATA_DIR"/daemon.log
 PLIST_DIR="$HOME/Library/LaunchAgents"
 PLIST="$PLIST_DIR/com.trendengine.daemon.plist"
 LABEL="com.trendengine.daemon"
-PLIST_REPO_ROOT="$REPO_ROOT"
+
+xml_escape() {
+  local value="$1"
+  value="${value//&/&amp;}"
+  value="${value//</&lt;}"
+  value="${value//>/&gt;}"
+  value="${value//\"/&quot;}"
+  value="${value//\'/&apos;}"
+  printf '%s' "$value"
+}
 
 requested_runs="${RUNS_PER_DAY:-}"
 if [[ -z "$requested_runs" && -f "$ENV_FILE" ]]; then
@@ -51,6 +60,7 @@ if ! command -v launchctl >/dev/null 2>&1; then
 fi
 
 mkdir -p "$PLIST_DIR" "$DATA_DIR"
+SHELL_CMD="cd $(printf '%q' "$REPO_ROOT") && exec $(printf '%q' "$NPM_BIN") start"
 
 cat > "$PLIST" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -58,23 +68,23 @@ cat > "$PLIST" <<EOF
 <plist version="1.0">
 <dict>
   <key>Label</key>
-  <string>$LABEL</string>
+  <string>$(xml_escape "$LABEL")</string>
   <key>ProgramArguments</key>
   <array>
     <string>/bin/sh</string>
     <string>-c</string>
-    <string>cd "$PLIST_REPO_ROOT" &amp;&amp; exec "$NPM_BIN" start</string>
+    <string>$(xml_escape "$SHELL_CMD")</string>
   </array>
   <key>WorkingDirectory</key>
-  <string>$PLIST_REPO_ROOT</string>
+  <string>$(xml_escape "$REPO_ROOT")</string>
   <key>RunAtLoad</key>
   <true/>
   <key>StartInterval</key>
   <integer>$STARTINTERVAL</integer>
   <key>StandardOutPath</key>
-  <string>$LOG_PATH</string>
+  <string>$(xml_escape "$LOG_PATH")</string>
   <key>StandardErrorPath</key>
-  <string>$LOG_PATH</string>
+  <string>$(xml_escape "$LOG_PATH")</string>
   <key>EnvironmentVariables</key>
   <dict>
     <key>PATH</key>
@@ -101,7 +111,7 @@ fi
 echo "Installed $LABEL."
 echo "Interval: $STARTINTERVAL seconds ($RUNS_PER_DAY runs per day)."
 echo "Log: $LOG_PATH"
-printf 'Uninstall with: bash "%s/scripts/daemon-uninstall.sh"\n' "$PLIST_REPO_ROOT"
+printf 'Uninstall with: bash "%s/scripts/daemon-uninstall.sh"\n' "$REPO_ROOT"
 if [[ -n "$dry_run_status" ]]; then
   echo "DRY_RUN is currently set to '$dry_run_status'; .env controls live mode and was not changed."
 else

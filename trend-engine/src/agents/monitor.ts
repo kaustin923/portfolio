@@ -210,8 +210,10 @@ async function fetchTikTokStats(postId: string): Promise<EngagementStats | null>
   const video = json.data?.videos?.[0];
   if (!video) return null;
 
+  const views = count(video.view_count);
+  if (views <= 0) return null;
   return {
-    views: count(video.view_count),
+    views,
     likes: count(video.like_count),
     comments: count(video.comment_count),
     shares: count(video.share_count),
@@ -224,9 +226,9 @@ async function fetchInstagramStats(postId: string): Promise<EngagementStats | nu
   const fetch = getFetch();
   const url =
     `https://graph.facebook.com/v23.0/${encodeURIComponent(postId)}/insights` +
-    `?metric=views,likes,comments,shares&access_token=${encodeURIComponent(env.IG_ACCESS_TOKEN!)}`;
+    '?metric=views,likes,comments,shares';
   const json = await fetchJsonWithRetry<InstagramStatsResponse>(
-    () => fetch(url),
+    () => fetch(url, { headers: { Authorization: `Bearer ${env.IG_ACCESS_TOKEN}` } }),
     '[monitor:instagram-reels] stats fetch',
   );
   if (!json.data || json.data.length === 0) return null;
@@ -234,8 +236,10 @@ async function fetchInstagramStats(postId: string): Promise<EngagementStats | nu
   const values = new Map(
     json.data.map((metric) => [metric.name, metric.values?.[0]?.value]),
   );
+  const views = count(values.get('views'));
+  if (views <= 0) return null;
   return {
-    views: count(values.get('views')),
+    views,
     likes: count(values.get('likes')),
     comments: count(values.get('comments')),
     shares: count(values.get('shares')),
@@ -256,8 +260,10 @@ async function fetchXStats(postId: string): Promise<EngagementStats | null> {
   const publicMetrics = json.data?.public_metrics;
   if (!publicMetrics) return null;
 
+  const views = count(publicMetrics.impression_count);
+  if (views <= 0) return null;
   return {
-    views: count(publicMetrics.impression_count),
+    views,
     likes: count(publicMetrics.like_count),
     comments: count(publicMetrics.reply_count),
     shares: count(publicMetrics.retweet_count),

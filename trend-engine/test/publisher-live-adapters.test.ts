@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { mkdtempSync, rmSync } from 'node:fs';
 import { mkdtemp, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
@@ -27,6 +28,14 @@ const ENV_KEYS = [
 
 const originalEnv = new Map(ENV_KEYS.map((key) => [key, process.env[key]]));
 const originalDryRun = config.dryRun;
+
+// publish() writes quota-ledger state (state.json) and provenance receipts
+// (provenance.jsonl) under config.dataDir — even in DRY_RUN for receipts.
+// Redirect it to a throwaway directory so tests never touch the repo's real
+// data/ ledger.
+const originalDataDir = config.dataDir;
+const tempDataDir = mkdtempSync(path.join(tmpdir(), 'publisher-live-data-'));
+(config as unknown as { dataDir: string }).dataDir = `${tempDataDir}${path.sep}`;
 
 interface FetchCall {
   url: string;
@@ -105,6 +114,8 @@ afterEach(() => {
 after(() => {
   resetFetch();
   setDryRun(originalDryRun);
+  (config as unknown as { dataDir: string }).dataDir = originalDataDir;
+  rmSync(tempDataDir, { recursive: true, force: true });
   for (const key of ENV_KEYS) {
     const value = originalEnv.get(key);
     if (value == null) delete process.env[key];

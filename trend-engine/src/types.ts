@@ -219,3 +219,29 @@ export interface PostMetrics {
   shares: number;
   capturedAt: string;
 }
+
+export interface ProvenanceReceipt {
+  receiptVersion: 1;
+  recordedAt: string;
+  draftId: string;
+  topicId: string;
+  platform: Platform;
+  status: PublishResult['status'];
+  postId?: string;
+  url?: string;
+  error?: string;
+  publishedAt?: string;
+  outputPath: string;
+  sha256: string | null;
+  license: LicenseInfo;
+  attributionText?: string;
+  captionUsed: string;
+  syntheticMedia: boolean;
+  approval: {
+    status: string;
+    decidedBy?: string;
+    note?: string;
+    editedCaptionUsed: boolean;
+  };
+  pipelineVersion: string;
+}
