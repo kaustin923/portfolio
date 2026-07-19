@@ -66,7 +66,9 @@ let _client: Anthropic | null = null;
 function client(): Anthropic {
   // Zero-arg constructor resolves ANTHROPIC_API_KEY (or an `ant auth login`
   // profile) from the environment.
-  if (!_client) _client = new Anthropic();
+  // 20-min request timeout: xhigh-effort structured forecasts over large signal
+  // payloads regularly exceed the SDK's 10-min default (first live run died on it).
+  if (!_client) _client = new Anthropic({ timeout: 20 * 60 * 1000, maxRetries: 2 });
   return _client;
 }
 
@@ -82,6 +84,8 @@ function textOf(res: { content: Array<{ type: string; text?: string }> }): strin
 
 export const anthropicLLM: LLM = {
   async structured<T>(req: StructuredRequest): Promise<T> {
+    const t0 = Date.now();
+    const tag = req.system.slice(0, 40).replace(/\s+/g, ' ');
     const base: Record<string, unknown> = {
       model: config.model,
       max_tokens: req.maxTokens ?? 16000,
@@ -122,6 +126,7 @@ export const anthropicLLM: LLM = {
 
     const text = textOf(res as any);
     if (!text) throw new Error('Model returned no text block for structured request');
+    console.log(`[llm] structured "${tag}…" ${((Date.now() - t0) / 1000).toFixed(0)}s`);
     try {
       return parseModelJson<T>(text);
     } catch (err) {
@@ -139,6 +144,7 @@ export const anthropicLLM: LLM = {
   },
 
   async research(prompt: string): Promise<string> {
+    const t0 = Date.now();
     // Web-search server tool → live, forward-looking research. Handles the
     // server-side pause_turn loop with a small cap. No structured format here;
     // the caller feeds the result into a `structured()` call to rank it.
@@ -157,6 +163,7 @@ export const anthropicLLM: LLM = {
       // Resume: re-send with the assistant turn appended (server continues).
       messages = [...messages, { role: 'assistant', content: res.content as any }];
     }
+    console.log(`[llm] research done ${((Date.now() - t0) / 1000).toFixed(0)}s`);
     return text;
   },
 };
