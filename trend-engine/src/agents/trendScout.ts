@@ -1,39 +1,53 @@
 /**
- * Trend Scout — the crown jewel.
+ * Trend Forecaster — the crown jewel (rebuilt to be predictive, not reactive).
  *
- * Pulls raw signals from many free sources, then uses Claude to cluster and
- * rank them into a handful of high-opportunity Topics. This is the piece that
- * would have told you "World Cup content is about to boom" — and it is 100%
- * legal regardless of what the downstream sourcing model ends up being.
- *
- * Output is a ranked, de-duplicated, scored Topic[] — structured JSON we can
- * hand straight to the Sourcing agent.
+ * The old version ranked what was already loud. That's a trap: by the time a
+ * topic is peaking (the World Cup is *here*), the feed is flooded and you've
+ * missed the window. This version fuses two inputs —
+ *   • reactive signals  (Reddit / Trends / YouTube / HN — what's rising now)
+ *   • upcoming catalysts (scheduled events — what's coming in 2–8 weeks)
+ * — and asks Fable to place each topic on its hype curve and tell us WHEN to
+ * post. It actively down-ranks `peaking`/`saturated` and surfaces `emerging`/
+ * `rising` topics with real lead time and an explicit posting window.
  */
 
 import { config } from '../config.js';
 import { structured } from '../llm.js';
 import { collectSignals } from '../sources/index.js';
-import type { SignalSource, Topic, TrendSignal } from '../types.js';
+import { collectUpcoming } from '../sources/upcoming.js';
+import type { SignalSource, Topic, TrendSignal, UpcomingCatalyst } from '../types.js';
 
-const SYSTEM = `You are a trend analyst for a short-form video studio.
-You are given raw trending signals from Reddit, Google Trends, YouTube, and Hacker News.
-Your job: cluster signals that are about the same underlying story, then rank the
-clusters by how good a *content opportunity* each is for short-form video.
+const SYSTEM = `You are a trend FORECASTER for a short-form video studio. Your edge is
+timing: you help post AHEAD of a wave, never into a saturated one.
 
-For each topic, judge:
-- momentum: exploding | rising | steady | fading
-- longevity: spike (dies in days) | sustained (weeks) | evergreen (always relevant)
-- domains: which verticals fit — e.g. educational, sports, news-explainer, science, finance, lifestyle
-- suggestedAngle: a concrete, defensible angle we could actually produce (favor
-  explainer / commentary / original-take angles over "just reposting the clip")
-- saturationRisk: how crowded the topic already is (low | medium | high)
-- opportunityScore: 0–100 combining momentum, longevity, fit, and low saturation
+You are given (a) reactive signals showing what is loud right now and (b) upcoming
+catalysts — scheduled future events. Fuse them. For each distinct topic, place it on
+its hype curve and decide what to do:
 
-Be decisive and specific. Prefer topics with real staying power or a clear
-educational/explainer angle over fleeting drama. Do not invent signals that
-were not provided.`;
+stage:
+  emerging   — early signals / a catalyst is weeks out. Best money is here.
+  rising     — climbing fast, window still open. Post now.
+  peaking    — at maximum attention right now. Feed is flooded; usually too late.
+  saturated  — everyone has already posted it. Skip.
+  declining  — attention falling. Skip unless evergreen.
 
-/** JSON Schema kept to the structured-output-safe subset (types + enums only). */
+leadTimeDays: days until predicted peak. Negative means it already peaked.
+postWindow:   concrete guidance, e.g. "post 3–7 days before the final".
+catalyst:     the upcoming event driving it, or null.
+recommendation: post-now | prepare | watch | skip-saturated.
+opportunityScore (0–100): reward good lead time + momentum + longevity + low
+  saturation. Heavily penalize peaking/saturated topics — a peaked topic is a
+  BAD opportunity no matter how loud it is.
+
+Rules:
+- Do NOT recommend posting into a saturated/peaked topic just because it is loud.
+  (Example: if a tournament is already underway, that content is saturated —
+  skip it, or find the emerging sub-angle that is NOT yet flooded.)
+- Prefer topics where we can be early: a catalyst 1–4 weeks out with rising but
+  not-yet-flooded interest is ideal.
+- Favor defensible angles (explainer / original take) over "repost the clip".
+- Do not invent signals or events that were not provided.`;
+
 const SCHEMA = {
   type: 'object',
   additionalProperties: false,
@@ -50,6 +64,17 @@ const SCHEMA = {
           whyTrending: { type: 'string' },
           momentum: { type: 'string', enum: ['exploding', 'rising', 'steady', 'fading'] },
           longevity: { type: 'string', enum: ['spike', 'sustained', 'evergreen'] },
+          stage: {
+            type: 'string',
+            enum: ['emerging', 'rising', 'peaking', 'saturated', 'declining'],
+          },
+          leadTimeDays: { type: 'integer' },
+          postWindow: { type: 'string' },
+          catalyst: { type: ['string', 'null'] },
+          recommendation: {
+            type: 'string',
+            enum: ['post-now', 'prepare', 'watch', 'skip-saturated'],
+          },
           domains: { type: 'array', items: { type: 'string' } },
           suggestedAngle: { type: 'string' },
           saturationRisk: { type: 'string', enum: ['low', 'medium', 'high'] },
@@ -63,16 +88,9 @@ const SCHEMA = {
           },
         },
         required: [
-          'id',
-          'title',
-          'summary',
-          'whyTrending',
-          'momentum',
-          'longevity',
-          'domains',
-          'suggestedAngle',
-          'saturationRisk',
-          'opportunityScore',
+          'id', 'title', 'summary', 'whyTrending', 'momentum', 'longevity',
+          'stage', 'leadTimeDays', 'postWindow', 'catalyst', 'recommendation',
+          'domains', 'suggestedAngle', 'saturationRisk', 'opportunityScore',
           'contributingSources',
         ],
       },
@@ -85,42 +103,73 @@ function renderSignals(signals: TrendSignal[]): string {
   return signals
     .map(
       (s) =>
-        `- [${s.source}] "${s.title}" (score=${s.score}${
-          s.velocity != null ? `, velocity=${s.velocity.toFixed(2)}` : ''
-        }${s.category ? `, cat=${s.category}` : ''})`,
+        `- [${s.source}] "${s.title}" (score=${s.score}` +
+        `${s.velocity != null ? `, velocity=${s.velocity.toFixed(2)}` : ''}` +
+        `${s.category ? `, cat=${s.category}` : ''})`,
     )
     .join('\n');
 }
 
+function renderCatalysts(catalysts: UpcomingCatalyst[]): string {
+  return catalysts
+    .map(
+      (c) =>
+        `- "${c.title}" on ${c.date} (${c.daysUntil >= 0 ? `in ${c.daysUntil}d` : `${-c.daysUntil}d ago`}, ` +
+        `${c.category}, confidence=${c.confidence})`,
+    )
+    .join('\n');
+}
+
+/** Recommendations we're willing to act on this run (never publish saturated). */
+const ACTIONABLE = new Set(['post-now', 'prepare']);
+
 export interface TrendScoutResult {
   topics: Topic[];
   rawSignalCount: number;
+  upcomingCount: number;
   bySource: Partial<Record<SignalSource, number>>;
+  /** Forecasts we chose NOT to act on, with the reason — kept for transparency. */
+  skipped: Array<Pick<Topic, 'title' | 'stage' | 'recommendation'>>;
 }
 
-export async function discoverTopics(): Promise<TrendScoutResult> {
-  const signals = await collectSignals();
+export async function discoverTopics(today = new Date().toISOString().slice(0, 10)): Promise<TrendScoutResult> {
+  const [signals, upcoming] = await Promise.all([collectSignals(), collectUpcoming(today)]);
 
   const bySource: Partial<Record<SignalSource, number>> = {};
   for (const s of signals) bySource[s.source] = (bySource[s.source] ?? 0) + 1;
 
-  if (signals.length === 0) {
-    return { topics: [], rawSignalCount: 0, bySource };
+  if (signals.length === 0 && upcoming.length === 0) {
+    return { topics: [], rawSignalCount: 0, upcomingCount: 0, bySource, skipped: [] };
   }
 
   const { topics } = await structured<{ topics: Topic[] }>({
     system: SYSTEM,
-    user: `Region: ${config.trendScout.geo}. Return the top ${config.trendScout.topN} topics as JSON.
-
-Raw signals:
-${renderSignals(signals)}`,
+    user:
+      `Today is ${today}. Region: ${config.trendScout.geo}. ` +
+      `Return the top ${config.trendScout.topN} forward-looking topics as JSON.\n\n` +
+      `REACTIVE SIGNALS (loud now):\n${renderSignals(signals) || '(none)'}\n\n` +
+      `UPCOMING CATALYSTS (coming soon):\n${renderCatalysts(upcoming) || '(none)'}`,
     schema: SCHEMA as unknown as Record<string, unknown>,
-    maxTokens: 8000,
+    maxTokens: 12000,
   });
 
-  const ranked = topics
-    .sort((a, b) => b.opportunityScore - a.opportunityScore)
+  // Split actionable from skipped, then rank the actionable set. Sorting keys:
+  // opportunity first, then shorter (but non-negative) lead time as a tiebreak
+  // so imminent-but-not-yet-peaked topics win.
+  const actionable = topics
+    .filter((t) => ACTIONABLE.has(t.recommendation))
+    .sort((a, b) => b.opportunityScore - a.opportunityScore || a.leadTimeDays - b.leadTimeDays)
     .slice(0, config.trendScout.topN);
 
-  return { topics: ranked, rawSignalCount: signals.length, bySource };
+  const skipped = topics
+    .filter((t) => !ACTIONABLE.has(t.recommendation))
+    .map((t) => ({ title: t.title, stage: t.stage, recommendation: t.recommendation }));
+
+  return {
+    topics: actionable,
+    rawSignalCount: signals.length,
+    upcomingCount: upcoming.length,
+    bySource,
+    skipped,
+  };
 }

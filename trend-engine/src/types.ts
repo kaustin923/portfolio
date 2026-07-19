@@ -60,23 +60,70 @@ export type Longevity = 'spike' | 'sustained' | 'evergreen';
 export type SaturationRisk = 'low' | 'medium' | 'high';
 
 /**
- * A ranked, de-duplicated topic synthesized from many raw signals by Claude.
- * This is the crown-jewel output of the whole system — knowing *what* is about
- * to boom is the hard, valuable, and fully-legal part.
+ * Where a topic sits on its hype curve. This is the whole point of the
+ * redesign: you make money by posting into `emerging`/`rising`, BEFORE the
+ * wave. Posting into `peaking`/`saturated` (e.g. World Cup content once the
+ * World Cup is already here) is a losing game — the feed is already flooded.
+ */
+export type TrendStage = 'emerging' | 'rising' | 'peaking' | 'saturated' | 'declining';
+
+/** What to actually do about a topic, given its stage and lead time. */
+export type Recommendation =
+  | 'post-now' //       Rising with a real window still open — move.
+  | 'prepare' //        Emerging / scheduled catalyst ahead — build the asset now, post before peak.
+  | 'watch' //          Signal is early/weak — keep monitoring, don't commit yet.
+  | 'skip-saturated'; // Already peaked or flooded — do not waste a slot on it.
+
+/**
+ * A known FUTURE catalyst — a scheduled or predictable event that will drive
+ * attention (a tournament, election, product/movie/game launch, holiday, major
+ * anniversary). These are how we get *ahead* of trends instead of chasing them.
+ */
+export interface UpcomingCatalyst {
+  id: string;
+  title: string;
+  /** ISO date (or best estimate) of the event. */
+  date: string;
+  /** Days from "now" until the event. */
+  daysUntil: number;
+  category: string;
+  /** How confident we are it will actually drive attention (0–1). */
+  confidence: number;
+  source: string;
+}
+
+/**
+ * A ranked, forward-looking topic forecast — the crown-jewel output.
+ *
+ * It fuses reactive signals (what's rising now) with upcoming catalysts (what's
+ * scheduled) and, crucially, tells you WHEN to post via `stage`, `leadTimeDays`,
+ * and `postWindow` — not just what's loud today.
  */
 export interface Topic {
   id: string;
   title: string;
   summary: string;
+  /** Why attention is (or will be) rising — the causal story. */
   whyTrending: string;
   momentum: Momentum;
   longevity: Longevity;
+
+  // ── Forecasting (the part that makes this predictive, not reactive) ──
+  stage: TrendStage;
+  /** Days until predicted peak. Negative ⇒ already peaked (avoid). */
+  leadTimeDays: number;
+  /** Human-readable posting window, e.g. "post 3–7 days out, before the final". */
+  postWindow: string;
+  /** The upcoming catalyst driving this, if any (else null). */
+  catalyst: string | null;
+  recommendation: Recommendation;
+
   /** Which content verticals this topic fits (educational, sports, etc.). */
   domains: string[];
   /** A concrete, defensible content angle we could actually make. */
   suggestedAngle: string;
   saturationRisk: SaturationRisk;
-  /** 0–100 composite of momentum, longevity, fit, and saturation. */
+  /** 0–100 composite of lead time, momentum, longevity, fit, and low saturation. */
   opportunityScore: number;
   /** Which SignalSources contributed evidence for this topic. */
   contributingSources: SignalSource[];

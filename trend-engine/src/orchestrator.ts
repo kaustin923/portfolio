@@ -30,8 +30,9 @@ export interface RunReport {
 }
 
 async function processTopic(topic: Topic, report: RunReport): Promise<void> {
-  console.log(`\n▶ ${topic.title}  (${topic.opportunityScore}/100, ${topic.momentum})`);
-  console.log(`  angle: ${topic.suggestedAngle}`);
+  console.log(`\n▶ ${topic.title}  (${topic.opportunityScore}/100 · ${topic.stage} · ${topic.recommendation})`);
+  console.log(`  window: ${topic.postWindow} (lead ${topic.leadTimeDays}d${topic.catalyst ? `, catalyst: ${topic.catalyst}` : ''})`);
+  console.log(`  angle:  ${topic.suggestedAngle}`);
 
   // 1. Source a licensed clip (best-licensed candidate first).
   const candidates = await findClips(topic);
@@ -88,18 +89,21 @@ export async function runOnce(): Promise<RunReport> {
     metrics: [],
   };
 
-  // Trend Scout — the crown jewel.
-  console.log('\n🔎 Trend Scout: gathering signals…');
+  // Trend Forecaster — the crown jewel.
+  console.log('\n🔮 Trend Forecaster: fusing signals + upcoming catalysts…');
   const scout = await discoverTopics();
   report.rawSignals = scout.rawSignalCount;
   console.log(
-    `  ${scout.rawSignalCount} signals (${Object.entries(scout.bySource)
+    `  ${scout.rawSignalCount} reactive signals (${Object.entries(scout.bySource)
       .map(([s, n]) => `${s}:${n}`)
-      .join(', ')}) → ${scout.topics.length} ranked topics`,
+      .join(', ')}) + ${scout.upcomingCount} upcoming catalysts → ${scout.topics.length} actionable forecasts`,
   );
 
   for (const t of scout.topics) {
-    console.log(`   • ${t.opportunityScore}/100  ${t.title}  [${t.domains.join(', ')}]`);
+    console.log(`   • ${t.opportunityScore}/100  [${t.stage}] ${t.title}  (${t.recommendation}, lead ${t.leadTimeDays}d)`);
+  }
+  if (scout.skipped.length) {
+    console.log(`  ⏭  skipped as too-late/weak: ${scout.skipped.map((s) => `${s.title} (${s.stage})`).join('; ')}`);
   }
 
   // Turn the top N into clips.

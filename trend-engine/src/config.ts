@@ -35,8 +35,15 @@ export const config = {
   /** When true, no external API is hit and nothing is published. */
   dryRun: bool('DRY_RUN', true),
 
-  /** Claude model + reasoning effort used across all agents. */
-  model: process.env.ANTHROPIC_MODEL ?? 'claude-opus-4-8',
+  /**
+   * Claude model + reasoning effort used across all agents. Fable 5 is the
+   * brain: Anthropic's most capable model, for the hardest ranking/judgement
+   * calls in the pipeline. Server-side refusal fallback to Opus 4.8 is wired in
+   * `llm.ts`. Requires 30-day data retention (Fable is not available under ZDR).
+   */
+  model: process.env.ANTHROPIC_MODEL ?? 'claude-fable-5',
+  /** Fallback model used if Fable's safety classifiers decline a request. */
+  fallbackModel: process.env.ANTHROPIC_FALLBACK_MODEL ?? 'claude-opus-4-8',
   effort: (process.env.ANTHROPIC_EFFORT ?? 'high') as 'low' | 'medium' | 'high' | 'xhigh' | 'max',
 
   trendScout: {

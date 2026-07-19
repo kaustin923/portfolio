@@ -16,17 +16,21 @@ async function main() {
 
   if (cmd === 'scout') {
     console.log(modeBanner());
-    const { topics, rawSignalCount, bySource } = await discoverTopics();
+    const { topics, rawSignalCount, upcomingCount, bySource, skipped } = await discoverTopics();
     console.log(
-      `\n${rawSignalCount} signals (${Object.entries(bySource)
+      `\n${rawSignalCount} reactive signals (${Object.entries(bySource)
         .map(([s, n]) => `${s}:${n}`)
-        .join(', ')}) → ${topics.length} topics\n`,
+        .join(', ')}) + ${upcomingCount} upcoming catalysts → ${topics.length} actionable forecasts\n`,
     );
     for (const t of topics) {
-      console.log(`${t.opportunityScore.toString().padStart(3)}/100  ${t.title}`);
-      console.log(`         ${t.momentum} · ${t.longevity} · saturation:${t.saturationRisk}`);
-      console.log(`         domains: ${t.domains.join(', ')}`);
-      console.log(`         angle:   ${t.suggestedAngle}\n`);
+      console.log(`${t.opportunityScore.toString().padStart(3)}/100  [${t.stage}] ${t.title}`);
+      console.log(`         ${t.recommendation} · ${t.postWindow} (lead ${t.leadTimeDays}d)`);
+      console.log(`         ${t.catalyst ? `catalyst: ${t.catalyst} · ` : ''}domains: ${t.domains.join(', ')}`);
+      console.log(`         angle:    ${t.suggestedAngle}\n`);
+    }
+    if (skipped.length) {
+      console.log(`⏭  skipped as too-late/weak:`);
+      for (const s of skipped) console.log(`   - [${s.stage}] ${s.title} (${s.recommendation})`);
     }
     return;
   }

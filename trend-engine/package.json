@@ -7,7 +7,8 @@
   "scripts": {
     "scout": "tsx src/index.ts scout",
     "start": "tsx src/index.ts run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test test/*.test.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0"
