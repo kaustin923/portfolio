@@ -87,7 +87,17 @@ test('compliance gate: unknown provenance is HARD-BLOCKED', () => {
 });
 
 test('full pipeline runs end-to-end and publishes only actionable topics', async () => {
-  const report = await runOnce();
+  // This test exercises the classic sourcing/editor path; the studio pipeline
+  // has its own end-to-end coverage in studio-bridge.test.ts.
+  const mutableStudio = config.studio as unknown as { mode: boolean };
+  const originalStudioMode = mutableStudio.mode;
+  mutableStudio.mode = false;
+  let report;
+  try {
+    report = await runOnce();
+  } finally {
+    mutableStudio.mode = originalStudioMode;
+  }
 
   assert.equal(report.blocked, 0, 'nothing blocked (sourcing prefers original content)');
   assert.equal(report.rejected, 0, 'nothing rejected in DRY_RUN auto-approve');

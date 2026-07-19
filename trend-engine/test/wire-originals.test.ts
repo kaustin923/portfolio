@@ -32,6 +32,16 @@ function redirectDataDir(dir: string): () => void {
   };
 }
 
+/** These tests cover the classic sourcing/editor originals path, not the studio pipeline. */
+function forceClassicPipeline(): () => void {
+  const mutableStudio = config.studio as unknown as { mode: boolean };
+  const original = mutableStudio.mode;
+  mutableStudio.mode = false;
+  return () => {
+    mutableStudio.mode = original;
+  };
+}
+
 const topic: Topic = {
   id: 'wire-original',
   title: 'Original pipeline wiring',
@@ -134,6 +144,7 @@ test('draftOriginal keeps original provenance and skips human review', async () 
 test('runOnce publishes and monitors configured original drafts without Telegram I/O', async () => {
   const dataDir = temporaryDir();
   const restoreDataDir = redirectDataDir(dataDir);
+  const restoreStudioMode = forceClassicPipeline();
   let telegramRequests = 0;
   setTelegramFetch(async () => {
     telegramRequests++;
@@ -158,12 +169,14 @@ test('runOnce publishes and monitors configured original drafts without Telegram
   } finally {
     resetLLM();
     resetTelegramFetch();
+    restoreStudioMode();
     restoreDataDir();
   }
 });
 
 test('ORIGINALS_PER_RUN zero disables original production', async () => {
   const restoreDataDir = redirectDataDir(temporaryDir());
+  const restoreStudioMode = forceClassicPipeline();
   const mutableConfig = config as unknown as { originalsPerRun: number };
   const originalOriginalsPerRun = mutableConfig.originalsPerRun;
   mutableConfig.originalsPerRun = 0;
@@ -179,6 +192,7 @@ test('ORIGINALS_PER_RUN zero disables original production', async () => {
   } finally {
     resetLLM();
     mutableConfig.originalsPerRun = originalOriginalsPerRun;
+    restoreStudioMode();
     restoreDataDir();
   }
 });

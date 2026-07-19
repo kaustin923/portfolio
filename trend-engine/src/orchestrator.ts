@@ -17,7 +17,9 @@ import { trackResults } from './agents/monitor.js';
 import { publish } from './agents/publisher.js';
 import { findClips } from './agents/sourcing.js';
 import { discoverTopics } from './agents/trendScout.js';
+import { runPitchGate } from './approval/pitchGate.js';
 import { requestApproval } from './approval/telegram.js';
+import { generatePitches } from './pitcher.js';
 import {
   loadState,
   recordPublished,
@@ -28,6 +30,7 @@ import {
 } from './state.js';
 import type { ClipDraft, PostMetrics, Topic } from './types.js';
 import { appendFingerprint } from './variation.js';
+import { produceStudioEpisode } from './studioBridge.js';
 
 const NO_ELIGIBLE_ORIGINAL_BROLL =
   'Original drafts require commercial-use stock, CC0, or public-domain b-roll with no attribution requirement.';
@@ -252,6 +255,28 @@ export async function runOnce(): Promise<RunReport> {
     console.log(`  ⏭  skipped as too-late/weak: ${scout.skipped.map((s) => `${s.title} (${s.stage})`).join('; ')}`);
   }
 
+  // ─── studio pipeline [owned by task studio-bridge] ───
+  if (config.studio.mode) {
+    const topicById = new Map(scout.topics.map((topic) => [topic.id, topic]));
+    const pitches = await generatePitches(scout);
+    const decided = await runPitchGate(pitches);
+    for (const pitch of decided) {
+      if (pitch.status !== 'approved') continue;
+      report.topicsConsidered++;
+      try {
+        await produceStudioEpisode(pitch, topicById.get(pitch.topicId), report, state);
+      } catch (err) {
+        report.failed++;
+        console.error(
+          `  ✖ studio pitch failed: ${pitch.headline}:`,
+          err instanceof Error ? err.message : String(err),
+        );
+      }
+    }
+  }
+  // ─── end studio pipeline ───
+
+  if (!config.studio.mode) {
   // Turn the top N into clips.
   const toProcess = scout.topics.slice(0, config.topicsPerRun);
   // ─── experiment hint [owned by task eval-report] ───
@@ -324,6 +349,7 @@ export async function runOnce(): Promise<RunReport> {
     }
   }
   // ─── end experiment hint ───
+  }
 
   state.lastRunAt = new Date().toISOString();
   state.runCount++;

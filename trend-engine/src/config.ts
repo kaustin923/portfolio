@@ -7,6 +7,7 @@
  * anything real.
  */
 
+import { existsSync } from 'node:fs';
 import { sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -41,6 +42,19 @@ function trailingSeparator(value: string): string {
 export const config = {
   /** When true, no external API is hit and nothing is published. */
   dryRun: bool('DRY_RUN', true),
+
+  // ─── studio pipeline [owned by task studio-bridge] ───
+  studio: {
+    mode: bool(
+      'STUDIO_MODE',
+      existsSync(fileURLToPath(new URL('../../studio/', import.meta.url))),
+    ),
+    dir:
+      process.env.STUDIO_DIR ??
+      fileURLToPath(new URL('../../studio/', import.meta.url)),
+    renderTimeoutMin: num('STUDIO_RENDER_TIMEOUT_MIN', 15),
+  },
+  // ─── end studio pipeline ───
 
   /**
    * Claude model + reasoning effort used across all agents. Fable 5 is the

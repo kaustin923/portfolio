@@ -50,6 +50,14 @@ let injectedTelegramFetch: TelegramFetchFn | undefined;
 const pendingDecisions = new Map<string, ApprovalDecision>();
 let approvalPollActive = false;
 
+// BEGIN: pitch-gate external poll coordination
+let externalPollActive = false;
+
+export function markExternalPollActive(active: boolean): void {
+  externalPollActive = active;
+}
+// END: pitch-gate external poll coordination
+
 /** Every live Telegram request goes through this seam so tests stay offline. */
 export function getTelegramFetch(): TelegramFetchFn {
   return injectedTelegramFetch ?? ((input, init) => globalThis.fetch(input, init));
@@ -150,7 +158,7 @@ function deletePendingDecision(draftId: string): void {
 }
 
 export function isApprovalPollActive(): boolean {
-  return approvalPollActive;
+  return approvalPollActive || externalPollActive;
 }
 
 /** Escape Telegram's complete MarkdownV2 reserved-character set (and backslash itself). */

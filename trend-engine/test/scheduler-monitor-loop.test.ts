@@ -38,6 +38,16 @@ function redirectDataDir(dir: string): () => void {
   };
 }
 
+/** These tests cover the classic sourcing/editor path, not the studio pipeline. */
+function forceClassicPipeline(): () => void {
+  const mutableStudio = config.studio as unknown as { mode: boolean };
+  const original = mutableStudio.mode;
+  mutableStudio.mode = false;
+  return () => {
+    mutableStudio.mode = original;
+  };
+}
+
 after(() => {
   resetLLM();
   for (const dir of temporaryDirs) rmSync(dir, { recursive: true, force: true });
@@ -135,6 +145,7 @@ test('metrics reader skips corruption and summaries exclude DRY_RUN records', as
 
 test('one topic failure does not abort the remaining pipeline', async () => {
   const restoreDataDir = redirectDataDir(temporaryDir());
+  const restoreStudioMode = forceClassicPipeline();
   const delegate = makeMockLLM();
   let threwCaption = false;
   const flaky: LLM = {
@@ -161,12 +172,14 @@ test('one topic failure does not abort the remaining pipeline', async () => {
     );
   } finally {
     resetLLM();
+    restoreStudioMode();
     restoreDataDir();
   }
 });
 
 test('repeated DRY_RUN pipeline runs never create dedupe records', async () => {
   const restoreDataDir = redirectDataDir(temporaryDir());
+  const restoreStudioMode = forceClassicPipeline();
   const before = { ...loadState(config.dataDir).publishedTopics };
   setLLM(makeMockLLM());
   try {
@@ -178,6 +191,7 @@ test('repeated DRY_RUN pipeline runs never create dedupe records', async () => {
     assert.deepEqual(loadState(config.dataDir).publishedTopics, before);
   } finally {
     resetLLM();
+    restoreStudioMode();
     restoreDataDir();
   }
 });

@@ -302,3 +302,26 @@ export interface ProvenanceReceipt {
   };
   pipelineVersion: string;
 }
+
+// ─── Pitch types [owned by task pitch-generator] ───
+
+export type PitchVertical = 'finance' | 'sports' | 'tech' | 'culture';
+
+export type PitchStatus = 'pending' | 'approved' | 'rejected' | 'expired';
+
+export interface Pitch {
+  id: string;
+  createdAt: string;
+  topicId: string;
+  topicTitle: string;
+  headline: string;
+  stakes: string;
+  angle: string;
+  eventPeg: string | null;
+  vertical: PitchVertical;
+  format: string;
+  status: PitchStatus;
+  feedback?: string;
+  decidedBy?: string;
+  decidedAt?: string;
+}
