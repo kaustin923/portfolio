@@ -3,6 +3,10 @@ import { readFile } from 'node:fs/promises';
 import { config } from '../config.js';
 import type { TrendSignal } from '../types.js';
 
+
+const fetchWithTimeout = (url: string | URL, init: RequestInit = {}): Promise<Response> =>
+  fetch(url, { ...init, signal: AbortSignal.timeout(10_000) });
+
 const UA = 'trend-engine/0.1 (personal research; contact: you@example.com)';
 const now = () => new Date().toISOString();
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -51,7 +55,7 @@ function mapEvent(event: SportsDbEvent, today: Date): TrendSignal | null {
 
 async function collectLeague(leagueId: string, today: Date): Promise<TrendSignal[]> {
   try {
-    const res = await fetch(
+    const res = await fetchWithTimeout(
       `https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id=${leagueId}`,
       { headers: { 'User-Agent': UA } },
     );

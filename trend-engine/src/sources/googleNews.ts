@@ -3,6 +3,10 @@ import { readFile } from 'node:fs/promises';
 import { config } from '../config.js';
 import type { TrendSignal } from '../types.js';
 
+
+const fetchWithTimeout = (url: string | URL, init: RequestInit = {}): Promise<Response> =>
+  fetch(url, { ...init, signal: AbortSignal.timeout(10_000) });
+
 const UA = 'trend-engine/0.1 (personal research; contact: you@example.com)';
 const now = () => new Date().toISOString();
 
@@ -19,7 +23,7 @@ export async function collectGoogleNews(): Promise<TrendSignal[]> {
   if (config.dryRun) return fixture('google-news');
 
   try {
-    const res = await fetch('https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en', {
+    const res = await fetchWithTimeout('https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en', {
       headers: { 'User-Agent': UA },
     });
     if (!res.ok) return [];

@@ -3,6 +3,10 @@ import { readFile } from 'node:fs/promises';
 import { config } from '../config.js';
 import type { TrendSignal } from '../types.js';
 
+
+const fetchWithTimeout = (url: string | URL, init: RequestInit = {}): Promise<Response> =>
+  fetch(url, { ...init, signal: AbortSignal.timeout(10_000) });
+
 const UA = 'trend-engine/0.1 (personal research; contact: you@example.com)';
 const now = () => new Date().toISOString();
 
@@ -45,7 +49,7 @@ async function collectTerm(term: string): Promise<TrendSignal[]> {
   endpoint.searchParams.set('format', 'json');
 
   try {
-    const res = await fetch(endpoint, { headers: { 'User-Agent': UA } });
+    const res = await fetchWithTimeout(endpoint, { headers: { 'User-Agent': UA } });
     if (!res.ok) return [];
     const json = (await res.json()) as { timeline?: Array<{ data?: GdeltPoint[] }> };
     const values = (json.timeline?.[0]?.data ?? [])

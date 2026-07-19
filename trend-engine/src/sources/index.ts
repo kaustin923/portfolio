@@ -16,8 +16,12 @@ import { collectGoogleNews } from './googleNews.js';
 import { collectTheSportsDB } from './thesportsdb.js';
 import { collectWikipedia } from './wikipedia.js';
 
-const UA = 'trend-engine/0.1 (personal research; contact: you@example.com)';
+const UA = `trend-engine/0.1 (personal research; contact: ${process.env.CONTACT_EMAIL ?? 'unset'})`;
 const now = () => new Date().toISOString();
+
+/** All live signal fetches share a hard timeout so one hung source can never stall a run. */
+const fetchT = (url: string | URL, init: RequestInit = {}): Promise<Response> =>
+  fetch(url, { ...init, signal: AbortSignal.timeout(10_000) });
 
 async function fixture(name: string): Promise<TrendSignal[]> {
   const path = new URL(`../../fixtures/${name}.json`, import.meta.url);
@@ -30,7 +34,7 @@ async function fromReddit(): Promise<TrendSignal[]> {
   if (config.dryRun) return fixture('reddit');
   const out: TrendSignal[] = [];
   for (const sub of config.trendScout.subreddits) {
-    const res = await fetch(`https://www.reddit.com/r/${sub}/rising.json?limit=25`, {
+    const res = await fetchT(`https://www.reddit.com/r/${sub}/rising.json?limit=25`, {
       headers: { 'User-Agent': UA },
     });
     if (!res.ok) continue;
@@ -56,7 +60,7 @@ async function fromReddit(): Promise<TrendSignal[]> {
 /** Google Trends daily trending searches — public RSS. */
 async function fromGoogleTrends(): Promise<TrendSignal[]> {
   if (config.dryRun) return fixture('google-trends');
-  const res = await fetch(
+  const res = await fetchT(
     `https://trends.google.com/trends/trendingsearches/daily/rss?geo=${config.trendScout.geo}`,
     { headers: { 'User-Agent': UA } },
   );
@@ -88,7 +92,7 @@ async function fromYouTube(): Promise<TrendSignal[]> {
   url.searchParams.set('regionCode', config.trendScout.geo);
   url.searchParams.set('maxResults', '25');
   url.searchParams.set('key', config.apiKeys.youtube);
-  const res = await fetch(url);
+  const res = await fetchT(url);
   if (!res.ok) return [];
   const json = (await res.json()) as any;
   return (json.items ?? []).map((v: any) => ({
@@ -105,7 +109,7 @@ async function fromYouTube(): Promise<TrendSignal[]> {
 /** Hacker News front page via the free Algolia API. */
 async function fromHackerNews(): Promise<TrendSignal[]> {
   if (config.dryRun) return fixture('hackernews');
-  const res = await fetch('https://hn.algolia.com/api/v1/search?tags=front_page');
+  const res = await fetchT('https://hn.algolia.com/api/v1/search?tags=front_page');
   if (!res.ok) return [];
   const json = (await res.json()) as any;
   return (json.hits ?? []).map((h: any) => ({
