@@ -1,0 +1,362 @@
+[
+  {
+    "text": "The",
+    "startMs": 0,
+    "endMs": 375
+  },
+  {
+    "text": "release",
+    "startMs": 417,
+    "endMs": 792
+  },
+  {
+    "text": "rewrote",
+    "startMs": 833,
+    "endMs": 1208
+  },
+  {
+    "text": "the",
+    "startMs": 1250,
+    "endMs": 1625
+  },
+  {
+    "text": "opening",
+    "startMs": 1667,
+    "endMs": 2042
+  },
+  {
+    "text": "weekend.",
+    "startMs": 2083,
+    "endMs": 2458
+  },
+  {
+    "text": "The",
+    "startMs": 2640,
+    "endMs": 2921
+  },
+  {
+    "text": "forecast",
+    "startMs": 2953,
+    "endMs": 3234
+  },
+  {
+    "text": "cleared",
+    "startMs": 3265,
+    "endMs": 3546
+  },
+  {
+    "text": "the",
+    "startMs": 3578,
+    "endMs": 3859
+  },
+  {
+    "text": "old",
+    "startMs": 3890,
+    "endMs": 4171
+  },
+  {
+    "text": "benchmark",
+    "startMs": 4203,
+    "endMs": 4484
+  },
+  {
+    "text": "before",
+    "startMs": 4515,
+    "endMs": 4796
+  },
+  {
+    "text": "noon.",
+    "startMs": 4828,
+    "endMs": 5109
+  },
+  {
+    "text": "The",
+    "startMs": 5280,
+    "endMs": 5561
+  },
+  {
+    "text": "launch",
+    "startMs": 5593,
+    "endMs": 5874
+  },
+  {
+    "text": "still",
+    "startMs": 5905,
+    "endMs": 6186
+  },
+  {
+    "text": "carried",
+    "startMs": 6218,
+    "endMs": 6499
+  },
+  {
+    "text": "a",
+    "startMs": 6530,
+    "endMs": 6811
+  },
+  {
+    "text": "measurable",
+    "startMs": 6843,
+    "endMs": 7124
+  },
+  {
+    "text": "marketing",
+    "startMs": 7155,
+    "endMs": 7436
+  },
+  {
+    "text": "loss.",
+    "startMs": 7468,
+    "endMs": 7749
+  },
+  {
+    "text": "One",
+    "startMs": 7920,
+    "endMs": 8241
+  },
+  {
+    "text": "licensing",
+    "startMs": 8277,
+    "endMs": 8599
+  },
+  {
+    "text": "deal",
+    "startMs": 8634,
+    "endMs": 8956
+  },
+  {
+    "text": "carried",
+    "startMs": 8991,
+    "endMs": 9313
+  },
+  {
+    "text": "the",
+    "startMs": 9349,
+    "endMs": 9670
+  },
+  {
+    "text": "entire",
+    "startMs": 9706,
+    "endMs": 10027
+  },
+  {
+    "text": "quarter.",
+    "startMs": 10063,
+    "endMs": 10384
+  },
+  {
+    "text": "The",
+    "startMs": 10560,
+    "endMs": 10810
+  },
+  {
+    "text": "channel",
+    "startMs": 10838,
+    "endMs": 11088
+  },
+  {
+    "text": "mix",
+    "startMs": 11116,
+    "endMs": 11366
+  },
+  {
+    "text": "landed",
+    "startMs": 11393,
+    "endMs": 11643
+  },
+  {
+    "text": "above",
+    "startMs": 11671,
+    "endMs": 11921
+  },
+  {
+    "text": "the",
+    "startMs": 11949,
+    "endMs": 12199
+  },
+  {
+    "text": "fifty",
+    "startMs": 12227,
+    "endMs": 12477
+  },
+  {
+    "text": "percent",
+    "startMs": 12504,
+    "endMs": 12754
+  },
+  {
+    "text": "target.",
+    "startMs": 12782,
+    "endMs": 13032
+  },
+  {
+    "text": "Orbital",
+    "startMs": 13200,
+    "endMs": 13450
+  },
+  {
+    "text": "jumped",
+    "startMs": 13478,
+    "endMs": 13728
+  },
+  {
+    "text": "from",
+    "startMs": 13756,
+    "endMs": 14006
+  },
+  {
+    "text": "fourth",
+    "startMs": 14033,
+    "endMs": 14283
+  },
+  {
+    "text": "place",
+    "startMs": 14311,
+    "endMs": 14561
+  },
+  {
+    "text": "to",
+    "startMs": 14589,
+    "endMs": 14839
+  },
+  {
+    "text": "the",
+    "startMs": 14867,
+    "endMs": 15117
+  },
+  {
+    "text": "top",
+    "startMs": 15144,
+    "endMs": 15394
+  },
+  {
+    "text": "spot.",
+    "startMs": 15422,
+    "endMs": 15672
+  },
+  {
+    "text": "Audience",
+    "startMs": 15840,
+    "endMs": 16161
+  },
+  {
+    "text": "demand",
+    "startMs": 16197,
+    "endMs": 16519
+  },
+  {
+    "text": "moved",
+    "startMs": 16554,
+    "endMs": 16876
+  },
+  {
+    "text": "from",
+    "startMs": 16911,
+    "endMs": 17233
+  },
+  {
+    "text": "low",
+    "startMs": 17269,
+    "endMs": 17590
+  },
+  {
+    "text": "to",
+    "startMs": 17626,
+    "endMs": 17947
+  },
+  {
+    "text": "maximum.",
+    "startMs": 17983,
+    "endMs": 18304
+  },
+  {
+    "text": "Seven",
+    "startMs": 18480,
+    "endMs": 18705
+  },
+  {
+    "text": "premium",
+    "startMs": 18730,
+    "endMs": 18955
+  },
+  {
+    "text": "screens",
+    "startMs": 18980,
+    "endMs": 19205
+  },
+  {
+    "text": "sold",
+    "startMs": 19230,
+    "endMs": 19455
+  },
+  {
+    "text": "out,",
+    "startMs": 19480,
+    "endMs": 19705
+  },
+  {
+    "text": "while",
+    "startMs": 19730,
+    "endMs": 19955
+  },
+  {
+    "text": "IMAX",
+    "startMs": 19980,
+    "endMs": 20205
+  },
+  {
+    "text": "stayed",
+    "startMs": 20230,
+    "endMs": 20455
+  },
+  {
+    "text": "at",
+    "startMs": 20480,
+    "endMs": 20705
+  },
+  {
+    "text": "zero.",
+    "startMs": 20730,
+    "endMs": 20955
+  },
+  {
+    "text": "Domestic",
+    "startMs": 21120,
+    "endMs": 21401
+  },
+  {
+    "text": "and",
+    "startMs": 21433,
+    "endMs": 21714
+  },
+  {
+    "text": "international",
+    "startMs": 21745,
+    "endMs": 22026
+  },
+  {
+    "text": "revenue",
+    "startMs": 22058,
+    "endMs": 22339
+  },
+  {
+    "text": "closed",
+    "startMs": 22370,
+    "endMs": 22651
+  },
+  {
+    "text": "at",
+    "startMs": 22683,
+    "endMs": 22964
+  },
+  {
+    "text": "different",
+    "startMs": 22995,
+    "endMs": 23276
+  },
+  {
+    "text": "scales.",
+    "startMs": 23308,
+    "endMs": 23589
+  }
+]

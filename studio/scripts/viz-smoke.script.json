@@ -1,0 +1,131 @@
+{
+  "id": "viz-smoke",
+  "title": "STRUCTURED VISUAL SMOKE TEST",
+  "theme": {
+    "name": "Signal Red / Deep Blue",
+    "accent": "#E0342B",
+    "accentSoft": "rgba(30,58,138,.5)"
+  },
+  "voices": {
+    "jessica": {"voiceId": "cgSgspJ2msm6clMCkdW9"},
+    "george": {"voiceId": "JBFqnCBsd6RMkjVDRZzb"}
+  },
+  "lines": [
+    {
+      "speaker": "jessica",
+      "text": "The release rewrote the opening weekend.",
+      "visual": "WRITER NOTE ONLY: DEEP-BLUE FULL-BLEED WITH HUGE WHITE TYPE AND RED SLASHES",
+      "viz": {
+        "kind": "title",
+        "big": "THE $4.2B SHIFT",
+        "sub": "A release-window reset measured in real dollars",
+        "dateChip": "JUL 19 2026"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "The forecast cleared the old benchmark before noon.",
+      "visual": "WRITER NOTE ONLY: DRAW A RANGE AND MAKE THE OLD FORECAST GET CRUSHED",
+      "viz": {
+        "kind": "rangeBar",
+        "label": "GLOBAL OPENING FORECAST",
+        "unit": "M",
+        "low": 380,
+        "high": 620,
+        "compare": {"label": "OLD RECORD", "value": 412},
+        "badge": "+50.5% CEILING"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "The launch still carried a measurable marketing loss.",
+      "visual": "WRITER NOTE ONLY: ANGRY RED COUNTER TUMBLING THROUGH FAKE NUMBERS",
+      "viz": {
+        "kind": "counter",
+        "label": "NET MARKETING LOSS",
+        "to": -2400000,
+        "prefix": "$",
+        "from": 0,
+        "negative": true,
+        "sub": "AUDITED SPEND / OPENING WEEK"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "One licensing deal carried the entire quarter.",
+      "visual": "WRITER NOTE ONLY: CREAM CARD WITH A MADE-UP NUMBER IN THE CENTER",
+      "viz": {
+        "kind": "statBig",
+        "value": "$4B",
+        "label": "GLOBAL LICENSING VALUE",
+        "sub": "SIGNED / FOUR TERRITORIES / ONE QUARTER"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "The channel mix landed above the fifty percent target.",
+      "visual": "WRITER NOTE ONLY: GENERIC BAR CHART ONE TWO PACE STYLE FLOW",
+      "viz": {
+        "kind": "compareBars",
+        "unit": "%",
+        "bars": [
+          {"label": "STREAMING", "value": 28, "tone": "blue"},
+          {"label": "THEATRICAL", "value": 64, "tone": "accent"},
+          {"label": "HYBRID", "value": 47, "tone": "bone"}
+        ],
+        "reference": {"label": "TARGET", "value": 50}
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Orbital jumped from fourth place to the top spot.",
+      "visual": "WRITER NOTE ONLY: RANKED LIST WITH RANDOM PLACEHOLDER TITLES",
+      "viz": {
+        "kind": "leaderboard",
+        "rows": [
+          {"label": "MIDNIGHT RUN"},
+          {"label": "COASTLINE"},
+          {"label": "THE LAST SIGNAL"},
+          {"label": "ORBITAL", "highlight": true},
+          {"label": "PAPER CROWN"}
+        ],
+        "stamp": "#1 / ORBITAL"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "Audience demand moved from low to maximum.",
+      "visual": "WRITER NOTE ONLY: SPEEDOMETER NEEDLE SHAKES LIKE A CAR COMMERCIAL",
+      "viz": {
+        "kind": "meter",
+        "from": "LOW",
+        "to": "MAX",
+        "label": "WEEKEND DEMAND INDEX"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Seven premium screens sold out, while IMAX stayed at zero.",
+      "visual": "WRITER NOTE ONLY: TWENTY-FOUR TILES AND A GIANT FAKE RESULT",
+      "viz": {
+        "kind": "grid",
+        "total": 24,
+        "filled": 7,
+        "filledLabel": "PREMIUM SCREENS SOLD OUT",
+        "resultLabel": "BRAND NEW DAY US IMAX SCREENS: 0",
+        "caption": "VERIFIED AGAINST THE DOMESTIC FORMAT ROSTER"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "Domestic and international revenue closed at different scales.",
+      "visual": "WRITER NOTE ONLY: SPLIT THE CARD AND STAMP A CINEMATIC SLOGAN",
+      "viz": {
+        "kind": "split",
+        "left": {"label": "DOMESTIC", "value": "$186M"},
+        "right": {"label": "INTERNATIONAL", "value": "$341M"},
+        "stamp": "$527M GLOBAL"
+      }
+    }
+  ]
+}

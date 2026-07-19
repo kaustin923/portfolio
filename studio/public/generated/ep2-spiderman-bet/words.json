@@ -1,0 +1,932 @@
+[
+  {
+    "text": "Theatre",
+    "startMs": 110,
+    "endMs": 400
+  },
+  {
+    "text": "chains",
+    "startMs": 400,
+    "endMs": 740
+  },
+  {
+    "text": "just",
+    "startMs": 740,
+    "endMs": 960
+  },
+  {
+    "text": "bet",
+    "startMs": 960,
+    "endMs": 1130
+  },
+  {
+    "text": "their",
+    "startMs": 1130,
+    "endMs": 1420
+  },
+  {
+    "text": "whole",
+    "startMs": 1420,
+    "endMs": 1690
+  },
+  {
+    "text": "year",
+    "startMs": 1690,
+    "endMs": 1910
+  },
+  {
+    "text": "on",
+    "startMs": 1910,
+    "endMs": 2030
+  },
+  {
+    "text": "Spider",
+    "startMs": 2030,
+    "endMs": 2360
+  },
+  {
+    "text": "-",
+    "startMs": 2360,
+    "endMs": 2410
+  },
+  {
+    "text": "Man",
+    "startMs": 2410,
+    "endMs": 2640
+  },
+  {
+    "text": ".",
+    "startMs": 2640,
+    "endMs": 3040
+  },
+  {
+    "text": "Spider",
+    "startMs": 3040,
+    "endMs": 3610
+  },
+  {
+    "text": "-",
+    "startMs": 3610,
+    "endMs": 3700
+  },
+  {
+    "text": "Man",
+    "startMs": 3700,
+    "endMs": 3980
+  },
+  {
+    "text": ",",
+    "startMs": 3980,
+    "endMs": 4160
+  },
+  {
+    "text": "brand",
+    "startMs": 4160,
+    "endMs": 4630
+  },
+  {
+    "text": "new",
+    "startMs": 4630,
+    "endMs": 4910
+  },
+  {
+    "text": "day",
+    "startMs": 4910,
+    "endMs": 5190
+  },
+  {
+    "text": ",",
+    "startMs": 5190,
+    "endMs": 5370
+  },
+  {
+    "text": "July",
+    "startMs": 5370,
+    "endMs": 6130
+  },
+  {
+    "text": "31",
+    "startMs": 6130,
+    "endMs": 6320
+  },
+  {
+    "text": "st",
+    "startMs": 6320,
+    "endMs": 6560
+  },
+  {
+    "text": ".",
+    "startMs": 6560,
+    "endMs": 6600
+  },
+  {
+    "text": "Tracking",
+    "startMs": 6560,
+    "endMs": 7110
+  },
+  {
+    "text": "says",
+    "startMs": 7110,
+    "endMs": 7400
+  },
+  {
+    "text": "180",
+    "startMs": 7400,
+    "endMs": 8000
+  },
+  {
+    "text": ",",
+    "startMs": 8000,
+    "endMs": 8130
+  },
+  {
+    "text": "190",
+    "startMs": 8130,
+    "endMs": 8750
+  },
+  {
+    "text": "million",
+    "startMs": 8750,
+    "endMs": 9640
+  },
+  {
+    "text": "dollar",
+    "startMs": 9640,
+    "endMs": 9680
+  },
+  {
+    "text": "opening",
+    "startMs": 9670,
+    "endMs": 10160
+  },
+  {
+    "text": ",",
+    "startMs": 10160,
+    "endMs": 10200
+  },
+  {
+    "text": "biggest",
+    "startMs": 10160,
+    "endMs": 10690
+  },
+  {
+    "text": "of",
+    "startMs": 10690,
+    "endMs": 10840
+  },
+  {
+    "text": "20",
+    "startMs": 10840,
+    "endMs": 11300
+  },
+  {
+    "text": "26",
+    "startMs": 11300,
+    "endMs": 11750
+  },
+  {
+    "text": ".",
+    "startMs": 11750,
+    "endMs": 12000
+  },
+  {
+    "text": "That",
+    "startMs": 12000,
+    "endMs": 12390
+  },
+  {
+    "text": "sounds",
+    "startMs": 12390,
+    "endMs": 12980
+  },
+  {
+    "text": "fine",
+    "startMs": 12980,
+    "endMs": 13370
+  },
+  {
+    "text": ".",
+    "startMs": 13370,
+    "endMs": 13680
+  },
+  {
+    "text": "AMC",
+    "startMs": 13680,
+    "endMs": 13950
+  },
+  {
+    "text": "lost",
+    "startMs": 13950,
+    "endMs": 14310
+  },
+  {
+    "text": "6",
+    "startMs": 14310,
+    "endMs": 14580
+  },
+  {
+    "text": "32",
+    "startMs": 14580,
+    "endMs": 15120
+  },
+  {
+    "text": "million",
+    "startMs": 15120,
+    "endMs": 15780
+  },
+  {
+    "text": "dollars",
+    "startMs": 15780,
+    "endMs": 16760
+  },
+  {
+    "text": "last",
+    "startMs": 16760,
+    "endMs": 16800
+  },
+  {
+    "text": "year",
+    "startMs": 16790,
+    "endMs": 17120
+  },
+  {
+    "text": ".",
+    "startMs": 17120,
+    "endMs": 17440
+  },
+  {
+    "text": "Their",
+    "startMs": 17440,
+    "endMs": 17810
+  },
+  {
+    "text": "own",
+    "startMs": 17810,
+    "endMs": 18030
+  },
+  {
+    "text": "math",
+    "startMs": 18030,
+    "endMs": 18320
+  },
+  {
+    "text": ",",
+    "startMs": 18320,
+    "endMs": 18520
+  },
+  {
+    "text": "every",
+    "startMs": 18520,
+    "endMs": 18720
+  },
+  {
+    "text": "100",
+    "startMs": 18720,
+    "endMs": 19160
+  },
+  {
+    "text": "me",
+    "startMs": 19160,
+    "endMs": 19250
+  },
+  {
+    "text": "llers",
+    "startMs": 19250,
+    "endMs": 19540
+  },
+  {
+    "text": "more",
+    "startMs": 19540,
+    "endMs": 19840
+  },
+  {
+    "text": "at",
+    "startMs": 19840,
+    "endMs": 19980
+  },
+  {
+    "text": "the",
+    "startMs": 19980,
+    "endMs": 20420
+  },
+  {
+    "text": "box",
+    "startMs": 20420,
+    "endMs": 20550
+  },
+  {
+    "text": "office",
+    "startMs": 20550,
+    "endMs": 20880
+  },
+  {
+    "text": ",",
+    "startMs": 20880,
+    "endMs": 20920
+  },
+  {
+    "text": "adds",
+    "startMs": 20880,
+    "endMs": 21260
+  },
+  {
+    "text": "18",
+    "startMs": 21260,
+    "endMs": 21830
+  },
+  {
+    "text": "me",
+    "startMs": 21830,
+    "endMs": 22020
+  },
+  {
+    "text": "adows",
+    "startMs": 22020,
+    "endMs": 22490
+  },
+  {
+    "text": ".",
+    "startMs": 22490,
+    "endMs": 22800
+  },
+  {
+    "text": "So",
+    "startMs": 22800,
+    "endMs": 22970
+  },
+  {
+    "text": "they",
+    "startMs": 22970,
+    "endMs": 23320
+  },
+  {
+    "text": "need",
+    "startMs": 23320,
+    "endMs": 23670
+  },
+  {
+    "text": "this",
+    "startMs": 23670,
+    "endMs": 24050
+  },
+  {
+    "text": "huge",
+    "startMs": 24050,
+    "endMs": 24400
+  },
+  {
+    "text": "?",
+    "startMs": 24400,
+    "endMs": 24440
+  },
+  {
+    "text": "Good",
+    "startMs": 24400,
+    "endMs": 24780
+  },
+  {
+    "text": "news",
+    "startMs": 24780,
+    "endMs": 25160
+  },
+  {
+    "text": ",",
+    "startMs": 25160,
+    "endMs": 25360
+  },
+  {
+    "text": "best",
+    "startMs": 25360,
+    "endMs": 25680
+  },
+  {
+    "text": "first",
+    "startMs": 25680,
+    "endMs": 26070
+  },
+  {
+    "text": "day",
+    "startMs": 26070,
+    "endMs": 26310
+  },
+  {
+    "text": "pres",
+    "startMs": 26310,
+    "endMs": 26640
+  },
+  {
+    "text": "ales",
+    "startMs": 26640,
+    "endMs": 26940
+  },
+  {
+    "text": "in",
+    "startMs": 26940,
+    "endMs": 27420
+  },
+  {
+    "text": "five",
+    "startMs": 27420,
+    "endMs": 27510
+  },
+  {
+    "text": "years",
+    "startMs": 27510,
+    "endMs": 27840
+  },
+  {
+    "text": ".",
+    "startMs": 27840,
+    "endMs": 27900
+  },
+  {
+    "text": "F",
+    "startMs": 27910,
+    "endMs": 27950
+  },
+  {
+    "text": "and",
+    "startMs": 27950,
+    "endMs": 28130
+  },
+  {
+    "text": "ango",
+    "startMs": 28130,
+    "endMs": 28420
+  },
+  {
+    "text": ",",
+    "startMs": 28420,
+    "endMs": 28560
+  },
+  {
+    "text": "top",
+    "startMs": 28560,
+    "endMs": 28780
+  },
+  {
+    "text": "10",
+    "startMs": 28780,
+    "endMs": 29220
+  },
+  {
+    "text": ",",
+    "startMs": 29220,
+    "endMs": 29360
+  },
+  {
+    "text": "all",
+    "startMs": 29360,
+    "endMs": 29580
+  },
+  {
+    "text": "time",
+    "startMs": 29580,
+    "endMs": 29870
+  },
+  {
+    "text": ".",
+    "startMs": 29870,
+    "endMs": 30160
+  },
+  {
+    "text": "Then",
+    "startMs": 30160,
+    "endMs": 30430
+  },
+  {
+    "text": "what",
+    "startMs": 30430,
+    "endMs": 30700
+  },
+  {
+    "text": "'s",
+    "startMs": 30700,
+    "endMs": 30830
+  },
+  {
+    "text": "the",
+    "startMs": 30830,
+    "endMs": 31030
+  },
+  {
+    "text": "catch",
+    "startMs": 31030,
+    "endMs": 31410
+  },
+  {
+    "text": "?",
+    "startMs": 31410,
+    "endMs": 31600
+  },
+  {
+    "text": "Zero",
+    "startMs": 31600,
+    "endMs": 31970
+  },
+  {
+    "text": "US",
+    "startMs": 31970,
+    "endMs": 32140
+  },
+  {
+    "text": "i",
+    "startMs": 32140,
+    "endMs": 32230
+  },
+  {
+    "text": "Mac",
+    "startMs": 32230,
+    "endMs": 32500
+  },
+  {
+    "text": "screens",
+    "startMs": 32500,
+    "endMs": 33140
+  },
+  {
+    "text": "opening",
+    "startMs": 33140,
+    "endMs": 33780
+  },
+  {
+    "text": "weekend",
+    "startMs": 33780,
+    "endMs": 34680
+  },
+  {
+    "text": ".",
+    "startMs": 34680,
+    "endMs": 34720
+  },
+  {
+    "text": "Nolan",
+    "startMs": 34720,
+    "endMs": 35090
+  },
+  {
+    "text": "'s",
+    "startMs": 35090,
+    "endMs": 35190
+  },
+  {
+    "text": "Odyssey",
+    "startMs": 35190,
+    "endMs": 35670
+  },
+  {
+    "text": "locked",
+    "startMs": 35670,
+    "endMs": 36080
+  },
+  {
+    "text": "them",
+    "startMs": 36080,
+    "endMs": 36350
+  },
+  {
+    "text": "all",
+    "startMs": 36350,
+    "endMs": 36550
+  },
+  {
+    "text": ".",
+    "startMs": 36550,
+    "endMs": 36800
+  },
+  {
+    "text": "And",
+    "startMs": 36800,
+    "endMs": 36990
+  },
+  {
+    "text": "fore",
+    "startMs": 36990,
+    "endMs": 37240
+  },
+  {
+    "text": "casters",
+    "startMs": 37240,
+    "endMs": 37690
+  },
+  {
+    "text": "can",
+    "startMs": 37690,
+    "endMs": 37880
+  },
+  {
+    "text": "'t",
+    "startMs": 37880,
+    "endMs": 38050
+  },
+  {
+    "text": "even",
+    "startMs": 38050,
+    "endMs": 38250
+  },
+  {
+    "text": "agree",
+    "startMs": 38250,
+    "endMs": 38570
+  },
+  {
+    "text": "?",
+    "startMs": 38570,
+    "endMs": 38800
+  },
+  {
+    "text": "Box",
+    "startMs": 38800,
+    "endMs": 39040
+  },
+  {
+    "text": "office",
+    "startMs": 39040,
+    "endMs": 39530
+  },
+  {
+    "text": "pro",
+    "startMs": 39530,
+    "endMs": 39780
+  },
+  {
+    "text": "says",
+    "startMs": 39780,
+    "endMs": 40100
+  },
+  {
+    "text": "230",
+    "startMs": 40100,
+    "endMs": 40840
+  },
+  {
+    "text": "out",
+    "startMs": 40840,
+    "endMs": 41080
+  },
+  {
+    "text": "250",
+    "startMs": 41080,
+    "endMs": 41910
+  },
+  {
+    "text": "million",
+    "startMs": 41910,
+    "endMs": 42400
+  },
+  {
+    "text": "dollars",
+    "startMs": 42400,
+    "endMs": 43040
+  },
+  {
+    "text": ".",
+    "startMs": 43040,
+    "endMs": 43080
+  },
+  {
+    "text": "The",
+    "startMs": 43040,
+    "endMs": 43280
+  },
+  {
+    "text": "comp",
+    "startMs": 43280,
+    "endMs": 43600
+  },
+  {
+    "text": "is",
+    "startMs": 43600,
+    "endMs": 43760
+  },
+  {
+    "text": "no",
+    "startMs": 43760,
+    "endMs": 43920
+  },
+  {
+    "text": "way",
+    "startMs": 43920,
+    "endMs": 44160
+  },
+  {
+    "text": "home",
+    "startMs": 44160,
+    "endMs": 44480
+  },
+  {
+    "text": "'s",
+    "startMs": 44480,
+    "endMs": 44630
+  },
+  {
+    "text": "260",
+    "startMs": 44630,
+    "endMs": 45340
+  },
+  {
+    "text": "metres",
+    "startMs": 45340,
+    "endMs": 45750
+  },
+  {
+    "text": ",",
+    "startMs": 45750,
+    "endMs": 45840
+  },
+  {
+    "text": "only",
+    "startMs": 45840,
+    "endMs": 46090
+  },
+  {
+    "text": "nine",
+    "startMs": 46090,
+    "endMs": 46340
+  },
+  {
+    "text": "films",
+    "startMs": 46340,
+    "endMs": 46680
+  },
+  {
+    "text": "ever",
+    "startMs": 46680,
+    "endMs": 46920
+  },
+  {
+    "text": "opened",
+    "startMs": 46920,
+    "endMs": 47290
+  },
+  {
+    "text": "above",
+    "startMs": 47290,
+    "endMs": 47610
+  },
+  {
+    "text": "200",
+    "startMs": 47610,
+    "endMs": 48190
+  },
+  {
+    "text": "me",
+    "startMs": 48190,
+    "endMs": 48310
+  },
+  {
+    "text": "llers",
+    "startMs": 48310,
+    "endMs": 48880
+  },
+  {
+    "text": ".",
+    "startMs": 48880,
+    "endMs": 48920
+  },
+  {
+    "text": "And",
+    "startMs": 48880,
+    "endMs": 49130
+  },
+  {
+    "text": "if",
+    "startMs": 49130,
+    "endMs": 49310
+  },
+  {
+    "text": "it",
+    "startMs": 49310,
+    "endMs": 49470
+  },
+  {
+    "text": "misses",
+    "startMs": 49470,
+    "endMs": 49970
+  },
+  {
+    "text": "?",
+    "startMs": 49970,
+    "endMs": 50240
+  },
+  {
+    "text": "AMC",
+    "startMs": 50240,
+    "endMs": 50500
+  },
+  {
+    "text": ",",
+    "startMs": 50500,
+    "endMs": 50670
+  },
+  {
+    "text": "4",
+    "startMs": 50670,
+    "endMs": 50930
+  },
+  {
+    "text": "billion",
+    "startMs": 50930,
+    "endMs": 51530
+  },
+  {
+    "text": "in",
+    "startMs": 51530,
+    "endMs": 51700
+  },
+  {
+    "text": "debt",
+    "startMs": 51700,
+    "endMs": 52040
+  },
+  {
+    "text": ",",
+    "startMs": 52040,
+    "endMs": 52240
+  },
+  {
+    "text": "stock",
+    "startMs": 52240,
+    "endMs": 52620
+  },
+  {
+    "text": "under",
+    "startMs": 52620,
+    "endMs": 53220
+  },
+  {
+    "text": "two",
+    "startMs": 53220,
+    "endMs": 53330
+  },
+  {
+    "text": "bucks",
+    "startMs": 53330,
+    "endMs": 53600
+  },
+  {
+    "text": ".",
+    "startMs": 53600,
+    "endMs": 53840
+  },
+  {
+    "text": "This",
+    "startMs": 53840,
+    "endMs": 54080
+  },
+  {
+    "text": "isn",
+    "startMs": 54080,
+    "endMs": 54270
+  },
+  {
+    "text": "'t",
+    "startMs": 54270,
+    "endMs": 54370
+  },
+  {
+    "text": "a",
+    "startMs": 54370,
+    "endMs": 54430
+  },
+  {
+    "text": "premiere",
+    "startMs": 54430,
+    "endMs": 54920
+  },
+  {
+    "text": ",",
+    "startMs": 54920,
+    "endMs": 55090
+  },
+  {
+    "text": "it",
+    "startMs": 55090,
+    "endMs": 55140
+  },
+  {
+    "text": "'s",
+    "startMs": 55140,
+    "endMs": 55260
+  },
+  {
+    "text": "the",
+    "startMs": 55260,
+    "endMs": 55400
+  },
+  {
+    "text": "whole",
+    "startMs": 55400,
+    "endMs": 55660
+  },
+  {
+    "text": "bet",
+    "startMs": 55660,
+    "endMs": 55820
+  },
+  {
+    "text": ".",
+    "startMs": 55820,
+    "endMs": 56000
+  }
+]

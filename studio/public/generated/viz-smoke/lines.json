@@ -1,0 +1,11 @@
+[
+  {"id":"line-1","lineIndex":0,"speaker":"jessica","text":"The release rewrote the opening weekend.","visual":"writer note","startMs":0,"endMs":2500},
+  {"id":"line-2","lineIndex":1,"speaker":"george","text":"The forecast cleared the old benchmark before noon.","visual":"writer note","startMs":2640,"endMs":5140},
+  {"id":"line-3","lineIndex":2,"speaker":"jessica","text":"The launch still carried a measurable marketing loss.","visual":"writer note","startMs":5280,"endMs":7780},
+  {"id":"line-4","lineIndex":3,"speaker":"george","text":"One licensing deal carried the entire quarter.","visual":"writer note","startMs":7920,"endMs":10420},
+  {"id":"line-5","lineIndex":4,"speaker":"jessica","text":"The channel mix landed above the fifty percent target.","visual":"writer note","startMs":10560,"endMs":13060},
+  {"id":"line-6","lineIndex":5,"speaker":"george","text":"Orbital jumped from fourth place to the top spot.","visual":"writer note","startMs":13200,"endMs":15700},
+  {"id":"line-7","lineIndex":6,"speaker":"jessica","text":"Audience demand moved from low to maximum.","visual":"writer note","startMs":15840,"endMs":18340},
+  {"id":"line-8","lineIndex":7,"speaker":"george","text":"Seven premium screens sold out, while IMAX stayed at zero.","visual":"writer note","startMs":18480,"endMs":20980},
+  {"id":"line-9","lineIndex":8,"speaker":"jessica","text":"Domestic and international revenue closed at different scales.","visual":"writer note","startMs":21120,"endMs":23620}
+]

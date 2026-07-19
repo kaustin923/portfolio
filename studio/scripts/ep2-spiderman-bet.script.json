@@ -1,0 +1,180 @@
+{
+  "id": "ep2-spiderman-bet",
+  "title": "The Spider-Man Bet",
+  "theme": {
+    "name": "Web Red / Midnight Blue",
+    "accent": "#E0342B",
+    "accentSoft": "rgba(30,58,138,.5)"
+  },
+  "voices": {
+    "jessica": {
+      "voiceId": "cgSgspJ2msm6clMCkdW9"
+    },
+    "george": {
+      "voiceId": "JBFqnCBsd6RMkjVDRZzb"
+    }
+  },
+  "lines": [
+    {
+      "speaker": "jessica",
+      "text": "Theater chains just bet their whole year on Spider-Man.",
+      "visual": "opening title",
+      "viz": {
+        "kind": "title",
+        "big": "ONE MOVIE. ONE QUARTER.",
+        "sub": "THE THEATER-CHAIN BET",
+        "dateChip": "JULY 31, 2026"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Brand New Day, July 31. Tracking says a hundred-eighty to one-ninety million opening.",
+      "visual": "range bar with Toy Story compare",
+      "viz": {
+        "kind": "rangeBar",
+        "label": "OPENING WEEKEND \u2014 DEADLINE TRACKING",
+        "unit": "M",
+        "low": 180,
+        "high": 190,
+        "compare": {
+          "label": "TOY STORY 5 \u2014 2026'S #1",
+          "value": 160
+        },
+        "badge": "BIGGEST OF 2026"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "That sounds... fine, right?",
+      "visual": "skeptical beat"
+    },
+    {
+      "speaker": "george",
+      "text": "AMC lost six-hundred-thirty-two million last year. Their own math: every hundred million more adds eighteen.",
+      "visual": "loss counter",
+      "viz": {
+        "kind": "counter",
+        "label": "AMC NET LOSS \u2014 FY2025, SEC FILING",
+        "prefix": "$",
+        "to": 632.4,
+        "unit": "M",
+        "negative": true,
+        "sub": "+$100M BOX OFFICE  \u2192  +$18M AMC EBITDA"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "So they need this one huge.",
+      "visual": "stakes meter",
+      "viz": {
+        "kind": "meter",
+        "from": "LOW",
+        "to": "MAX",
+        "label": "STAKES FOR AMC"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Good news: best first-day presales in five years. Fandango top ten, all time.",
+      "visual": "presale leaderboard",
+      "viz": {
+        "kind": "leaderboard",
+        "rows": [
+          {
+            "label": "THE ODYSSEY"
+          },
+          {
+            "label": "MANDALORIAN & GROGU"
+          },
+          {
+            "label": "PROJECT HAIL MARY"
+          },
+          {
+            "label": "SPIDER-MAN: BRAND NEW DAY",
+            "highlight": true
+          }
+        ],
+        "stamp": "BEST FIRST DAY SINCE 2021"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "Then what's the catch?",
+      "visual": "tension beat"
+    },
+    {
+      "speaker": "george",
+      "text": "Zero US IMAX screens opening weekend. Nolan's Odyssey locked every one.",
+      "visual": "imax grid",
+      "viz": {
+        "kind": "grid",
+        "total": 24,
+        "filled": 24,
+        "filledLabel": "ODYSSEY",
+        "resultLabel": "BRAND NEW DAY  US IMAX SCREENS: 0",
+        "caption": "3-WEEK EXCLUSIVE WINDOW"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "And the forecasters can't even agree?",
+      "visual": "disagreement beat"
+    },
+    {
+      "speaker": "george",
+      "text": "Boxoffice Pro says two-thirty to two-fifty. No Way Home did two-sixty. Only nine films ever opened above two hundred.",
+      "visual": "dual forecast vs No Way Home",
+      "viz": {
+        "kind": "compareBars",
+        "unit": "M",
+        "bars": [
+          {
+            "label": "DEADLINE",
+            "value": 185,
+            "tone": "blue"
+          },
+          {
+            "label": "BOXOFFICE PRO",
+            "value": 240,
+            "tone": "accent"
+          }
+        ],
+        "reference": {
+          "label": "NO WAY HOME, 2021",
+          "value": 260
+        }
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "And if it misses?",
+      "visual": "downturn beat"
+    },
+    {
+      "speaker": "george",
+      "text": "AMC: four billion in debt, stock under two bucks. This isn't a premiere. It's the whole bet.",
+      "visual": "final split stamp",
+      "viz": {
+        "kind": "split",
+        "left": {
+          "label": "AMC DEBT",
+          "value": "$4.09B"
+        },
+        "right": {
+          "label": "AMC STOCK",
+          "value": "$1.95"
+        },
+        "stamp": "THE SPIDER-MAN BET \u2014 JULY 31"
+      }
+    }
+  ],
+  "caption": "Theater chains lost hundreds of millions last year. Now the whole quarter rides on one July 31 opening. Here's the math behind the Spider-Man bet.",
+  "hashtags": [
+    "#SpiderMan",
+    "#BoxOffice",
+    "#AMC",
+    "#MovieTheaters",
+    "#BrandNewDay",
+    "#Marvel"
+  ]
+}

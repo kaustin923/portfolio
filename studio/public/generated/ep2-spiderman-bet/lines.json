@@ -1,0 +1,110 @@
+[
+  {
+    "id": "line-1",
+    "lineIndex": 0,
+    "speaker": "jessica",
+    "text": "Theater chains just bet their whole year on Spider-Man.",
+    "visual": "Deep-blue full-bleed card; bold white text 'ONE MOVIE. ONE QUARTER.' with a web-red underline sweeping in left-to-right; a date chip flips to 'JULY 31, 2026'",
+    "startMs": 0,
+    "endMs": 2926
+  },
+  {
+    "id": "line-2",
+    "lineIndex": 1,
+    "speaker": "george",
+    "text": "Spider-Man: Brand New Day, July 31. Tracking says a $180–190 million opening — biggest of 2026.",
+    "visual": "Animated horizontal range bar filling from $0 to a $180M–$190M band in web-red; a gray tick at $159.7M labeled 'Toy Story 5 — 2026's current #1' gets overtaken, badge pops: 'BIGGEST OF 2026'",
+    "startMs": 3066,
+    "endMs": 11936
+  },
+  {
+    "id": "line-3",
+    "lineIndex": 2,
+    "speaker": "jessica",
+    "text": "That sounds... fine?",
+    "visual": "The range bar shrinks to a small corner card; a big pulsing '?' in soft blue over the words 'fine... right?'",
+    "startMs": 12076,
+    "endMs": 13608
+  },
+  {
+    "id": "line-4",
+    "lineIndex": 3,
+    "speaker": "george",
+    "text": "AMC lost $632 million last year. Their own math: every $100M more at the box office adds $18M.",
+    "visual": "Counter crashes from $0 to -$632.4M in red ('AMC net loss, FY2025 — SEC filing'); then an equation animates: '+$100M industry box office → +$18M AMC EBITDA' with stacking coin blocks per $100M",
+    "startMs": 13748,
+    "endMs": 22711
+  },
+  {
+    "id": "line-5",
+    "lineIndex": 4,
+    "speaker": "jessica",
+    "text": "So they need this huge.",
+    "visual": "A 'STAKES' meter needle sweeps from LOW to MAX, tinting the frame edge web-red",
+    "startMs": 22851,
+    "endMs": 24291
+  },
+  {
+    "id": "line-6",
+    "lineIndex": 5,
+    "speaker": "george",
+    "text": "Good news: best first-day presales in five years. Fandango top-ten all-time.",
+    "visual": "Leaderboard of 2026 first-day pre-sellers (The Odyssey, Mandalorian & Grogu, Project Hail Mary); 'Brand New Day' row slides to #1 in red; stamp: 'FANDANGO TOP-10 ALL-TIME' + 'best first day since 2021'",
+    "startMs": 24431,
+    "endMs": 30096
+  },
+  {
+    "id": "line-7",
+    "lineIndex": 6,
+    "speaker": "jessica",
+    "text": "Then what's the catch?",
+    "visual": "Leaderboard freezes mid-shine; brief red glitch/scratch effect; the word 'CATCH:' types out",
+    "startMs": 30236,
+    "endMs": 31537
+  },
+  {
+    "id": "line-8",
+    "lineIndex": 7,
+    "speaker": "george",
+    "text": "Zero US IMAX screens opening weekend — Nolan's Odyssey locked them all.",
+    "visual": "Grid of screen icons labeled IMAX; each fills with 'ODYSSEY' in blue one by one; a counter reads 'BRAND NEW DAY US IMAX SCREENS: 0'; footnote chip: 'exclusive multi-week window'",
+    "startMs": 31677,
+    "endMs": 36785
+  },
+  {
+    "id": "line-9",
+    "lineIndex": 8,
+    "speaker": "jessica",
+    "text": "And forecasters can't even agree?",
+    "visual": "Two arrows tug in opposite directions over a blank axis labeled 'opening weekend forecast', gap between them flashing '~$50–60M apart'",
+    "startMs": 36925,
+    "endMs": 38736
+  },
+  {
+    "id": "line-10",
+    "lineIndex": 9,
+    "speaker": "george",
+    "text": "Boxoffice Pro says $230–250 million. The comp is No Way Home's $260M — only nine films ever opened above $200M.",
+    "visual": "Dual range bars: Deadline $180–190M (blue) vs Boxoffice Pro $230–250M (red); dashed line drops in at $260.1M labeled 'No Way Home, 2021'; annotation fades up: 'only 9 films ever opened above $200M domestic'",
+    "startMs": 38876,
+    "endMs": 48861
+  },
+  {
+    "id": "line-11",
+    "lineIndex": 10,
+    "speaker": "jessica",
+    "text": "And if it misses?",
+    "visual": "The forecast chart dims to grayscale; a red down-arrow traces below the $180M band; screen edge darkens",
+    "startMs": 49001,
+    "endMs": 50162
+  },
+  {
+    "id": "line-12",
+    "lineIndex": 11,
+    "speaker": "george",
+    "text": "AMC: four billion in debt, stock under two bucks. This isn't a premiere — it's the whole bet.",
+    "visual": "Split card: towering '$4B DEBT' bar in blue beside a tiny stock ticker '$1.94 ▼46% off 52-wk high'; final stamp slams in web-red on deep blue: 'THE SPIDER-MAN BET — JULY 31', echoing the opening title card",
+    "startMs": 50302,
+    "endMs": 56386
+  }
+]

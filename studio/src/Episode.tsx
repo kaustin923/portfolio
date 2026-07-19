@@ -96,6 +96,7 @@ export const Episode = ({episode, timing, assetBase}: EpisodeProps) => {
   const themeStyle = {
     '--episode-accent': theme.accent,
     '--episode-accent-soft': theme.accentSoft,
+    '--episode-accent-soft-solid': theme.accentSoftSolid,
   } as CSSProperties;
   const firstCue = timing.cues[0];
   const firstDuration = firstCue ? Math.max(1, Math.min(timing.durationInFrames, msToFrame(firstCue.endMs)) - msToFrame(firstCue.startMs)) : 1;

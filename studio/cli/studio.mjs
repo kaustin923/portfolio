@@ -57,6 +57,117 @@ const parseArgs = (argv) => {
   return result;
 };
 
+const isRecord = (value) => Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+
+const requireString = (value, path, optional = false) => {
+  if (optional && value === undefined) return;
+  if (typeof value !== 'string' || !value.trim()) throw new Error(`${path} requires a non-empty string.`);
+};
+
+const requireNumber = (value, path) => {
+  if (typeof value !== 'number' || !Number.isFinite(value)) throw new Error(`${path} requires a finite number.`);
+};
+
+const requireOptionalBoolean = (value, path) => {
+  if (value !== undefined && typeof value !== 'boolean') throw new Error(`${path} must be a boolean.`);
+};
+
+const validateViz = (viz, lineIndex) => {
+  const path = `Dialogue line ${lineIndex + 1} viz`;
+  if (!isRecord(viz)) throw new Error(`${path} must be an object.`);
+  if (typeof viz.kind !== 'string' || !viz.kind) throw new Error(`${path} requires kind.`);
+
+  switch (viz.kind) {
+    case 'title':
+      requireString(viz.big, `${path}.big`);
+      requireString(viz.sub, `${path}.sub`, true);
+      requireString(viz.dateChip, `${path}.dateChip`, true);
+      return;
+    case 'rangeBar':
+      requireString(viz.label, `${path}.label`);
+      requireString(viz.unit, `${path}.unit`);
+      requireNumber(viz.low, `${path}.low`);
+      requireNumber(viz.high, `${path}.high`);
+      if (viz.low < 0 || viz.high < viz.low) throw new Error(`${path} requires 0 <= low <= high.`);
+      if (viz.compare !== undefined) {
+        if (!isRecord(viz.compare)) throw new Error(`${path}.compare must be an object.`);
+        requireString(viz.compare.label, `${path}.compare.label`);
+        requireNumber(viz.compare.value, `${path}.compare.value`);
+        if (viz.compare.value < 0) throw new Error(`${path}.compare.value must be non-negative.`);
+      }
+      requireString(viz.badge, `${path}.badge`, true);
+      return;
+    case 'counter':
+      requireString(viz.label, `${path}.label`);
+      requireNumber(viz.to, `${path}.to`);
+      if (viz.from !== undefined) requireNumber(viz.from, `${path}.from`);
+      requireString(viz.unit, `${path}.unit`, true);
+      requireString(viz.prefix, `${path}.prefix`, true);
+      requireOptionalBoolean(viz.negative, `${path}.negative`);
+      requireString(viz.sub, `${path}.sub`, true);
+      return;
+    case 'statBig':
+      requireString(viz.value, `${path}.value`);
+      requireString(viz.label, `${path}.label`);
+      requireString(viz.sub, `${path}.sub`, true);
+      return;
+    case 'compareBars':
+      requireString(viz.unit, `${path}.unit`);
+      if (!Array.isArray(viz.bars) || viz.bars.length < 2 || viz.bars.length > 4) {
+        throw new Error(`${path}.bars requires 2 to 4 rows.`);
+      }
+      for (const [index, bar] of viz.bars.entries()) {
+        if (!isRecord(bar)) throw new Error(`${path}.bars[${index}] must be an object.`);
+        requireString(bar.label, `${path}.bars[${index}].label`);
+        requireNumber(bar.value, `${path}.bars[${index}].value`);
+        if (bar.tone !== undefined && !['accent', 'bone', 'blue'].includes(bar.tone)) {
+          throw new Error(`${path}.bars[${index}].tone must be accent, bone, or blue.`);
+        }
+      }
+      if (viz.reference !== undefined) {
+        if (!isRecord(viz.reference)) throw new Error(`${path}.reference must be an object.`);
+        requireString(viz.reference.label, `${path}.reference.label`);
+        requireNumber(viz.reference.value, `${path}.reference.value`);
+      }
+      return;
+    case 'leaderboard':
+      if (!Array.isArray(viz.rows) || viz.rows.length === 0) throw new Error(`${path}.rows requires at least one row.`);
+      for (const [index, row] of viz.rows.entries()) {
+        if (!isRecord(row)) throw new Error(`${path}.rows[${index}] must be an object.`);
+        requireString(row.label, `${path}.rows[${index}].label`);
+        requireOptionalBoolean(row.highlight, `${path}.rows[${index}].highlight`);
+      }
+      requireString(viz.stamp, `${path}.stamp`, true);
+      return;
+    case 'meter':
+      requireString(viz.from, `${path}.from`);
+      requireString(viz.to, `${path}.to`);
+      requireString(viz.label, `${path}.label`);
+      return;
+    case 'grid':
+      requireNumber(viz.total, `${path}.total`);
+      requireNumber(viz.filled, `${path}.filled`);
+      if (!Number.isInteger(viz.total) || viz.total < 1) throw new Error(`${path}.total must be a positive integer.`);
+      if (!Number.isInteger(viz.filled) || viz.filled < 0 || viz.filled > viz.total) {
+        throw new Error(`${path}.filled must be an integer from 0 through total.`);
+      }
+      requireString(viz.filledLabel, `${path}.filledLabel`);
+      requireString(viz.resultLabel, `${path}.resultLabel`);
+      requireString(viz.caption, `${path}.caption`, true);
+      return;
+    case 'split':
+      for (const side of ['left', 'right']) {
+        if (!isRecord(viz[side])) throw new Error(`${path}.${side} must be an object.`);
+        requireString(viz[side].label, `${path}.${side}.label`);
+        requireString(viz[side].value, `${path}.${side}.value`);
+      }
+      requireString(viz.stamp, `${path}.stamp`, true);
+      return;
+    default:
+      throw new Error(`${path}.kind is not supported: ${viz.kind}`);
+  }
+};
+
 const validateScript = (value) => {
   if (!value || typeof value !== 'object') throw new Error('Script must be a JSON object.');
   for (const key of ['id', 'title']) {
@@ -82,6 +193,7 @@ const validateScript = (value) => {
           throw new Error(`Dialogue line ${index + 1} requires non-empty ${key}.`);
         }
       }
+      if (line.viz !== undefined) validateViz(line.viz, index);
     }
     const voices = {};
     for (const speaker of ['jessica', 'george']) {
@@ -355,6 +467,7 @@ const synthesizeDialogue = async ({episode, generatedDir}) => {
       speaker: line.speaker,
       text: line.text,
       visual: line.visual,
+      ...(line.viz ? {viz: line.viz} : {}),
       startMs,
       endMs,
     });
