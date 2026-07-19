@@ -437,11 +437,16 @@
   {
     "text": "So",
     "startMs": 17920,
-    "endMs": 18520
+    "endMs": 18420
+  },
+  {
+    "text": ",",
+    "startMs": 18420,
+    "endMs": 18530
   },
   {
     "text": "Cody",
-    "startMs": 18520,
+    "startMs": 18530,
     "endMs": 18660
   },
   {
@@ -460,78 +465,78 @@
     "endMs": 19680
   },
   {
-    "text": ",",
+    "text": ".",
     "startMs": 19680,
-    "endMs": 19760
+    "endMs": 19810
   },
   {
     "text": "72",
-    "startMs": 19760,
-    "endMs": 20130
+    "startMs": 19810,
+    "endMs": 20180
   },
   {
     "text": "%",
-    "startMs": 20130,
-    "endMs": 20190
+    "startMs": 20180,
+    "endMs": 20240
   },
   {
     "text": "call",
-    "startMs": 20190,
+    "startMs": 20240,
     "endMs": 20560
   },
   {
     "text": "two",
     "startMs": 20560,
-    "endMs": 20620
+    "endMs": 20660
   },
   {
     "text": ".",
-    "startMs": 20620,
-    "endMs": 20800
+    "startMs": 20660,
+    "endMs": 20840
   },
   {
     "text": "Rain",
-    "startMs": 20800,
-    "endMs": 21050
+    "startMs": 20840,
+    "endMs": 21080
   },
   {
     "text": "'s",
-    "startMs": 21050,
-    "endMs": 21170
+    "startMs": 21080,
+    "endMs": 21280
   },
   {
     "text": "roll",
-    "startMs": 21170,
+    "startMs": 21280,
     "endMs": 21450
   },
   {
     "text": "ins",
     "startMs": 21450,
-    "endMs": 21600
+    "endMs": 21620
   },
   {
     "text": "match",
-    "startMs": 21600,
-    "endMs": 21910
+    "startMs": 21620,
+    "endMs": 21930
   },
   {
     "text": "five",
-    "startMs": 21910,
-    "endMs": 22160
+    "startMs": 21930,
+    "endMs": 22170
   },
   {
     "text": "of",
-    "startMs": 22160,
-    "endMs": 22280
+    "startMs": 22170,
+    "endMs": 22290
   },
   {
     "text": "the",
-    "startMs": 22280,
-    "endMs": 22460
+    "startMs": 22290,
+    "endMs": 22470
   },
   {
     "text": "stadium",
-    "startMs": 22460,
+    "startMs": 22470,
     "endMs": 22930
   },
   {
@@ -542,11 +547,11 @@
   {
     "text": ".",
     "startMs": 23300,
-    "endMs": 23440
+    "endMs": 23450
   },
   {
     "text": "Rubber",
-    "startMs": 23440,
+    "startMs": 23450,
     "endMs": 23910
   },
   {
@@ -562,81 +567,81 @@
   {
     "text": "favors",
     "startMs": 24580,
-    "endMs": 24720
+    "endMs": 24740
   },
   {
     "text": "roll",
-    "startMs": 24720,
-    "endMs": 25040
+    "startMs": 24740,
+    "endMs": 25020
   },
   {
     "text": "ins",
-    "startMs": 25040,
-    "endMs": 25180
+    "startMs": 25020,
+    "endMs": 25230
   },
   {
     "text": ".",
-    "startMs": 25180,
-    "endMs": 25380
+    "startMs": 25230,
+    "endMs": 25440
   },
   {
     "text": "61",
-    "startMs": 25380,
+    "startMs": 25440,
     "endMs": 25920
   },
   {
-    "text": "call",
+    "text": ",",
     "startMs": 25920,
-    "endMs": 26040
+    "endMs": 26000
+  },
+  {
+    "text": "call",
+    "startMs": 26000,
+    "endMs": 26280
   },
   {
     "text": "three",
-    "startMs": 26040,
-    "endMs": 26370
-  },
-  {
-    "text": ".",
-    "startMs": 26370,
+    "startMs": 26280,
     "endMs": 26640
   },
   {
-    "text": "Oh",
+    "text": ".",
     "startMs": 26640,
-    "endMs": 26700
+    "endMs": 26840
   },
   {
-    "text": ",",
-    "startMs": 26700,
-    "endMs": 26830
+    "text": "OF",
+    "startMs": 26840,
+    "endMs": 26980
   },
   {
-    "text": "if",
-    "startMs": 26830,
-    "endMs": 26960
+    "text": "EM",
+    "startMs": 26980,
+    "endMs": 27120
   },
   {
-    "text": "Emmy",
-    "startMs": 26960,
+    "text": "I",
+    "startMs": 27120,
     "endMs": 27250
   },
   {
     "text": "pins",
     "startMs": 27250,
-    "endMs": 27480
+    "endMs": 27470
   },
   {
     "text": "Brock",
-    "startMs": 27480,
-    "endMs": 27800
+    "startMs": 27470,
+    "endMs": 27820
   },
   {
     "text": "Les",
-    "startMs": 27800,
-    "endMs": 28210
+    "startMs": 27820,
+    "endMs": 28240
   },
   {
     "text": "nar",
-    "startMs": 28210,
+    "startMs": 28240,
     "endMs": 28290
   },
   {
@@ -647,106 +652,121 @@
   {
     "text": "the",
     "startMs": 28660,
-    "endMs": 28810
+    "endMs": 28940
   },
   {
     "text": "cell",
-    "startMs": 28810,
-    "endMs": 29070
+    "startMs": 28940,
+    "endMs": 29150
   },
   {
     "text": ".",
-    "startMs": 29070,
-    "endMs": 29270
+    "startMs": 29150,
+    "endMs": 29360
   },
   {
     "text": "28",
-    "startMs": 29270,
-    "endMs": 29670
+    "startMs": 29360,
+    "endMs": 29770
   },
   {
     "text": "%",
-    "startMs": 29670,
-    "endMs": 29840
+    "startMs": 29770,
+    "endMs": 29980
   },
   {
-    "text": "were",
-    "startMs": 29840,
-    "endMs": 30240
+    "text": "we",
+    "startMs": 29980,
+    "endMs": 30080
   },
   {
-    "text": "taking",
-    "startMs": 30240,
+    "text": "'re",
+    "startMs": 30080,
     "endMs": 30290
   },
   {
-    "text": "it",
+    "text": "taking",
     "startMs": 30290,
+    "endMs": 30330
+  },
+  {
+    "text": "it",
+    "startMs": 30310,
     "endMs": 30400
   },
   {
     "text": "anyway",
     "startMs": 30400,
-    "endMs": 30790
+    "endMs": 30960
   },
   {
     "text": ".",
-    "startMs": 30790,
-    "endMs": 30970
+    "startMs": 30960,
+    "endMs": 31000
   },
   {
     "text": "Clip",
-    "startMs": 30970,
+    "startMs": 30960,
     "endMs": 31220
   },
   {
     "text": "this",
     "startMs": 31220,
-    "endMs": 31470
-  },
-  {
-    "text": "August",
-    "startMs": 31470,
-    "endMs": 32000
-  },
-  {
-    "text": "2",
-    "startMs": 32000,
-    "endMs": 32040
-  },
-  {
-    "text": "nd",
-    "startMs": 32040,
-    "endMs": 32160
-  },
-  {
-    "text": "every",
-    "startMs": 32160,
-    "endMs": 32480
-  },
-  {
-    "text": "card",
-    "startMs": 32480,
-    "endMs": 32730
-  },
-  {
-    "text": "gets",
-    "startMs": 32730,
-    "endMs": 32980
-  },
-  {
-    "text": "graded",
-    "startMs": 32980,
-    "endMs": 33360
-  },
-  {
-    "text": "live",
-    "startMs": 33360,
-    "endMs": 33680
+    "endMs": 31420
   },
   {
     "text": ".",
-    "startMs": 33680,
-    "endMs": 33740
+    "startMs": 31420,
+    "endMs": 31590
+  },
+  {
+    "text": "August",
+    "startMs": 31590,
+    "endMs": 31930
+  },
+  {
+    "text": "2",
+    "startMs": 31930,
+    "endMs": 32100
+  },
+  {
+    "text": "nd",
+    "startMs": 32100,
+    "endMs": 32210
+  },
+  {
+    "text": ".",
+    "startMs": 32210,
+    "endMs": 32560
+  },
+  {
+    "text": "Every",
+    "startMs": 32560,
+    "endMs": 32670
+  },
+  {
+    "text": "card",
+    "startMs": 32670,
+    "endMs": 32910
+  },
+  {
+    "text": "gets",
+    "startMs": 32910,
+    "endMs": 33130
+  },
+  {
+    "text": "graded",
+    "startMs": 33130,
+    "endMs": 33460
+  },
+  {
+    "text": "live",
+    "startMs": 33460,
+    "endMs": 33890
+  },
+  {
+    "text": ".",
+    "startMs": 33890,
+    "endMs": 34160
   }
 ]

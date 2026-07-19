@@ -15,7 +15,7 @@ const data = [
 export const CallOneScene = ({duration}: {duration: number}) => {
   const frame = useCurrentFrame();
   const cardFrame = callCardFrame(duration);
-  const chartY = interpolate(frame, [cardFrame - 8, cardFrame + 8], [0, -920], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const chartY = interpolate(frame, [cardFrame - 8, cardFrame + 8], [0, -1100], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return (
     <SceneField>
       <Kicker>CALL ONE / THE PATTERN</Kicker>

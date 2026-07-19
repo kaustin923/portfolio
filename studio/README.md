@@ -11,7 +11,7 @@ npm install
 npx studio render scripts/demo.script.json
 ```
 
-`npm install` downloads Remotion's tested headless shell and the Apache-2.0 Kokoro q8 fallback model into package-local caches. Once setup finishes, rendering works offline. With a Samantha/Daniel voice, the renderer attempts `/usr/bin/say` first; if macOS returns no samples (as it can inside a restricted process sandbox), it uses the cached offline fallback. Setting the voice to `Kokoro` (as `scripts/demo.script.json` does) skips `say` entirely and always uses the package-local Kokoro model, so renders are byte-stable across sandboxed and unsandboxed environments. `/usr/bin/afconvert`, `/opt/homebrew/bin/whisper-cli`, `/opt/homebrew/bin/ffmpeg`, and `/opt/homebrew/bin/ffprobe` remain part of the pipeline.
+`npm install` downloads Remotion's tested headless shell and the Apache-2.0 Kokoro q8 fallback model into package-local caches. Once setup finishes, rendering works offline. With a Samantha/Daniel voice, the renderer attempts `/usr/bin/say` first; if macOS returns no samples (as it can inside a restricted process sandbox), it uses the cached offline fallback. Setting the voice to `Kokoro` (as `scripts/demo.script.json` does) skips `say` entirely and always uses the package-local Kokoro model, so renders are byte-stable across sandboxed and unsandboxed environments. `/usr/bin/afconvert`, `/opt/homebrew/bin/whisper-cli`, `/opt/homebrew/bin/ffmpeg`, and `/opt/homebrew/bin/ffprobe` are the default binary/model locations. Override the Homebrew defaults with `FFMPEG_PATH`, `FFPROBE_PATH`, `WHISPER_BIN`, and `WHISPER_MODEL`.
 
 Useful commands:
 
@@ -21,9 +21,10 @@ npm run preview
 npm run typecheck
 npx studio render scripts/demo.script.json --out out/custom.mp4
 npx studio render scripts/demo.script.json --voice Daniel --rate 176
+npx studio render scripts/episode-1.script.json --out out/episode-1.mp4 --reuse-audio
 ```
 
-The CLI attempts hardware H.264 encoding first and automatically falls back to x264 CRF 19 if VideoToolbox is unavailable.
+The CLI attempts hardware H.264 encoding first and automatically falls back to x264 CRF 19 if VideoToolbox is unavailable. Finished files are encoded as limited-range BT.709 `yuv420p`, and the final mux uses two-pass loudness normalization targeting -14 LUFS integrated and -1.5 dBTP.
 
 ## Architecture
 

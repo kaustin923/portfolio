@@ -13,24 +13,32 @@ import {extractWhisperWords, resolveEpisodeTiming} from '../src/timing-core.js';
 const STUDIO_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SAY = '/usr/bin/say';
 const AFCONVERT = '/usr/bin/afconvert';
-const FFMPEG = '/opt/homebrew/bin/ffmpeg';
-const FFPROBE = '/opt/homebrew/bin/ffprobe';
-const WHISPER = '/opt/homebrew/bin/whisper-cli';
-const WHISPER_MODEL = path.resolve(STUDIO_DIR, '../trend-engine/models/ggml-base.en.bin');
+const FFMPEG = process.env.FFMPEG_PATH || '/opt/homebrew/bin/ffmpeg';
+const FFPROBE = process.env.FFPROBE_PATH || '/opt/homebrew/bin/ffprobe';
+const WHISPER = process.env.WHISPER_BIN || '/opt/homebrew/bin/whisper-cli';
+const WHISPER_MODEL = process.env.WHISPER_MODEL
+  ? path.resolve(process.env.WHISPER_MODEL)
+  : path.resolve(STUDIO_DIR, '../trend-engine/models/ggml-base.en.bin');
 const TREND_ENV = path.resolve(STUDIO_DIR, '../trend-engine/.env');
 const BROWSER_WRAPPER = path.join(STUDIO_DIR, 'cli/chrome-single-process.sh');
 const FPS = 30;
 const KOKORO_CACHE = path.join(STUDIO_DIR, '.cache/kokoro');
+const LOUDNORM = {integrated: -14, truePeak: -1.5, range: 11};
+const AAC_CEILING_GUARD = 0.82;
 
 const usage = () => {
-  console.log('Usage: npx studio render <script.json> [--out path] [--voice name] [--rate wpm]');
+  console.log('Usage: npx studio render <script.json> [--out path] [--voice name] [--rate wpm] [--reuse-audio]');
 };
 
 const parseArgs = (argv) => {
   if (argv[0] !== 'render' || !argv[1]) return null;
-  const result = {command: argv[0], script: argv[1], out: null, voice: null, rate: null};
+  const result = {command: argv[0], script: argv[1], out: null, voice: null, rate: null, reuseAudio: false};
   for (let index = 2; index < argv.length; index++) {
     const flag = argv[index];
+    if (flag === '--reuse-audio') {
+      result.reuseAudio = true;
+      continue;
+    }
     const value = argv[index + 1];
     if (flag === '--out' && value) result.out = value;
     else if (flag === '--voice' && value) result.voice = value;
@@ -128,6 +136,44 @@ const probeMedia = async (file) => {
   const {stdout} = await run(FFPROBE, ['-v', 'error', '-show_entries', 'format=duration,size', '-of', 'json', file], {quiet: true});
   const payload = JSON.parse(stdout);
   return {duration: Number(payload.format.duration), size: Number(payload.format.size)};
+};
+
+const parseLoudnormStats = (stderr) => {
+  const blocks = [...stderr.matchAll(/\{\s*"input_i"[\s\S]*?\}/g)];
+  if (blocks.length === 0) throw new Error('ffmpeg loudnorm analysis returned no JSON measurements.');
+  const stats = JSON.parse(blocks.at(-1)[0]);
+  for (const key of ['input_i', 'input_tp', 'input_lra', 'input_thresh', 'target_offset']) {
+    if (!Number.isFinite(Number(stats[key]))) throw new Error(`ffmpeg loudnorm returned an invalid ${key} measurement.`);
+  }
+  return stats;
+};
+
+const loudnormBase = () => `loudnorm=I=${LOUDNORM.integrated}:TP=${LOUDNORM.truePeak}:LRA=${LOUDNORM.range}`;
+
+const loudnormFinalMix = async ({input, output}) => {
+  const firstPass = await run(FFMPEG, [
+    '-hide_banner', '-nostats', '-i', input, '-map', '0:a:0', '-vn',
+    '-af', `${loudnormBase()}:print_format=json`, '-f', 'null', '-',
+  ], {label: 'Loudness analysis — pass 1 of 2', quiet: true});
+  const measured = parseLoudnormStats(firstPass.stderr);
+  const secondPassFilter = [
+    loudnormBase(),
+    `measured_I=${measured.input_i}`,
+    `measured_TP=${measured.input_tp}`,
+    `measured_LRA=${measured.input_lra}`,
+    `measured_thresh=${measured.input_thresh}`,
+    `offset=${measured.target_offset}`,
+    'linear=true',
+    'print_format=summary',
+  ].join(':');
+  await run(FFMPEG, [
+    '-y', '-v', 'error', '-i', input,
+    '-map', '0:v:0', '-map', '0:a:0',
+    '-c:v', 'copy',
+    '-c:a', 'aac', '-b:a', '192k', '-ar', '48000',
+    '-af', `${secondPassFilter},alimiter=limit=${AAC_CEILING_GUARD}:attack=5:release=50:level=false`,
+    '-movflags', '+faststart', output,
+  ], {label: 'Final mux and loudness normalization — pass 2 of 2', quiet: true});
 };
 
 const makeSyntheticWords = (narration, durationMs) => {
@@ -237,6 +283,18 @@ const synthesizeNarration = async ({episode, generatedDir, voice, rate}) => {
   return {wav, whisperWav, durationMs: Math.round(media.duration * 1000)};
 };
 
+const reuseNarration = async ({generatedDir}) => {
+  const wav = path.join(generatedDir, 'vo.wav');
+  const whisperWav = path.join(generatedDir, 'vo16k.wav');
+  if (!existsSync(wav) || !existsSync(whisperWav)) {
+    throw new Error('--reuse-audio requires existing vo.wav and vo16k.wav files for this episode.');
+  }
+  const media = await probeMedia(wav);
+  if (!Number.isFinite(media.duration) || media.duration <= 0) throw new Error('ffprobe could not measure reused narration duration.');
+  console.log('[studio] Reusing existing narration audio; TTS is skipped.');
+  return {wav, whisperWav, durationMs: Math.round(media.duration * 1000)};
+};
+
 const transcribe = async ({episode, generatedDir, whisperWav, durationMs}) => {
   const outBase = path.join(generatedDir, 'whisper');
   let words = [];
@@ -301,13 +359,15 @@ const renderEpisode = async ({episode, timing, assetBase, output}) => {
   });
   console.log(`[studio] Rendering ${composition.durationInFrames} frames at ${composition.width}x${composition.height}/${composition.fps}fps`);
   let lastPercent = -1;
+  const intermediateOutput = path.join(path.dirname(output), `.${path.basename(output)}.rendering-${process.pid}.mp4`);
   const commonRenderOptions = {
     composition,
     serveUrl,
     codec: 'h264',
-    outputLocation: output,
+    outputLocation: intermediateOutput,
     inputProps,
     pixelFormat: 'yuv420p',
+    colorSpace: 'bt709',
     audioCodec: 'aac',
     audioBitrate: '192k',
     concurrency: null,
@@ -324,14 +384,19 @@ const renderEpisode = async ({episode, timing, assetBase, output}) => {
     },
   };
   try {
-    await renderMedia({...commonRenderOptions, videoBitrate: '12M', hardwareAcceleration: 'if-possible'});
-  } catch (error) {
-    if (!String(error?.message ?? error).includes('videotoolbox')) throw error;
-    console.warn('\n[studio] VideoToolbox is unavailable; retrying with software x264 at CRF 19.');
-    lastPercent = -1;
-    await renderMedia({...commonRenderOptions, crf: 19, hardwareAcceleration: 'disable'});
+    try {
+      await renderMedia({...commonRenderOptions, videoBitrate: '12M', hardwareAcceleration: 'if-possible'});
+    } catch (error) {
+      if (!String(error?.message ?? error).includes('videotoolbox')) throw error;
+      console.warn('\n[studio] VideoToolbox is unavailable; retrying with software x264 at CRF 19.');
+      lastPercent = -1;
+      await renderMedia({...commonRenderOptions, crf: 19, hardwareAcceleration: 'disable'});
+    }
+    process.stdout.write('\r[studio] Render 100%\n');
+    await loudnormFinalMix({input: intermediateOutput, output});
+  } finally {
+    await unlink(intermediateOutput).catch(() => undefined);
   }
-  process.stdout.write('\r[studio] Render 100%\n');
 };
 
 const main = async () => {
@@ -353,7 +418,9 @@ const main = async () => {
   const rate = args.rate ?? episode.voice.rate;
   episode.voice = {...episode.voice, name: voice, rate};
   console.log(`[studio] Episode ${episode.id}`);
-  const {whisperWav, durationMs} = await synthesizeNarration({episode, generatedDir, voice, rate});
+  const {whisperWav, durationMs} = args.reuseAudio
+    ? await reuseNarration({generatedDir})
+    : await synthesizeNarration({episode, generatedDir, voice, rate});
   const words = await transcribe({episode, generatedDir, whisperWav, durationMs});
   const timing = resolveEpisodeTiming({words, scenes: episode.scenes, narration: episode.narration, durationMs, fps: FPS});
   await writeFile(path.join(generatedDir, 'words.json'), `${JSON.stringify(words, null, 2)}\n`);
