@@ -1,10 +1,12 @@
 # trend-engine
 
-A multi-agent workflow that **detects trending topics**, **sources footage under a defensible license**, **clips + captions it**, routes it through a **human approval gate on Telegram**, and **publishes to multiple platforms** — then **monitors performance** to make the trend detection smarter over time.
+A multi-agent workflow that **forecasts trends before they peak**, **sources footage under a defensible license**, **clips + captions it**, routes it through a **human approval gate on Telegram**, and **publishes to multiple platforms** — then **monitors performance and learns** from what converted.
 
-Built with the Claude Agent SDK / Anthropic SDK (`claude-opus-4-8`). Runs fully offline in `DRY_RUN` mode (the default) with mocked sources so you can see the whole pipeline before wiring a single credential.
+The brain is **Claude Fable 5** (with server-side refusal fallback to Opus 4.8). The brain is *injectable*, so the entire pipeline runs **end-to-end offline with a mock brain** — no API key needed to test. `npm test` proves it (32 tests).
 
 > ⚠️ **Read [Legal model](#legal-model) first.** This is designed around *licensed / Creative Commons / original* footage plus a mandatory human sign-off — not around reposting other people's copyrighted videos. That distinction is what makes it a business instead of a lawsuit.
+
+> 🔮 **Predictive, not reactive.** The forecaster deliberately *skips* topics that are already peaking or saturated (posting generic World Cup content once the tournament is underway is a losing game) and surfaces what's *on the horizon* — with a lead time and a concrete posting window.
 
 ---
 
@@ -46,13 +48,13 @@ Each agent is a small module in `src/agents/`. The **reasoning** (ranking topics
 
 | Agent | File | What it does | Status |
 |---|---|---|---|
-| **Trend Scout** | `agents/trendScout.ts` | Pulls signals from Reddit, Google Trends, YouTube, Hacker News; Claude clusters + ranks them into scored topics (momentum, longevity, saturation, opportunity). | **Built out** (live free APIs + fixtures) |
-| **Sourcing** | `agents/sourcing.ts` | Finds footage **with license metadata** — original / stock / Creative Commons. Refuses arbitrary copyrighted clips. | Real license model, mocked providers |
-| **Editor** | `agents/editor.ts` | Claude writes the caption + hashtags; ffmpeg cuts to 9:16, burns captions + attribution. | Copy is live; ffmpeg stubbed |
+| **Trend Forecaster** | `agents/trendScout.ts` | Fuses reactive signals (Reddit/Trends/YouTube/HN) with **upcoming catalysts** (scheduled events 2–8 weeks out); Fable places each topic on its hype curve (`emerging`→`saturated`) and returns lead time + a post window. **Skips saturated topics.** | **Built out** (live APIs + fixtures) |
+| **Sourcing** | `agents/sourcing.ts` + `sourcing/` | Finds footage **with license metadata** — real Pexels (stock) + Wikimedia (CC/PD with per-file license extraction) + original. Drops anything `unknown` at the boundary. | **Built out** |
+| **Editor** | `agents/editor.ts` | Fable writes caption + hashtags; real ffmpeg reframes to 9:16/1:1/16:9, trims ≤30s, burns captions + an attribution card. | **Built out** (real ffmpeg render) |
 | **Compliance Gate** | `agents/compliance.ts` | Hard-blocks anything without a defensible license; flags everything non-original for human review. | **Built out** |
-| **Telegram approval** | `approval/telegram.ts` | DMs you the topic, caption, license + source; ✅/❌ buttons, or reply to override the caption. | **Built out** (raw Bot API, no deps) |
-| **Publisher** | `agents/publisher.ts` | Posts via each platform's **official** content API. | Stubbed adapters |
-| **Monitor** | `agents/monitor.ts` | Pulls per-post metrics, writes `data/metrics.jsonl` to feed the Scout. | Stubbed |
+| **Telegram approval** | `approval/telegram.ts` | DMs you the topic, forecast, timing, caption, license + source; ✅/❌ buttons, or reply to override the caption. | **Built out** (raw Bot API, no deps) |
+| **Publisher** | `agents/publisher.ts` + `publishers/` | Posts via each platform's **official** content API (YouTube Data v3, TikTok Content Posting, IG Graph Reels, X v2). Missing creds → `skipped` (never blocks the run). | **Built out** (official API clients) |
+| **Monitor + learning** | `agents/monitor.ts`, `learning.ts` | Records metrics joined to the forecast (`outcomes.jsonl`); `getLearningSummary()` aggregates what converted and feeds it back into the forecaster's prompt. | **Built out** (learning loop closed) |
 
 ---
 
@@ -92,6 +94,14 @@ Run the full pipeline once (mocked end-to-end in DRY_RUN — auto-approves and "
 
 ```bash
 npm start
+```
+
+Prove it works — the whole pipeline runs offline against a mock brain (no API key):
+
+```bash
+npm test        # 32 tests: forecasting, saturation-skip, compliance, sourcing licenses,
+                # ffmpeg arg-building, publisher skip-on-missing-creds, learning loop
+npm run typecheck
 ```
 
 ### Going live (incrementally)

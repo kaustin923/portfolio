@@ -72,8 +72,9 @@ async function processTopic(topic: Topic, report: RunReport): Promise<void> {
   report.published += ok;
   console.log(`  ✅ published to ${ok}/${results.length} platforms`);
 
-  // 6. Monitor — record metrics to feed back into the Scout.
-  const metrics = await trackResults(results);
+  // 6. Monitor — record metrics + outcome (joined to the forecast) so the
+  //    learning loop can bias future forecasts toward what actually converted.
+  const metrics = await trackResults(results, topic);
   report.metrics.push(...metrics);
 }
 
