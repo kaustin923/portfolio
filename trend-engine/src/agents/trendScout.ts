@@ -85,7 +85,17 @@ const SCHEMA = {
             type: 'array',
             items: {
               type: 'string',
-              enum: ['reddit', 'google-trends', 'youtube', 'hackernews', 'mock'],
+              enum: [
+                'reddit',
+                'google-trends',
+                'youtube',
+                'hackernews',
+                'thesportsdb',
+                'wikipedia',
+                'gdelt',
+                'google-news',
+                'mock',
+              ],
             },
           },
         },
@@ -161,6 +171,12 @@ export async function discoverTopics(today = new Date().toISOString().slice(0, 1
     `Return the top ${config.trendScout.topN} forward-looking topics as JSON.\n\n` +
     `HISTORICAL PERFORMANCE (bias toward what has converted before):\n${learning}\n\n` +
     `REACTIVE SIGNALS (loud now):\n${renderSignals(signals) || '(none)'}\n\n` +
+    `SIGNAL SOURCE CHARACTER (weight leading sources for stage/leadTime, lagging for saturation): ` +
+    `thesportsdb=leading (scheduled events, days-to-weeks ahead), ` +
+    `wikipedia=leading (attention accelerating before mainstream peak), ` +
+    `gdelt=coincident (news velocity, hours ahead of social saturation), ` +
+    `google-news=lagging (already mainstream — treat matching topics as closer to peaking/saturated), ` +
+    `reddit/youtube/google-trends/hackernews=coincident.\n\n` +
     `UPCOMING CATALYSTS (coming soon):\n${renderCatalysts(upcoming) || '(none)'}`;
   if (perf) {
     user +=

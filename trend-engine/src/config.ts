@@ -91,6 +91,15 @@ export const config = {
     maxClipSec: num('EDITOR_MAX_SEC', 30),
   },
 
+  tts: {
+    sayPath: process.env.SAY_PATH ?? 'say',
+    voice: process.env.TTS_VOICE ?? '',
+    /** Words per minute. Zero uses the system voice's default rate. */
+    rate: num('TTS_RATE', 0),
+    whisperBin: process.env.WHISPER_BIN ?? '',
+    whisperModel: process.env.WHISPER_MODEL ?? '',
+  },
+
   /** Local directory for rendered clips + run state. */
   dataDir: trailingSeparator(
     process.env.DATA_DIR ?? fileURLToPath(new URL('../data/', import.meta.url)),

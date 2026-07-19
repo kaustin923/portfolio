@@ -38,7 +38,16 @@ export interface LicenseInfo {
 // Trend Scout
 // ────────────────────────────────────────────────────────────────────────────
 
-export type SignalSource = 'reddit' | 'google-trends' | 'youtube' | 'hackernews' | 'mock';
+export type SignalSource =
+  | 'reddit'
+  | 'google-trends'
+  | 'youtube'
+  | 'hackernews'
+  | 'thesportsdb'
+  | 'wikipedia'
+  | 'gdelt'
+  | 'google-news'
+  | 'mock';
 
 /** A raw, per-source observation before any cross-source reasoning. */
 export interface TrendSignal {
@@ -164,6 +173,12 @@ export interface ClipDraft {
   hashtags: string[];
   targetPlatforms: Platform[];
   license: LicenseInfo;
+  /**
+   * True when narration/voiceover is AI-generated. Publishers should pass the
+   * platform AI-generated-content disclosure where the API supports it
+   * (YouTube altered-content flag, TikTok aigc_description).
+   */
+  syntheticMedia?: boolean;
 }
 
 export interface ComplianceResult {

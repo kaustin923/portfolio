@@ -73,6 +73,95 @@ function assTimestamp(durationSec: number): string {
   return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(centiseconds).padStart(2, '0')}`;
 }
 
+function assDocument(events: string[]): string {
+  return `[Script Info]
+ScriptType: v4.00+
+PlayResX: ${SAFE_AREA.canvas.width}
+PlayResY: ${SAFE_AREA.canvas.height}
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Caption,Arial,72,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,2,2,130,130,${SAFE_AREA.bottomMarginPx},1
+Style: Attribution,Arial,34,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3,1,2,130,130,380,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+${events.join('\n')}
+`;
+}
+
+export interface CaptionCue {
+  startSec: number;
+  endSec: number;
+  text: string;
+}
+
+/** Build an ASS sidecar with individually timed caption cues. */
+export function buildTimedAss(
+  cues: CaptionCue[],
+  attribution: string | undefined,
+  durationSec: number,
+): string {
+  const events = cues.map(
+    (cue) =>
+      `Dialogue: 0,${assTimestamp(cue.startSec)},${assTimestamp(cue.endSec)},Caption,,0,0,0,,${assEscape(cue.text)}`,
+  );
+
+  if (attribution) {
+    events.push(
+      `Dialogue: 0,0:00:00.00,${assTimestamp(durationSec)},Attribution,,0,0,0,,${assEscape(attribution)}`,
+    );
+  }
+
+  return assDocument(events);
+}
+
+/** Allocate sentence cues contiguously according to their character share. */
+export function proportionalCues(script: string, audioDurationSec: number): CaptionCue[] {
+  const normalized = script.trim();
+  if (!normalized) return [];
+
+  const sentences = normalized
+    .split(/(?<=[.!?])\s+/)
+    .map((sentence) => sentence.trim())
+    .filter(Boolean);
+  const parts = sentences.length > 0 ? sentences : [normalized];
+  const totalCharacters = parts.reduce((total, sentence) => total + sentence.length, 0);
+  const durationSec = Number.isFinite(audioDurationSec) ? Math.max(0, audioDurationSec) : 0;
+  let cursor = 0;
+
+  return parts.map((text, index) => {
+    const startSec = cursor;
+    const endSec =
+      index === parts.length - 1
+        ? durationSec
+        : cursor + durationSec * (text.length / totalCharacters);
+    cursor = endSec;
+    return { startSec, endSec, text };
+  });
+}
+
+/** Parse whisper.cpp's `-oj` transcription array into second-based cues. */
+export function whisperCues(whisperJsonText: string): CaptionCue[] {
+  const parsed = JSON.parse(whisperJsonText) as {
+    transcription?: Array<{
+      offsets?: { from?: number; to?: number };
+      text?: string;
+    }>;
+  };
+
+  return (parsed.transcription ?? []).flatMap((entry) => {
+    const fromMs = Number(entry.offsets?.from);
+    const toMs = Number(entry.offsets?.to);
+    const text = entry.text?.trim() ?? '';
+    if (!Number.isFinite(fromMs) || !Number.isFinite(toMs) || toMs < fromMs || !text) {
+      return [];
+    }
+    return [{ startSec: fromMs / 1000, endSec: toMs / 1000, text }];
+  });
+}
+
 /** Build the libass sidecar burned by the renderer when subtitles are available. */
 export function buildAss(
   caption: string,
@@ -90,19 +179,5 @@ export function buildAss(
     );
   }
 
-  return `[Script Info]
-ScriptType: v4.00+
-PlayResX: ${SAFE_AREA.canvas.width}
-PlayResY: ${SAFE_AREA.canvas.height}
-ScaledBorderAndShadow: yes
-
-[V4+ Styles]
-Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Caption,Arial,72,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,5,2,2,130,130,${SAFE_AREA.bottomMarginPx},1
-Style: Attribution,Arial,34,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,1,3,1,2,130,130,380,1
-
-[Events]
-Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-${events.join('\n')}
-`;
+  return assDocument(events);
 }

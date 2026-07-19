@@ -9,7 +9,7 @@ import { config } from '../config.js';
 import type { AspectRatio } from '../types.js';
 import { buildAss, escapeDrawtext, SAFE_AREA, wrapText } from './captions.js';
 
-interface ProcessResult {
+export interface ProcessResult {
   stdout: string;
   stderr: string;
 }
@@ -25,7 +25,7 @@ interface ProbeJson {
   format?: { duration?: string };
 }
 
-function spawnProcess(bin: string, args: string[]): Promise<ProcessResult> {
+export function spawnProcess(bin: string, args: string[]): Promise<ProcessResult> {
   return new Promise((resolve, reject) => {
     const child = spawn(bin, args, {
       shell: false,
@@ -57,7 +57,7 @@ function spawnProcess(bin: string, args: string[]): Promise<ProcessResult> {
   });
 }
 
-function isMissingBinary(error: unknown): boolean {
+export function isMissingBinary(error: unknown): boolean {
   return error instanceof Error && (error as NodeJS.ErrnoException).code === 'ENOENT';
 }
 
@@ -132,27 +132,59 @@ export async function probe(filePath: string): Promise<{
   };
 }
 
+/** Read an audio-only file's container duration without requiring a video stream. */
+export async function probeAudioDurationSec(filePath: string): Promise<number> {
+  const result = await runTool(
+    'ffprobe',
+    config.ffprobePath,
+    '/opt/homebrew/bin/ffprobe',
+    ['-v', 'error', '-show_format', '-of', 'json', filePath],
+  );
+
+  let parsed: Pick<ProbeJson, 'format'>;
+  try {
+    parsed = JSON.parse(result.stdout) as Pick<ProbeJson, 'format'>;
+  } catch (error) {
+    throw new Error(`Invalid ffprobe output for ${filePath}`, { cause: error });
+  }
+  return Number(parsed.format?.duration);
+}
+
 export interface FfmpegCapabilities {
   drawtext: boolean;
   subtitles: boolean;
 }
 
 let capabilitiesPromise: Promise<FfmpegCapabilities> | undefined;
+let capabilityProbeCount = 0;
 
 export function detectCapabilities(): Promise<FfmpegCapabilities> {
-  capabilitiesPromise ??= runTool(
-    'ffmpeg',
-    config.ffmpegPath,
-    '/opt/homebrew/bin/ffmpeg',
-    ['-hide_banner', '-filters'],
-  ).then(({ stdout, stderr }) => {
-    const filters = `${stdout}\n${stderr}`;
-    return {
-      drawtext: filters.includes(' drawtext '),
-      subtitles: filters.includes(' subtitles '),
-    };
-  });
+  if (!capabilitiesPromise) {
+    capabilityProbeCount += 1;
+    capabilitiesPromise = runTool(
+      'ffmpeg',
+      config.ffmpegPath,
+      '/opt/homebrew/bin/ffmpeg',
+      ['-hide_banner', '-filters'],
+    ).then(({ stdout, stderr }) => {
+      const filters = `${stdout}\n${stderr}`;
+      return {
+        drawtext: filters.includes(' drawtext '),
+        subtitles: filters.includes(' subtitles '),
+      };
+    });
+  }
   return capabilitiesPromise;
+}
+
+/** Clear the memoized ffmpeg filter detection result (primarily for tests). */
+export function resetCapabilitiesCache(): void {
+  capabilitiesPromise = undefined;
+}
+
+/** Number of real ffmpeg filter probes started by this module. */
+export function getCapabilityProbeCount(): number {
+  return capabilityProbeCount;
 }
 
 export async function downloadToFile(url: string, destPath: string): Promise<void> {
@@ -177,6 +209,12 @@ export function dimensionsFor(aspectRatio: AspectRatio): { width: number; height
     case '16:9':
       return { width: 1920, height: 1080 };
   }
+}
+
+/** Build the drawtext textfile filter without allowing `%{...}` expansion. */
+export function captionTextfileFilter(textFilePath: string, width: number): string {
+  const fontsize = Math.round(width * 0.045);
+  return `drawtext=expansion=none:textfile=${escapeDrawtext(textFilePath)}:x=(w-tw)/2:y=h*0.72:fontsize=${fontsize}:fontcolor=white:borderw=2:bordercolor=black:box=1:boxcolor=black@0.55:line_spacing=10`;
 }
 
 export async function renderToVertical(opts: {
@@ -209,9 +247,7 @@ export async function renderToVertical(opts: {
     const maxChars = Math.max(12, Math.floor((width * 0.9) / (fontsize * 0.55)));
     captionTextPath = `${opts.outputPath}.caption.txt`;
     await writeFile(captionTextPath, wrapText(opts.caption, maxChars).join('\n'));
-    filterParts.push(
-      `drawtext=textfile=${escapeDrawtext(captionTextPath)}:x=(w-tw)/2:y=h*0.72:fontsize=${fontsize}:fontcolor=white:borderw=2:bordercolor=black:box=1:boxcolor=black@0.55:line_spacing=10`,
-    );
+    filterParts.push(captionTextfileFilter(captionTextPath, width));
   } else if (opts.caption) {
     console.warn('[editor] ffmpeg subtitles and drawtext are unavailable; caption cannot be burned in.');
   }

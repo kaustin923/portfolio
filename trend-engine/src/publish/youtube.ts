@@ -76,6 +76,8 @@ export async function publishYouTube(
       status: {
         privacyStatus,
         selfDeclaredMadeForKids: false,
+        // YouTube altered-content disclosure for AI-generated narration.
+        ...(draft.syntheticMedia ? { containsSyntheticMedia: true } : {}),
       },
     }),
   });

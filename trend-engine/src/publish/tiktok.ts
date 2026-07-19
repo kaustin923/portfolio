@@ -88,6 +88,8 @@ export async function publishTikTok(
         disable_duet: false,
         disable_comment: false,
         disable_stitch: false,
+        // TikTok AIGC disclosure for AI-generated narration.
+        ...(draft.syntheticMedia ? { is_aigc: true } : {}),
       },
       source_info: {
         source: 'FILE_UPLOAD',

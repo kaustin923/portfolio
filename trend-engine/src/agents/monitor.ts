@@ -6,13 +6,14 @@
  * feedback signal that makes the Trend Scout smarter over time: which domains,
  * angles, and momentum profiles actually converted into views.
  *
- * Live analytics clients are scaffolded per platform; DRY_RUN uses stable mock
- * metrics so local runs exercise the learning path without adding noise.
+ * Live analytics clients query each platform; DRY_RUN uses stable mock metrics
+ * so local runs exercise the learning path without adding noise.
  */
 
 import { appendFile, mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { config } from '../config.js';
+import { expectJson, getFetch, requireEnv, sleep } from '../publish/http.js';
 import type {
   Platform,
   PostMetrics,
@@ -33,12 +34,79 @@ export interface TopicOutcome extends PostMetrics {
 
 type EngagementStats = Pick<PostMetrics, 'views' | 'likes' | 'comments' | 'shares'>;
 
-const EMPTY_STATS: EngagementStats = {
-  views: 0,
-  likes: 0,
-  comments: 0,
-  shares: 0,
-};
+interface YouTubeTokenResponse {
+  access_token?: string;
+}
+
+interface YouTubeStatsResponse {
+  items?: Array<{
+    statistics?: {
+      viewCount?: string | number;
+      likeCount?: string | number;
+      commentCount?: string | number;
+    };
+  }>;
+}
+
+interface TikTokStatsResponse {
+  data?: {
+    videos?: Array<{
+      view_count?: number | string;
+      like_count?: number | string;
+      comment_count?: number | string;
+      share_count?: number | string;
+    }>;
+  };
+}
+
+interface InstagramStatsResponse {
+  data?: Array<{
+    name?: string;
+    values?: Array<{ value?: number | string }>;
+  }>;
+}
+
+interface XStatsResponse {
+  data?: {
+    public_metrics?: {
+      impression_count?: number | string;
+      like_count?: number | string;
+      reply_count?: number | string;
+      retweet_count?: number | string;
+    };
+  };
+}
+
+async function fetchJsonWithRetry<T>(
+  request: () => Promise<Response>,
+  context: string,
+): Promise<T> {
+  let firstResponse: Response;
+  try {
+    firstResponse = await request();
+  } catch {
+    await sleep(1_000);
+    return expectJson<T>(await request(), context);
+  }
+
+  const retryableStatus = firstResponse.status === 429 || firstResponse.status >= 500;
+  if (!retryableStatus) {
+    try {
+      return await expectJson<T>(firstResponse, context);
+    } catch (err) {
+      if (!firstResponse.ok) throw err;
+      await sleep(1_000);
+      return expectJson<T>(await request(), context);
+    }
+  }
+
+  await sleep(1_000);
+  return expectJson<T>(await request(), context);
+}
+
+function count(value: unknown): number {
+  return Number(value) || 0;
+}
 
 function fnv1a(value: string): number {
   let hash = 0x811c9dc5;
@@ -63,35 +131,143 @@ function mockMetrics(postId: string, platform: Platform, capturedAt: string): Po
   };
 }
 
-async function fetchYouTubeStats(_postId: string): Promise<EngagementStats> {
-  // TODO: GET https://www.googleapis.com/youtube/v3/videos?part=statistics&id=<videoId>&key=<apiKey>
-  // Map statistics.viewCount/likeCount/commentCount; shares is not exposed.
-  console.warn('[monitor:youtube-shorts] analytics not implemented yet — recording zeros');
-  return EMPTY_STATS;
+async function fetchYouTubeStats(postId: string): Promise<EngagementStats | null> {
+  const fetch = getFetch();
+  const apiKey = config.apiKeys.youtube.trim();
+  let authorization: string | undefined;
+
+  if (!apiKey) {
+    // requireEnv's publishing-oriented wording is shared with every live API adapter.
+    const env = requireEnv('YouTube analytics', [
+      'YOUTUBE_CLIENT_ID',
+      'YOUTUBE_CLIENT_SECRET',
+      'YOUTUBE_REFRESH_TOKEN',
+    ]);
+    const tokenBody = new URLSearchParams({
+      grant_type: 'refresh_token',
+      client_id: env.YOUTUBE_CLIENT_ID!,
+      client_secret: env.YOUTUBE_CLIENT_SECRET!,
+      refresh_token: env.YOUTUBE_REFRESH_TOKEN!,
+    });
+    const tokenJson = await fetchJsonWithRetry<YouTubeTokenResponse>(
+      () =>
+        fetch('https://oauth2.googleapis.com/token', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: tokenBody,
+        }),
+      '[monitor:youtube-shorts] token refresh',
+    );
+    if (!tokenJson.access_token) {
+      throw new Error('[monitor:youtube-shorts] token refresh response missing access_token');
+    }
+    authorization = `Bearer ${tokenJson.access_token}`;
+  }
+
+  const url = new URL('https://www.googleapis.com/youtube/v3/videos');
+  url.searchParams.set('part', 'statistics');
+  url.searchParams.set('id', postId);
+  if (apiKey) url.searchParams.set('key', apiKey);
+
+  const json = await fetchJsonWithRetry<YouTubeStatsResponse>(
+    () =>
+      fetch(url, {
+        ...(authorization ? { headers: { Authorization: authorization } } : {}),
+      }),
+    '[monitor:youtube-shorts] stats fetch',
+  );
+  const statistics = json.items?.[0]?.statistics;
+  if (!statistics) return null;
+
+  const views = count(statistics.viewCount);
+  if (views <= 0) return null;
+  return {
+    views,
+    likes: count(statistics.likeCount),
+    comments: count(statistics.commentCount),
+    shares: 0,
+  };
 }
 
-async function fetchTikTokStats(_postId: string): Promise<EngagementStats> {
-  // TODO: Display API POST /v2/video/query/ with view_count, like_count,
-  // comment_count, and share_count fields using an OAuth user token.
-  console.warn('[monitor:tiktok] analytics not implemented yet — recording zeros');
-  return EMPTY_STATS;
+async function fetchTikTokStats(postId: string): Promise<EngagementStats | null> {
+  // requireEnv's publishing-oriented wording is shared with every live API adapter.
+  const env = requireEnv('TikTok analytics', ['TIKTOK_ACCESS_TOKEN']);
+  const fetch = getFetch();
+  const json = await fetchJsonWithRetry<TikTokStatsResponse>(
+    () => fetch(
+      'https://open.tiktokapis.com/v2/video/query/?fields=id,view_count,like_count,comment_count,share_count',
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${env.TIKTOK_ACCESS_TOKEN}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ filters: { video_ids: [postId] } }),
+      },
+    ),
+    '[monitor:tiktok] stats fetch',
+  );
+  const video = json.data?.videos?.[0];
+  if (!video) return null;
+
+  return {
+    views: count(video.view_count),
+    likes: count(video.like_count),
+    comments: count(video.comment_count),
+    shares: count(video.share_count),
+  };
 }
 
-async function fetchInstagramStats(_postId: string): Promise<EngagementStats> {
-  // TODO: Graph API GET /{ig-media-id}/insights with views, likes, comments,
-  // and shares metrics using a page access token.
-  console.warn('[monitor:instagram-reels] analytics not implemented yet — recording zeros');
-  return EMPTY_STATS;
+async function fetchInstagramStats(postId: string): Promise<EngagementStats | null> {
+  // requireEnv's publishing-oriented wording is shared with every live API adapter.
+  const env = requireEnv('Instagram analytics', ['IG_ACCESS_TOKEN']);
+  const fetch = getFetch();
+  const url =
+    `https://graph.facebook.com/v23.0/${encodeURIComponent(postId)}/insights` +
+    `?metric=views,likes,comments,shares&access_token=${encodeURIComponent(env.IG_ACCESS_TOKEN!)}`;
+  const json = await fetchJsonWithRetry<InstagramStatsResponse>(
+    () => fetch(url),
+    '[monitor:instagram-reels] stats fetch',
+  );
+  if (!json.data || json.data.length === 0) return null;
+
+  const values = new Map(
+    json.data.map((metric) => [metric.name, metric.values?.[0]?.value]),
+  );
+  return {
+    views: count(values.get('views')),
+    likes: count(values.get('likes')),
+    comments: count(values.get('comments')),
+    shares: count(values.get('shares')),
+  };
 }
 
-async function fetchXStats(_postId: string): Promise<EngagementStats> {
-  // TODO: GET /2/tweets/:id?tweet.fields=public_metrics and map
-  // impression_count, like_count, reply_count, and retweet_count.
-  console.warn('[monitor:x] analytics not implemented yet — recording zeros');
-  return EMPTY_STATS;
+async function fetchXStats(postId: string): Promise<EngagementStats | null> {
+  // requireEnv's publishing-oriented wording is shared with every live API adapter.
+  const env = requireEnv('X analytics', ['X_ACCESS_TOKEN']);
+  const fetch = getFetch();
+  const json = await fetchJsonWithRetry<XStatsResponse>(
+    () => fetch(
+      `https://api.x.com/2/tweets/${encodeURIComponent(postId)}?tweet.fields=public_metrics`,
+      { headers: { Authorization: `Bearer ${env.X_ACCESS_TOKEN}` } },
+    ),
+    '[monitor:x] stats fetch',
+  );
+  const publicMetrics = json.data?.public_metrics;
+  if (!publicMetrics) return null;
+
+  return {
+    views: count(publicMetrics.impression_count),
+    likes: count(publicMetrics.like_count),
+    comments: count(publicMetrics.reply_count),
+    shares: count(publicMetrics.retweet_count),
+  };
 }
 
-async function fetchLiveStats(postId: string, platform: Platform): Promise<EngagementStats> {
+async function fetchLiveStats(
+  postId: string,
+  platform: Platform,
+): Promise<EngagementStats | null> {
   switch (platform) {
     case 'youtube-shorts':
       return fetchYouTubeStats(postId);
@@ -144,12 +320,21 @@ export async function trackResults(
       metrics.push(mockMetrics(postId, result.platform, capturedAt));
       continue;
     }
-    let stats: EngagementStats;
+    let stats: EngagementStats | null;
     try {
       stats = await fetchLiveStats(postId, result.platform);
     } catch (err) {
-      console.warn(`[monitor:${result.platform}] analytics failed — recording zeros:`, err);
-      stats = EMPTY_STATS;
+      console.warn(
+        `[monitor:${result.platform}] analytics failed — skipping outcome record:`,
+        err,
+      );
+      continue;
+    }
+    if (stats === null) {
+      console.warn(
+        `[monitor:${result.platform}] analytics returned no usable data — skipping outcome record`,
+      );
+      continue;
     }
     metrics.push({ postId, platform: result.platform, ...stats, capturedAt });
   }

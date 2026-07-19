@@ -28,7 +28,9 @@ test('DRY_RUN is the default so tests never touch live services', () => {
 
 test('forecaster fuses reactive signals + upcoming catalysts', async () => {
   const r = await discoverTopics('2026-07-19');
-  assert.equal(r.rawSignalCount, 13, 'loads all reactive fixture signals');
+  // 27 = reddit(4) + google-trends(4) + youtube(3) + hackernews(2)
+  //    + leading sources: thesportsdb(4) + google-news(4) + wikipedia(3) + gdelt(3)
+  assert.equal(r.rawSignalCount, 27, 'loads all reactive fixture signals');
   assert.ok(r.upcomingCount > 0, 'loads upcoming catalysts');
 });
 

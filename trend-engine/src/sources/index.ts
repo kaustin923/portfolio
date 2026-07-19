@@ -11,6 +11,10 @@
 import { readFile } from 'node:fs/promises';
 import { config } from '../config.js';
 import type { TrendSignal } from '../types.js';
+import { collectGdelt } from './gdelt.js';
+import { collectGoogleNews } from './googleNews.js';
+import { collectTheSportsDB } from './thesportsdb.js';
+import { collectWikipedia } from './wikipedia.js';
 
 const UA = 'trend-engine/0.1 (personal research; contact: you@example.com)';
 const now = () => new Date().toISOString();
@@ -115,13 +119,47 @@ async function fromHackerNews(): Promise<TrendSignal[]> {
   }));
 }
 
-/** Gather every source concurrently; a failing source never sinks the run. */
+/** Build bounded, useful article/query guesses from the loudest first-stage titles. */
+export function harvestTerms(signals: TrendSignal[]): string[] {
+  const seen = new Set<string>();
+  const terms: string[] = [];
+  const ranked = [...signals].sort((a, b) => b.score - a.score);
+
+  for (const signal of ranked) {
+    const words = signal.title
+      .replace(/[’']/gu, '')
+      .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+    if (words.length < 2) continue;
+    const term = words.slice(0, 4).join(' ');
+    const key = term.toLocaleLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    terms.push(term);
+    if (terms.length === 10) break;
+  }
+
+  return terms;
+}
+
+/** Gather every source in two stages; a failing source never sinks the run. */
 export async function collectSignals(): Promise<TrendSignal[]> {
-  const results = await Promise.allSettled([
+  const firstResults = await Promise.allSettled([
     fromReddit(),
     fromGoogleTrends(),
     fromYouTube(),
     fromHackerNews(),
+    collectTheSportsDB(),
+    collectGoogleNews(),
   ]);
-  return results.flatMap((r) => (r.status === 'fulfilled' ? r.value : []));
+  const firstStage = firstResults.flatMap((r) => (r.status === 'fulfilled' ? r.value : []));
+  const terms = harvestTerms(firstStage);
+  const secondResults = await Promise.allSettled([
+    collectWikipedia(terms),
+    collectGdelt(terms),
+  ]);
+  const secondStage = secondResults.flatMap((r) => (r.status === 'fulfilled' ? r.value : []));
+  return [...firstStage, ...secondStage];
 }

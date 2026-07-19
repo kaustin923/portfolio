@@ -104,7 +104,11 @@ export async function getLearningSummary(): Promise<string> {
   for (const line of lines) {
     try {
       const parsed: unknown = JSON.parse(line);
-      if (isTopicOutcome(parsed) && !parsed.postId.startsWith('dryrun-')) records.push(parsed);
+      if (
+        isTopicOutcome(parsed) &&
+        !parsed.postId.startsWith('dryrun-') &&
+        !(parsed.views === 0 && parsed.likes === 0 && parsed.comments === 0 && parsed.shares === 0)
+      ) records.push(parsed);
     } catch {
       // Corrupt and foreign lines are ignored independently.
     }

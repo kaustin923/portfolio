@@ -121,6 +121,14 @@ npm start
 
 Each step is isolated, so you can turn the system on one stage at a time. Every live publish path throws immediately under `DRY_RUN`, so a misconfigured flag can never silently post.
 
+## Running without a terminal (launchd daemon)
+
+From the repository, install the macOS launchd job with `bash scripts/daemon-install.sh`. The installer is safe when the repository path contains spaces and writes `~/Library/LaunchAgents/com.trendengine.daemon.plist`.
+
+launchd runs one `npm start` pipeline pass at load and every `StartInterval = 86400 / RUNS_PER_DAY` seconds. The existing `data/run.lock` prevents overlapping passes. Output and errors go to `data/daemon.log`; follow them with `tail -f data/daemon.log`. `DRY_RUN` in `.env` still controls whether the pipeline can perform live work, and the installer does not change it.
+
+Remove the job and its plist with `bash scripts/daemon-uninstall.sh`.
+
 ---
 
 ## Where to take it next
