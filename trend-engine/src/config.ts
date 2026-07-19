@@ -7,6 +7,9 @@
  * anything real.
  */
 
+import { sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import type { Platform } from './types.js';
 
 function bool(name: string, fallback: boolean): boolean {
@@ -29,6 +32,10 @@ function list<T extends string>(name: string, fallback: T[]): T[] {
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean) as T[];
+}
+
+function trailingSeparator(value: string): string {
+  return value.endsWith(sep) ? value : `${value}${sep}`;
 }
 
 export const config = {
@@ -77,8 +84,17 @@ export const config = {
     pexels: process.env.PEXELS_API_KEY ?? '',
   },
 
+  ffmpegPath: process.env.FFMPEG_PATH ?? 'ffmpeg',
+  ffprobePath: process.env.FFPROBE_PATH ?? 'ffprobe',
+
+  editor: {
+    maxClipSec: num('EDITOR_MAX_SEC', 30),
+  },
+
   /** Local directory for rendered clips + run state. */
-  dataDir: process.env.DATA_DIR ?? new URL('../data/', import.meta.url).pathname,
+  dataDir: trailingSeparator(
+    process.env.DATA_DIR ?? fileURLToPath(new URL('../data/', import.meta.url)),
+  ),
 } as const;
 
 /** A friendly one-line banner so it's always obvious which mode you're in. */

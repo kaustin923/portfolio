@@ -4,15 +4,17 @@
  *
  * Two responsibilities:
  *   1. Copywriting (Claude): platform-native caption + hashtags for the angle.
- *   2. Rendering (ffmpeg): cut, reframe to 9:16, burn captions, add the
- *      attribution card when the license requires it.
- *
- * The ffmpeg step is stubbed — in DRY_RUN it just records the command it would
- * run. Wiring in real ffmpeg is a focused, well-isolated follow-up.
+ *   2. Rendering (ffmpeg): download, cut, reframe to 9:16, and add a
+ *      capability-gated attribution card when the license requires it.
  */
+
+import { mkdir, stat, writeFile } from 'node:fs/promises';
+import { dirname, extname } from 'node:path';
 
 import { config } from '../config.js';
 import { structured } from '../llm.js';
+import { buildAss } from '../media/captions.js';
+import { detectCapabilities, downloadToFile, renderToVertical } from '../media/ffmpeg.js';
 import type { AspectRatio, ClipDraft, Platform, SourceClipCandidate, Topic } from '../types.js';
 
 const SYSTEM = `You write short-form video captions for TikTok / Reels / Shorts.
@@ -43,20 +45,25 @@ Domains: ${topic.domains.join(', ')}`,
   });
 }
 
-/**
- * Build the ffmpeg command we'd run to produce a 9:16 captioned clip with an
- * attribution card when required. Returns the command string; execution is
- * gated on DRY_RUN.
- */
-function renderCommand(candidate: SourceClipCandidate, outputPath: string): string {
-  const attribution = candidate.license.requiresAttribution
-    ? `,drawtext=text='${candidate.license.attributionText ?? ''}':x=(w-tw)/2:y=h-80:fontsize=18:fontcolor=white`
-    : '';
-  return (
-    `ffmpeg -i "${candidate.url}" ` +
-    `-vf "scale=1080:-2,crop=1080:1920${attribution}" ` +
-    `-t 30 -c:a aac "${outputPath}"`
-  );
+async function localFileExists(filePath: string): Promise<boolean> {
+  try {
+    return (await stat(filePath)).isFile();
+  } catch {
+    return false;
+  }
+}
+
+async function resolveInput(candidate: SourceClipCandidate): Promise<string> {
+  if (/^https?:\/\//i.test(candidate.url)) {
+    const extension = extname(new URL(candidate.url).pathname) || '.mp4';
+    const cachePath = `${config.dataDir}cache/${candidate.id}${extension}`;
+    await downloadToFile(candidate.url, cachePath);
+    return cachePath;
+  }
+
+  if (await localFileExists(candidate.url)) return candidate.url;
+
+  throw new Error(`Cannot render candidate ${candidate.id}: unfetchable url "${candidate.url}"`);
 }
 
 export async function draftClip(
@@ -67,15 +74,37 @@ export async function draftClip(
 ): Promise<ClipDraft> {
   const copy = await writeCopy(topic);
   const outputPath = `${config.dataDir}clips/${candidate.id}.mp4`;
-  const cmd = renderCommand(candidate, outputPath);
+  const attributionText = candidate.license.requiresAttribution
+    ? candidate.license.attributionText
+    : undefined;
+  const caption = candidate.license.requiresAttribution
+    ? `${copy.caption}\n\n${attributionText ?? ''}`
+    : copy.caption;
+  const maxSec = Math.min(
+    candidate.durationSec || config.editor.maxClipSec,
+    config.editor.maxClipSec,
+  );
 
   if (config.dryRun) {
-    console.log(`   [editor] would render → ${cmd}`);
+    const attributionMode = candidate.license.requiresAttribution
+      ? (await detectCapabilities()).drawtext
+        ? 'burned + description'
+        : 'description-only'
+      : 'none';
+    console.log(
+      `   [editor] would render input=${candidate.url} output=${outputPath} maxSec=${Math.min(maxSec, 179)} attribution=${attributionMode}`,
+    );
   } else {
-    // Real path: exec ffmpeg here (child_process.spawn), ensuring the output
-    // dir exists first. Left unimplemented so live mode can't silently ship a
-    // half-rendered file — wire this in explicitly when you go live.
-    throw new Error('Live rendering not implemented — plug ffmpeg exec into editor.draftClip()');
+    const inputPath = await resolveInput(candidate);
+    await mkdir(dirname(outputPath), { recursive: true });
+    await renderToVertical({ inputPath, outputPath, maxSec, attributionText });
+    await writeFile(`${outputPath}.ass`, buildAss(copy.caption, attributionText, maxSec));
+
+    if (candidate.license.requiresAttribution && !(await detectCapabilities()).drawtext) {
+      console.warn(
+        '   [editor] ffmpeg drawtext is unavailable; attribution is description-only until a libass ffmpeg is installed.',
+      );
+    }
   }
 
   return {
@@ -84,7 +113,7 @@ export async function draftClip(
     sourceCandidateId: candidate.id,
     outputPath,
     aspectRatio,
-    caption: copy.caption,
+    caption,
     hashtags: copy.hashtags,
     targetPlatforms: platforms,
     license: candidate.license,

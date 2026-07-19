@@ -3,15 +3,24 @@
  *
  *   npm run scout   → run just the Trend Scout and print ranked topics
  *   npm start       → run the full pipeline once (DRY_RUN unless configured)
+ *   npm run daemon  → continuously run the pipeline on a jittered schedule
  *
  * DRY_RUN is the default; nothing is published and no API key is required.
  */
 
-import { modeBanner } from './config.js';
+import { config, modeBanner } from './config.js';
 import { discoverTopics } from './agents/trendScout.js';
+import { setLLM } from './llm.js';
 import { runOnce } from './orchestrator.js';
+import { runDaemon } from './scheduler.js';
+import { makeMockLLM } from './testing/mockLlm.js';
 
 async function main() {
+  // DRY_RUN hits no external APIs — including Anthropic. Swap in the
+  // deterministic mock brain so the whole pipeline runs offline, keeping the
+  // "no API key required" contract documented above.
+  if (config.dryRun) setLLM(makeMockLLM());
+
   const cmd = process.argv[2] ?? 'run';
 
   if (cmd === 'scout') {
@@ -40,7 +49,12 @@ async function main() {
     return;
   }
 
-  console.error(`Unknown command "${cmd}". Use "scout" or "run".`);
+  if (cmd === 'daemon') {
+    await runDaemon();
+    return;
+  }
+
+  console.error(`Unknown command "${cmd}". Use "scout | run | daemon".`);
   process.exit(1);
 }
 

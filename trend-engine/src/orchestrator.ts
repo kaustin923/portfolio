@@ -18,6 +18,14 @@ import { publish } from './agents/publisher.js';
 import { findClips } from './agents/sourcing.js';
 import { discoverTopics } from './agents/trendScout.js';
 import { requestApproval } from './approval/telegram.js';
+import {
+  loadState,
+  recordPublished,
+  saveState,
+  topicKey,
+  wasRecentlyPublished,
+  type RunState,
+} from './state.js';
 import type { PostMetrics, Topic } from './types.js';
 
 export interface RunReport {
@@ -26,10 +34,17 @@ export interface RunReport {
   published: number;
   rejected: number;
   blocked: number;
+  failed: number;
+  deduped: number;
   metrics: PostMetrics[];
 }
 
-async function processTopic(topic: Topic, report: RunReport): Promise<void> {
+async function processTopic(
+  topic: Topic,
+  report: RunReport,
+  state: RunState,
+  key: string,
+): Promise<void> {
   console.log(`\n▶ ${topic.title}  (${topic.opportunityScore}/100 · ${topic.stage} · ${topic.recommendation})`);
   console.log(`  window: ${topic.postWindow} (lead ${topic.leadTimeDays}d${topic.catalyst ? `, catalyst: ${topic.catalyst}` : ''})`);
   console.log(`  angle:  ${topic.suggestedAngle}`);
@@ -72,6 +87,21 @@ async function processTopic(topic: Topic, report: RunReport): Promise<void> {
   report.published += ok;
   console.log(`  ✅ published to ${ok}/${results.length} platforms`);
 
+  const livePublished = results.filter(
+    (result) =>
+      result.status === 'published' &&
+      result.postId != null &&
+      !result.postId.startsWith('dryrun-'),
+  );
+  if (livePublished.length > 0) {
+    recordPublished(
+      state,
+      key,
+      topic.title,
+      [...new Set(livePublished.map((result) => result.platform))],
+    );
+  }
+
   // 6. Monitor — record metrics to feed back into the Scout.
   const metrics = await trackResults(results);
   report.metrics.push(...metrics);
@@ -86,8 +116,11 @@ export async function runOnce(): Promise<RunReport> {
     published: 0,
     rejected: 0,
     blocked: 0,
+    failed: 0,
+    deduped: 0,
     metrics: [],
   };
+  const state = loadState();
 
   // Trend Forecaster — the crown jewel.
   console.log('\n🔮 Trend Forecaster: fusing signals + upcoming catalysts…');
@@ -108,13 +141,33 @@ export async function runOnce(): Promise<RunReport> {
 
   // Turn the top N into clips.
   const toProcess = scout.topics.slice(0, config.topicsPerRun);
-  report.topicsConsidered = toProcess.length;
   for (const topic of toProcess) {
-    await processTopic(topic, report);
+    const key = topicKey(topic.title);
+    if (wasRecentlyPublished(state, key)) {
+      report.deduped++;
+      console.log('  ⏭ skipping (published within dedupe window)');
+      continue;
+    }
+
+    report.topicsConsidered++;
+    try {
+      await processTopic(topic, report, state, key);
+    } catch (err) {
+      report.failed++;
+      console.error(
+        `  ✖ topic failed: ${topic.title}:`,
+        err instanceof Error ? err.message : String(err),
+      );
+    }
   }
 
+  state.lastRunAt = new Date().toISOString();
+  state.runCount++;
+  saveState(state);
+
   console.log(
-    `\n📊 Run complete — published ${report.published}, rejected ${report.rejected}, blocked ${report.blocked}`,
+    `\n📊 Run complete — published ${report.published}, rejected ${report.rejected}, ` +
+      `blocked ${report.blocked}, failed ${report.failed}, deduped ${report.deduped}`,
   );
   return report;
 }

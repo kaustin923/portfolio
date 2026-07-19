@@ -137,9 +137,15 @@ export interface SourceClipCandidate {
   id: string;
   provider: string; // 'pexels' | 'wikimedia' | 'youtube-cc' | 'generated' | ...
   title: string;
+  /** MUST be a direct-downloadable MP4/WebM/OGV file URL on the provider's CDN. */
   url: string;
   durationSec: number;
   thumbnailUrl?: string;
+  width?: number;
+  height?: number;
+  /** Human-facing page for this specific asset. */
+  pageUrl?: string;
+  /** `license.sourceUrl` is the human-verifiable page supporting the license claim. */
   license: LicenseInfo;
 }
 

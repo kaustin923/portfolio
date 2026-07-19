@@ -15,6 +15,7 @@ import { config } from '../config.js';
 import { structured } from '../llm.js';
 import { collectSignals } from '../sources/index.js';
 import { collectUpcoming } from '../sources/upcoming.js';
+import { readMetrics, summarizePerformance } from './monitor.js';
 import type { SignalSource, Topic, TrendSignal, UpcomingCatalyst } from '../types.js';
 
 const SYSTEM = `You are a trend FORECASTER for a short-form video studio. Your edge is
@@ -142,13 +143,27 @@ export async function discoverTopics(today = new Date().toISOString().slice(0, 1
     return { topics: [], rawSignalCount: 0, upcomingCount: 0, bySource, skipped: [] };
   }
 
+  let perf: string | null = null;
+  try {
+    perf = summarizePerformance(await readMetrics());
+  } catch {
+    perf = null;
+  }
+
+  let user =
+    `Today is ${today}. Region: ${config.trendScout.geo}. ` +
+    `Return the top ${config.trendScout.topN} forward-looking topics as JSON.\n\n` +
+    `REACTIVE SIGNALS (loud now):\n${renderSignals(signals) || '(none)'}\n\n` +
+    `UPCOMING CATALYSTS (coming soon):\n${renderCatalysts(upcoming) || '(none)'}`;
+  if (perf) {
+    user +=
+      `\n\nPAST PERFORMANCE (our own live posts — weight domains/angles that actually earned views):\n` +
+      perf;
+  }
+
   const { topics } = await structured<{ topics: Topic[] }>({
     system: SYSTEM,
-    user:
-      `Today is ${today}. Region: ${config.trendScout.geo}. ` +
-      `Return the top ${config.trendScout.topN} forward-looking topics as JSON.\n\n` +
-      `REACTIVE SIGNALS (loud now):\n${renderSignals(signals) || '(none)'}\n\n` +
-      `UPCOMING CATALYSTS (coming soon):\n${renderCatalysts(upcoming) || '(none)'}`,
+    user,
     schema: SCHEMA as unknown as Record<string, unknown>,
     maxTokens: 12000,
   });
