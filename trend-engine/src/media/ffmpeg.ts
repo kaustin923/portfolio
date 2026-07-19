@@ -145,13 +145,18 @@ export function detectCapabilities(): Promise<FfmpegCapabilities> {
     config.ffmpegPath,
     '/opt/homebrew/bin/ffmpeg',
     ['-hide_banner', '-filters'],
-  ).then(({ stdout, stderr }) => {
-    const filters = `${stdout}\n${stderr}`;
-    return {
-      drawtext: filters.includes(' drawtext '),
-      subtitles: filters.includes(' subtitles '),
-    };
-  });
+  )
+    .then(({ stdout, stderr }) => {
+      const filters = `${stdout}\n${stderr}`;
+      return {
+        drawtext: filters.includes(' drawtext '),
+        subtitles: filters.includes(' subtitles '),
+      };
+    })
+    // A capability *probe* must never throw: if ffmpeg is absent or the probe
+    // fails, report "no capabilities" so DRY_RUN stays fully offline. Live
+    // rendering still fails loudly at probe()/runFfmpeg() when ffmpeg is missing.
+    .catch(() => ({ drawtext: false, subtitles: false }));
   return capabilitiesPromise;
 }
 
