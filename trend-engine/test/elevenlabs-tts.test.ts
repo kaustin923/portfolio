@@ -31,6 +31,13 @@ const originalConfig = {
 };
 const temporaryDirs: string[] = [];
 
+/** These tests exercise the real ffmpeg / macOS `say` toolchain; skip where absent. */
+function hasBinary(bin: string, args: string[]): boolean {
+  return !spawnSync(bin, args, { stdio: 'ignore' }).error;
+}
+const hasFfmpeg = hasBinary(config.ffmpegPath, ['-version']);
+const hasSay = hasBinary(config.tts.sayPath, ['-v', '?']);
+
 function temporaryBasePath(name: string): string {
   const dir = mkdtempSync(join(tmpdir(), 'trend-engine-elevenlabs-'));
   temporaryDirs.push(dir);
@@ -78,7 +85,11 @@ afterEach(() => {
   }
 });
 
-test('configured ElevenLabs sends the expected request and records its generator', async () => {
+test('configured ElevenLabs sends the expected request and records its generator', async (t) => {
+  if (!hasFfmpeg) {
+    t.skip('ffmpeg is unavailable in this environment');
+    return;
+  }
   configureElevenLabs();
   const calls: Array<{ input: string | URL | Request; init?: RequestInit }> = [];
   const audio = silentMp3();
@@ -123,7 +134,11 @@ test('configured ElevenLabs sends the expected request and records its generator
   assert.ok(call.init?.signal);
 });
 
-test('an ElevenLabs failure logs status without secrets and uses macOS say', async () => {
+test('an ElevenLabs failure logs status without secrets and uses macOS say', async (t) => {
+  if (!hasFfmpeg || !hasSay) {
+    t.skip('ffmpeg or macOS say is unavailable in this environment');
+    return;
+  }
   configureElevenLabs();
   const secret = mutableConfig.tts.elevenLabs.apiKey;
   setTtsFetch((async () =>
