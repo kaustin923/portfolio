@@ -18,8 +18,8 @@
   "lines": [
     {
       "speaker": "jessica",
-      "text": "Okay, so movie theaters just bet their entire year on one Spider-Man movie?",
-      "visual": "opening title",
+      "text": "Okay \u2014 theaters just bet their whole year on one Spider-Man movie?",
+      "visual": "title",
       "viz": {
         "kind": "title",
         "big": "ONE MOVIE. ONE QUARTER.",
@@ -29,8 +29,8 @@
     },
     {
       "speaker": "george",
-      "text": "Basically, yeah. Brand New Day drops July thirty-first, and the tracking has it opening somewhere around a hundred-eighty to a hundred-ninety million. That's the biggest of the whole year.",
-      "visual": "range bar with Toy Story compare",
+      "text": "Pretty much. Brand New Day opens July thirty-first, and it's tracking near a hundred-ninety million. Biggest opening of the year.",
+      "visual": "range bar",
       "viz": {
         "kind": "rangeBar",
         "label": "OPENING WEEKEND \u2014 DEADLINE TRACKING",
@@ -46,13 +46,13 @@
     },
     {
       "speaker": "jessica",
-      "text": "I mean, that sounds great though, right? Why is that a bet?",
-      "visual": "skeptical beat"
+      "text": "That sounds amazing though. Why's it a bet?",
+      "visual": "skeptical"
     },
     {
       "speaker": "george",
-      "text": "Here's the thing \u2014 AMC lost six hundred and thirty-two million dollars last year. And by their own math, every extra hundred million at the box office only adds about eighteen million to their bottom line.",
-      "visual": "loss counter",
+      "text": "Because AMC lost six hundred thirty-two million last year. And every extra hundred million at the box office only adds them eighteen.",
+      "visual": "counter",
       "viz": {
         "kind": "counter",
         "label": "AMC NET LOSS \u2014 FY2025, SEC FILING",
@@ -65,8 +65,8 @@
     },
     {
       "speaker": "jessica",
-      "text": "Oh wow. So they don't just want this to be big \u2014 they kind of need it to be huge.",
-      "visual": "stakes meter",
+      "text": "So they don't just want it big. They need it huge.",
+      "visual": "meter",
       "viz": {
         "kind": "meter",
         "from": "LOW",
@@ -76,85 +76,26 @@
     },
     {
       "speaker": "george",
-      "text": "Right. And the early signs are actually really good \u2014 the first-day presales are the best they've seen in five years. That puts it in Fandango's top ten of all time.",
-      "visual": "presale leaderboard",
-      "viz": {
-        "kind": "leaderboard",
-        "rows": [
-          {
-            "label": "THE ODYSSEY"
-          },
-          {
-            "label": "MANDALORIAN & GROGU"
-          },
-          {
-            "label": "PROJECT HAIL MARY"
-          },
-          {
-            "label": "SPIDER-MAN: BRAND NEW DAY",
-            "highlight": true
-          }
-        ],
-        "stamp": "BEST FIRST DAY SINCE 2021"
-      }
-    },
-    {
-      "speaker": "jessica",
-      "text": "Okay, but I feel like there's a catch coming.",
-      "visual": "tension beat"
-    },
-    {
-      "speaker": "george",
-      "text": "There is. It's not getting a single IMAX screen opening weekend \u2014 Christopher Nolan's new movie locked up every one of them for a three-week run.",
-      "visual": "imax grid",
+      "text": "And here's the catch: zero IMAX screens. Nolan's new movie locked every one of them for three weeks.",
+      "visual": "grid",
       "viz": {
         "kind": "grid",
         "total": 24,
         "filled": 24,
         "filledLabel": "ODYSSEY",
-        "resultLabel": "BRAND NEW DAY  US IMAX SCREENS: 0",
+        "resultLabel": "BRAND NEW DAY  US IMAX: 0",
         "caption": "3-WEEK EXCLUSIVE WINDOW"
       }
     },
     {
       "speaker": "jessica",
-      "text": "So even the experts must be all over the place on this one.",
-      "visual": "disagreement beat"
+      "text": "And if it misses?",
+      "visual": "downturn"
     },
     {
       "speaker": "george",
-      "text": "Completely split. Boxoffice Pro thinks it could hit two-thirty to two-fifty. For comparison, No Way Home did two hundred sixty \u2014 and only nine movies in history have ever opened above two hundred.",
-      "visual": "dual forecast vs No Way Home",
-      "viz": {
-        "kind": "compareBars",
-        "unit": "M",
-        "bars": [
-          {
-            "label": "DEADLINE",
-            "value": 185,
-            "tone": "blue"
-          },
-          {
-            "label": "BOXOFFICE PRO",
-            "value": 240,
-            "tone": "accent"
-          }
-        ],
-        "reference": {
-          "label": "NO WAY HOME, 2021",
-          "value": 260
-        }
-      }
-    },
-    {
-      "speaker": "jessica",
-      "text": "And if it doesn't hit those numbers?",
-      "visual": "downturn beat"
-    },
-    {
-      "speaker": "george",
-      "text": "Then it gets scary fast. AMC is sitting on four billion in debt with the stock under two bucks. So this really isn't just a movie premiere for them \u2014 it's the whole bet.",
-      "visual": "final split stamp",
+      "text": "Four billion in debt, stock under two bucks. So this isn't a premiere. It's the whole bet.",
+      "visual": "split",
       "viz": {
         "kind": "split",
         "left": {
@@ -179,6 +120,7 @@
     "#Marvel"
   ],
   "dialogueSettings": {
-    "stability": 0.65
+    "stability": 0.6,
+    "speed": 1.15
   }
 }
