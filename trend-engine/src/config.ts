@@ -7,6 +7,7 @@
  * anything real.
  */
 
+import { fileURLToPath } from 'node:url';
 import type { Platform } from './types.js';
 
 function bool(name: string, fallback: boolean): boolean {
@@ -78,7 +79,7 @@ export const config = {
   },
 
   /** Local directory for rendered clips + run state. */
-  dataDir: process.env.DATA_DIR ?? new URL('../data/', import.meta.url).pathname,
+  dataDir: process.env.DATA_DIR ?? fileURLToPath(new URL('../data/', import.meta.url)),
 } as const;
 
 /** A friendly one-line banner so it's always obvious which mode you're in. */

@@ -71,7 +71,8 @@ const SCHEMA = {
           },
           leadTimeDays: { type: 'integer' },
           postWindow: { type: 'string' },
-          catalyst: { type: ['string', 'null'] },
+          // Nullable via anyOf (type-arrays are outside the structured-output subset).
+          catalyst: { anyOf: [{ type: 'string' }, { type: 'null' }] },
           recommendation: {
             type: 'string',
             enum: ['post-now', 'prepare', 'watch', 'skip-saturated'],

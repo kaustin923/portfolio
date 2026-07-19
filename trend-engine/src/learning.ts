@@ -21,6 +21,9 @@ import type { TopicOutcome } from './agents/monitor.js';
 export const NO_HISTORY_SUMMARY =
   'No performance history yet — no recorded post outcomes to learn from.';
 
+/** Only the most recent N outcome records inform the next forecast. */
+const RECENCY_WINDOW = 500;
+
 // ────────────────────────────────────────────────────────────────────────────
 // Pure aggregation
 // ────────────────────────────────────────────────────────────────────────────
@@ -132,12 +135,16 @@ export async function getLearningSummary(): Promise<string> {
     return NO_HISTORY_SUMMARY;
   }
 
+  // Bound the read: only the most recent RECENCY_WINDOW records inform the next
+  // forecast, so an ever-growing outcomes.jsonl never turns this into a slow,
+  // memory-heavy hot-path read (and recency is what we want to learn from anyway).
+  const lines = raw.split('\n').filter((l) => l.trim());
+  const recent = lines.slice(-RECENCY_WINDOW);
+
   const records: TopicOutcome[] = [];
-  for (const line of raw.split('\n')) {
-    const trimmed = line.trim();
-    if (!trimmed) continue;
+  for (const line of recent) {
     try {
-      const parsed: unknown = JSON.parse(trimmed);
+      const parsed: unknown = JSON.parse(line);
       if (isTopicOutcome(parsed)) records.push(parsed);
     } catch {
       /* skip malformed line */

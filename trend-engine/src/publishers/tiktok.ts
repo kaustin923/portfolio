@@ -36,7 +36,9 @@ import {
 const PLATFORM: Platform = 'tiktok';
 const BASE = 'https://open.tiktokapis.com/v2/post/publish';
 const SINGLE_CHUNK_MAX = 64 * 1024 * 1024; // ≤ 64 MB ⇒ must be one chunk
-const CHUNK_SIZE = 50 * 1024 * 1024; //       chunk size for larger files (5–64 MB allowed)
+// 32 MB base: the final chunk absorbs the remainder (< chunk_size), so it stays
+// < 64 MB — TikTok's per-chunk maximum — for any file size.
+const CHUNK_SIZE = 32 * 1024 * 1024; //       chunk size for larger files (5–64 MB allowed)
 
 interface TikTokEnvelope<T> {
   data?: T;
