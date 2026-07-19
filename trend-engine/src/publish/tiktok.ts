@@ -2,7 +2,7 @@ import { readFile, stat } from 'node:fs/promises';
 
 import { config } from '../config.js';
 import type { ClipDraft, PublishResult } from '../types.js';
-import { expectOk, getFetch, requireEnv, sleep } from './http.js';
+import { composeCaption, expectJson, expectOk, getFetch, requireEnv, sleep } from './http.js';
 
 const INIT_URL = 'https://open.tiktokapis.com/v2/post/publish/video/init/';
 const STATUS_URL = 'https://open.tiktokapis.com/v2/post/publish/status/fetch/';
@@ -27,6 +27,7 @@ interface TikTokStatusResponse {
   data?: {
     status?: string;
     fail_reason?: string;
+    publicaly_available_post_id?: Array<number | string>;
   };
   error?: TikTokError;
 }
@@ -34,10 +35,6 @@ interface TikTokStatusResponse {
 export interface TikTokPublishOptions {
   pollIntervalMs?: number;
   timeoutMs?: number;
-}
-
-function captionWithHashtags(draft: ClipDraft, caption: string): string {
-  return `${caption}\n\n${draft.hashtags.map((hashtag) => `#${hashtag}`).join(' ')}`;
 }
 
 function throwTikTokError(json: { error?: TikTokError }, context: string): void {
@@ -85,8 +82,9 @@ export async function publishTikTok(
     },
     body: JSON.stringify({
       post_info: {
-        title: captionWithHashtags(draft, caption).slice(0, 2200),
+        title: composeCaption(caption, draft.hashtags, 2200),
         privacy_level: 'SELF_ONLY',
+        video_cover_timestamp_ms: 1000,
         disable_duet: false,
         disable_comment: false,
         disable_stitch: false,
@@ -99,8 +97,7 @@ export async function publishTikTok(
       },
     }),
   });
-  await expectOk(initRes, 'TikTok publish init');
-  const initJson = (await initRes.json()) as TikTokInitResponse;
+  const initJson = await expectJson<TikTokInitResponse>(initRes, 'TikTok publish init');
   throwTikTokError(initJson, 'TikTok publish init');
   const publishId = initJson.data?.publish_id;
   const uploadUrl = initJson.data?.upload_url;
@@ -125,6 +122,7 @@ export async function publishTikTok(
   }
 
   const deadline = Date.now() + timeoutMs;
+  let postId = publishId;
   while (true) {
     const statusRes = await fetch(STATUS_URL, {
       method: 'POST',
@@ -134,12 +132,17 @@ export async function publishTikTok(
       },
       body: JSON.stringify({ publish_id: publishId }),
     });
-    await expectOk(statusRes, 'TikTok publish status');
-    const statusJson = (await statusRes.json()) as TikTokStatusResponse;
+    const statusJson = await expectJson<TikTokStatusResponse>(
+      statusRes,
+      'TikTok publish status',
+    );
     throwTikTokError(statusJson, 'TikTok publish status');
     const status = statusJson.data?.status;
 
-    if (status === 'PUBLISH_COMPLETE') break;
+    if (status === 'PUBLISH_COMPLETE') {
+      postId = String(statusJson.data?.publicaly_available_post_id?.[0] ?? publishId);
+      break;
+    }
     if (status === 'FAILED') {
       const reason = statusJson.data?.fail_reason ?? 'unknown reason';
       throw new Error(`TikTok publishing failed: ${reason}`);
@@ -153,6 +156,6 @@ export async function publishTikTok(
   return {
     platform: 'tiktok',
     status: 'published',
-    postId: publishId,
+    postId,
   };
 }

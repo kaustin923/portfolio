@@ -6,27 +6,153 @@
  * feedback signal that makes the Trend Scout smarter over time: which domains,
  * angles, and momentum profiles actually converted into views.
  *
- * Stubbed for now — returns mock metrics in DRY_RUN and records them to disk.
+ * Live analytics clients are scaffolded per platform; DRY_RUN uses stable mock
+ * metrics so local runs exercise the learning path without adding noise.
  */
 
 import { appendFile, mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { config } from '../config.js';
-import type { PostMetrics, PublishResult } from '../types.js';
+import type {
+  Platform,
+  PostMetrics,
+  PublishResult,
+  Recommendation,
+  Topic,
+  TrendStage,
+} from '../types.js';
 
-export async function trackResults(results: PublishResult[]): Promise<PostMetrics[]> {
-  const published = results.filter((r) => r.status === 'published' && r.postId);
+export interface TopicOutcome extends PostMetrics {
+  topicId: string;
+  topicTitle: string;
+  domains: string[];
+  stage: TrendStage;
+  recommendation: Recommendation;
+  opportunityScore: number;
+}
 
-  const metrics: PostMetrics[] = published.map((r) => ({
-    postId: r.postId!,
-    platform: r.platform,
-    // DRY_RUN placeholders. Live: call each platform's analytics endpoint.
-    views: config.dryRun ? Math.floor(Math.random() * 10000) : 0,
-    likes: 0,
-    comments: 0,
-    shares: 0,
-    capturedAt: new Date().toISOString(),
+type EngagementStats = Pick<PostMetrics, 'views' | 'likes' | 'comments' | 'shares'>;
+
+const EMPTY_STATS: EngagementStats = {
+  views: 0,
+  likes: 0,
+  comments: 0,
+  shares: 0,
+};
+
+function fnv1a(value: string): number {
+  let hash = 0x811c9dc5;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 0x01000193) >>> 0;
+  }
+  return hash >>> 0;
+}
+
+function mockMetrics(postId: string, platform: Platform, capturedAt: string): PostMetrics {
+  const hash = fnv1a(`${platform}:${postId}`);
+  const views = 500 + (hash % 9500);
+  return {
+    postId,
+    platform,
+    views,
+    likes: Math.floor(views * (0.03 + ((hash >>> 8) % 50) / 1000)),
+    comments: Math.floor(views * (0.002 + ((hash >>> 16) % 10) / 1000)),
+    shares: Math.floor(views * (0.001 + ((hash >>> 24) % 8) / 1000)),
+    capturedAt,
+  };
+}
+
+async function fetchYouTubeStats(_postId: string): Promise<EngagementStats> {
+  // TODO: GET https://www.googleapis.com/youtube/v3/videos?part=statistics&id=<videoId>&key=<apiKey>
+  // Map statistics.viewCount/likeCount/commentCount; shares is not exposed.
+  console.warn('[monitor:youtube-shorts] analytics not implemented yet — recording zeros');
+  return EMPTY_STATS;
+}
+
+async function fetchTikTokStats(_postId: string): Promise<EngagementStats> {
+  // TODO: Display API POST /v2/video/query/ with view_count, like_count,
+  // comment_count, and share_count fields using an OAuth user token.
+  console.warn('[monitor:tiktok] analytics not implemented yet — recording zeros');
+  return EMPTY_STATS;
+}
+
+async function fetchInstagramStats(_postId: string): Promise<EngagementStats> {
+  // TODO: Graph API GET /{ig-media-id}/insights with views, likes, comments,
+  // and shares metrics using a page access token.
+  console.warn('[monitor:instagram-reels] analytics not implemented yet — recording zeros');
+  return EMPTY_STATS;
+}
+
+async function fetchXStats(_postId: string): Promise<EngagementStats> {
+  // TODO: GET /2/tweets/:id?tweet.fields=public_metrics and map
+  // impression_count, like_count, reply_count, and retweet_count.
+  console.warn('[monitor:x] analytics not implemented yet — recording zeros');
+  return EMPTY_STATS;
+}
+
+async function fetchLiveStats(postId: string, platform: Platform): Promise<EngagementStats> {
+  switch (platform) {
+    case 'youtube-shorts':
+      return fetchYouTubeStats(postId);
+    case 'tiktok':
+      return fetchTikTokStats(postId);
+    case 'instagram-reels':
+      return fetchInstagramStats(postId);
+    case 'x':
+      return fetchXStats(postId);
+  }
+}
+
+export async function recordTopicOutcome(
+  topic: Topic,
+  metrics: PostMetrics[],
+): Promise<TopicOutcome[]> {
+  const outcomes = metrics.map((metric) => ({
+    ...metric,
+    topicId: topic.id,
+    topicTitle: topic.title,
+    domains: [...topic.domains],
+    stage: topic.stage,
+    recommendation: topic.recommendation,
+    opportunityScore: topic.opportunityScore,
   }));
+
+  try {
+    await mkdir(config.dataDir, { recursive: true });
+    for (const outcome of outcomes) {
+      await appendFile(`${config.dataDir}outcomes.jsonl`, `${JSON.stringify(outcome)}\n`);
+    }
+  } catch (err) {
+    console.warn('[monitor] failed to persist topic outcomes:', err);
+  }
+
+  return outcomes;
+}
+
+export async function trackResults(
+  results: PublishResult[],
+  topic?: Topic,
+): Promise<PostMetrics[]> {
+  const published = results.filter((result) => result.status === 'published' && result.postId);
+  const capturedAt = new Date().toISOString();
+  const metrics: PostMetrics[] = [];
+
+  for (const result of published) {
+    const postId = result.postId!;
+    if (config.dryRun) {
+      metrics.push(mockMetrics(postId, result.platform, capturedAt));
+      continue;
+    }
+    let stats: EngagementStats;
+    try {
+      stats = await fetchLiveStats(postId, result.platform);
+    } catch (err) {
+      console.warn(`[monitor:${result.platform}] analytics failed — recording zeros:`, err);
+      stats = EMPTY_STATS;
+    }
+    metrics.push({ postId, platform: result.platform, ...stats, capturedAt });
+  }
 
   // Persist so the Trend Scout can learn from what actually performed.
   try {
@@ -37,6 +163,8 @@ export async function trackResults(results: PublishResult[]): Promise<PostMetric
   } catch (err) {
     console.warn('[monitor] failed to persist metrics:', err);
   }
+
+  if (topic) await recordTopicOutcome(topic, metrics);
 
   return metrics;
 }

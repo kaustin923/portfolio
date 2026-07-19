@@ -25,6 +25,40 @@ export function escapeDrawtext(text: string): string {
   return optionEscaped.replace(/[\\'[\],;]/g, (char) => `\\${char}`);
 }
 
+/** Greedy word wrapping with hard breaks for tokens wider than a line. */
+export function wrapText(text: string, maxChars: number): string[] {
+  const width = Math.max(1, Math.floor(maxChars));
+  const words = text.trim().split(/\s+/).filter(Boolean);
+  const lines: string[] = [];
+  let current = '';
+
+  for (const word of words) {
+    const pieces: string[] = [];
+    for (let offset = 0; offset < word.length; offset += width) {
+      pieces.push(word.slice(offset, offset + width));
+    }
+
+    for (const piece of pieces) {
+      if (!current) {
+        current = piece;
+      } else if (current.length + 1 + piece.length <= width) {
+        current += ` ${piece}`;
+      } else {
+        lines.push(current);
+        current = piece;
+      }
+
+      if (piece.length === width && current === piece) {
+        lines.push(current);
+        current = '';
+      }
+    }
+  }
+
+  if (current) lines.push(current);
+  return lines;
+}
+
 /** Escape text for the ASS dialogue payload used by this module. */
 export function assEscape(text: string): string {
   return text.replace(/[{}]/g, '').replace(/\r\n|\r|\n/g, '\\N');
@@ -39,7 +73,7 @@ function assTimestamp(durationSec: number): string {
   return `${hours}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}.${String(centiseconds).padStart(2, '0')}`;
 }
 
-/** Build a sidecar now so a future libass-enabled ffmpeg can burn it directly. */
+/** Build the libass sidecar burned by the renderer when subtitles are available. */
 export function buildAss(
   caption: string,
   attribution: string | undefined,

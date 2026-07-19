@@ -10,6 +10,7 @@ import { resetFetch, setFetch, type FetchFn } from '../src/publish/http.js';
 import { publishInstagram } from '../src/publish/instagram.js';
 import { publishTikTok } from '../src/publish/tiktok.js';
 import { publishYouTube } from '../src/publish/youtube.js';
+import { publishX } from '../src/publish/x.js';
 import type { ClipDraft, Platform } from '../src/types.js';
 
 const ENV_KEYS = [
@@ -20,8 +21,8 @@ const ENV_KEYS = [
   'YOUTUBE_CATEGORY_ID',
   'IG_USER_ID',
   'IG_ACCESS_TOKEN',
-  'PUBLIC_VIDEO_BASE_URL',
   'TIKTOK_ACCESS_TOKEN',
+  'X_ACCESS_TOKEN',
 ] as const;
 
 const originalEnv = new Map(ENV_KEYS.map((key) => [key, process.env[key]]));
@@ -188,28 +189,46 @@ test('publishInstagram waits for its container and returns the permalink', async
   setEnv({
     IG_USER_ID: 'ig-user',
     IG_ACCESS_TOKEN: 'ig-token',
-    PUBLIC_VIDEO_BASE_URL: 'https://cdn.example.test/clips/',
   });
+  const temp = await makeTempVideo(new Uint8Array([3, 1, 4, 1, 5]));
   const calls = makeRecorder([
     jsonResponse({ id: 'container-1' }),
+    jsonResponse({ success: true }),
     jsonResponse({ status_code: 'IN_PROGRESS' }),
     jsonResponse({ status_code: 'FINISHED' }),
     jsonResponse({ id: 'media-1' }),
     jsonResponse({ permalink: 'https://www.instagram.com/reel/media-1/' }),
   ]);
 
-  const result = await publishInstagram(makeDraft('/renders/my reel.mp4'), 'Edited caption', {
-    pollIntervalMs: 1,
-  });
+  try {
+    const result = await publishInstagram(makeDraft(temp.file), 'Edited caption', {
+      pollIntervalMs: 1,
+    });
 
-  assert.equal(result.postId, 'media-1');
-  assert.equal(result.url, 'https://www.instagram.com/reel/media-1/');
-  assert.equal(calls.length, 5);
-  const createBody = new URLSearchParams(String(calls[0]?.init?.body));
-  assert.equal(createBody.get('media_type'), 'REELS');
-  assert.equal(createBody.get('video_url'), 'https://cdn.example.test/clips/my%20reel.mp4');
-  assert.equal(createBody.get('caption'), 'Edited caption\n\n#news #today');
-  assert.match(calls[3]?.url ?? '', /\/media_publish$/);
+    assert.equal(result.postId, 'media-1');
+    assert.equal(result.url, 'https://www.instagram.com/reel/media-1/');
+    assert.equal(calls.length, 6);
+    const createBody = new URLSearchParams(String(calls[0]?.init?.body));
+    assert.equal(createBody.get('media_type'), 'REELS');
+    assert.equal(createBody.get('upload_type'), 'resumable');
+    assert.equal(createBody.get('video_url'), null);
+    assert.equal(createBody.get('caption'), 'Edited caption\n\n#news #today');
+    assert.equal(createBody.get('share_to_feed'), 'true');
+
+    assert.equal(
+      calls[1]?.url,
+      'https://rupload.facebook.com/ig-api-upload/v23.0/container-1',
+    );
+    const uploadHeaders = new Headers(calls[1]?.init?.headers);
+    assert.equal(uploadHeaders.get('Authorization'), 'OAuth ig-token');
+    assert.equal(uploadHeaders.get('offset'), '0');
+    assert.equal(uploadHeaders.get('file_size'), '5');
+    assert.equal(uploadHeaders.get('Content-Type'), 'application/octet-stream');
+    assert.deepEqual(Array.from(calls[1]?.init?.body as Uint8Array), [3, 1, 4, 1, 5]);
+    assert.match(calls[4]?.url ?? '', /\/media_publish$/);
+  } finally {
+    await rm(temp.dir, { recursive: true });
+  }
 });
 
 test('publishInstagram rejects an ERROR container status', async () => {
@@ -217,18 +236,23 @@ test('publishInstagram rejects an ERROR container status', async () => {
   setEnv({
     IG_USER_ID: 'ig-user',
     IG_ACCESS_TOKEN: 'ig-token',
-    PUBLIC_VIDEO_BASE_URL: 'https://cdn.example.test/clips',
   });
+  const temp = await makeTempVideo(new Uint8Array([1, 2, 3]));
   const calls = makeRecorder([
     jsonResponse({ id: 'container-error' }),
+    jsonResponse({ success: true }),
     jsonResponse({ status_code: 'ERROR' }),
   ]);
 
-  await assert.rejects(
-    publishInstagram(makeDraft('/renders/clip.mp4'), 'Caption', { pollIntervalMs: 1 }),
-    /status ERROR/,
-  );
-  assert.equal(calls.length, 2);
+  try {
+    await assert.rejects(
+      publishInstagram(makeDraft(temp.file), 'Caption', { pollIntervalMs: 1 }),
+      /status ERROR/,
+    );
+    assert.equal(calls.length, 3);
+  } finally {
+    await rm(temp.dir, { recursive: true });
+  }
 });
 
 test('publishTikTok uses SELF_ONLY and uploads with the correct Content-Range', async () => {
@@ -243,7 +267,7 @@ test('publishTikTok uses SELF_ONLY and uploads with the correct Content-Range', 
     }),
     new Response(null, { status: 200 }),
     jsonResponse({
-      data: { status: 'PUBLISH_COMPLETE' },
+      data: { status: 'PUBLISH_COMPLETE', publicaly_available_post_id: ['public-video-1'] },
       error: { code: 'ok' },
     }),
   ]);
@@ -253,13 +277,14 @@ test('publishTikTok uses SELF_ONLY and uploads with the correct Content-Range', 
       pollIntervalMs: 1,
     });
 
-    assert.equal(result.postId, 'publish-1');
+    assert.equal(result.postId, 'public-video-1');
     assert.equal(calls.length, 3);
     const initBody = JSON.parse(String(calls[0]?.init?.body)) as {
-      post_info: { privacy_level: string };
+      post_info: { privacy_level: string; video_cover_timestamp_ms: number };
       source_info: { video_size: number; chunk_size: number; total_chunk_count: number };
     };
     assert.equal(initBody.post_info.privacy_level, 'SELF_ONLY');
+    assert.equal(initBody.post_info.video_cover_timestamp_ms, 1000);
     assert.deepEqual(initBody.source_info, {
       source: 'FILE_UPLOAD',
       video_size: 5,
@@ -271,6 +296,152 @@ test('publishTikTok uses SELF_ONLY and uploads with the correct Content-Range', 
   } finally {
     await rm(temp.dir, { recursive: true });
   }
+});
+
+test('publishX uploads numbered segments, polls processing, and creates a post', async () => {
+  setDryRun(false);
+  setEnv({ X_ACCESS_TOKEN: 'x-user-token' });
+  const segmentSize = 4 * 1024 * 1024;
+  const temp = await makeTempVideo(new Uint8Array(segmentSize + 3));
+  const calls = makeRecorder([
+    jsonResponse({ data: { id: 'media-1' } }),
+    new Response(null, { status: 204 }),
+    new Response(null, { status: 204 }),
+    jsonResponse({
+      data: {
+        id: 'media-1',
+        processing_info: { state: 'pending', check_after_secs: 0 },
+      },
+    }),
+    jsonResponse({ data: { id: 'media-1', processing_info: { state: 'succeeded' } } }),
+    jsonResponse({ data: { id: 'tweet-1' } }),
+  ]);
+
+  try {
+    const draft = { ...makeDraft(temp.file), hashtags: ['#news', ' ', 'today'] };
+    const result = await publishX(draft, 'X caption', { pollIntervalMs: 1 });
+
+    assert.deepEqual(result, {
+      platform: 'x',
+      status: 'published',
+      postId: 'tweet-1',
+      url: 'https://x.com/i/status/tweet-1',
+    });
+    assert.equal(calls.length, 6);
+    const initializeBody = JSON.parse(String(calls[0]?.init?.body));
+    assert.deepEqual(initializeBody, {
+      media_type: 'video/mp4',
+      total_bytes: segmentSize + 3,
+      media_category: 'tweet_video',
+    });
+
+    for (const [callIndex, segmentIndex] of [[1, '0'], [2, '1']] as const) {
+      const call = calls[callIndex];
+      assert.equal((call?.init?.body as FormData).get('segment_index'), segmentIndex);
+      const headers = new Headers(call?.init?.headers);
+      assert.equal(headers.get('Authorization'), 'Bearer x-user-token');
+      assert.equal(headers.has('Content-Type'), false, 'fetch owns the multipart boundary');
+    }
+    assert.match(calls[4]?.url ?? '', /media_id=media-1&command=STATUS$/);
+    for (const call of calls) {
+      assert.equal(
+        new Headers(call.init?.headers).get('Authorization'),
+        'Bearer x-user-token',
+      );
+    }
+    const tweetBody = JSON.parse(String(calls[5]?.init?.body));
+    assert.deepEqual(tweetBody, {
+      text: 'X caption\n\n#news #today',
+      media: { media_ids: ['media-1'] },
+    });
+  } finally {
+    await rm(temp.dir, { recursive: true });
+  }
+});
+
+test('publishX keeps required attribution verbatim when the caption exceeds 280 chars', async () => {
+  setDryRun(false);
+  setEnv({ X_ACCESS_TOKEN: 'x-user-token' });
+  const temp = await makeTempVideo(new Uint8Array(5));
+  const attributionText =
+    '"File:Example.webm" by Example Creator, via Wikimedia Commons, CC BY 4.0 — modified';
+  const calls = makeRecorder([
+    jsonResponse({ data: { id: 'media-1' } }),
+    new Response(null, { status: 204 }),
+    jsonResponse({ data: { id: 'media-1', processing_info: { state: 'succeeded' } } }),
+    jsonResponse({ data: { id: 'tweet-1' } }),
+  ]);
+
+  try {
+    const draft = {
+      ...makeDraft(temp.file),
+      license: {
+        type: 'cc-by' as const,
+        requiresAttribution: true,
+        attributionText,
+        commercialUse: true,
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Example.webm',
+      },
+    };
+    const body = 'A'.repeat(250);
+    const result = await publishX(draft, `${body}\n\n${attributionText}`, {
+      pollIntervalMs: 1,
+    });
+
+    assert.equal(result.status, 'published');
+    const tweetText = JSON.parse(String(calls[3]?.init?.body)).text as string;
+    assert.ok(tweetText.length <= 280, `tweet is ${tweetText.length} chars`);
+    assert.ok(
+      tweetText.endsWith(`\n\n${attributionText}`),
+      'attribution survives truncation verbatim',
+    );
+  } finally {
+    await rm(temp.dir, { recursive: true });
+  }
+});
+
+test('publishX refuses to post when required attribution cannot fit in 280 chars', async () => {
+  setDryRun(false);
+  setEnv({ X_ACCESS_TOKEN: 'x-user-token' });
+  const temp = await makeTempVideo(new Uint8Array(5));
+  const attributionText = `"File:${'x'.repeat(280)}.webm" by Someone, CC BY 4.0 — modified`;
+  const calls = makeRecorder([]);
+
+  try {
+    const draft = {
+      ...makeDraft(temp.file),
+      license: {
+        type: 'cc-by' as const,
+        requiresAttribution: true,
+        attributionText,
+        commercialUse: true,
+        sourceUrl: 'https://commons.wikimedia.org/wiki/File:Example.webm',
+      },
+    };
+    await assert.rejects(
+      publishX(draft, `Caption\n\n${attributionText}`),
+      /attribution does not fit/,
+    );
+    assert.equal(calls.length, 0);
+  } finally {
+    await rm(temp.dir, { recursive: true });
+  }
+});
+
+test('publish approval gate skips rejected and timed-out drafts without fetching', async () => {
+  setDryRun(false);
+  const calls = makeRecorder([]);
+  const draft = makeDraft('/must-not-be-read.mp4', ['x', 'tiktok']);
+
+  for (const status of ['rejected', 'timeout'] as const) {
+    const results = await publish(draft, { status });
+    assert.equal(results.length, 2);
+    for (const result of results) {
+      assert.equal(result.status, 'skipped');
+      assert.match(result.error ?? '', new RegExp(status));
+    }
+  }
+  assert.equal(calls.length, 0);
 });
 
 test('missing environment variables reject before any platform fetch', async (t) => {
@@ -298,7 +469,6 @@ test('missing environment variables reject before any platform fetch', async (t)
       const message = error instanceof Error ? error.message : String(error);
       assert.match(message, /IG_USER_ID/);
       assert.match(message, /IG_ACCESS_TOKEN/);
-      assert.match(message, /PUBLIC_VIDEO_BASE_URL/);
       return true;
     });
     assert.equal(calls.length, 0);
@@ -308,6 +478,15 @@ test('missing environment variables reject before any platform fetch', async (t)
     setDryRun(false);
     const calls = makeRecorder([]);
     await assert.rejects(publishTikTok(draft, 'Caption'), /TIKTOK_ACCESS_TOKEN/);
+    process.env.TIKTOK_ACCESS_TOKEN = '   ';
+    await assert.rejects(publishTikTok(draft, 'Caption'), /TIKTOK_ACCESS_TOKEN/);
+    assert.equal(calls.length, 0);
+  });
+
+  await t.test('X names its missing variable', async () => {
+    setDryRun(false);
+    const calls = makeRecorder([]);
+    await assert.rejects(publishX(draft, 'Caption'), /X_ACCESS_TOKEN/);
     assert.equal(calls.length, 0);
   });
 });
@@ -320,8 +499,8 @@ test('live publisher modules refuse to touch the network under DRY_RUN', async (
     YOUTUBE_REFRESH_TOKEN: 'refresh-token',
     IG_USER_ID: 'ig-user',
     IG_ACCESS_TOKEN: 'ig-token',
-    PUBLIC_VIDEO_BASE_URL: 'https://cdn.example.test/clips',
     TIKTOK_ACCESS_TOKEN: 'tiktok-token',
+    X_ACCESS_TOKEN: 'x-token',
   });
   const calls = makeRecorder([]);
   const draft = makeDraft('/never/read.mp4');
@@ -329,6 +508,7 @@ test('live publisher modules refuse to touch the network under DRY_RUN', async (
   await assert.rejects(publishTikTok(draft, 'Caption'), /DRY_RUN/);
   await assert.rejects(publishYouTube(draft, 'Caption'), /DRY_RUN/);
   await assert.rejects(publishInstagram(draft, 'Caption'), /DRY_RUN/);
+  await assert.rejects(publishX(draft, 'Caption'), /DRY_RUN/);
   assert.equal(calls.length, 0);
 });
 
@@ -345,7 +525,10 @@ test('publishTikTok merges the remainder into the final chunk for >64MB files', 
       error: { code: 'ok' },
     }),
     ...Array.from({ length: 6 }, () => new Response(null, { status: 200 })),
-    jsonResponse({ data: { status: 'PUBLISH_COMPLETE' }, error: { code: 'ok' } }),
+    jsonResponse({
+      data: { status: 'PUBLISH_COMPLETE', publicaly_available_post_id: [987654321] },
+      error: { code: 'ok' },
+    }),
   ]);
 
   try {
@@ -353,7 +536,7 @@ test('publishTikTok merges the remainder into the final chunk for >64MB files', 
       pollIntervalMs: 1,
     });
 
-    assert.equal(result.postId, 'publish-large');
+    assert.equal(result.postId, '987654321');
     assert.equal(calls.length, 8, 'init + 6 chunks + status');
     const initBody = JSON.parse(String(calls[0]?.init?.body)) as {
       source_info: { video_size: number; chunk_size: number; total_chunk_count: number };
@@ -433,12 +616,21 @@ test('publish re-appends required attribution to a human-edited caption', async 
 test('publish records an adapter failure and continues to the next platform', async () => {
   setDryRun(false);
   setEnv({
+    X_ACCESS_TOKEN: 'x-token',
     YOUTUBE_CLIENT_ID: 'client-id',
     YOUTUBE_CLIENT_SECRET: 'client-secret',
     YOUTUBE_REFRESH_TOKEN: 'refresh-token',
   });
   const temp = await makeTempVideo(new Uint8Array([1, 2, 3]));
   const calls = makeRecorder([
+    jsonResponse({ data: { id: 'failed-media' } }),
+    new Response(null, { status: 204 }),
+    jsonResponse({
+      data: {
+        id: 'failed-media',
+        processing_info: { state: 'failed', error: { message: 'codec rejected' } },
+      },
+    }),
     jsonResponse({ access_token: 'access-token' }),
     jsonResponse({}, { headers: { Location: 'https://upload.youtube.test/continued' } }),
     jsonResponse({ id: 'continued-video' }),
@@ -456,11 +648,11 @@ test('publish records an adapter failure and continues to the next platform', as
 
     assert.equal(results[0]?.platform, 'x');
     assert.equal(results[0]?.status, 'error');
-    assert.match(results[0]?.error ?? '', /not implemented/);
+    assert.match(results[0]?.error ?? '', /X media processing failed: codec rejected/);
     assert.equal(results[1]?.platform, 'youtube-shorts');
     assert.equal(results[1]?.status, 'published');
     assert.equal(results[1]?.postId, 'continued-video');
-    assert.equal(calls.length, 3, 'the YouTube adapter ran after X failed');
+    assert.equal(calls.length, 6, 'the YouTube adapter ran after X failed');
     assert.equal(errors[0]?.[0], '[publish:x] FAILED:');
   } finally {
     console.error = originalError;

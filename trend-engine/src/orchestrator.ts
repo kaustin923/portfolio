@@ -103,7 +103,7 @@ async function processTopic(
   }
 
   // 6. Monitor — record metrics to feed back into the Scout.
-  const metrics = await trackResults(results);
+  const metrics = await trackResults(results, topic);
   report.metrics.push(...metrics);
 }
 

@@ -12,6 +12,7 @@
  */
 
 import { config } from '../config.js';
+import { getLearningSummary } from '../learning.js';
 import { structured } from '../llm.js';
 import { collectSignals } from '../sources/index.js';
 import { collectUpcoming } from '../sources/upcoming.js';
@@ -134,7 +135,11 @@ export interface TrendScoutResult {
 }
 
 export async function discoverTopics(today = new Date().toISOString().slice(0, 10)): Promise<TrendScoutResult> {
-  const [signals, upcoming] = await Promise.all([collectSignals(), collectUpcoming(today)]);
+  const [signals, upcoming, learning] = await Promise.all([
+    collectSignals(),
+    collectUpcoming(today),
+    getLearningSummary(),
+  ]);
 
   const bySource: Partial<Record<SignalSource, number>> = {};
   for (const s of signals) bySource[s.source] = (bySource[s.source] ?? 0) + 1;
@@ -146,13 +151,15 @@ export async function discoverTopics(today = new Date().toISOString().slice(0, 1
   let perf: string | null = null;
   try {
     perf = summarizePerformance(await readMetrics());
-  } catch {
+  } catch (err) {
+    console.warn('[trend-scout] failed to read performance metrics:', err);
     perf = null;
   }
 
   let user =
     `Today is ${today}. Region: ${config.trendScout.geo}. ` +
     `Return the top ${config.trendScout.topN} forward-looking topics as JSON.\n\n` +
+    `HISTORICAL PERFORMANCE (bias toward what has converted before):\n${learning}\n\n` +
     `REACTIVE SIGNALS (loud now):\n${renderSignals(signals) || '(none)'}\n\n` +
     `UPCOMING CATALYSTS (coming soon):\n${renderCatalysts(upcoming) || '(none)'}`;
   if (perf) {

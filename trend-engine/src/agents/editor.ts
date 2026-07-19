@@ -4,16 +4,15 @@
  *
  * Two responsibilities:
  *   1. Copywriting (Claude): platform-native caption + hashtags for the angle.
- *   2. Rendering (ffmpeg): download, cut, reframe to 9:16, and add a
+ *   2. Rendering (ffmpeg): download, cut, reframe to the requested aspect, and add a
  *      capability-gated attribution card when the license requires it.
  */
 
-import { mkdir, stat, writeFile } from 'node:fs/promises';
+import { mkdir, stat } from 'node:fs/promises';
 import { dirname, extname } from 'node:path';
 
 import { config } from '../config.js';
 import { structured } from '../llm.js';
-import { buildAss } from '../media/captions.js';
 import { detectCapabilities, downloadToFile, renderToVertical } from '../media/ffmpeg.js';
 import type { AspectRatio, ClipDraft, Platform, SourceClipCandidate, Topic } from '../types.js';
 
@@ -80,14 +79,15 @@ export async function draftClip(
   const caption = candidate.license.requiresAttribution
     ? `${copy.caption}\n\n${attributionText ?? ''}`
     : copy.caption;
-  const maxSec = Math.min(
-    candidate.durationSec || config.editor.maxClipSec,
-    config.editor.maxClipSec,
+  const maxSec = Math.max(
+    1,
+    Math.min(candidate.durationSec || config.editor.maxClipSec, config.editor.maxClipSec),
   );
 
   if (config.dryRun) {
+    const capabilities = await detectCapabilities();
     const attributionMode = candidate.license.requiresAttribution
-      ? (await detectCapabilities()).drawtext
+      ? capabilities.drawtext || capabilities.subtitles
         ? 'burned + description'
         : 'description-only'
       : 'none';
@@ -97,10 +97,21 @@ export async function draftClip(
   } else {
     const inputPath = await resolveInput(candidate);
     await mkdir(dirname(outputPath), { recursive: true });
-    await renderToVertical({ inputPath, outputPath, maxSec, attributionText });
-    await writeFile(`${outputPath}.ass`, buildAss(copy.caption, attributionText, maxSec));
+    await renderToVertical({
+      inputPath,
+      outputPath,
+      maxSec,
+      aspectRatio,
+      caption: copy.caption,
+      attributionText,
+    });
 
-    if (candidate.license.requiresAttribution && !(await detectCapabilities()).drawtext) {
+    const capabilities = await detectCapabilities();
+    if (
+      candidate.license.requiresAttribution &&
+      !capabilities.drawtext &&
+      !capabilities.subtitles
+    ) {
       console.warn(
         '   [editor] ffmpeg drawtext is unavailable; attribution is description-only until a libass ffmpeg is installed.',
       );

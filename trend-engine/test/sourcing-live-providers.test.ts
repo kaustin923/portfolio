@@ -194,6 +194,99 @@ test('mapWikimedia admits only resolved CC0, public-domain, and plain CC BY lice
   assert.match(candidates[0]?.license.attributionText ?? '', /— modified$/);
 });
 
+test('mapWikimedia resolves license signals across the full metadata haystack', () => {
+  const page = (pageid: number, license: string) => ({
+    pageid,
+    title: `File:License ${pageid}.webm`,
+    videoinfo: [
+      {
+        url: `https://upload.wikimedia.org/license-${pageid}.webm`,
+        descriptionurl: `https://commons.wikimedia.org/wiki/File:License_${pageid}.webm`,
+        mime: 'video/webm',
+        duration: 10,
+        extmetadata: {
+          License: { value: license },
+          LicenseUrl: { value: `https://creativecommons.org/licenses/${license}/4.0/` },
+          Artist: { value: 'Ada Artist' },
+        },
+      },
+    ],
+  });
+
+  const candidates = mapWikimedia(
+    {
+      query: {
+        pages: {
+          1: page(1, 'cc-by-4.0'),
+          2: page(2, 'cc-by-nc-4.0'),
+        },
+      },
+    },
+    topic,
+  );
+
+  assert.equal(candidates.length, 1);
+  assert.equal(candidates[0]?.id, 'wikimedia-1');
+  assert.equal(candidates[0]?.license.type, 'cc-by');
+});
+
+test('mapWikimedia fails closed on malformed, absent, and unknown metadata', () => {
+  const metadataCases: unknown[] = [
+    { LicenseShortName: 'CC BY 4.0' },
+    { LicenseShortName: { value: 42 } },
+    { Nonsense: { value: 'lol' } },
+    null,
+    { LicenseShortName: { value: 'Some homebrew license nobody has heard of' } },
+  ];
+  const pages = Object.fromEntries(
+    metadataCases.map((extmetadata, index) => [
+      String(index + 1),
+      {
+        pageid: index + 1,
+        title: `File:Malformed ${index + 1}.webm`,
+        videoinfo: [
+          {
+            url: `https://upload.wikimedia.org/malformed-${index + 1}.webm`,
+            descriptionurl: `https://commons.wikimedia.org/wiki/File:Malformed_${index + 1}.webm`,
+            mime: 'video/webm',
+            duration: 10,
+            extmetadata,
+          },
+        ],
+      },
+    ]),
+  );
+
+  assert.deepEqual(mapWikimedia({ query: { pages } }, topic), []);
+});
+
+test('mapWikimedia excludes non-video mime types', () => {
+  const candidates = mapWikimedia(
+    {
+      query: {
+        pages: {
+          1: {
+            pageid: 1,
+            title: 'File:Audio.ogg',
+            videoinfo: [
+              {
+                url: 'https://upload.wikimedia.org/audio.ogg',
+                descriptionurl: 'https://commons.wikimedia.org/wiki/File:Audio.ogg',
+                mime: 'audio/ogg',
+                duration: 10,
+                extmetadata: { LicenseShortName: { value: 'CC0' } },
+              },
+            ],
+          },
+        },
+      },
+    },
+    topic,
+  );
+
+  assert.deepEqual(candidates, []);
+});
+
 test('mapNasa excludes third-party records and selects the original MP4', () => {
   const candidates = mapNasa(
     {

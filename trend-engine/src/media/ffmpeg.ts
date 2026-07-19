@@ -1,9 +1,13 @@
 import { spawn } from 'node:child_process';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { createWriteStream } from 'node:fs';
+import { mkdir, unlink, writeFile } from 'node:fs/promises';
 import { dirname } from 'node:path';
+import { Readable } from 'node:stream';
+import { pipeline } from 'node:stream/promises';
 
 import { config } from '../config.js';
-import { escapeDrawtext, SAFE_AREA } from './captions.js';
+import type { AspectRatio } from '../types.js';
+import { buildAss, escapeDrawtext, SAFE_AREA, wrapText } from './captions.js';
 
 interface ProcessResult {
   stdout: string;
@@ -154,27 +158,69 @@ export function detectCapabilities(): Promise<FfmpegCapabilities> {
 export async function downloadToFile(url: string, destPath: string): Promise<void> {
   await mkdir(dirname(destPath), { recursive: true });
   const response = await fetch(url);
-  if (!response.ok) throw new Error(`Download failed (${response.status}) for ${url}`);
+  if (!response.ok || !response.body) {
+    throw new Error(`Download failed (${response.status}) for ${url}`);
+  }
 
-  const contents = Buffer.from(await response.arrayBuffer());
-  await writeFile(destPath, contents);
+  await pipeline(
+    Readable.fromWeb(response.body as ReadableStream),
+    createWriteStream(destPath),
+  );
+}
+
+export function dimensionsFor(aspectRatio: AspectRatio): { width: number; height: number } {
+  switch (aspectRatio) {
+    case '9:16':
+      return { width: 1080, height: 1920 };
+    case '1:1':
+      return { width: 1080, height: 1080 };
+    case '16:9':
+      return { width: 1920, height: 1080 };
+  }
 }
 
 export async function renderToVertical(opts: {
   inputPath: string;
   outputPath: string;
   maxSec: number;
+  aspectRatio?: AspectRatio;
+  caption?: string;
   attributionText?: string;
 }): Promise<void> {
   const input = await probe(opts.inputPath);
+  const { width, height } = dimensionsFor(opts.aspectRatio ?? '9:16');
   const filterParts = [
-    'scale=1080:1920:force_original_aspect_ratio=increase',
-    'crop=1080:1920',
+    `scale=${width}:${height}:force_original_aspect_ratio=increase`,
+    `crop=${width}:${height}`,
     'setsar=1',
     'fps=30',
   ];
+  const capabilities = await detectCapabilities();
+  let captionTextPath: string | undefined;
+  let attributionHandledByAss = false;
 
-  if (opts.attributionText !== undefined && (await detectCapabilities()).drawtext) {
+  if (opts.caption && capabilities.subtitles) {
+    const assPath = `${opts.outputPath}.ass`;
+    await writeFile(assPath, buildAss(opts.caption, opts.attributionText, opts.maxSec));
+    filterParts.push(`subtitles=${escapeDrawtext(assPath)}`);
+    attributionHandledByAss = opts.attributionText !== undefined;
+  } else if (opts.caption && capabilities.drawtext) {
+    const fontsize = Math.round(width * 0.045);
+    const maxChars = Math.max(12, Math.floor((width * 0.9) / (fontsize * 0.55)));
+    captionTextPath = `${opts.outputPath}.caption.txt`;
+    await writeFile(captionTextPath, wrapText(opts.caption, maxChars).join('\n'));
+    filterParts.push(
+      `drawtext=textfile=${escapeDrawtext(captionTextPath)}:x=(w-tw)/2:y=h*0.72:fontsize=${fontsize}:fontcolor=white:borderw=2:bordercolor=black:box=1:boxcolor=black@0.55:line_spacing=10`,
+    );
+  } else if (opts.caption) {
+    console.warn('[editor] ffmpeg subtitles and drawtext are unavailable; caption cannot be burned in.');
+  }
+
+  if (
+    opts.attributionText !== undefined &&
+    capabilities.drawtext &&
+    !attributionHandledByAss
+  ) {
     filterParts.push(
       `drawtext=text=${escapeDrawtext(opts.attributionText)}:x=(w-tw)/2:y=h-${SAFE_AREA.bottomMarginPx}:fontsize=36:fontcolor=white:borderw=2:bordercolor=black`,
     );
@@ -227,17 +273,27 @@ export async function renderToVertical(opts: {
     opts.outputPath,
   );
 
-  await runFfmpeg(args);
+  try {
+    await runFfmpeg(args);
+  } finally {
+    if (captionTextPath) {
+      try {
+        await unlink(captionTextPath);
+      } catch (error) {
+        console.warn('[editor] failed to remove temporary caption file:', error);
+      }
+    }
+  }
 
   const output = await probe(opts.outputPath);
   if (
-    output.width !== 1080 ||
-    output.height !== 1920 ||
+    output.width !== width ||
+    output.height !== height ||
     output.videoCodec !== 'h264' ||
     output.durationSec <= 0
   ) {
     throw new Error(
-      `Rendered output failed verification: expected 1080x1920 h264 with positive duration, got ${output.width}x${output.height} ${output.videoCodec} ${output.durationSec}s`,
+      `Rendered output failed verification: expected ${width}x${height} h264 with positive duration, got ${output.width}x${output.height} ${output.videoCodec} ${output.durationSec}s`,
     );
   }
 }

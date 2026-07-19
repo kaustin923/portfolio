@@ -2,7 +2,7 @@ import { readFile, stat } from 'node:fs/promises';
 
 import { config } from '../config.js';
 import type { ClipDraft, PublishResult } from '../types.js';
-import { expectOk, getFetch, requireEnv } from './http.js';
+import { composeCaption, expectJson, expectOk, getFetch, requireEnv } from './http.js';
 
 const TOKEN_URL = 'https://oauth2.googleapis.com/token';
 const UPLOAD_URL =
@@ -14,10 +14,6 @@ interface TokenResponse {
 
 interface VideoResponse {
   id?: string;
-}
-
-function captionWithHashtags(draft: ClipDraft, caption: string): string {
-  return `${caption}\n\n${draft.hashtags.map((hashtag) => `#${hashtag}`).join(' ')}`;
 }
 
 export async function publishYouTube(
@@ -51,13 +47,12 @@ export async function publishYouTube(
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: tokenBody,
   });
-  await expectOk(tokenRes, 'YouTube token refresh');
-  const tokenJson = (await tokenRes.json()) as TokenResponse;
+  const tokenJson = await expectJson<TokenResponse>(tokenRes, 'YouTube token refresh');
   if (!tokenJson.access_token) {
     throw new Error('YouTube token refresh: response missing access_token');
   }
 
-  const fullCaption = captionWithHashtags(draft, caption);
+  const fullCaption = composeCaption(caption, draft.hashtags, 4900);
   const title = (caption.split(/\r?\n/, 1)[0] ?? '').slice(0, 95);
 
   // There is no Shorts API flag: a 9:16 video no longer than 180 seconds is
@@ -75,7 +70,7 @@ export async function publishYouTube(
     body: JSON.stringify({
       snippet: {
         title,
-        description: fullCaption.slice(0, 4900),
+        description: fullCaption,
         categoryId,
       },
       status: {
@@ -119,8 +114,7 @@ export async function publishYouTube(
     });
   }
 
-  await expectOk(uploadRes, 'YouTube video upload');
-  const videoJson = (await uploadRes.json()) as VideoResponse;
+  const videoJson = await expectJson<VideoResponse>(uploadRes, 'YouTube video upload');
   if (!videoJson.id) {
     throw new Error('YouTube video upload: response missing video id');
   }

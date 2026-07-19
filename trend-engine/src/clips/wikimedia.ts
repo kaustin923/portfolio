@@ -13,11 +13,24 @@ function metadataValue(field: any): string {
 
 function mapLicense(
   shortName: string,
+  name: string,
+  licenseUrl: string,
+  usageTerms: string,
   pageTitle: string,
   artist: string,
   sourceUrl: string,
 ): LicenseInfo | undefined {
-  if (/^cc0/i.test(shortName)) {
+  const haystack = [name, shortName, licenseUrl, usageTerms].join(' ').toLowerCase();
+
+  if (
+    /\bcc[\s-]?by[\s-]?nc\b|(?:^|[\s/_-])nc(?:$|[\s/_-])|\bnon[\s-]?commercial\b|\bcc[\s-]?by[\s-]?nd\b|(?:^|[\s/_-])nd(?:$|[\s/_-])|\bno[\s-]?deriv(?:ative)?s?\b|\bby[\s-]?sa\b|(?:^|[\s/_-])sa(?:$|[\s/_-])|\bshare[\s-]?alike\b/.test(
+      haystack,
+    )
+  ) {
+    return undefined;
+  }
+
+  if (/\bcc0\b|publicdomain\/zero|creative commons zero/.test(haystack)) {
     return {
       type: 'cc0',
       requiresAttribution: false,
@@ -25,7 +38,7 @@ function mapLicense(
       sourceUrl,
     };
   }
-  if (/public domain|^pd\b/i.test(shortName)) {
+  if (/\bpublic[\s-]?domain\b|publicdomain\/mark|(?:^|\s)pd(?:\s|$)/.test(haystack)) {
     return {
       type: 'public-domain',
       requiresAttribution: false,
@@ -33,11 +46,12 @@ function mapLicense(
       sourceUrl,
     };
   }
-  if (/^cc by(?!-(sa|nc|nd))[ -]?\d/i.test(shortName) && artist) {
+  if ((/\bcc[\s-]?by\b/.test(haystack) || /\battribution\b/.test(haystack)) && artist) {
+    const displayName = shortName || name || usageTerms || 'CC BY';
     return {
       type: 'cc-by',
       requiresAttribution: true,
-      attributionText: `"${pageTitle}" by ${artist}, via Wikimedia Commons, ${shortName} — modified`,
+      attributionText: `"${pageTitle}" by ${artist}, via Wikimedia Commons, ${displayName} — modified`,
       commercialUse: true,
       sourceUrl,
     };
@@ -57,11 +71,23 @@ export function mapWikimedia(json: any, _topic: Topic): SourceClipCandidate[] {
     const sourceUrl = typeof videoInfo?.descriptionurl === 'string' ? videoInfo.descriptionurl : '';
     const directUrl = typeof videoInfo?.url === 'string' ? videoInfo.url : '';
     const durationSec = Math.round(Number(videoInfo?.duration ?? 0));
+    if (typeof videoInfo?.mime === 'string' && !videoInfo.mime.startsWith('video/')) continue;
     if (!metadata || !pageTitle || !sourceUrl || !directUrl || durationSec <= 0) continue;
 
     const shortName = metadataValue(metadata.LicenseShortName);
+    const name = metadataValue(metadata.License);
+    const licenseUrl = metadataValue(metadata.LicenseUrl);
+    const usageTerms = metadataValue(metadata.UsageTerms);
     const artist = metadataValue(metadata.Artist) || metadataValue(metadata.Credit);
-    const license = mapLicense(shortName, pageTitle, artist, sourceUrl);
+    const license = mapLicense(
+      shortName,
+      name,
+      licenseUrl,
+      usageTerms,
+      pageTitle,
+      artist,
+      sourceUrl,
+    );
     if (!license) continue;
 
     candidates.push({

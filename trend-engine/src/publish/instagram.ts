@@ -1,8 +1,8 @@
-import path from 'node:path';
+import { readFile, stat } from 'node:fs/promises';
 
 import { config } from '../config.js';
 import type { ClipDraft, PublishResult } from '../types.js';
-import { expectOk, getFetch, requireEnv, sleep } from './http.js';
+import { composeCaption, expectJson, getFetch, requireEnv, sleep } from './http.js';
 
 const GRAPH = 'https://graph.facebook.com/v23.0';
 
@@ -18,13 +18,13 @@ interface InstagramPermalinkResponse {
   permalink?: string;
 }
 
+interface InstagramUploadResponse {
+  success?: boolean;
+}
+
 export interface InstagramPublishOptions {
   pollIntervalMs?: number;
   timeoutMs?: number;
-}
-
-function captionWithHashtags(draft: ClipDraft, caption: string): string {
-  return `${caption}\n\n${draft.hashtags.map((hashtag) => `#${hashtag}`).join(' ')}`;
 }
 
 export async function publishInstagram(
@@ -35,45 +35,65 @@ export async function publishInstagram(
   if (config.dryRun) {
     throw new Error('publishInstagram refused: DRY_RUN is enabled — no live API calls');
   }
-  const env = requireEnv('Instagram', [
-    'IG_USER_ID',
-    'IG_ACCESS_TOKEN',
-    'PUBLIC_VIDEO_BASE_URL',
-  ]);
+  const env = requireEnv('Instagram', ['IG_USER_ID', 'IG_ACCESS_TOKEN']);
   const userId = env.IG_USER_ID!;
   const accessToken = env.IG_ACCESS_TOKEN!;
-  const publicBaseUrl = env.PUBLIC_VIDEO_BASE_URL!;
   const pollIntervalMs = opts.pollIntervalMs ?? 5_000;
   const timeoutMs = opts.timeoutMs ?? 300_000;
-  const videoUrl = `${publicBaseUrl.replace(/\/+$/, '')}/${encodeURIComponent(path.basename(draft.outputPath))}`;
   const fetch = getFetch();
+  const fileSize = (await stat(draft.outputPath)).size;
+  const bytes = await readFile(draft.outputPath);
 
-  // Graph cannot read local files. The clips directory must be served over
-  // public HTTPS at PUBLIC_VIDEO_BASE_URL before live publishing is enabled.
   const createRes = await fetch(`${GRAPH}/${encodeURIComponent(userId)}/media`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
       media_type: 'REELS',
-      video_url: videoUrl,
-      caption: captionWithHashtags(draft, caption).slice(0, 2200),
+      upload_type: 'resumable',
+      caption: composeCaption(caption, draft.hashtags, 2200),
+      share_to_feed: 'true',
       access_token: accessToken,
     }),
   });
-  await expectOk(createRes, 'Instagram Reels container creation');
-  const createJson = (await createRes.json()) as InstagramIdResponse;
+  const createJson = await expectJson<InstagramIdResponse>(
+    createRes,
+    'Instagram Reels container creation',
+  );
   if (!createJson.id) {
     throw new Error('Instagram Reels container creation: response missing container id');
   }
   const containerId = createJson.id;
+
+  const uploadRes = await fetch(
+    `https://rupload.facebook.com/ig-api-upload/v23.0/${encodeURIComponent(containerId)}`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `OAuth ${accessToken}`,
+        offset: '0',
+        file_size: String(fileSize),
+        'Content-Type': 'application/octet-stream',
+      },
+      body: bytes,
+    },
+  );
+  const uploadJson = await expectJson<InstagramUploadResponse>(
+    uploadRes,
+    'Instagram Reels video upload',
+  );
+  if (uploadJson.success === false) {
+    throw new Error('Instagram Reels video upload: response reported success=false');
+  }
 
   const deadline = Date.now() + timeoutMs;
   while (true) {
     const statusRes = await fetch(
       `${GRAPH}/${encodeURIComponent(containerId)}?fields=status_code&access_token=${encodeURIComponent(accessToken)}`,
     );
-    await expectOk(statusRes, 'Instagram container status');
-    const statusJson = (await statusRes.json()) as InstagramStatusResponse;
+    const statusJson = await expectJson<InstagramStatusResponse>(
+      statusRes,
+      'Instagram container status',
+    );
     const status = statusJson.status_code;
 
     if (status === 'FINISHED') break;
@@ -96,8 +116,10 @@ export async function publishInstagram(
       access_token: accessToken,
     }),
   });
-  await expectOk(publishRes, 'Instagram Reels publish');
-  const publishJson = (await publishRes.json()) as InstagramIdResponse;
+  const publishJson = await expectJson<InstagramIdResponse>(
+    publishRes,
+    'Instagram Reels publish',
+  );
   if (!publishJson.id) {
     throw new Error('Instagram Reels publish: response missing media id');
   }
@@ -108,8 +130,12 @@ export async function publishInstagram(
     const permalinkRes = await fetch(
       `${GRAPH}/${encodeURIComponent(mediaId)}?fields=permalink&access_token=${encodeURIComponent(accessToken)}`,
     );
-    await expectOk(permalinkRes, 'Instagram permalink lookup');
-    permalink = ((await permalinkRes.json()) as InstagramPermalinkResponse).permalink;
+    permalink = (
+      await expectJson<InstagramPermalinkResponse>(
+        permalinkRes,
+        'Instagram permalink lookup',
+      )
+    ).permalink;
   } catch {
     // Publishing succeeded; permalink lookup is deliberately best-effort.
   }

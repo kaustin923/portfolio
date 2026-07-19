@@ -10,34 +10,17 @@
  *   - X         → API v2 media upload + post
  *
  * In DRY_RUN adapters report what they *would* post without touching the
- * network. Live mode uses official APIs for TikTok, YouTube, and Instagram;
- * X remains intentionally unimplemented.
+ * network. Live mode uses official APIs for every registered platform.
  */
 
 import { config } from '../config.js';
 import { publishInstagram } from '../publish/instagram.js';
 import { publishTikTok } from '../publish/tiktok.js';
 import { publishYouTube } from '../publish/youtube.js';
+import { publishX } from '../publish/x.js';
 import type { ApprovalDecision, ClipDraft, Platform, PublishResult } from '../types.js';
 
 type Adapter = (draft: ClipDraft, caption: string) => Promise<PublishResult>;
-
-function stubAdapter(platform: Platform): Adapter {
-  return async (draft, caption) => {
-    if (config.dryRun) {
-      console.log(`   [publish:${platform}] would upload ${draft.outputPath}`);
-      console.log(`   [publish:${platform}] caption: ${caption.slice(0, 80)}…`);
-      return {
-        platform,
-        status: 'published',
-        postId: `dryrun-${platform}-${draft.id}`,
-        url: `https://${platform}.example/mock`,
-      };
-    }
-    // Live: implement the platform's official upload + publish here.
-    throw new Error(`Live publishing to ${platform} not implemented — add official API client`);
-  };
-}
 
 function liveAdapter(
   platform: Platform,
@@ -62,7 +45,7 @@ const ADAPTERS: Record<Platform, Adapter> = {
   tiktok: liveAdapter('tiktok', publishTikTok),
   'youtube-shorts': liveAdapter('youtube-shorts', publishYouTube),
   'instagram-reels': liveAdapter('instagram-reels', publishInstagram),
-  x: stubAdapter('x'),
+  x: liveAdapter('x', publishX),
 };
 
 /**
@@ -83,6 +66,14 @@ export async function publish(
   draft: ClipDraft,
   decision: ApprovalDecision,
 ): Promise<PublishResult[]> {
+  if (decision.status !== 'approved') {
+    return draft.targetPlatforms.map((platform) => ({
+      platform,
+      status: 'skipped',
+      error: `not published: approval decision was '${decision.status}'`,
+    }));
+  }
+
   const caption = resolveCaption(draft, decision);
   const results: PublishResult[] = [];
 
