@@ -21,7 +21,17 @@ import { appendFile, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { basename } from 'node:path';
 
 import { config } from '../config.js';
-import type { ApprovalDecision, ClipDraft, ComplianceResult, Topic } from '../types.js';
+import type {
+  ApprovalDecision,
+  ClipDraft,
+  ComplianceResult,
+  ComplianceTier,
+  Topic,
+} from '../types.js';
+
+export type TelegramApprovalDecision = ApprovalDecision & {
+  conditionsConfirmed?: boolean;
+};
 
 const API = (method: string) =>
   `https://api.telegram.org/bot${config.approval.telegramBotToken}/${method}`;
@@ -67,10 +77,11 @@ export function renderCard(
   compliance: ComplianceResult,
 ): string {
   const lic = draft.license;
+  const tier = compliance.tier ?? 'green';
   const escapedHashtags = draft.hashtags
     .map((hashtag) => escapeMarkdownV2(`#${hashtag}`))
     .join(' ');
-  return [
+  const lines = [
     `🎬 *Review needed*`,
     ``,
     `*Topic:* ${escapeMarkdownV2(topic.title)}`,
@@ -88,8 +99,24 @@ export function renderCard(
     `*Commercial use:* ${escapeMarkdownV2(String(lic.commercialUse))}`,
     `*Source:* ${escapeMarkdownV2(lic.sourceUrl)}`,
     ``,
+    `*Tier:* ${escapeMarkdownV2(tier)}`,
     `*Compliance:* ${compliance.reasons.map(escapeMarkdownV2).join('; ')}`,
-  ].join('\n');
+  ];
+
+  if (tier === 'yellow') {
+    lines.push(
+      ``,
+      `*${escapeMarkdownV2('Yellow-tier conditions - ALL must be true:')}*`,
+      ...(compliance.tierReasons ?? []).map(
+        (reason) => `• ${escapeMarkdownV2(reason)}`,
+      ),
+      escapeMarkdownV2(
+        'Reply YES to this card to confirm every condition. The Approve button alone will NOT publish a yellow draft.',
+      ),
+    );
+  }
+
+  return lines.join('\n');
 }
 
 async function tg(method: string, body: unknown): Promise<any> {
@@ -110,6 +137,8 @@ export interface ApprovalRecord {
   decidedBy?: string;
   reason?: string;
   editedCaption?: string;
+  tier?: string;
+  conditions_confirmed?: boolean;
 }
 
 /** Append an auditable approval decision, optionally failing closed in strict mode. */
@@ -142,6 +171,17 @@ async function persistTelegramOffset(offset: number): Promise<void> {
   } catch (err) {
     console.warn('[telegram] failed to persist update offset:', err);
   }
+}
+
+/**
+ * Only the configured approver chat may drive decisions. getUpdates returns
+ * traffic from ANY chat that can reach the bot, and message ids are per-chat
+ * and low/sequential, so an unauthenticated chat could otherwise collide with
+ * a review-card message id and satisfy an approval. Fail closed when the chat
+ * id is absent or different.
+ */
+function isFromApproverChat(chatId: unknown): boolean {
+  return chatId != null && String(chatId) === String(config.approval.telegramChatId);
 }
 
 function approvalKeyboard(draftId: string): {
@@ -207,14 +247,28 @@ export async function requestApproval(
   topic: Topic,
   draft: ClipDraft,
   compliance: ComplianceResult,
-): Promise<ApprovalDecision> {
+): Promise<TelegramApprovalDecision> {
+  const tier = compliance.tier;
+  if (tier === 'red') {
+    throw new Error('red-tier draft must never reach the approval card');
+  }
+
   const card = renderCard(topic, draft, compliance);
 
   if (config.dryRun) {
+    const yellowNote =
+      'auto-approved in DRY_RUN (yellow conditions NOT confirmed - live mode requires a YES reply)';
+    const decision: TelegramApprovalDecision = {
+      status: 'approved',
+      decidedBy: 'dry-run',
+      note: tier === 'yellow' ? yellowNote : 'auto-approved in DRY_RUN',
+      ...(tier === 'yellow' ? { conditionsConfirmed: false } : {}),
+    };
     console.log('\n──── Telegram approval card (DRY_RUN, auto-approving) ────');
     console.log(card.replace(/\*/g, ''));
+    if (tier === 'yellow') console.log(yellowNote);
     console.log('─────────────────────────────────────────────────────────\n');
-    return { status: 'approved', decidedBy: 'dry-run', note: 'auto-approved in DRY_RUN' };
+    return decision;
   }
 
   if (!config.approval.telegramBotToken || !config.approval.telegramChatId) {
@@ -239,7 +293,7 @@ export async function requestApproval(
     });
   }
 
-  const decision = await pollForDecision(draft.id, messageId);
+  const decision = await pollForDecision(draft.id, messageId, { tier });
   await appendApprovalRecord({
     timestamp: new Date().toISOString(),
     topicId: topic.id,
@@ -248,6 +302,8 @@ export async function requestApproval(
     decidedBy: decision.decidedBy,
     reason: decision.note,
     editedCaption: decision.editedCaption,
+    tier,
+    conditions_confirmed: tier === 'yellow' ? decision.conditionsConfirmed === true : undefined,
   });
   return decision;
 }
@@ -256,18 +312,36 @@ export async function requestApproval(
 export async function pollForDecision(
   draftId: string,
   messageId?: number,
-): Promise<ApprovalDecision> {
+  opts?: { tier?: ComplianceTier },
+): Promise<TelegramApprovalDecision> {
   const pendingDecision = pendingDecisions.get(draftId);
-  if (pendingDecision) {
+  const pendingYellowButtonApproval =
+    opts?.tier === 'yellow' && pendingDecision?.status === 'approved';
+  if (pendingDecision && !pendingYellowButtonApproval) {
     pendingDecisions.delete(draftId);
     return pendingDecision;
   }
+  if (pendingYellowButtonApproval) pendingDecisions.delete(draftId);
 
   const deadline = Date.now() + config.approval.timeoutMinutes * 60_000;
   let offset = await loadTelegramOffset();
   let pendingRejection:
     | { decidedBy: string; promptMessageId?: number; deadline: number }
     | undefined;
+  const yellowPromptMessageIds = new Set<number>();
+  let yellowReprompted = false;
+
+  async function sendYellowPrompt(): Promise<void> {
+    const prompt = await tg('sendMessage', {
+      chat_id: config.approval.telegramChatId,
+      text: 'Yellow-tier draft: reply YES to the review card to confirm all conditions are met.',
+    });
+    if (typeof prompt?.result?.message_id === 'number') {
+      yellowPromptMessageIds.add(prompt.result.message_id);
+    }
+  }
+
+  if (pendingYellowButtonApproval) await sendYellowPrompt();
 
   while (
     Date.now() < deadline &&
@@ -276,11 +350,19 @@ export async function pollForDecision(
     const activeDeadline = pendingRejection?.deadline ?? deadline;
     const timeout = Math.max(0, Math.min(30, Math.ceil((activeDeadline - Date.now()) / 1000)));
     const updates = await tg('getUpdates', { offset, timeout });
-    let decision: ApprovalDecision | undefined;
+    let decision: TelegramApprovalDecision | undefined;
 
     try {
       for (const u of updates?.result ?? []) {
         if (typeof u.update_id === 'number') offset = Math.max(offset, u.update_id + 1);
+
+        // Drop anything that did not originate in the configured approver chat
+        // BEFORE any decision processing (buttons, YES confirmations, caption
+        // overrides, rejection reasons).
+        const updateChatId = u.callback_query
+          ? u.callback_query.message?.chat?.id
+          : u.message?.chat?.id;
+        if (!isFromApproverChat(updateChatId)) continue;
 
         const cb = u.callback_query;
         if (cb?.data && !cb.data.endsWith(`:${draftId}`)) {
@@ -330,6 +412,15 @@ export async function pollForDecision(
         if (cb?.data?.endsWith(`:${draftId}`)) {
           const action = cb.data.split(':')[0];
           const decidedBy = cb.from?.username ?? String(cb.from?.id);
+          if (action === 'approve' && opts?.tier === 'yellow') {
+            await tg('answerCallbackQuery', {
+              callback_query_id: cb.id,
+              text: 'Reply YES to confirm yellow-tier conditions',
+            });
+            await sendYellowPrompt();
+            continue;
+          }
+
           await tg('answerCallbackQuery', {
             callback_query_id: cb.id,
             text: `Recorded: ${action}`,
@@ -352,9 +443,33 @@ export async function pollForDecision(
           continue;
         }
 
-        // Text reply to the review message = caption override + approve
+        // Text reply to the review message = caption override + approve (green/legacy only).
         const msg = u.message;
-        if (messageId != null && msg?.reply_to_message?.message_id === messageId && msg.text) {
+        const repliedTo = msg?.reply_to_message?.message_id;
+        const isReplyToReview = messageId != null && repliedTo === messageId;
+        const isReplyToYellowPrompt =
+          repliedTo != null && yellowPromptMessageIds.has(repliedTo);
+        if (
+          opts?.tier === 'yellow' &&
+          msg?.text &&
+          (isReplyToReview || isReplyToYellowPrompt)
+        ) {
+          if (/^yes$/i.test(msg.text.trim())) {
+            decision = {
+              status: 'approved',
+              decidedBy: msg.from?.username ?? String(msg.from?.id),
+              note: 'yellow-tier conditions confirmed via YES reply',
+              conditionsConfirmed: true,
+            };
+            break;
+          }
+          if (!yellowReprompted) {
+            yellowReprompted = true;
+            await sendYellowPrompt();
+          }
+          continue;
+        }
+        if (isReplyToReview && msg?.text) {
           decision = {
             status: 'approved',
             decidedBy: msg.from?.username ?? String(msg.from?.id),

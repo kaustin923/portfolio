@@ -1,0 +1,29 @@
+[
+  {
+    "source": "events-calendar",
+    "externalId": "evcal-lakeside-comic-con-2026",
+    "title": "Lakeside Comic-Con 2026",
+    "url": "https://en.wikipedia.org/wiki/Comic_book_convention",
+    "score": 60,
+    "category": "events-calendar",
+    "capturedAt": "2026-07-19T12:00:00.000Z"
+  },
+  {
+    "source": "events-calendar",
+    "externalId": "evcal-25th-new-york-asian-film-festival",
+    "title": "25th New York Asian Film Festival",
+    "url": "https://en.wikipedia.org/wiki/New_York_Asian_Film_Festival",
+    "score": 60,
+    "category": "events-calendar",
+    "capturedAt": "2026-07-19T12:00:00.000Z"
+  },
+  {
+    "source": "events-calendar",
+    "externalId": "evcal-nwa-78th-anniversary-show",
+    "title": "NWA 78th Anniversary Show",
+    "url": "https://en.wikipedia.org/wiki/NWA_Anniversary_Show",
+    "score": 40,
+    "category": "events-calendar",
+    "capturedAt": "2026-07-19T12:00:00.000Z"
+  }
+]

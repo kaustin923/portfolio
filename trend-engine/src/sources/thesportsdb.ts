@@ -2,18 +2,14 @@ import { readFile } from 'node:fs/promises';
 
 import { config } from '../config.js';
 import type { TrendSignal } from '../types.js';
+import { fetchT, type SourcesFetch } from './index.js';
 
-
-const fetchWithTimeout = (url: string | URL, init: RequestInit = {}): Promise<Response> =>
-  fetch(url, { ...init, signal: AbortSignal.timeout(10_000) });
-
-const UA = 'trend-engine/0.1 (personal research; contact: you@example.com)';
+const UA = `trend-engine/0.1 (personal research; contact: ${process.env.CONTACT_EMAIL ?? 'unset'})`;
 const now = () => new Date().toISOString();
 const DAY_MS = 24 * 60 * 60 * 1000;
 const LEAGUE_IDS = ['4391', '4387', '4424', '4380', '4346'] as const;
 
-// This cast becomes a no-op once types.ts adds the thesportsdb SignalSource member.
-const SRC = 'thesportsdb' as TrendSignal['source'];
+const SRC = 'thesportsdb' as const;
 
 interface SportsDbEvent {
   idEvent?: string;
@@ -53,28 +49,35 @@ function mapEvent(event: SportsDbEvent, today: Date): TrendSignal | null {
   };
 }
 
-async function collectLeague(leagueId: string, today: Date): Promise<TrendSignal[]> {
-  try {
-    const res = await fetchWithTimeout(
-      `https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id=${leagueId}`,
-      { headers: { 'User-Agent': UA } },
-    );
-    if (!res.ok) return [];
-    const json = (await res.json()) as { events?: SportsDbEvent[] | null };
-    return (json.events ?? [])
-      .map((event) => mapEvent(event, today))
-      .filter((event): event is TrendSignal => event != null);
-  } catch {
-    return [];
-  }
+async function collectLeague(
+  leagueId: string,
+  today: Date,
+  fetcher: SourcesFetch,
+): Promise<TrendSignal[]> {
+  const res = await fetcher(
+    `https://www.thesportsdb.com/api/v1/json/3/eventsnextleague.php?id=${leagueId}`,
+    { headers: { 'User-Agent': UA } },
+  );
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const json = (await res.json()) as { events?: SportsDbEvent[] | null };
+  return (json.events ?? [])
+    .map((event) => mapEvent(event, today))
+    .filter((event): event is TrendSignal => event != null);
 }
 
 /** Scheduled major-league events in the next 30 days. */
-export async function collectTheSportsDB(today = new Date()): Promise<TrendSignal[]> {
+export async function collectTheSportsDB(
+  today = new Date(),
+  fetcher: SourcesFetch = fetchT,
+): Promise<TrendSignal[]> {
   if (config.dryRun) return fixture('thesportsdb');
 
   const results = await Promise.allSettled(
-    LEAGUE_IDS.map((leagueId) => collectLeague(leagueId, today)),
+    LEAGUE_IDS.map((leagueId) => collectLeague(leagueId, today, fetcher)),
   );
+  const failures = results.filter((result) => result.status === 'rejected');
+  if (results.length > 0 && failures.length === results.length) {
+    throw failures.at(-1)?.reason;
+  }
   return results.flatMap((result) => (result.status === 'fulfilled' ? result.value : []));
 }

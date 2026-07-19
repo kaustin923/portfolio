@@ -2,20 +2,20 @@ import { readFile } from 'node:fs/promises';
 
 import { config } from '../config.js';
 import type { TrendSignal } from '../types.js';
+import { fetchT, type SourcesFetch } from './index.js';
 
-
-const fetchWithTimeout = (url: string | URL, init: RequestInit = {}): Promise<Response> =>
-  fetch(url, { ...init, signal: AbortSignal.timeout(10_000) });
-
-const UA = 'trend-engine/0.1 (personal research; contact: you@example.com)';
+const UA = `trend-engine/0.1 (personal research; contact: ${process.env.CONTACT_EMAIL ?? 'unset'})`;
 const now = () => new Date().toISOString();
 
-// This cast becomes a no-op once types.ts adds the gdelt SignalSource member.
-const SRC = 'gdelt' as TrendSignal['source'];
+const SRC = 'gdelt' as const;
 
 interface GdeltPoint {
   date?: string;
   value?: number;
+}
+
+interface GdeltResponse {
+  timeline?: Array<{ data?: GdeltPoint[] }>;
 }
 
 async function fixture(name: string): Promise<TrendSignal[]> {
@@ -41,47 +41,70 @@ function candidateTerms(terms: string[]): string[] {
   return candidates;
 }
 
-async function collectTerm(term: string): Promise<TrendSignal[]> {
+async function parseResponse(res: Response): Promise<GdeltResponse> {
+  // Real Response objects expose text(); the fallback keeps older JSON-only
+  // injected fetch doubles working without weakening live error reporting.
+  if (typeof res.text !== 'function') {
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json() as GdeltResponse;
+  }
+
+  const body = await res.text();
+  const snippet = body.slice(0, 120);
+  if (!res.ok) throw new Error(`HTTP ${res.status}${snippet ? ` - ${snippet}` : ''}`);
+  try {
+    return JSON.parse(body) as GdeltResponse;
+  } catch {
+    throw new Error(`GDELT non-JSON response: ${snippet}`);
+  }
+}
+
+async function collectTerm(term: string, fetcher: SourcesFetch): Promise<TrendSignal[]> {
   const endpoint = new URL('https://api.gdeltproject.org/api/v2/doc/doc');
-  endpoint.searchParams.set('query', term);
+  endpoint.searchParams.set('query', /\s/.test(term) ? `"${term}"` : term);
   endpoint.searchParams.set('mode', 'timelinevol');
   endpoint.searchParams.set('timespan', '7d');
   endpoint.searchParams.set('format', 'json');
 
-  try {
-    const res = await fetchWithTimeout(endpoint, { headers: { 'User-Agent': UA } });
-    if (!res.ok) return [];
-    const json = (await res.json()) as { timeline?: Array<{ data?: GdeltPoint[] }> };
-    const values = (json.timeline?.[0]?.data ?? [])
-      .map((point) => Number(point.value))
-      .filter((value) => Number.isFinite(value));
-    if (values.length < 3) return [];
+  const res = await fetcher(endpoint, { headers: { 'User-Agent': UA } });
+  const json = await parseResponse(res);
+  const values = (json.timeline?.[0]?.data ?? [])
+    .map((point) => Number(point.value))
+    .filter((value) => Number.isFinite(value));
+  if (values.length < 3) return [];
 
-    const prior = mean(values.slice(0, -2));
-    const recent = mean(values.slice(-2));
-    if (prior <= 0 || recent <= prior) return [];
+  const prior = mean(values.slice(0, -2));
+  const recent = mean(values.slice(-2));
+  if (prior <= 0 || recent <= prior) return [];
 
-    const lastValue = values.at(-1);
-    if (lastValue == null) return [];
-    return [{
-      source: SRC,
-      externalId: `gdelt-${term.toLocaleLowerCase().replace(/\s+/g, '-')}`,
-      title: term,
-      url: endpoint.toString(),
-      score: Math.round(lastValue * 100),
-      velocity: Math.min(1, recent / prior - 1),
-      category: 'news-velocity',
-      capturedAt: now(),
-    }];
-  } catch {
-    return [];
-  }
+  const lastValue = values.at(-1);
+  if (lastValue == null) return [];
+  return [{
+    source: SRC,
+    externalId: `gdelt-${term.toLocaleLowerCase().replace(/\s+/g, '-')}`,
+    title: term,
+    url: endpoint.toString(),
+    score: Math.round(lastValue * 100),
+    velocity: Math.min(1, recent / prior - 1),
+    category: 'news-velocity',
+    capturedAt: now(),
+  }];
 }
 
 /** GDELT seven-day timeline acceleration for harvested candidate terms. */
-export async function collectGdelt(terms: string[]): Promise<TrendSignal[]> {
+export async function collectGdelt(
+  terms: string[],
+  fetcher: SourcesFetch = fetchT,
+): Promise<TrendSignal[]> {
   if (config.dryRun) return fixture('gdelt');
 
-  const results = await Promise.allSettled(candidateTerms(terms).map(collectTerm));
+  const candidates = candidateTerms(terms);
+  const results = await Promise.allSettled(
+    candidates.map((term) => collectTerm(term, fetcher)),
+  );
+  const failures = results.filter((result) => result.status === 'rejected');
+  if (results.length > 0 && failures.length === results.length) {
+    throw failures.at(-1)?.reason;
+  }
   return results.flatMap((result) => (result.status === 'fulfilled' ? result.value : []));
 }

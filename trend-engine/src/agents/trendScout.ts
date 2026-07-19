@@ -14,7 +14,7 @@
 import { config } from '../config.js';
 import { getLearningSummary } from '../learning.js';
 import { structured } from '../llm.js';
-import { collectSignals } from '../sources/index.js';
+import { collectSignals, type SourceHealth } from '../sources/index.js';
 import { collectUpcoming } from '../sources/upcoming.js';
 import { readMetrics, summarizePerformance } from './monitor.js';
 import type { SignalSource, Topic, TrendSignal, UpcomingCatalyst } from '../types.js';
@@ -94,6 +94,7 @@ const SCHEMA = {
                 'wikipedia',
                 'gdelt',
                 'google-news',
+                'events-calendar',
                 'mock',
               ],
             },
@@ -140,22 +141,42 @@ export interface TrendScoutResult {
   rawSignalCount: number;
   upcomingCount: number;
   bySource: Partial<Record<SignalSource, number>>;
+  sourceHealth: SourceHealth[];
   /** Forecasts we chose NOT to act on, with the reason — kept for transparency. */
   skipped: Array<Pick<Topic, 'title' | 'stage' | 'recommendation'>>;
 }
 
 export async function discoverTopics(today = new Date().toISOString().slice(0, 10)): Promise<TrendScoutResult> {
-  const [signals, upcoming, learning] = await Promise.all([
+  const [collected, upcoming, learning] = await Promise.all([
     collectSignals(),
     collectUpcoming(today),
     getLearningSummary(),
   ]);
+  const { signals, health: sourceHealth } = collected;
+  console.log('[trend-scout] source health:');
+  for (const source of sourceHealth) {
+    const warning = ['error', 'timeout', 'disabled'].includes(source.status) ? '⚠ ' : '';
+    console.log(
+      `[trend-scout] ${warning}${source.source}  ${source.status}  count=${source.count}  ` +
+      `${source.ms}ms${source.detail ? `  ${source.detail}` : ''}`,
+    );
+  }
 
   const bySource: Partial<Record<SignalSource, number>> = {};
   for (const s of signals) bySource[s.source] = (bySource[s.source] ?? 0) + 1;
+  // Preserve the historical reactive count; scheduled calendar signals are
+  // reported separately in bySource/sourceHealth and still reach the model.
+  const rawSignalCount = signals.filter((signal) => signal.source !== 'events-calendar').length;
 
   if (signals.length === 0 && upcoming.length === 0) {
-    return { topics: [], rawSignalCount: 0, upcomingCount: 0, bySource, skipped: [] };
+    return {
+      topics: [],
+      rawSignalCount: 0,
+      upcomingCount: 0,
+      bySource,
+      sourceHealth,
+      skipped: [],
+    };
   }
 
   let perf: string | null = null;
@@ -173,6 +194,7 @@ export async function discoverTopics(today = new Date().toISOString().slice(0, 1
     `REACTIVE SIGNALS (loud now):\n${renderSignals(signals) || '(none)'}\n\n` +
     `SIGNAL SOURCE CHARACTER (weight leading sources for stage/leadTime, lagging for saturation): ` +
     `thesportsdb=leading (scheduled events, days-to-weeks ahead), ` +
+    `events-calendar=leading (scheduled events/conventions, days-to-weeks ahead), ` +
     `wikipedia=leading (attention accelerating before mainstream peak), ` +
     `gdelt=coincident (news velocity, hours ahead of social saturation), ` +
     `google-news=lagging (already mainstream — treat matching topics as closer to peaking/saturated), ` +
@@ -205,9 +227,10 @@ export async function discoverTopics(today = new Date().toISOString().slice(0, 1
 
   return {
     topics: actionable,
-    rawSignalCount: signals.length,
+    rawSignalCount,
     upcomingCount: upcoming.length,
     bySource,
+    sourceHealth,
     skipped,
   };
 }

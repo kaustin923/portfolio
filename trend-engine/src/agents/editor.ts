@@ -23,7 +23,23 @@ import {
   runFfmpeg,
 } from '../media/ffmpeg.js';
 import { acquireCaptionCues, synthesizeVoiceover } from '../media/tts.js';
-import type { AspectRatio, ClipDraft, Platform, SourceClipCandidate, Topic } from '../types.js';
+import type {
+  AspectRatio,
+  AudioProvenance,
+  ClipDraft,
+  Platform,
+  SourceClipCandidate,
+  Topic,
+} from '../types.js';
+import {
+  applyCaptionPreset,
+  captionPresetFor,
+  deriveStructure,
+  fingerprintCount,
+  isTooSimilar,
+  loadRecentFingerprints,
+  type FingerprintRecord,
+} from '../variation.js';
 
 const SYSTEM = `You write short-form video captions for TikTok / Reels / Shorts.
 Given a topic and the intended angle, write:
@@ -75,13 +91,37 @@ function validateAspectRatio(platforms: Platform[], aspectRatio: AspectRatio): v
   }
 }
 
-async function writeCopy(topic: Topic): Promise<{ caption: string; hashtags: string[] }> {
+/** Refuse audio that cannot be tied to a renderer-safe provenance record. */
+export function assertRenderableAudio(provenance?: AudioProvenance): void {
+  if (!provenance) {
+    throw new Error(
+      'Audio provenance is missing — treated as "unknown" and never renderable.',
+    );
+  }
+  if (provenance.kind === 'licensed') {
+    if (provenance.licenseRef?.trim()) return;
+    throw new Error('Licensed audio requires a non-empty license record before rendering.');
+  }
+  if (
+    provenance.kind === 'tts' ||
+    provenance.kind === 'source-native' ||
+    provenance.kind === 'none'
+  ) {
+    return;
+  }
+  throw new Error(`Audio provenance kind "${String(provenance.kind)}" is not renderable.`);
+}
+
+async function writeCopy(
+  topic: Topic,
+  varyInstruction?: string,
+): Promise<{ caption: string; hashtags: string[] }> {
   return structured({
     system: SYSTEM,
     user: `Topic: ${topic.title}
 Angle: ${topic.suggestedAngle}
 Why it's trending: ${topic.whyTrending}
-Domains: ${topic.domains.join(', ')}`,
+Domains: ${topic.domains.join(', ')}${varyInstruction ? `\n\n${varyInstruction}` : ''}`,
     schema: SCHEMA as unknown as Record<string, unknown>,
     maxTokens: 1000,
   });
@@ -89,6 +129,7 @@ Domains: ${topic.domains.join(', ')}`,
 
 async function writeOriginalCopy(
   topic: Topic,
+  varyInstruction?: string,
 ): Promise<{ script: string; caption: string; hashtags: string[] }> {
   // The DRY_RUN CLI never invokes the original path yet, so makeMockLLM does
   // not need to cover this schema; tests inject the complete response instead.
@@ -97,10 +138,28 @@ async function writeOriginalCopy(
     user: `Topic: ${topic.title}
 Angle: ${topic.suggestedAngle}
 Why it's trending: ${topic.whyTrending}
-Domains: ${topic.domains.join(', ')}`,
+Domains: ${topic.domains.join(', ')}${varyInstruction ? `\n\n${varyInstruction}` : ''}`,
     schema: ORIGINAL_SCHEMA as unknown as Record<string, unknown>,
     maxTokens: 1400,
   });
+}
+
+function openingPhrase(record: FingerprintRecord): string {
+  const [first, ...rest] = record.openingNgrams;
+  if (!first) return '';
+  return [first, ...rest.map((ngram) => ngram.split(' ').at(-1) ?? '')]
+    .filter(Boolean)
+    .join(' ');
+}
+
+function varyInstruction(recent: FingerprintRecord[]): string {
+  const hookTypes = recent.map((record) => record.hookType).join(', ') || 'none';
+  const openings = recent
+    .map(openingPhrase)
+    .filter(Boolean)
+    .slice(0, 5)
+    .join(' | ') || 'none';
+  return `VARY INSTRUCTION: your draft is too similar to recent videos. Recent hook types: ${hookTypes}. Recent openings to avoid: ${openings}. Use a different hook type, a different opening sentence structure, and different caption formatting.`;
 }
 
 async function localFileExists(filePath: string): Promise<boolean> {
@@ -131,7 +190,27 @@ export async function draftClip(
   aspectRatio: AspectRatio = '9:16',
 ): Promise<ClipDraft> {
   validateAspectRatio(platforms, aspectRatio);
-  const copy = await writeCopy(topic);
+  let copy = await writeCopy(topic);
+
+  // [anti-template-variation] similarity-gated single regeneration
+  const [videoIndex, recentFingerprints] = await Promise.all([
+    fingerprintCount(),
+    loadRecentFingerprints(20),
+  ]);
+  let structure = deriveStructure({
+    caption: copy.caption,
+    brollCount: 1,
+    videoIndex,
+  });
+  if (isTooSimilar(structure, recentFingerprints)) {
+    copy = await writeCopy(topic, varyInstruction(recentFingerprints));
+    structure = deriveStructure({
+      caption: copy.caption,
+      brollCount: 1,
+      videoIndex,
+    });
+  }
+  const stillTooSimilar = isTooSimilar(structure, recentFingerprints);
   const outputPath = `${config.dataDir}clips/${candidate.id}.mp4`;
   const attributionText = candidate.license.requiresAttribution
     ? candidate.license.attributionText
@@ -143,6 +222,10 @@ export async function draftClip(
     1,
     Math.min(candidate.durationSec || config.editor.maxClipSec, config.editor.maxClipSec),
   );
+  const audioProvenance: AudioProvenance = {
+    kind: 'source-native',
+    licenseRef: candidate.license.sourceUrl,
+  };
 
   if (config.dryRun) {
     let attributionMode = 'none';
@@ -159,6 +242,7 @@ export async function draftClip(
   } else {
     const inputPath = await resolveInput(candidate);
     await mkdir(dirname(outputPath), { recursive: true });
+    assertRenderableAudio(audioProvenance);
     await renderToVertical({
       inputPath,
       outputPath,
@@ -180,7 +264,7 @@ export async function draftClip(
     }
   }
 
-  return {
+  const draft: ClipDraft = {
     id: `draft-${candidate.id}`,
     topicId: topic.id,
     sourceCandidateId: candidate.id,
@@ -190,7 +274,13 @@ export async function draftClip(
     hashtags: copy.hashtags,
     targetPlatforms: platforms,
     license: candidate.license,
+    audioProvenance,
+    editorialOnly: candidate.editorialOnly,
+    editorialReasons: candidate.editorialReasons,
+    structure,
   };
+  if (stillTooSimilar) (draft.complianceFlags ??= []).push('template-similarity');
+  return draft;
 }
 
 const ORIGINAL_BROLL_LICENSES = new Set(['stock', 'cc0', 'public-domain']);
@@ -309,10 +399,39 @@ export async function draftOriginal(
     );
   }
 
-  const copy = await writeOriginalCopy(topic);
+  let copy = await writeOriginalCopy(topic);
+
+  // [anti-template-variation] similarity-gated single regeneration
+  const [videoIndex, recentFingerprints] = await Promise.all([
+    fingerprintCount(),
+    loadRecentFingerprints(20),
+  ]);
+  let structure = deriveStructure({
+    script: copy.script,
+    caption: copy.caption,
+    brollCount: eligibleBroll.length,
+    videoIndex,
+  });
+  if (isTooSimilar(structure, recentFingerprints)) {
+    copy = await writeOriginalCopy(topic, varyInstruction(recentFingerprints));
+    structure = deriveStructure({
+      script: copy.script,
+      caption: copy.caption,
+      brollCount: eligibleBroll.length,
+      videoIndex,
+    });
+  }
+  const stillTooSimilar = isTooSimilar(structure, recentFingerprints);
   const primary = eligibleBroll[0]!;
   const outBasePath = `${config.dataDir}clips/original-${topic.id}`;
   const outputPath = `${outBasePath}.mp4`;
+  // Editorial-use flags must survive the relabel to an "original" license.
+  // Aggregate across ALL eligible b-roll: assembleOriginalVideo renders every
+  // eligible clip, not just the primary.
+  const editorialOnly = eligibleBroll.some((clip) => clip.editorialOnly === true);
+  const editorialReasons = [
+    ...new Set(eligibleBroll.flatMap((clip) => clip.editorialReasons ?? [])),
+  ];
   const draft: ClipDraft = {
     id: `draft-original-${topic.id}`,
     topicId: topic.id,
@@ -329,7 +448,16 @@ export async function draftOriginal(
       sourceUrl: primary.pageUrl ?? primary.license.sourceUrl,
     },
     syntheticMedia: true,
+    audioProvenance: { kind: 'tts', generator: 'macos-say' },
+    ...(editorialOnly
+      ? {
+          editorialOnly: true,
+          ...(editorialReasons.length > 0 ? { editorialReasons } : {}),
+        }
+      : {}),
+    structure,
   };
+  if (stillTooSimilar) (draft.complianceFlags ??= []).push('template-similarity');
 
   if (config.dryRun) {
     console.log(
@@ -346,6 +474,10 @@ export async function draftOriginal(
       1,
       Math.min(primary.durationSec || config.editor.maxClipSec, config.editor.maxClipSec),
     );
+    assertRenderableAudio({
+      kind: 'source-native',
+      licenseRef: primary.license.sourceUrl,
+    });
     await renderToVertical({
       inputPath,
       outputPath,
@@ -359,7 +491,17 @@ export async function draftOriginal(
     console.warn(
       '[editor] voiceover unavailable; falling back to captioned b-roll under its original license.',
     );
-    return { ...draft, license: primary.license, syntheticMedia: false };
+    return {
+      ...draft,
+      license: primary.license,
+      syntheticMedia: false,
+      audioProvenance: {
+        kind: 'source-native',
+        licenseRef: primary.license.sourceUrl,
+      },
+      editorialOnly: primary.editorialOnly,
+      editorialReasons: primary.editorialReasons,
+    };
   }
 
   const cues = await acquireCaptionCues(
@@ -369,7 +511,14 @@ export async function draftOriginal(
     `${outBasePath}.whisper`,
   );
   const assPath = `${outputPath}.ass`;
-  await writeFile(assPath, buildTimedAss(cues, undefined, voiceover.durationSec));
+  // [anti-template-variation] deterministic caption layout rotation
+  await writeFile(
+    assPath,
+    applyCaptionPreset(
+      buildTimedAss(cues, undefined, voiceover.durationSec),
+      captionPresetFor(videoIndex),
+    ),
+  );
 
   const inputPaths = await Promise.all(eligibleBroll.map(resolveInput));
   const capabilities = await detectCapabilities();
@@ -378,6 +527,7 @@ export async function draftOriginal(
       '[editor] ffmpeg subtitles are unavailable; timed captions remain in the platform caption text only.',
     );
   }
+  assertRenderableAudio(draft.audioProvenance);
   await assembleOriginalVideo({
     inputPaths,
     audioPath: voiceover.audioPath,

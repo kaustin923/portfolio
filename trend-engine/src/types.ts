@@ -18,6 +18,7 @@
  */
 export type LicenseType =
   | 'stock' //          Paid/licensed stock (Pexels, Storyblocks, Artgrid, Getty…)
+  | 'licensed' //       Paid per-clip license (Jukin, Pond5, Storyful…); receipt required
   | 'cc0' //            Creative Commons Zero — public-domain dedication
   | 'cc-by' //          Creative Commons Attribution (attribution required)
   | 'public-domain' //  Gov archives, NASA, pre-1929 works, etc.
@@ -34,6 +35,27 @@ export interface LicenseInfo {
   sourceUrl: string;
 }
 
+export type ComplianceTier = 'green' | 'yellow' | 'red';
+
+export type AudioProvenanceKind =
+  /** We synthesized the narration (for example, with macOS `say`). */
+  | 'tts'
+  /** Separately attached audio with a stored license record. */
+  | 'licensed'
+  /** Audio baked into the licensed source asset and covered by that asset's license. */
+  | 'source-native'
+  /** The rendered video is silent. */
+  | 'none'
+  /** Audio provenance is unresolved and therefore never renderable. */
+  | 'unknown';
+
+export interface AudioProvenance {
+  kind: AudioProvenanceKind;
+  /** Receipt/order ID or license-page URL. Required when `kind === 'licensed'`. */
+  licenseRef?: string;
+  generator?: string;
+}
+
 // ────────────────────────────────────────────────────────────────────────────
 // Trend Scout
 // ────────────────────────────────────────────────────────────────────────────
@@ -47,6 +69,7 @@ export type SignalSource =
   | 'wikipedia'
   | 'gdelt'
   | 'google-news'
+  | 'events-calendar'
   | 'mock';
 
 /** A raw, per-source observation before any cross-source reasoning. */
@@ -154,12 +177,25 @@ export interface SourceClipCandidate {
   height?: number;
   /** Human-facing page for this specific asset. */
   pageUrl?: string;
+  editorialOnly?: boolean;
+  editorialReasons?: string[];
+  tags?: string[];
+  description?: string;
   /** `license.sourceUrl` is the human-verifiable page supporting the license claim. */
   license: LicenseInfo;
 }
 
 export type AspectRatio = '9:16' | '1:1' | '16:9';
 export type Platform = 'tiktok' | 'youtube-shorts' | 'instagram-reels' | 'x';
+
+export interface DraftStructure {
+  hookType: string;
+  openingHash: string;
+  openingNgrams: string[];
+  captionPattern: string;
+  brollCount: number;
+  videoIndex: number;
+}
 
 /** An edited, captioned clip ready for the compliance gate + human approval. */
 export interface ClipDraft {
@@ -173,6 +209,14 @@ export interface ClipDraft {
   hashtags: string[];
   targetPlatforms: Platform[];
   license: LicenseInfo;
+  audioProvenance?: AudioProvenance;
+  editorialOnly?: boolean;
+  editorialReasons?: string[];
+  /** Reserved for ad-styled formats; no current pipeline path sets this. */
+  adAdjacent?: boolean;
+  /** Upstream policy flags folded into the compliance tier. */
+  complianceFlags?: string[];
+  structure?: DraftStructure;
   /**
    * True when narration/voiceover is AI-generated. Publishers should pass the
    * platform AI-generated-content disclosure where the API supports it
@@ -186,6 +230,8 @@ export interface ComplianceResult {
   reasons: string[];
   /** True when a human must sign off (the default for anything but `original`). */
   requiresHumanReview: boolean;
+  tier?: ComplianceTier;
+  tierReasons?: string[];
 }
 
 // ────────────────────────────────────────────────────────────────────────────

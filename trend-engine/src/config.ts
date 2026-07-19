@@ -73,6 +73,11 @@ export const config = {
     ]),
   },
 
+  licensing: {
+    /** Monthly cap on paid-licensed clips (Jukin/Pond5/Storyful); 0 = no licensed clips. */
+    monthlyClipBudget: num('LICENSED_CLIP_BUDGET', 0),
+  },
+
   approval: {
     telegramBotToken: process.env.TELEGRAM_BOT_TOKEN ?? '',
     telegramChatId: process.env.TELEGRAM_CHAT_ID ?? '',

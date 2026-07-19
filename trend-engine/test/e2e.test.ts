@@ -68,6 +68,7 @@ test('compliance gate: original content passes clean, no human review', () => {
     id: 'd', topicId: 't', sourceCandidateId: 's', outputPath: '/x.mp4',
     aspectRatio: '9:16', caption: 'c', hashtags: [], targetPlatforms: ['tiktok'],
     license: { type: 'original', requiresAttribution: false, commercialUse: true, sourceUrl: 'self' },
+    audioProvenance: { kind: 'tts', generator: 'macos-say' },
   };
   const r = checkCompliance(draft);
   assert.equal(r.approved, true);

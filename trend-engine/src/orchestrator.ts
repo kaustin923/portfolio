@@ -27,6 +27,7 @@ import {
   type RunState,
 } from './state.js';
 import type { ClipDraft, PostMetrics, Topic } from './types.js';
+import { appendFingerprint } from './variation.js';
 
 const NO_ELIGIBLE_ORIGINAL_BROLL =
   'Original drafts require commercial-use stock, CC0, or public-domain b-roll with no attribution requirement.';
@@ -78,6 +79,22 @@ async function processDraft(
   report.published += ok;
   console.log(`  ✅ published to ${ok}/${results.length} platforms`);
 
+  // [anti-template-variation] persist structure fingerprint
+  const structure = draft.structure;
+  if (ok > 0 && structure) {
+    await appendFingerprint({
+      v: 1,
+      at: new Date().toISOString(),
+      draftId: draft.id,
+      videoIndex: structure.videoIndex,
+      hookType: structure.hookType,
+      openingHash: structure.openingHash,
+      openingNgrams: structure.openingNgrams,
+      captionPattern: structure.captionPattern,
+      brollCount: structure.brollCount,
+    });
+  }
+
   const livePublished = results.filter(
     (result) =>
       result.status === 'published' &&
@@ -112,6 +129,62 @@ async function processTopic(
 
   // 1. Source once so the sourced and original paths share the same candidates.
   const candidates = await findClips(topic);
+
+  // [tier-router-cards] licensed-clip budget gate
+  async function countLicensedClipsPublishedThisUtcMonth(): Promise<number> {
+    let jsonl: string;
+    try {
+      const { readFile } = await import('node:fs/promises');
+      jsonl = await readFile(`${config.dataDir}provenance.jsonl`, 'utf8');
+    } catch {
+      return 0;
+    }
+
+    const now = new Date();
+    let count = 0;
+    for (const line of jsonl.split('\n')) {
+      if (!line.trim()) continue;
+      try {
+        const record = JSON.parse(line) as {
+          status?: unknown;
+          publishedAt?: unknown;
+          license?: { type?: unknown };
+        };
+        if (
+          record.status !== 'published' ||
+          record.license?.type !== 'licensed' ||
+          typeof record.publishedAt !== 'string'
+        ) {
+          continue;
+        }
+        const publishedAt = new Date(record.publishedAt);
+        if (
+          !Number.isNaN(publishedAt.getTime()) &&
+          publishedAt.getUTCFullYear() === now.getUTCFullYear() &&
+          publishedAt.getUTCMonth() === now.getUTCMonth()
+        ) {
+          count++;
+        }
+      } catch {
+        // A malformed receipt must not prevent valid receipts from enforcing the cap.
+      }
+    }
+    return count;
+  }
+
+  let usedLicensedClips = await countLicensedClipsPublishedThisUtcMonth();
+  const budgetedCandidates = candidates.filter((candidate) => {
+    if ((candidate.license.type as string) !== 'licensed') return true;
+    if (usedLicensedClips >= config.licensing.monthlyClipBudget) {
+      console.log(
+        `  ⛔ licensed-clip budget (${usedLicensedClips}/${config.licensing.monthlyClipBudget} this month) reached - skipping licensed candidate ${candidate.id}`,
+      );
+      return false;
+    }
+    usedLicensedClips++;
+    return true;
+  });
+  candidates.splice(0, candidates.length, ...budgetedCandidates);
   if (produceSourced) {
     const candidate = candidates[0];
     if (!candidate) {

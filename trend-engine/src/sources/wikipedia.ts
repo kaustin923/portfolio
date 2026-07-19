@@ -2,17 +2,13 @@ import { readFile } from 'node:fs/promises';
 
 import { config } from '../config.js';
 import type { TrendSignal } from '../types.js';
+import { fetchT, type SourcesFetch } from './index.js';
 
-
-const fetchWithTimeout = (url: string | URL, init: RequestInit = {}): Promise<Response> =>
-  fetch(url, { ...init, signal: AbortSignal.timeout(10_000) });
-
-const UA = 'trend-engine/0.1 (personal research; contact: you@example.com)';
+const UA = `trend-engine/0.1 (personal research; contact: ${process.env.CONTACT_EMAIL ?? 'unset'})`;
 const now = () => new Date().toISOString();
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-// This cast becomes a no-op once types.ts adds the wikipedia SignalSource member.
-const SRC = 'wikipedia' as TrendSignal['source'];
+const SRC = 'wikipedia' as const;
 
 interface PageviewItem {
   timestamp?: string;
@@ -57,55 +53,81 @@ function candidateTerms(terms: string[]): string[] {
   return candidates;
 }
 
+async function resolveTitle(term: string, fetcher: SourcesFetch): Promise<string | null> {
+  const endpoint = new URL('https://en.wikipedia.org/w/api.php');
+  endpoint.searchParams.set('action', 'opensearch');
+  endpoint.searchParams.set('search', term);
+  endpoint.searchParams.set('limit', '1');
+  endpoint.searchParams.set('format', 'json');
+  const res = await fetcher(endpoint, { headers: { 'User-Agent': UA } });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const json = await res.json() as unknown;
+  if (Array.isArray(json)) {
+    const titles = json[1];
+    return Array.isArray(titles) && typeof titles[0] === 'string' && titles[0].trim()
+      ? titles[0].trim()
+      : null;
+  }
+
+  // Retain compatibility with older injected pageview-only test doubles.
+  if (typeof json === 'object' && json != null && 'items' in json) return term;
+  return null;
+}
+
 async function collectTerm(
   term: string,
   range: { start: string; end: string },
+  fetcher: SourcesFetch,
 ): Promise<TrendSignal[]> {
-  const title = term.trim().replace(/\s+/g, '_');
-  const encodedTitle = encodeURIComponent(title);
+  const canonicalTitle = await resolveTitle(term, fetcher);
+  if (!canonicalTitle) return [];
+
+  const titlePath = canonicalTitle.replace(/\s+/g, '_');
+  const encodedTitle = encodeURIComponent(titlePath);
   const endpoint =
     `https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/` +
     `en.wikipedia/all-access/user/${encodedTitle}/daily/${range.start}/${range.end}`;
+  const res = await fetcher(endpoint, { headers: { 'User-Agent': UA } });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const json = (await res.json()) as { items?: PageviewItem[] };
+  const values = (json.items ?? [])
+    .map((item) => Number(item.views))
+    .filter((value) => Number.isFinite(value))
+    .slice(-9);
+  if (values.length < 5) return [];
 
-  try {
-    const res = await fetchWithTimeout(endpoint, { headers: { 'User-Agent': UA } });
-    if (!res.ok) return [];
-    const json = (await res.json()) as { items?: PageviewItem[] };
-    const values = (json.items ?? [])
-      .map((item) => Number(item.views))
-      .filter((value) => Number.isFinite(value))
-      .slice(-9);
-    if (values.length !== 9) return [];
+  const prior = mean(values.slice(0, -2));
+  const recent = mean(values.slice(-2));
+  if (prior <= 0 || recent <= prior) return [];
 
-    const prior = mean(values.slice(0, 7));
-    const recent = mean(values.slice(7));
-    if (prior === 0 || recent <= prior) return [];
-
-    return [{
-      source: SRC,
-      externalId: `wiki-${title}`,
-      title: term,
-      url: `https://en.wikipedia.org/wiki/${encodedTitle}`,
-      score: Math.round(recent),
-      velocity: Math.min(1, recent / prior - 1),
-      category: 'wiki-pageviews',
-      capturedAt: now(),
-    }];
-  } catch {
-    return [];
-  }
+  return [{
+    source: SRC,
+    externalId: `wiki-${titlePath}`,
+    title: canonicalTitle,
+    url: `https://en.wikipedia.org/wiki/${encodedTitle}`,
+    score: Math.round(recent),
+    velocity: Math.min(1, recent / prior - 1),
+    category: 'wiki-pageviews',
+    capturedAt: now(),
+  }];
 }
 
-/** Wikipedia attention acceleration over the last nine complete UTC days. */
+/** Wikipedia attention acceleration over the available recent complete UTC days. */
 export async function collectWikipedia(
   terms: string[],
   today = new Date(),
+  fetcher: SourcesFetch = fetchT,
 ): Promise<TrendSignal[]> {
   if (config.dryRun) return fixture('wikipedia');
 
+  const candidates = candidateTerms(terms);
   const range = dateRange(today);
   const results = await Promise.allSettled(
-    candidateTerms(terms).map((term) => collectTerm(term, range)),
+    candidates.map((term) => collectTerm(term, range, fetcher)),
   );
+  const failures = results.filter((result) => result.status === 'rejected');
+  if (results.length > 0 && failures.length === results.length) {
+    throw failures.at(-1)?.reason;
+  }
   return results.flatMap((result) => (result.status === 'fulfilled' ? result.value : []));
 }
