@@ -1,0 +1,20 @@
+{
+  "name": "trend-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Multi-agent workflow: trend detection → licensed sourcing → clipping → human-approved multi-platform publishing.",
+  "scripts": {
+    "scout": "tsx src/index.ts scout",
+    "start": "tsx src/index.ts run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.80.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.19.0",
+    "typescript": "^5"
+  }
+}
