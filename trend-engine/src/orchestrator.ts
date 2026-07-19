@@ -111,7 +111,10 @@ async function processDraft(
   }
 
   // 6. Monitor — record metrics to feed back into the Scout.
-  const metrics = await trackResults(results, topic);
+  const metrics = await trackResults(results, topic, {
+    draft,
+    tier: compliance.tier ?? null,
+  });
   report.metrics.push(...metrics);
 }
 
@@ -251,6 +254,18 @@ export async function runOnce(): Promise<RunReport> {
 
   // Turn the top N into clips.
   const toProcess = scout.topics.slice(0, config.topicsPerRun);
+  // ─── experiment hint [owned by task eval-report] ───
+  let experimentPlan: import('./variation.js').ExperimentPlan | null = null;
+  let experimentProcessed = false;
+  try {
+    const { planNextExperiment } = await import('./variation.js');
+    experimentPlan = await planNextExperiment();
+  } catch (err) {
+    console.warn(
+      '[orchestrator] failed to plan experiment hint (non-fatal):',
+      err instanceof Error ? err.message : String(err),
+    );
+  }
   const originalsToProduce = Math.min(config.originalsPerRun, toProcess.length);
   for (const [index, topic] of toProcess.entries()) {
     const key = topicKey(topic.title);
@@ -273,7 +288,22 @@ export async function runOnce(): Promise<RunReport> {
     if (!produceSourced && !produceOriginal) continue;
 
     try {
-      await processTopic(topic, report, state, key, produceSourced, produceOriginal);
+      experimentProcessed = true;
+      await processTopic(
+        experimentPlan
+          ? {
+              ...topic,
+              suggestedAngle:
+                `${topic.suggestedAngle} (experiment: try a '${experimentPlan.value}' ` +
+                `${experimentPlan.dimension} this time — soft suggestion, ignore if it hurts the angle)`,
+            }
+          : topic,
+        report,
+        state,
+        key,
+        produceSourced,
+        produceOriginal,
+      );
     } catch (err) {
       report.failed++;
       console.error(
@@ -282,6 +312,18 @@ export async function runOnce(): Promise<RunReport> {
       );
     }
   }
+  if (experimentPlan && experimentProcessed) {
+    try {
+      const { recordExperiment } = await import('./variation.js');
+      await recordExperiment(experimentPlan);
+    } catch (err) {
+      console.warn(
+        '[orchestrator] failed to record experiment hint (non-fatal):',
+        err instanceof Error ? err.message : String(err),
+      );
+    }
+  }
+  // ─── end experiment hint ───
 
   state.lastRunAt = new Date().toISOString();
   state.runCount++;

@@ -3,6 +3,7 @@ import { appendFile, copyFile, mkdir, readFile, writeFile } from 'node:fs/promis
 import { basename, join } from 'node:path';
 
 import { config } from './config.js';
+import { deriveContentFeatures } from './learning.js';
 import { composeCaption } from './publish/http.js';
 import type { ApprovalDecision, ClipDraft } from './types.js';
 
@@ -125,6 +126,10 @@ export async function writeManualPostKit(opts: {
     draftId: draft.id,
     reason,
     tier,
+    contentFeatures: {
+      ...deriveContentFeatures({ draft, tier }),
+      postHourLocal: new Date(createdAt).getHours(),
+    },
     license: { ...draft.license },
     approvalRecordRef: { file: 'approvals.jsonl', draftId: draft.id },
     approval: {

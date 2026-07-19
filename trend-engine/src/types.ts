@@ -266,6 +266,17 @@ export interface PostMetrics {
   capturedAt: string;
 }
 
+export interface ContentFeatures {
+  angleType: string;
+  hookStyle: string;
+  durationSec: number | null;
+  tier: string | null;
+  syntheticMedia: boolean;
+  voice: string;
+  postHourLocal: number;
+  platform: Platform;
+}
+
 export interface ProvenanceReceipt {
   receiptVersion: 1;
   recordedAt: string;

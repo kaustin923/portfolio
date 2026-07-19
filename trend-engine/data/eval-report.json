@@ -1,0 +1,125 @@
+{
+  "v": 1,
+  "generatedAt": "2026-07-19T18:51:44.410Z",
+  "calibration": {
+    "generatedAt": "1970-01-01T00:00:00.000Z",
+    "joinedCount": 0,
+    "buckets": [],
+    "predictors": [],
+    "summary": "Forecast calibration cold start: only 0 forecast→outcome pairs recorded (need 8) — no calibration statistics yet.",
+    "coldStart": true,
+    "coldStartLine": "Forecast calibration cold start: only 0 forecast→outcome pairs recorded (need 8) — no calibration statistics yet."
+  },
+  "features": {
+    "halfLifeDays": 21,
+    "coldStart": true,
+    "summary": "cold start — 0/7 feature dimensions have a bucket with n>=3",
+    "dimensions": [
+      {
+        "dimension": "angleType",
+        "best": null,
+        "worst": null,
+        "insufficientData": true
+      },
+      {
+        "dimension": "hookStyle",
+        "best": null,
+        "worst": null,
+        "insufficientData": true
+      },
+      {
+        "dimension": "tier",
+        "best": null,
+        "worst": null,
+        "insufficientData": true
+      },
+      {
+        "dimension": "syntheticMedia",
+        "best": null,
+        "worst": null,
+        "insufficientData": true
+      },
+      {
+        "dimension": "voice",
+        "best": null,
+        "worst": null,
+        "insufficientData": true
+      },
+      {
+        "dimension": "platform",
+        "best": null,
+        "worst": null,
+        "insufficientData": true
+      },
+      {
+        "dimension": "postHourLocal",
+        "best": null,
+        "worst": null,
+        "insufficientData": true
+      }
+    ],
+    "insufficientDataDimensions": [
+      "angleType",
+      "hookStyle",
+      "tier",
+      "syntheticMedia",
+      "voice",
+      "platform",
+      "postHourLocal"
+    ]
+  },
+  "platformPerformance": [],
+  "platformSummary": "cold start — 0 live outcome rows recorded",
+  "forecastHitRate": {
+    "coldStart": true,
+    "joinedCount": 0,
+    "summary": "cold start — 0 joined forecast→outcome pairs; need 8 before reporting hit rates",
+    "overall": null,
+    "opportunity70Plus": null,
+    "byRecommendation": {
+      "post-now": null,
+      "prepare": null
+    }
+  },
+  "manualPostCoverage": {
+    "kitsWritten": 0,
+    "postsRegistered": 0,
+    "coverage": null,
+    "summary": "cold start — 0 posts registered from 0 written kits"
+  },
+  "recommendations": [
+    "feature cold start — 0/7 dimensions have an eligible n>=3 bucket",
+    "enter metrics for posted kits to unlock calibration — only 0 joined pairs (need 8)",
+    "manual tracking cold start — 0 posts registered from 0 written kits"
+  ],
+  "experiment": {
+    "lastRecorded": {
+      "v": 1,
+      "at": "1970-01-01T00:00:00.002Z",
+      "dimension": "hookStyle",
+      "value": "negation"
+    },
+    "nextSuggestion": {
+      "v": 1,
+      "at": "1970-01-01T00:00:00.003Z",
+      "dimension": "angleType",
+      "value": "listicle"
+    },
+    "counts": {
+      "hookStyle": {
+        "question": 0,
+        "stat": 0,
+        "imperative": 1,
+        "negation": 1,
+        "statement": 0
+      },
+      "angleType": {
+        "explainer": 1,
+        "original-take": 0,
+        "reaction": 0,
+        "listicle": 0,
+        "other": 0
+      }
+    }
+  }
+}

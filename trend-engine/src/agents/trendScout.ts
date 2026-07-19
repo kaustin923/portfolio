@@ -12,6 +12,7 @@
  */
 
 import { config } from '../config.js';
+import { appendForecasts, getCalibrationSummary } from '../calibration.js';
 import { getLearningSummary } from '../learning.js';
 import { structured } from '../llm.js';
 import { collectSignals, type SourceHealth } from '../sources/index.js';
@@ -147,10 +148,11 @@ export interface TrendScoutResult {
 }
 
 export async function discoverTopics(today = new Date().toISOString().slice(0, 10)): Promise<TrendScoutResult> {
-  const [collected, upcoming, learning] = await Promise.all([
+  const [collected, upcoming, learning, calibration] = await Promise.all([
     collectSignals(),
     collectUpcoming(today),
     getLearningSummary(),
+    getCalibrationSummary(),
   ]);
   const { signals, health: sourceHealth } = collected;
   console.log('[trend-scout] source health:');
@@ -191,6 +193,7 @@ export async function discoverTopics(today = new Date().toISOString().slice(0, 1
     `Today is ${today}. Region: ${config.trendScout.geo}. ` +
     `Return the top ${config.trendScout.topN} forward-looking topics as JSON.\n\n` +
     `HISTORICAL PERFORMANCE (bias toward what has converted before):\n${learning}\n\n` +
+    `FORECAST CALIBRATION (how well our past scores predicted results):\n${calibration}\n\n` +
     `REACTIVE SIGNALS (loud now):\n${renderSignals(signals) || '(none)'}\n\n` +
     `SIGNAL SOURCE CHARACTER (weight leading sources for stage/leadTime, lagging for saturation): ` +
     `thesportsdb=leading (scheduled events, days-to-weeks ahead), ` +
@@ -212,6 +215,8 @@ export async function discoverTopics(today = new Date().toISOString().slice(0, 1
     schema: SCHEMA as unknown as Record<string, unknown>,
     maxTokens: 12000,
   });
+
+  await appendForecasts(topics, today);
 
   // Split actionable from skipped, then rank the actionable set. Sorting keys:
   // opportunity first, then shorter (but non-negative) lead time as a tiebreak

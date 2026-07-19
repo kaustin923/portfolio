@@ -13,8 +13,11 @@
 import { appendFile, mkdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { config } from '../config.js';
+import { deriveContentFeatures } from '../learning.js';
 import { expectJson, getFetch, requireEnv, sleep } from '../publish/http.js';
 import type {
+  ClipDraft,
+  ContentFeatures,
   Platform,
   PostMetrics,
   PublishResult,
@@ -30,6 +33,7 @@ export interface TopicOutcome extends PostMetrics {
   stage: TrendStage;
   recommendation: Recommendation;
   opportunityScore: number;
+  contentFeatures?: ContentFeatures;
 }
 
 type EngagementStats = Pick<PostMetrics, 'views' | 'likes' | 'comments' | 'shares'>;
@@ -289,6 +293,7 @@ async function fetchLiveStats(
 export async function recordTopicOutcome(
   topic: Topic,
   metrics: PostMetrics[],
+  features?: Omit<ContentFeatures, 'platform' | 'postHourLocal'> & { postHourLocal?: number },
 ): Promise<TopicOutcome[]> {
   const outcomes = metrics.map((metric) => ({
     ...metric,
@@ -298,6 +303,18 @@ export async function recordTopicOutcome(
     stage: topic.stage,
     recommendation: topic.recommendation,
     opportunityScore: topic.opportunityScore,
+    ...(features
+      ? {
+          contentFeatures: {
+            ...features,
+            platform: metric.platform,
+            // Manual posts carry the kit's registered posting hour; only fall
+            // back to the capture hour when the caller supplied none (the
+            // automated publish path, where capture happens at post time).
+            postHourLocal: features.postHourLocal ?? new Date(metric.capturedAt).getHours(),
+          },
+        }
+      : {}),
   }));
 
   try {
@@ -315,6 +332,7 @@ export async function recordTopicOutcome(
 export async function trackResults(
   results: PublishResult[],
   topic?: Topic,
+  opts?: { draft?: ClipDraft; tier?: string | null },
 ): Promise<PostMetrics[]> {
   const published = results.filter((result) => result.status === 'published' && result.postId);
   const capturedAt = new Date().toISOString();
@@ -355,7 +373,19 @@ export async function trackResults(
     console.warn('[monitor] failed to persist metrics:', err);
   }
 
-  if (topic) await recordTopicOutcome(topic, metrics);
+  if (topic) {
+    const features = opts?.draft && metrics[0]
+      ? {
+          ...deriveContentFeatures({
+            draft: opts.draft,
+            tier: opts.tier,
+            topicAngle: topic.suggestedAngle,
+          }),
+          postHourLocal: new Date(metrics[0].capturedAt).getHours(),
+        }
+      : undefined;
+    await recordTopicOutcome(topic, metrics, features);
+  }
 
   return metrics;
 }
@@ -424,3 +454,86 @@ export function summarizePerformance(metrics: PostMetrics[]): string | null {
   }
   return lines.join('\n');
 }
+
+// ─── manual-post stats refresh [owned by task manual-era-tracking] ───
+export async function refreshManualPostStats(): Promise<{
+  refreshed: number;
+  skipped: number;
+}> {
+  if (config.dryRun) {
+    throw new Error(
+      'refresh requires live mode (DRY_RUN=0) and YOUTUBE_API_KEY — zero network in DRY_RUN',
+    );
+  }
+
+  const env = requireEnv('YouTube manual-post stats', ['YOUTUBE_API_KEY']);
+  const fetch = getFetch();
+  const { readManualPosts, recordManualOutcome } = await import('../manualPosts.js');
+  const registered = await readManualPosts();
+  const candidates = registered.filter(
+    (post) => post.platform === 'youtube-shorts' || post.videoId !== null,
+  );
+  const postsByVideoId = new Map<string, typeof candidates>();
+  let skipped = 0;
+
+  for (const post of candidates) {
+    if (post.videoId === null) {
+      console.warn(`[monitor:manual-post] missing YouTube video id — skipping ${post.postUrl}`);
+      skipped += 1;
+      continue;
+    }
+    const posts = postsByVideoId.get(post.videoId) ?? [];
+    posts.push(post);
+    postsByVideoId.set(post.videoId, posts);
+  }
+
+  let refreshed = 0;
+  const videoIds = [...postsByVideoId.keys()];
+  for (let index = 0; index < videoIds.length; index += 50) {
+    const batch = videoIds.slice(index, index + 50);
+    const url = new URL('https://www.googleapis.com/youtube/v3/videos');
+    url.searchParams.set('part', 'statistics');
+    url.searchParams.set('id', batch.join(','));
+    url.searchParams.set('key', env.YOUTUBE_API_KEY!);
+    const json = await fetchJsonWithRetry<{
+      items?: Array<{
+        id?: string;
+        statistics?: {
+          viewCount?: string | number;
+          likeCount?: string | number;
+          commentCount?: string | number;
+        };
+      }>;
+    }>(
+      () => fetch(url),
+      '[monitor:manual-post] YouTube public stats fetch',
+    );
+    const statsByVideoId = new Map(
+      (json.items ?? [])
+        .filter((item): item is typeof item & { id: string } => typeof item.id === 'string')
+        .map((item) => [item.id, item.statistics] as const),
+    );
+
+    for (const videoId of batch) {
+      const statistics = statsByVideoId.get(videoId);
+      const views = count(statistics?.viewCount);
+      for (const post of postsByVideoId.get(videoId) ?? []) {
+        if (!statistics || views <= 0) {
+          console.warn(`[monitor:manual-post] no usable stats — skipping ${post.postUrl}`);
+          skipped += 1;
+          continue;
+        }
+        await recordManualOutcome(
+          post.postUrl,
+          views,
+          count(statistics.likeCount),
+          count(statistics.commentCount),
+        );
+        refreshed += 1;
+      }
+    }
+  }
+
+  return { refreshed, skipped };
+}
+// ─── end manual-post stats refresh ───

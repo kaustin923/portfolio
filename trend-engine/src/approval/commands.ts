@@ -45,7 +45,7 @@ interface SourceHealth {
   ms: number;
 }
 
-const HELP_TEXT = 'commands: /status /health /pause /resume /run';
+const HELP_TEXT = 'commands: /status /health /pause /resume /run /track /report';
 
 function dataPath(dir: string | undefined, name: string): string {
   return join(dir ?? config.dataDir, name);
@@ -242,6 +242,74 @@ async function dispatchCommand(
   const token = text.trim().split(/\s+/, 1)[0] ?? '';
   const command = token.replace(/@[A-Za-z0-9_]+$/, '').toLowerCase();
   const by = actorName(actor);
+
+  // ─── /track manual metric entry [owned by task manual-era-tracking] ───
+  if (command === '/track') {
+    const [, postUrl, viewsText, ...extra] = text.trim().split(/\s+/);
+    if (!postUrl || viewsText === undefined || extra.length > 0) {
+      await sendMessage('usage: /track <postUrl> <views>');
+      return;
+    }
+    try {
+      const { recordManualOutcome } = await import('../manualPosts.js');
+      const views = Number(viewsText);
+      await recordManualOutcome(postUrl, views);
+      await sendMessage(`recorded: ${views} views for ${postUrl}`);
+    } catch (err) {
+      await sendMessage(err instanceof Error ? err.message : String(err));
+    }
+    return;
+  }
+  // ─── end /track manual metric entry ───
+
+  // ─── /report eval digest [owned by task eval-report] ───
+  if (command === '/report') {
+    try {
+      const [{ buildEvalReport }, { escapeMarkdownV2 }] = await Promise.all([
+        import('../report.js'),
+        import('./telegram.js'),
+      ]);
+      const report = await buildEvalReport();
+      const eligibleFeatures = report.features.dimensions.flatMap((dimension) =>
+        dimension.best
+          ? [{ dimension: dimension.dimension, bucket: dimension.best }]
+          : [],
+      );
+      const top = [...eligibleFeatures].sort((left, right) =>
+        right.bucket.score - left.bucket.score ||
+        left.dimension.localeCompare(right.dimension) ||
+        String(left.bucket.value).localeCompare(String(right.bucket.value)),
+      )[0];
+      const bottom = [...eligibleFeatures].sort((left, right) =>
+        left.bucket.score - right.bucket.score ||
+        left.dimension.localeCompare(right.dimension) ||
+        String(left.bucket.value).localeCompare(String(right.bucket.value)),
+      )[0];
+      const renderFeature = (
+        feature: typeof top,
+      ): string => feature
+        ? `${feature.dimension}=${String(feature.bucket.value)} P${Math.round(feature.bucket.score)} n=${feature.bucket.n}`
+        : 'cold start';
+      const lines = [
+        `Calibration: ${report.calibration.summary.replace(/\s+/g, ' ')}`,
+        `Top feature: ${renderFeature(top)}`,
+        `Bottom feature: ${renderFeature(bottom)}`,
+        `Hit rate: ${report.forecastHitRate.summary}`,
+        `Coverage: ${report.manualPostCoverage.summary}`,
+        'Recommendations:',
+        ...report.recommendations.map((recommendation, index) => `${index + 1}. ${recommendation}`),
+      ];
+      await sendTelegram('sendMessage', {
+        chat_id: config.approval.telegramChatId,
+        text: lines.map((line) => escapeMarkdownV2(line)).join('\n'),
+        parse_mode: 'MarkdownV2',
+      });
+    } catch {
+      await sendMessage('report unavailable');
+    }
+    return;
+  }
+  // ─── end /report eval digest ───
 
   if (command === '/status') {
     await sendMessage(await statusText(dir));

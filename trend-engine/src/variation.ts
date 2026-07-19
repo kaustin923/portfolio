@@ -193,3 +193,91 @@ export function applyCaptionPreset(assText: string, preset: CaptionPreset): stri
     return `Style: ${fields.join(',')}`;
   });
 }
+
+// ─── experiment scheduler [owned by task eval-report] ───
+export interface ExperimentPlan {
+  v: 1;
+  at: string;
+  dimension: 'hookStyle' | 'angleType';
+  value: string;
+}
+
+export const EXPERIMENT_VALUE_POOLS = {
+  hookStyle: ['question', 'stat', 'imperative', 'negation', 'statement'],
+  angleType: ['explainer', 'original-take', 'reaction', 'listicle', 'other'],
+} as const satisfies Record<ExperimentPlan['dimension'], readonly string[]>;
+
+const EXPERIMENTS_PATH = (): string => `${config.dataDir}experiments.jsonl`;
+
+function isExperimentPlan(value: unknown): value is ExperimentPlan {
+  if (value === null || typeof value !== 'object') return false;
+  const record = value as Partial<ExperimentPlan>;
+  return (
+    record.v === 1 &&
+    typeof record.at === 'string' &&
+    (record.dimension === 'hookStyle' || record.dimension === 'angleType') &&
+    typeof record.value === 'string' &&
+    (EXPERIMENT_VALUE_POOLS[record.dimension] as readonly string[]).includes(record.value)
+  );
+}
+
+export async function readExperiments(): Promise<ExperimentPlan[]> {
+  try {
+    const contents = await readFile(EXPERIMENTS_PATH(), 'utf8');
+    return contents.split(/\r?\n/).flatMap((line) => {
+      if (!line.trim()) return [];
+      try {
+        const parsed: unknown = JSON.parse(line);
+        return isExperimentPlan(parsed) ? [parsed] : [];
+      } catch {
+        return [];
+      }
+    });
+  } catch {
+    return [];
+  }
+}
+
+function nextExperimentAt(history: readonly ExperimentPlan[]): string {
+  const latestMs = history.reduce((latest, plan) => {
+    const parsed = Date.parse(plan.at);
+    return Number.isFinite(parsed) ? Math.max(latest, parsed) : latest;
+  }, -1);
+  return new Date(latestMs + 1).toISOString();
+}
+
+export async function planNextExperiment(): Promise<ExperimentPlan> {
+  const history = await readExperiments();
+  const dimensionCounts: Record<ExperimentPlan['dimension'], number> = {
+    hookStyle: 0,
+    angleType: 0,
+  };
+  for (const plan of history) dimensionCounts[plan.dimension] += 1;
+
+  const dimension: ExperimentPlan['dimension'] =
+    dimensionCounts.hookStyle <= dimensionCounts.angleType ? 'hookStyle' : 'angleType';
+  const valueCounts = new Map<string, number>(
+    EXPERIMENT_VALUE_POOLS[dimension].map((value) => [value, 0]),
+  );
+  for (const plan of history) {
+    if (plan.dimension === dimension && valueCounts.has(plan.value)) {
+      valueCounts.set(plan.value, valueCounts.get(plan.value)! + 1);
+    }
+  }
+  const value = [...valueCounts]
+    .sort(([leftValue, leftCount], [rightValue, rightCount]) =>
+      leftCount - rightCount || leftValue.localeCompare(rightValue),
+    )[0]![0];
+
+  return { v: 1, at: nextExperimentAt(history), dimension, value };
+}
+
+export async function recordExperiment(plan: ExperimentPlan): Promise<void> {
+  try {
+    await mkdir(config.dataDir, { recursive: true });
+    await appendFile(EXPERIMENTS_PATH(), `${JSON.stringify(plan)}\n`);
+  } catch (err) {
+    console.warn('[variation] failed to persist experiment plan:', err);
+  }
+}
+// ─── end experiment scheduler ───
