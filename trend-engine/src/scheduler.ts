@@ -51,6 +51,14 @@ export async function runDaemon(): Promise<void> {
   process.once('SIGTERM', shutdown);
 
   while (true) {
+    // ─── telegram command center: pause gate [owned by task telegram-command-center] ───
+    try {
+      const { pauseGate } = await import('./approval/commands.js');
+      await pauseGate();
+    } catch (err) {
+      console.warn('[daemon] command poller failed (non-fatal):', err);
+    }
+    // ─── end telegram command center: pause gate ───
     if (!acquireRunLock()) {
       console.warn('[daemon] another run holds the lock; sleeping');
     } else {
@@ -63,9 +71,25 @@ export async function runDaemon(): Promise<void> {
       }
     }
 
+    // ─── policy-drift watcher [owned by task policy-drift-watcher] ───
+    try {
+      const { checkPolicies } = await import('./policyWatch.js');
+      await checkPolicies();
+    } catch (err) {
+      console.warn('[daemon] policy check failed (non-fatal):', err);
+    }
+    // ─── end policy-drift watcher ───
     const delayMs = computeDelayMs(runsPerDay, jitterPct, Math.random);
     const eta = new Date(Date.now() + delayMs);
     console.log(`[daemon] next run at ${eta.toISOString()}`);
-    await new Promise<void>((resolve) => setTimeout(resolve, delayMs));
+    // ─── telegram command center: interruptible wait [owned by task telegram-command-center] ───
+    try {
+      const { awaitNextRun } = await import('./approval/commands.js');
+      await awaitNextRun(delayMs);
+    } catch (err) {
+      console.warn('[daemon] interruptible wait failed; falling back to plain sleep:', err);
+      await new Promise<void>((resolve) => setTimeout(resolve, delayMs));
+    }
+    // ─── end telegram command center: interruptible wait ───
   }
 }

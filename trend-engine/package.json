@@ -8,7 +8,9 @@
     "scout": "node --env-file-if-exists=.env --import tsx src/index.ts scout",
     "start": "node --env-file-if-exists=.env --import tsx src/index.ts run",
     "daemon": "node --env-file-if-exists=.env --import tsx src/index.ts daemon",
+    "oauth:youtube": "node --env-file-if-exists=.env --import tsx scripts/youtube-oauth.ts",
     "typecheck": "tsc --noEmit",
+    "policy:check": "node --env-file-if-exists=.env --import tsx src/policyWatch.ts",
     "test": "node --import tsx --test --test-concurrency=1 test/*.test.ts"
   },
   "dependencies": {

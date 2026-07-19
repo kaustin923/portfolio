@@ -7,6 +7,11 @@ import { searchNasa } from '../clips/nasa.js';
 import { searchPexels } from '../clips/pexels.js';
 import { searchPixabay } from '../clips/pixabay.js';
 import { searchWikimedia } from '../clips/wikimedia.js';
+import {
+  loadBlacklist,
+  matchesBlacklist,
+  type BlacklistEntry,
+} from '../claims.js';
 import type { SourceClipCandidate, Topic } from '../types.js';
 
 const SOCIAL_CDN_HOSTS = [
@@ -91,6 +96,7 @@ export function flagEditorialOnly(candidate: SourceClipCandidate): SourceClipCan
 /** Apply the fail-closed license and platform re-export guards to sourced candidates. */
 export function applySourcingFilters(
   candidates: SourceClipCandidate[],
+  blacklist: BlacklistEntry[] = [],
 ): SourceClipCandidate[] {
   return candidates
     .filter(
@@ -123,6 +129,14 @@ export function applySourcingFilters(
       );
       return false;
     })
+    .filter((candidate) => {
+      const match = matchesBlacklist(candidate, blacklist);
+      if (!match) return true;
+      console.warn(
+        `[sourcing] BLACKLISTED rights holder match: ${candidate.id} — ${match.entry.rightsHolder} term '${match.term}' in ${match.field} (stop-the-line; see data/blacklist.json)`,
+      );
+      return false;
+    })
     .map(flagEditorialOnly);
 }
 
@@ -130,6 +144,7 @@ export function applySourcingFilters(
 // intentionally exempts originals from human review. Generation can return
 // only after a real renderer produces a verifiable, downloadable asset.
 export async function findClips(topic: Topic): Promise<SourceClipCandidate[]> {
+  const blacklist = loadBlacklist();
   const results = await Promise.allSettled(providers.map(({ search }) => search(topic)));
   const candidates: SourceClipCandidate[] = [];
 
@@ -143,5 +158,5 @@ export async function findClips(topic: Topic): Promise<SourceClipCandidate[]> {
     console.warn(`[sourcing] ${provider}: ${message}`);
   });
 
-  return applySourcingFilters(candidates);
+  return applySourcingFilters(candidates, blacklist);
 }

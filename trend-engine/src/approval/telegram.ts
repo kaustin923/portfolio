@@ -17,8 +17,9 @@
  * and read your chat id from getUpdates (or set TELEGRAM_CHAT_ID directly).
  */
 
+import { mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
 import { appendFile, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
-import { basename } from 'node:path';
+import { basename, join } from 'node:path';
 
 import { config } from '../config.js';
 import type {
@@ -47,6 +48,7 @@ export type TelegramFetchFn = (
 
 let injectedTelegramFetch: TelegramFetchFn | undefined;
 const pendingDecisions = new Map<string, ApprovalDecision>();
+let approvalPollActive = false;
 
 /** Every live Telegram request goes through this seam so tests stay offline. */
 export function getTelegramFetch(): TelegramFetchFn {
@@ -64,6 +66,91 @@ export function resetTelegramFetch(): void {
 /** Clear decisions consumed by another draft's active long poll (primarily for tests). */
 export function resetPendingDecisions(): void {
   pendingDecisions.clear();
+}
+
+const APPROVAL_STATUSES = new Set<ApprovalDecision['status']>([
+  'approved',
+  'rejected',
+  'timeout',
+]);
+
+function pendingDecisionsPath(dir?: string): string {
+  return join(dir ?? config.dataDir, 'pending-decisions.json');
+}
+
+function isStoredDecision(value: unknown): value is ApprovalDecision {
+  if (value === null || typeof value !== 'object' || Array.isArray(value)) return false;
+  const decision = value as Partial<ApprovalDecision>;
+  return (
+    typeof decision.status === 'string' &&
+    APPROVAL_STATUSES.has(decision.status) &&
+    (decision.decidedBy === undefined || typeof decision.decidedBy === 'string') &&
+    (decision.editedCaption === undefined || typeof decision.editedCaption === 'string') &&
+    (decision.note === undefined || typeof decision.note === 'string')
+  );
+}
+
+function readStoredPendingDecisions(dir?: string): Record<string, ApprovalDecision> {
+  try {
+    const parsed: unknown = JSON.parse(readFileSync(pendingDecisionsPath(dir), 'utf8'));
+    if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) return {};
+    const decisions: Record<string, ApprovalDecision> = {};
+    for (const [draftId, value] of Object.entries(parsed as Record<string, unknown>)) {
+      if (isStoredDecision(value)) decisions[draftId] = value;
+    }
+    return decisions;
+  } catch {
+    return {};
+  }
+}
+
+function writeStoredPendingDecisions(
+  decisions: Record<string, ApprovalDecision>,
+  dir?: string,
+): void {
+  try {
+    const targetDir = dir ?? config.dataDir;
+    mkdirSync(targetDir, { recursive: true });
+    const temporary = join(targetDir, 'pending-decisions.tmp');
+    writeFileSync(temporary, JSON.stringify(decisions, null, 2));
+    renameSync(temporary, pendingDecisionsPath(dir));
+  } catch (err) {
+    console.warn('[telegram] failed to persist pending decisions:', err);
+  }
+}
+
+/**
+ * Record a decision that arrived while no poll for its draft was listening.
+ * The decision is persisted to disk so it survives a process restart and is
+ * visible to a concurrent standalone run — the user was already told
+ * "Recorded", so it must not live only in this process's memory.
+ */
+export function stashPendingDecision(
+  draftId: string,
+  decision: ApprovalDecision,
+  dir?: string,
+): void {
+  pendingDecisions.set(draftId, decision);
+  const stored = readStoredPendingDecisions(dir);
+  stored[draftId] = decision;
+  writeStoredPendingDecisions(stored, dir);
+}
+
+function peekPendingDecision(draftId: string): ApprovalDecision | undefined {
+  return pendingDecisions.get(draftId) ?? readStoredPendingDecisions()[draftId];
+}
+
+function deletePendingDecision(draftId: string): void {
+  pendingDecisions.delete(draftId);
+  const stored = readStoredPendingDecisions();
+  if (draftId in stored) {
+    delete stored[draftId];
+    writeStoredPendingDecisions(stored);
+  }
+}
+
+export function isApprovalPollActive(): boolean {
+  return approvalPollActive;
 }
 
 /** Escape Telegram's complete MarkdownV2 reserved-character set (and backslash itself). */
@@ -152,10 +239,10 @@ export async function appendApprovalRecord(record: ApprovalRecord): Promise<void
   }
 }
 
-async function loadTelegramOffset(): Promise<number> {
+export async function loadTelegramOffset(dir?: string): Promise<number> {
   try {
     const parsed: unknown = JSON.parse(
-      await readFile(`${config.dataDir}telegram-offset.json`, 'utf8'),
+      await readFile(join(dir ?? config.dataDir, 'telegram-offset.json'), 'utf8'),
     );
     const offset = (parsed as { offset?: unknown } | null)?.offset;
     return typeof offset === 'number' && Number.isInteger(offset) && offset >= 0 ? offset : 0;
@@ -164,10 +251,11 @@ async function loadTelegramOffset(): Promise<number> {
   }
 }
 
-async function persistTelegramOffset(offset: number): Promise<void> {
+export async function persistTelegramOffset(offset: number, dir?: string): Promise<void> {
   try {
-    await mkdir(config.dataDir, { recursive: true });
-    await writeFile(`${config.dataDir}telegram-offset.json`, JSON.stringify({ offset }));
+    const targetDir = dir ?? config.dataDir;
+    await mkdir(targetDir, { recursive: true });
+    await writeFile(join(targetDir, 'telegram-offset.json'), JSON.stringify({ offset }));
   } catch (err) {
     console.warn('[telegram] failed to persist update offset:', err);
   }
@@ -180,7 +268,7 @@ async function persistTelegramOffset(offset: number): Promise<void> {
  * a review-card message id and satisfy an approval. Fail closed when the chat
  * id is absent or different.
  */
-function isFromApproverChat(chatId: unknown): boolean {
+export function isFromApproverChat(chatId: unknown): boolean {
   return chatId != null && String(chatId) === String(config.approval.telegramChatId);
 }
 
@@ -314,14 +402,16 @@ export async function pollForDecision(
   messageId?: number,
   opts?: { tier?: ComplianceTier },
 ): Promise<TelegramApprovalDecision> {
-  const pendingDecision = pendingDecisions.get(draftId);
+  approvalPollActive = true;
+  try {
+  const pendingDecision = peekPendingDecision(draftId);
   const pendingYellowButtonApproval =
     opts?.tier === 'yellow' && pendingDecision?.status === 'approved';
   if (pendingDecision && !pendingYellowButtonApproval) {
-    pendingDecisions.delete(draftId);
+    deletePendingDecision(draftId);
     return pendingDecision;
   }
-  if (pendingYellowButtonApproval) pendingDecisions.delete(draftId);
+  if (pendingYellowButtonApproval) deletePendingDecision(draftId);
 
   const deadline = Date.now() + config.approval.timeoutMinutes * 60_000;
   let offset = await loadTelegramOffset();
@@ -377,9 +467,9 @@ export async function pollForDecision(
           });
 
           if (callbackDraftId && action === 'approve') {
-            pendingDecisions.set(callbackDraftId, { status: 'approved', decidedBy });
+            stashPendingDecision(callbackDraftId, { status: 'approved', decidedBy });
           } else if (callbackDraftId && action === 'reject') {
-            pendingDecisions.set(callbackDraftId, {
+            stashPendingDecision(callbackDraftId, {
               status: 'rejected',
               decidedBy,
               note: 'decided while another review was active',
@@ -483,6 +573,23 @@ export async function pollForDecision(
       await persistTelegramOffset(offset);
     }
 
+    // A decision for this draft may have been consumed from getUpdates by
+    // another process (the daemon's command poller during a standalone run)
+    // and stashed to the shared pending-decisions file. Pick it up here so an
+    // explicitly recorded decision is never dropped by a poll timeout.
+    if (!decision && !pendingRejection) {
+      const stashed = peekPendingDecision(draftId);
+      if (stashed) {
+        if (opts?.tier === 'yellow' && stashed.status === 'approved') {
+          deletePendingDecision(draftId);
+          await sendYellowPrompt();
+        } else {
+          deletePendingDecision(draftId);
+          decision = stashed;
+        }
+      }
+    }
+
     if (decision) return decision;
   }
 
@@ -490,4 +597,7 @@ export async function pollForDecision(
     return { status: 'rejected', decidedBy: pendingRejection.decidedBy };
   }
   return { status: 'timeout', note: `no decision within ${config.approval.timeoutMinutes} min` };
+  } finally {
+    approvalPollActive = false;
+  }
 }

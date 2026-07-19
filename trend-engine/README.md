@@ -116,6 +116,9 @@ npm start
 2. Set `DRY_RUN=false` + free source keys (`YOUTUBE_API_KEY`, `PEXELS_API_KEY`, `PIXABAY_API_KEY`) → real signals and real sourcing (Wikimedia + NASA need no key).
 3. Wire the **Telegram** bot (`TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`) → you get the approval card on your phone.
 4. Add platform credentials per adapter in `src/publish/` (each fails loud, naming exactly which env vars are missing): TikTok (`TIKTOK_ACCESS_TOKEN`), YouTube (`YOUTUBE_CLIENT_ID`/`YOUTUBE_CLIENT_SECRET`/`YOUTUBE_REFRESH_TOKEN`), Instagram (`IG_USER_ID` + `IG_ACCESS_TOKEN` — clips upload directly, no public hosting needed), X (`X_ACCESS_TOKEN`, user-context OAuth 2.0 with `media.write`).
+
+   **Phase-2a shortcut:** `npm run oauth:youtube` opens Google consent locally and writes `YOUTUBE_REFRESH_TOKEN` into `.env` automatically (backup in `.env.bak`) — no manual OAuth playground dance.
+
 5. Opt into X by adding it to `PUBLISH_PLATFORMS=tiktok,youtube-shorts,instagram-reels,x` — the default platform list deliberately excludes it.
 6. Run `npm run daemon` to keep the pipeline running on a jittered schedule.
 
