@@ -185,8 +185,7 @@ const SCRIPT_SCHEMA = {
     narration: { type: 'string', minLength: 1 },
     scenes: {
       type: 'array',
-      minItems: 4,
-      maxItems: 6,
+      // Anthropic structured-output rejects minItems/maxItems > 1; count enforced in prompt.
       items: {
         type: 'object',
         additionalProperties: false,

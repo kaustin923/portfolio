@@ -22,8 +22,8 @@ const SCHEMA = {
   properties: {
     pitches: {
       type: 'array',
-      minItems: 3,
-      maxItems: 5,
+      // NOTE: Anthropic structured-output rejects minItems/maxItems > 1.
+      // The 3-5 count is enforced via the prompt + a post-parse slice instead.
       items: {
         type: 'object',
         additionalProperties: false,
