@@ -7,6 +7,7 @@ const defaultProps: EpisodeProps = {
   episode: {
     id: 'preview',
     title: 'CALLED IT. PREVIEW',
+    format: 'dialogue',
     voice: {name: 'Samantha', rate: 182},
     narration: '',
     scenes: [

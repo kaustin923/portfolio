@@ -24,3 +24,12 @@ test('rejects a non-numeric playback speed', () => {
     /Script playbackSpeed requires a finite number/,
   );
 });
+
+test('defaults and validates the episode format', () => {
+  assert.equal(assertEpisodeScript(makeScript(undefined)).format, 'dialogue');
+  assert.equal(assertEpisodeScript({...makeScript(undefined), format: 'narrator'}).format, 'narrator');
+  assert.throws(
+    () => assertEpisodeScript({...makeScript(undefined), format: 'monologue'}),
+    /Script format must be dialogue or narrator/,
+  );
+});

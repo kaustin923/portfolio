@@ -26,7 +26,6 @@ export const RangeBar = ({
 
   return (
     <div style={{position: 'relative', height: 455, boxSizing: 'border-box', border: `3px solid ${TOKENS.color.boneHairline}`, borderRadius: TOKENS.radius.card, background: 'rgba(13,15,20,.72)', boxShadow: `0 0 40px ${TOKENS.color.pendingSoft}`}}>
-      <div style={{position: 'absolute', top: 41, left: 48, fontFamily: TOKENS.font.mono, color: TOKENS.color.boneMuted, fontSize: 20, fontWeight: 700, letterSpacing: '.16em'}}>RANGE / {unit.toUpperCase()}</div>
       {badge ? (
         <div style={{position: 'absolute', top: 24, right: 42, maxWidth: 330, boxSizing: 'border-box', overflow: 'hidden', padding: '9px 14px', border: `5px double ${TOKENS.color.pending}`, borderRadius: 8, color: TOKENS.color.pending, fontFamily: TOKENS.font.display, fontSize: 25, letterSpacing: '.04em', whiteSpace: 'nowrap', textOverflow: 'ellipsis', transform: `rotate(-4deg) scale(${.72 + reveal * .28})`, opacity: clamp((reveal - .58) / .2)}}>{badge}</div>
       ) : null}

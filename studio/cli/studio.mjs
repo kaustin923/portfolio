@@ -76,6 +76,27 @@ const requireOptionalBoolean = (value, path) => {
   if (value !== undefined && typeof value !== 'boolean') throw new Error(`${path} must be a boolean.`);
 };
 
+const requireEnum = (value, allowed, path) => {
+  if (typeof value !== 'string' || !allowed.includes(value)) {
+    throw new Error(`${path} must be one of: ${allowed.join(', ')}.`);
+  }
+};
+
+const requireMaxLength = (value, maximum, path) => {
+  if (typeof value === 'string' && value.length > maximum) throw new Error(`${path} must be at most ${maximum} characters.`);
+};
+
+const requireRange = (value, minimum, maximum, path) => {
+  requireNumber(value, path);
+  if (value < minimum || value > maximum) throw new Error(`${path} must be between ${minimum} and ${maximum}.`);
+};
+
+const requireFieldPoint = (value, path) => {
+  if (!isRecord(value)) throw new Error(`${path} must be an object.`);
+  requireRange(value.x, 0, 53.33, `${path}.x`);
+  requireRange(value.y, -15, 35, `${path}.y`);
+};
+
 const validateViz = (viz, lineIndex) => {
   const path = `Dialogue line ${lineIndex + 1} viz`;
   if (!isRecord(viz)) throw new Error(`${path} must be an object.`);
@@ -167,6 +188,144 @@ const validateViz = (viz, lineIndex) => {
       }
       requireString(viz.stamp, `${path}.stamp`, true);
       return;
+    case 'fieldPlay': {
+      requireString(viz.label, `${path}.label`, true);
+      requireString(viz.losLabel, `${path}.losLabel`, true);
+      if (viz.firstDownYd !== undefined) {
+        requireNumber(viz.firstDownYd, `${path}.firstDownYd`);
+        if (viz.firstDownYd <= 0 || viz.firstDownYd > 30) throw new Error(`${path}.firstDownYd must be greater than 0 and at most 30.`);
+      }
+      if (!Array.isArray(viz.players) || viz.players.length < 2 || viz.players.length > 14) {
+        throw new Error(`${path}.players requires 2 to 14 players.`);
+      }
+      const playerIds = new Set();
+      for (const [index, player] of viz.players.entries()) {
+        const playerPath = `${path}.players[${index}]`;
+        if (!isRecord(player)) throw new Error(`${playerPath} must be an object.`);
+        requireString(player.id, `${playerPath}.id`);
+        if (playerIds.has(player.id)) throw new Error(`${playerPath}.id must be unique.`);
+        playerIds.add(player.id);
+        requireString(player.label, `${playerPath}.label`);
+        requireMaxLength(player.label, 3, `${playerPath}.label`);
+        requireString(player.name, `${playerPath}.name`, true);
+        requireEnum(player.team, ['offense', 'defense'], `${playerPath}.team`);
+        if (player.role !== undefined) requireEnum(player.role, ['hero', 'blocker', 'defender'], `${playerPath}.role`);
+        requireFieldPoint(player, playerPath);
+      }
+      if (!isRecord(viz.run)) throw new Error(`${path}.run must be an object.`);
+      requireString(viz.run.playerId, `${path}.run.playerId`);
+      if (!playerIds.has(viz.run.playerId)) throw new Error(`${path}.run.playerId must match a player id.`);
+      if (!Array.isArray(viz.run.path) || viz.run.path.length < 2) throw new Error(`${path}.run.path requires at least two points.`);
+      viz.run.path.forEach((point, index) => requireFieldPoint(point, `${path}.run.path[${index}]`));
+      if (viz.blocks !== undefined) {
+        if (!Array.isArray(viz.blocks)) throw new Error(`${path}.blocks must be an array.`);
+        for (const [index, block] of viz.blocks.entries()) {
+          const blockPath = `${path}.blocks[${index}]`;
+          if (!isRecord(block)) throw new Error(`${blockPath} must be an object.`);
+          requireString(block.id, `${blockPath}.id`);
+          if (!playerIds.has(block.id)) throw new Error(`${blockPath}.id must match a player id.`);
+          requireRange(block.dx, -6, 6, `${blockPath}.dx`);
+          requireRange(block.dy, -6, 6, `${blockPath}.dy`);
+        }
+      }
+      if (viz.lane !== undefined) {
+        if (!isRecord(viz.lane)) throw new Error(`${path}.lane must be an object.`);
+        requireRange(viz.lane.x, 0, 53.33, `${path}.lane.x`);
+        requireNumber(viz.lane.width, `${path}.lane.width`);
+        if (viz.lane.width <= 0 || viz.lane.width > 15) throw new Error(`${path}.lane.width must be greater than 0 and at most 15.`);
+      }
+      if (viz.fadeOnPass !== undefined) {
+        if (!Array.isArray(viz.fadeOnPass)) throw new Error(`${path}.fadeOnPass must be an array.`);
+        for (const [index, id] of viz.fadeOnPass.entries()) {
+          requireString(id, `${path}.fadeOnPass[${index}]`);
+          if (!playerIds.has(id)) throw new Error(`${path}.fadeOnPass[${index}] must match a player id.`);
+        }
+      }
+      if (viz.callout !== undefined) {
+        if (!isRecord(viz.callout)) throw new Error(`${path}.callout must be an object.`);
+        requireString(viz.callout.text, `${path}.callout.text`);
+        requireMaxLength(viz.callout.text, 28, `${path}.callout.text`);
+        requireString(viz.callout.sub, `${path}.callout.sub`, true);
+      }
+      return;
+    }
+    case 'depthFlow':
+      requireString(viz.label, `${path}.label`);
+      for (const key of ['out', 'riser', 'flow']) {
+        if (!isRecord(viz[key])) throw new Error(`${path}.${key} must be an object.`);
+      }
+      for (const key of ['name', 'jersey', 'stat', 'statLabel']) requireString(viz.out[key], `${path}.out.${key}`);
+      requireMaxLength(viz.out.jersey, 3, `${path}.out.jersey`);
+      for (const key of ['name', 'jersey']) requireString(viz.riser[key], `${path}.riser.${key}`);
+      requireMaxLength(viz.riser.jersey, 3, `${path}.riser.jersey`);
+      requireString(viz.riser.note, `${path}.riser.note`, true);
+      requireNumber(viz.flow.to, `${path}.flow.to`);
+      if (viz.flow.to <= 0) throw new Error(`${path}.flow.to must be greater than 0.`);
+      requireString(viz.flow.unit, `${path}.flow.unit`);
+      return;
+    case 'speedRace':
+      requireString(viz.label, `${path}.label`, true);
+      requireString(viz.note, `${path}.note`, true);
+      if (viz.distanceYd !== undefined) requireRange(viz.distanceYd, 10, 100, `${path}.distanceYd`);
+      if (!Array.isArray(viz.runners) || viz.runners.length !== 2) throw new Error(`${path}.runners requires exactly two runners.`);
+      for (const [index, runner] of viz.runners.entries()) {
+        const runnerPath = `${path}.runners[${index}]`;
+        if (!isRecord(runner)) throw new Error(`${runnerPath} must be an object.`);
+        requireString(runner.name, `${runnerPath}.name`);
+        requireString(runner.label, `${runnerPath}.label`);
+        requireMaxLength(runner.label, 3, `${runnerPath}.label`);
+        requireNumber(runner.time, `${runnerPath}.time`);
+        if (runner.time <= 0) throw new Error(`${runnerPath}.time must be greater than 0.`);
+        if (runner.tone !== undefined) requireEnum(runner.tone, ['accent', 'bone'], `${runnerPath}.tone`);
+      }
+      return;
+    case 'zoneHeat': {
+      requireString(viz.label, `${path}.label`);
+      if (!Array.isArray(viz.zones) || viz.zones.length < 1 || viz.zones.length > 12) throw new Error(`${path}.zones requires 1 to 12 zones.`);
+      let focusCount = 0;
+      for (const [index, zone] of viz.zones.entries()) {
+        const zonePath = `${path}.zones[${index}]`;
+        if (!isRecord(zone)) throw new Error(`${zonePath} must be an object.`);
+        requireEnum(zone.lane, ['left', 'middle', 'right'], `${zonePath}.lane`);
+        requireEnum(zone.depth, ['backfield', 'short', 'mid', 'deep'], `${zonePath}.depth`);
+        requireRange(zone.intensity, 0, 1, `${zonePath}.intensity`);
+        requireString(zone.stat, `${zonePath}.stat`, true);
+        requireMaxLength(zone.stat, 24, `${zonePath}.stat`);
+        requireOptionalBoolean(zone.focus, `${zonePath}.focus`);
+        if (zone.focus === true) focusCount++;
+      }
+      if (focusCount > 1) throw new Error(`${path}.zones may contain at most one focus zone.`);
+      if (viz.marker !== undefined) {
+        if (!isRecord(viz.marker)) throw new Error(`${path}.marker must be an object.`);
+        requireString(viz.marker.name, `${path}.marker.name`);
+        requireString(viz.marker.label, `${path}.marker.label`);
+        requireMaxLength(viz.marker.label, 3, `${path}.marker.label`);
+        requireEnum(viz.marker.lane, ['left', 'middle', 'right'], `${path}.marker.lane`);
+        requireEnum(viz.marker.depth, ['backfield', 'short', 'mid', 'deep'], `${path}.marker.depth`);
+      }
+      return;
+    }
+    case 'riseRank':
+      requireString(viz.label, `${path}.label`, true);
+      if (!Array.isArray(viz.rungs) || viz.rungs.length < 2 || viz.rungs.length > 6) throw new Error(`${path}.rungs requires 2 to 6 rows.`);
+      for (const [index, rung] of viz.rungs.entries()) {
+        const rungPath = `${path}.rungs[${index}]`;
+        if (!isRecord(rung)) throw new Error(`${rungPath} must be an object.`);
+        requireString(rung.rank, `${rungPath}.rank`);
+        requireString(rung.ghost, `${rungPath}.ghost`, true);
+        requireString(rung.note, `${rungPath}.note`, true);
+      }
+      if (!isRecord(viz.climber)) throw new Error(`${path}.climber must be an object.`);
+      requireString(viz.climber.name, `${path}.climber.name`);
+      requireString(viz.climber.label, `${path}.climber.label`);
+      requireMaxLength(viz.climber.label, 3, `${path}.climber.label`);
+      requireString(viz.climber.stat, `${path}.climber.stat`, true);
+      requireNumber(viz.fromIndex, `${path}.fromIndex`);
+      requireNumber(viz.toIndex, `${path}.toIndex`);
+      if (!Number.isInteger(viz.fromIndex) || !Number.isInteger(viz.toIndex) || viz.toIndex < 0 || viz.toIndex >= viz.fromIndex || viz.fromIndex > viz.rungs.length - 1) {
+        throw new Error(`${path} requires integer indexes with 0 <= toIndex < fromIndex <= rungs.length - 1.`);
+      }
+      return;
     default:
       throw new Error(`${path}.kind is not supported: ${viz.kind}`);
   }
@@ -177,6 +336,11 @@ const validateScript = (value) => {
   for (const key of ['id', 'title']) {
     if (typeof value[key] !== 'string' || !value[key].trim()) throw new Error(`Script requires a non-empty ${key}.`);
   }
+  if (value.format !== undefined && !['dialogue', 'narrator'].includes(value.format)) {
+    throw new Error('Script format must be dialogue or narrator.');
+  }
+  requireString(value.eyebrow, 'Script eyebrow', true);
+  value.format = value.format ?? 'dialogue';
   if (value.theme !== undefined) {
     if (!value.theme || typeof value.theme !== 'object') throw new Error('Script theme must be an object.');
     for (const key of ['name', 'accent', 'accentSoft']) {

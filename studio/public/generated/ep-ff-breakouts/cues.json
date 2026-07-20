@@ -1,0 +1,4551 @@
+{
+  "durationMs": 73640,
+  "durationInFrames": 2210,
+  "words": [
+    {
+      "text": "Five",
+      "startMs": 0,
+      "endMs": 320,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "running",
+      "startMs": 350,
+      "endMs": 560,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "backs",
+      "startMs": 613,
+      "endMs": 880,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "are",
+      "startMs": 900,
+      "endMs": 960,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "about",
+      "startMs": 1013,
+      "endMs": 1280,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "to",
+      "startMs": 1333,
+      "endMs": 1440,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "smash",
+      "startMs": 1573,
+      "endMs": 2240,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "in",
+      "startMs": 2293,
+      "endMs": 2400,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "2026",
+      "startMs": 2840,
+      "endMs": 3600,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "—",
+      "startMs": 3600,
+      "endMs": 3860,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "and",
+      "startMs": 3860,
+      "endMs": 3920,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "it's",
+      "startMs": 3973,
+      "endMs": 4160,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "all",
+      "startMs": 4220,
+      "endMs": 4400,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "for",
+      "startMs": 4440,
+      "endMs": 4560,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "the",
+      "startMs": 4580,
+      "endMs": 4640,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "same",
+      "startMs": 4704,
+      "endMs": 4960,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "reason.",
+      "startMs": 5017,
+      "endMs": 6079,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "They",
+      "startMs": 6079,
+      "endMs": 6240,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "all",
+      "startMs": 6280,
+      "endMs": 6400,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "just",
+      "startMs": 6464,
+      "endMs": 6720,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "inherited",
+      "startMs": 6776,
+      "endMs": 7280,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "a",
+      "startMs": 7360,
+      "endMs": 7440,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "starting",
+      "startMs": 7493,
+      "endMs": 7920,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "job",
+      "startMs": 8120,
+      "endMs": 8720,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "—",
+      "startMs": 8720,
+      "endMs": 8900,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "and",
+      "startMs": 8900,
+      "endMs": 8960,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "nobody's",
+      "startMs": 9017,
+      "endMs": 9440,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "drafting",
+      "startMs": 9484,
+      "endMs": 9840,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "them",
+      "startMs": 9872,
+      "endMs": 10000,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "high",
+      "startMs": 10048,
+      "endMs": 10240,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "enough",
+      "startMs": 10286,
+      "endMs": 10560,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "yet.",
+      "startMs": 10640,
+      "endMs": 11120,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "Number",
+      "startMs": 11120,
+      "endMs": 12320,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "five:",
+      "startMs": 12416,
+      "endMs": 12880,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "Kenneth",
+      "startMs": 12990,
+      "endMs": 13760,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "Gainwell,",
+      "startMs": 13824,
+      "endMs": 14560,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "Tampa",
+      "startMs": 14613,
+      "endMs": 14880,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "Bay.",
+      "startMs": 14960,
+      "endMs": 15201,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "Career",
+      "startMs": 15371,
+      "endMs": 16400,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "highs",
+      "startMs": 16467,
+      "endMs": 16800,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "last",
+      "startMs": 16864,
+      "endMs": 17120,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "year,",
+      "startMs": 17184,
+      "endMs": 17680,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "new",
+      "startMs": 17720,
+      "endMs": 17840,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "team,",
+      "startMs": 17936,
+      "endMs": 18400,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "and",
+      "startMs": 18480,
+      "endMs": 18720,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "the",
+      "startMs": 18740,
+      "endMs": 18800,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "coach",
+      "startMs": 18853,
+      "endMs": 19120,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "already",
+      "startMs": 19160,
+      "endMs": 19440,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "calling",
+      "startMs": 19490,
+      "endMs": 19840,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "him",
+      "startMs": 19900,
+      "endMs": 20080,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "the",
+      "startMs": 20200,
+      "endMs": 20560,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "one-B.",
+      "startMs": 20680,
+      "endMs": 21920,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "That's",
+      "startMs": 22032,
+      "endMs": 22481,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "a",
+      "startMs": 22520,
+      "endMs": 22560,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "role.",
+      "startMs": 22656,
+      "endMs": 23359,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "Number",
+      "startMs": 23359,
+      "endMs": 23600,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "four:",
+      "startMs": 23664,
+      "endMs": 24080,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Jonah",
+      "startMs": 24213,
+      "endMs": 24880,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Coleman,",
+      "startMs": 24940,
+      "endMs": 25720,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Denver.",
+      "startMs": 25771,
+      "endMs": 26560,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "That",
+      "startMs": 26656,
+      "endMs": 27040,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "backfield",
+      "startMs": 27104,
+      "endMs": 27520,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "is",
+      "startMs": 27573,
+      "endMs": 27680,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "wide",
+      "startMs": 27744,
+      "endMs": 28000,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "open,",
+      "startMs": 28080,
+      "endMs": 28560,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "and",
+      "startMs": 28620,
+      "endMs": 28800,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "he's",
+      "startMs": 28853,
+      "endMs": 29040,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "the",
+      "startMs": 29060,
+      "endMs": 29120,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "most",
+      "startMs": 29168,
+      "endMs": 29360,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "explosive",
+      "startMs": 29416,
+      "endMs": 29920,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "guy",
+      "startMs": 29980,
+      "endMs": 30160,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "in",
+      "startMs": 30187,
+      "endMs": 30240,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "the",
+      "startMs": 30260,
+      "endMs": 30320,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "room.",
+      "startMs": 30400,
+      "endMs": 31040,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Number",
+      "startMs": 31040,
+      "endMs": 32320,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "three:",
+      "startMs": 32387,
+      "endMs": 32800,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "Quinshon",
+      "startMs": 33013,
+      "endMs": 33920,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "Judkins,",
+      "startMs": 34000,
+      "endMs": 34640,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "Cleveland.",
+      "startMs": 34720,
+      "endMs": 35520,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "Brand-new",
+      "startMs": 35680,
+      "endMs": 36800,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "offensive",
+      "startMs": 36864,
+      "endMs": 37440,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "line,",
+      "startMs": 37520,
+      "endMs": 37920,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "a",
+      "startMs": 38080,
+      "endMs": 38240,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "full",
+      "startMs": 38304,
+      "endMs": 38560,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "workload",
+      "startMs": 38622,
+      "endMs": 39120,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "waiting.",
+      "startMs": 39170,
+      "endMs": 39760,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "He",
+      "startMs": 39893,
+      "endMs": 40160,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "was",
+      "startMs": 40200,
+      "endMs": 40320,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "already",
+      "startMs": 40360,
+      "endMs": 40640,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "good",
+      "startMs": 40720,
+      "endMs": 41040,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "—",
+      "startMs": 41040,
+      "endMs": 41640,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "now",
+      "startMs": 41640,
+      "endMs": 41760,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "he's",
+      "startMs": 41813,
+      "endMs": 42000,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "got",
+      "startMs": 42040,
+      "endMs": 42160,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "room",
+      "startMs": 42208,
+      "endMs": 42400,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "to",
+      "startMs": 42427,
+      "endMs": 42480,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "run.",
+      "startMs": 42600,
+      "endMs": 43200,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "Number",
+      "startMs": 43200,
+      "endMs": 44400,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "two:",
+      "startMs": 44500,
+      "endMs": 44880,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "Bhayshul",
+      "startMs": 45147,
+      "endMs": 46080,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "Tuten,",
+      "startMs": 46200,
+      "endMs": 46720,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "Jacksonville.",
+      "startMs": 46794,
+      "endMs": 48120,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "Etienne",
+      "startMs": 48267,
+      "endMs": 48880,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "walked",
+      "startMs": 48949,
+      "endMs": 49360,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "—",
+      "startMs": 49360,
+      "endMs": 49696,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "that's",
+      "startMs": 49696,
+      "endMs": 49840,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "eleven",
+      "startMs": 49886,
+      "endMs": 50160,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "hundred",
+      "startMs": 50190,
+      "endMs": 50400,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "yards,",
+      "startMs": 50493,
+      "endMs": 51200,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "gone.",
+      "startMs": 51312,
+      "endMs": 52000,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "And",
+      "startMs": 52000,
+      "endMs": 52400,
+      "speaker": "george",
+      "lineIndex": 6
+    },
+    {
+      "text": "Tuten",
+      "startMs": 52480,
+      "endMs": 52880,
+      "speaker": "george",
+      "lineIndex": 6
+    },
+    {
+      "text": "runs",
+      "startMs": 52944,
+      "endMs": 53200,
+      "speaker": "george",
+      "lineIndex": 6
+    },
+    {
+      "text": "a",
+      "startMs": 53240,
+      "endMs": 53280,
+      "speaker": "george",
+      "lineIndex": 6
+    },
+    {
+      "text": "four-three.",
+      "startMs": 53360,
+      "endMs": 54080,
+      "speaker": "george",
+      "lineIndex": 6
+    },
+    {
+      "text": "And",
+      "startMs": 54080,
+      "endMs": 55440,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "number",
+      "startMs": 55474,
+      "endMs": 55680,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "one:",
+      "startMs": 55760,
+      "endMs": 56400,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "Jeremiyah",
+      "startMs": 56540,
+      "endMs": 57360,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "Love,",
+      "startMs": 57456,
+      "endMs": 58320,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "Arizona.",
+      "startMs": 58380,
+      "endMs": 59040,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "Third",
+      "startMs": 59160,
+      "endMs": 59760,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "pick",
+      "startMs": 59824,
+      "endMs": 60080,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "in",
+      "startMs": 60107,
+      "endMs": 60160,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "the",
+      "startMs": 60180,
+      "endMs": 60240,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "draft.",
+      "startMs": 60320,
+      "endMs": 60800,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "The",
+      "startMs": 60800,
+      "endMs": 61520,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "last",
+      "startMs": 61584,
+      "endMs": 61840,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "nine",
+      "startMs": 61904,
+      "endMs": 62160,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "backs",
+      "startMs": 62227,
+      "endMs": 62560,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "taken",
+      "startMs": 62613,
+      "endMs": 62880,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "that",
+      "startMs": 62912,
+      "endMs": 63040,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "high",
+      "startMs": 63120,
+      "endMs": 63440,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "all",
+      "startMs": 63520,
+      "endMs": 63760,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "finished",
+      "startMs": 63813,
+      "endMs": 64240,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "top",
+      "startMs": 64300,
+      "endMs": 64480,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "twelve",
+      "startMs": 64537,
+      "endMs": 64880,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "as",
+      "startMs": 64907,
+      "endMs": 64960,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "rookies.",
+      "startMs": 65030,
+      "endMs": 65760,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "All",
+      "startMs": 65880,
+      "endMs": 66240,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "nine.",
+      "startMs": 66336,
+      "endMs": 66800,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "text": "Draft",
+      "startMs": 66800,
+      "endMs": 67840,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "the",
+      "startMs": 67880,
+      "endMs": 68000,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "job,",
+      "startMs": 68100,
+      "endMs": 68640,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "not",
+      "startMs": 68700,
+      "endMs": 68880,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "the",
+      "startMs": 68900,
+      "endMs": 68960,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "name.",
+      "startMs": 69056,
+      "endMs": 69680,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "That's",
+      "startMs": 69792,
+      "endMs": 70241,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "how",
+      "startMs": 70300,
+      "endMs": 70480,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "you",
+      "startMs": 70500,
+      "endMs": 70560,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "win",
+      "startMs": 70680,
+      "endMs": 71040,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "in",
+      "startMs": 71147,
+      "endMs": 71360,
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "text": "August.",
+      "startMs": 71440,
+      "endMs": 72240,
+      "speaker": "george",
+      "lineIndex": 9
+    }
+  ],
+  "captions": [
+    {
+      "id": "caption-1",
+      "text": "Five running backs",
+      "startMs": 0,
+      "endMs": 880,
+      "words": [
+        {
+          "text": "Five",
+          "startMs": 0,
+          "endMs": 320,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "running",
+          "startMs": 350,
+          "endMs": 560,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "backs",
+          "startMs": 613,
+          "endMs": 880,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-2",
+      "text": "are about to",
+      "startMs": 900,
+      "endMs": 1520,
+      "words": [
+        {
+          "text": "are",
+          "startMs": 900,
+          "endMs": 960,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "about",
+          "startMs": 1013,
+          "endMs": 1280,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "to",
+          "startMs": 1333,
+          "endMs": 1440,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-3",
+      "text": "smash in",
+      "startMs": 1573,
+      "endMs": 2400,
+      "words": [
+        {
+          "text": "smash",
+          "startMs": 1573,
+          "endMs": 2240,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "in",
+          "startMs": 2293,
+          "endMs": 2400,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-4",
+      "text": "2026 —",
+      "startMs": 2840,
+      "endMs": 3840,
+      "words": [
+        {
+          "text": "2026",
+          "startMs": 2840,
+          "endMs": 3600,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "—",
+          "startMs": 3600,
+          "endMs": 3860,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-5",
+      "text": "and it's all for",
+      "startMs": 3860,
+      "endMs": 4560,
+      "words": [
+        {
+          "text": "and",
+          "startMs": 3860,
+          "endMs": 3920,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "it's",
+          "startMs": 3973,
+          "endMs": 4160,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "all",
+          "startMs": 4220,
+          "endMs": 4400,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "for",
+          "startMs": 4440,
+          "endMs": 4560,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-6",
+      "text": "the same",
+      "startMs": 4580,
+      "endMs": 5140,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 4580,
+          "endMs": 4640,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "same",
+          "startMs": 4704,
+          "endMs": 4960,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-7",
+      "text": "reason.",
+      "startMs": 5017,
+      "endMs": 6059,
+      "words": [
+        {
+          "text": "reason.",
+          "startMs": 5017,
+          "endMs": 6079,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-8",
+      "text": "They all just",
+      "startMs": 6079,
+      "endMs": 6720,
+      "words": [
+        {
+          "text": "They",
+          "startMs": 6079,
+          "endMs": 6240,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "all",
+          "startMs": 6280,
+          "endMs": 6400,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "just",
+          "startMs": 6464,
+          "endMs": 6720,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-9",
+      "text": "inherited a",
+      "startMs": 6776,
+      "endMs": 7440,
+      "words": [
+        {
+          "text": "inherited",
+          "startMs": 6776,
+          "endMs": 7280,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "a",
+          "startMs": 7360,
+          "endMs": 7440,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-10",
+      "text": "starting job",
+      "startMs": 7493,
+      "endMs": 8700,
+      "words": [
+        {
+          "text": "starting",
+          "startMs": 7493,
+          "endMs": 7920,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "job",
+          "startMs": 8120,
+          "endMs": 8720,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-11",
+      "text": "— and nobody's",
+      "startMs": 8720,
+      "endMs": 9440,
+      "words": [
+        {
+          "text": "—",
+          "startMs": 8720,
+          "endMs": 8900,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "and",
+          "startMs": 8900,
+          "endMs": 8960,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "nobody's",
+          "startMs": 9017,
+          "endMs": 9440,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-12",
+      "text": "drafting them high",
+      "startMs": 9484,
+      "endMs": 10240,
+      "words": [
+        {
+          "text": "drafting",
+          "startMs": 9484,
+          "endMs": 9840,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "them",
+          "startMs": 9872,
+          "endMs": 10000,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "high",
+          "startMs": 10048,
+          "endMs": 10240,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-13",
+      "text": "enough yet.",
+      "startMs": 10286,
+      "endMs": 11100,
+      "words": [
+        {
+          "text": "enough",
+          "startMs": 10286,
+          "endMs": 10560,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "yet.",
+          "startMs": 10640,
+          "endMs": 11120,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-14",
+      "text": "Number five:",
+      "startMs": 11120,
+      "endMs": 12880,
+      "words": [
+        {
+          "text": "Number",
+          "startMs": 11120,
+          "endMs": 12320,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "five:",
+          "startMs": 12416,
+          "endMs": 12880,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-15",
+      "text": "Kenneth Gainwell,",
+      "startMs": 12990,
+      "endMs": 14560,
+      "words": [
+        {
+          "text": "Kenneth",
+          "startMs": 12990,
+          "endMs": 13760,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "Gainwell,",
+          "startMs": 13824,
+          "endMs": 14560,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-16",
+      "text": "Tampa Bay.",
+      "startMs": 14613,
+      "endMs": 15233,
+      "words": [
+        {
+          "text": "Tampa",
+          "startMs": 14613,
+          "endMs": 14880,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "Bay.",
+          "startMs": 14960,
+          "endMs": 15201,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-17",
+      "text": "Career highs",
+      "startMs": 15371,
+      "endMs": 16800,
+      "words": [
+        {
+          "text": "Career",
+          "startMs": 15371,
+          "endMs": 16400,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "highs",
+          "startMs": 16467,
+          "endMs": 16800,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-18",
+      "text": "last year,",
+      "startMs": 16864,
+      "endMs": 17680,
+      "words": [
+        {
+          "text": "last",
+          "startMs": 16864,
+          "endMs": 17120,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "year,",
+          "startMs": 17184,
+          "endMs": 17680,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-19",
+      "text": "new team,",
+      "startMs": 17720,
+      "endMs": 18400,
+      "words": [
+        {
+          "text": "new",
+          "startMs": 17720,
+          "endMs": 17840,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "team,",
+          "startMs": 17936,
+          "endMs": 18400,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-20",
+      "text": "and the coach",
+      "startMs": 18480,
+      "endMs": 19120,
+      "words": [
+        {
+          "text": "and",
+          "startMs": 18480,
+          "endMs": 18720,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "the",
+          "startMs": 18740,
+          "endMs": 18800,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "coach",
+          "startMs": 18853,
+          "endMs": 19120,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-21",
+      "text": "already calling",
+      "startMs": 19160,
+      "endMs": 19840,
+      "words": [
+        {
+          "text": "already",
+          "startMs": 19160,
+          "endMs": 19440,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "calling",
+          "startMs": 19490,
+          "endMs": 19840,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-22",
+      "text": "him the",
+      "startMs": 19900,
+      "endMs": 20560,
+      "words": [
+        {
+          "text": "him",
+          "startMs": 19900,
+          "endMs": 20080,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "the",
+          "startMs": 20200,
+          "endMs": 20560,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-23",
+      "text": "one-B. That's",
+      "startMs": 20680,
+      "endMs": 22481,
+      "words": [
+        {
+          "text": "one-B.",
+          "startMs": 20680,
+          "endMs": 21920,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "That's",
+          "startMs": 22032,
+          "endMs": 22481,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-24",
+      "text": "a role.",
+      "startMs": 22520,
+      "endMs": 23339,
+      "words": [
+        {
+          "text": "a",
+          "startMs": 22520,
+          "endMs": 22560,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "role.",
+          "startMs": 22656,
+          "endMs": 23359,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-25",
+      "text": "Number four:",
+      "startMs": 23359,
+      "endMs": 24080,
+      "words": [
+        {
+          "text": "Number",
+          "startMs": 23359,
+          "endMs": 23600,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "four:",
+          "startMs": 23664,
+          "endMs": 24080,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-26",
+      "text": "Jonah Coleman,",
+      "startMs": 24213,
+      "endMs": 25720,
+      "words": [
+        {
+          "text": "Jonah",
+          "startMs": 24213,
+          "endMs": 24880,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Coleman,",
+          "startMs": 24940,
+          "endMs": 25720,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-27",
+      "text": "Denver. That",
+      "startMs": 25771,
+      "endMs": 27040,
+      "words": [
+        {
+          "text": "Denver.",
+          "startMs": 25771,
+          "endMs": 26560,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "That",
+          "startMs": 26656,
+          "endMs": 27040,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-28",
+      "text": "backfield is",
+      "startMs": 27104,
+      "endMs": 27724,
+      "words": [
+        {
+          "text": "backfield",
+          "startMs": 27104,
+          "endMs": 27520,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "is",
+          "startMs": 27573,
+          "endMs": 27680,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-29",
+      "text": "wide open,",
+      "startMs": 27744,
+      "endMs": 28560,
+      "words": [
+        {
+          "text": "wide",
+          "startMs": 27744,
+          "endMs": 28000,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "open,",
+          "startMs": 28080,
+          "endMs": 28560,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-30",
+      "text": "and he's the most",
+      "startMs": 28620,
+      "endMs": 29360,
+      "words": [
+        {
+          "text": "and",
+          "startMs": 28620,
+          "endMs": 28800,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "he's",
+          "startMs": 28853,
+          "endMs": 29040,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "the",
+          "startMs": 29060,
+          "endMs": 29120,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "most",
+          "startMs": 29168,
+          "endMs": 29360,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-31",
+      "text": "explosive guy in",
+      "startMs": 29416,
+      "endMs": 30240,
+      "words": [
+        {
+          "text": "explosive",
+          "startMs": 29416,
+          "endMs": 29920,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "guy",
+          "startMs": 29980,
+          "endMs": 30160,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "in",
+          "startMs": 30187,
+          "endMs": 30240,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-32",
+      "text": "the room.",
+      "startMs": 30260,
+      "endMs": 31020,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 30260,
+          "endMs": 30320,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "room.",
+          "startMs": 30400,
+          "endMs": 31040,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-33",
+      "text": "Number three:",
+      "startMs": 31040,
+      "endMs": 32800,
+      "words": [
+        {
+          "text": "Number",
+          "startMs": 31040,
+          "endMs": 32320,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "three:",
+          "startMs": 32387,
+          "endMs": 32800,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-34",
+      "text": "Quinshon Judkins,",
+      "startMs": 33013,
+      "endMs": 34640,
+      "words": [
+        {
+          "text": "Quinshon",
+          "startMs": 33013,
+          "endMs": 33920,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "Judkins,",
+          "startMs": 34000,
+          "endMs": 34640,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-35",
+      "text": "Cleveland. Brand-new",
+      "startMs": 34720,
+      "endMs": 36800,
+      "words": [
+        {
+          "text": "Cleveland.",
+          "startMs": 34720,
+          "endMs": 35520,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "Brand-new",
+          "startMs": 35680,
+          "endMs": 36800,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-36",
+      "text": "offensive line,",
+      "startMs": 36864,
+      "endMs": 37920,
+      "words": [
+        {
+          "text": "offensive",
+          "startMs": 36864,
+          "endMs": 37440,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "line,",
+          "startMs": 37520,
+          "endMs": 37920,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-37",
+      "text": "a full",
+      "startMs": 38080,
+      "endMs": 38640,
+      "words": [
+        {
+          "text": "a",
+          "startMs": 38080,
+          "endMs": 38240,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "full",
+          "startMs": 38304,
+          "endMs": 38560,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-38",
+      "text": "workload waiting.",
+      "startMs": 38622,
+      "endMs": 39760,
+      "words": [
+        {
+          "text": "workload",
+          "startMs": 38622,
+          "endMs": 39120,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "waiting.",
+          "startMs": 39170,
+          "endMs": 39760,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-39",
+      "text": "He was already",
+      "startMs": 39893,
+      "endMs": 40640,
+      "words": [
+        {
+          "text": "He",
+          "startMs": 39893,
+          "endMs": 40160,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "was",
+          "startMs": 40200,
+          "endMs": 40320,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "already",
+          "startMs": 40360,
+          "endMs": 40640,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-40",
+      "text": "good —",
+      "startMs": 40720,
+      "endMs": 41620,
+      "words": [
+        {
+          "text": "good",
+          "startMs": 40720,
+          "endMs": 41040,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "—",
+          "startMs": 41040,
+          "endMs": 41640,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-41",
+      "text": "now he's got room",
+      "startMs": 41640,
+      "endMs": 42400,
+      "words": [
+        {
+          "text": "now",
+          "startMs": 41640,
+          "endMs": 41760,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "he's",
+          "startMs": 41813,
+          "endMs": 42000,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "got",
+          "startMs": 42040,
+          "endMs": 42160,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "room",
+          "startMs": 42208,
+          "endMs": 42400,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-42",
+      "text": "to run.",
+      "startMs": 42427,
+      "endMs": 43180,
+      "words": [
+        {
+          "text": "to",
+          "startMs": 42427,
+          "endMs": 42480,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "run.",
+          "startMs": 42600,
+          "endMs": 43200,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-43",
+      "text": "Number two:",
+      "startMs": 43200,
+      "endMs": 44880,
+      "words": [
+        {
+          "text": "Number",
+          "startMs": 43200,
+          "endMs": 44400,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "two:",
+          "startMs": 44500,
+          "endMs": 44880,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-44",
+      "text": "Bhayshul Tuten,",
+      "startMs": 45147,
+      "endMs": 46720,
+      "words": [
+        {
+          "text": "Bhayshul",
+          "startMs": 45147,
+          "endMs": 46080,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Tuten,",
+          "startMs": 46200,
+          "endMs": 46720,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-45",
+      "text": "Jacksonville. Etienne",
+      "startMs": 46794,
+      "endMs": 48880,
+      "words": [
+        {
+          "text": "Jacksonville.",
+          "startMs": 46794,
+          "endMs": 48120,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Etienne",
+          "startMs": 48267,
+          "endMs": 48880,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-46",
+      "text": "walked —",
+      "startMs": 48949,
+      "endMs": 49676,
+      "words": [
+        {
+          "text": "walked",
+          "startMs": 48949,
+          "endMs": 49360,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "—",
+          "startMs": 49360,
+          "endMs": 49696,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-47",
+      "text": "that's eleven hundred",
+      "startMs": 49696,
+      "endMs": 50400,
+      "words": [
+        {
+          "text": "that's",
+          "startMs": 49696,
+          "endMs": 49840,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "eleven",
+          "startMs": 49886,
+          "endMs": 50160,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "hundred",
+          "startMs": 50190,
+          "endMs": 50400,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-48",
+      "text": "yards, gone.",
+      "startMs": 50493,
+      "endMs": 51980,
+      "words": [
+        {
+          "text": "yards,",
+          "startMs": 50493,
+          "endMs": 51200,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "gone.",
+          "startMs": 51312,
+          "endMs": 52000,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-49",
+      "text": "And Tuten",
+      "startMs": 52000,
+      "endMs": 52880,
+      "words": [
+        {
+          "text": "And",
+          "startMs": 52000,
+          "endMs": 52400,
+          "speaker": "george",
+          "lineIndex": 6
+        },
+        {
+          "text": "Tuten",
+          "startMs": 52480,
+          "endMs": 52880,
+          "speaker": "george",
+          "lineIndex": 6
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 6
+    },
+    {
+      "id": "caption-50",
+      "text": "runs a",
+      "startMs": 52944,
+      "endMs": 53504,
+      "words": [
+        {
+          "text": "runs",
+          "startMs": 52944,
+          "endMs": 53200,
+          "speaker": "george",
+          "lineIndex": 6
+        },
+        {
+          "text": "a",
+          "startMs": 53240,
+          "endMs": 53280,
+          "speaker": "george",
+          "lineIndex": 6
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 6
+    },
+    {
+      "id": "caption-51",
+      "text": "four-three.",
+      "startMs": 53360,
+      "endMs": 54060,
+      "words": [
+        {
+          "text": "four-three.",
+          "startMs": 53360,
+          "endMs": 54080,
+          "speaker": "george",
+          "lineIndex": 6
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 6
+    },
+    {
+      "id": "caption-52",
+      "text": "And number",
+      "startMs": 54080,
+      "endMs": 55680,
+      "words": [
+        {
+          "text": "And",
+          "startMs": 54080,
+          "endMs": 55440,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "number",
+          "startMs": 55474,
+          "endMs": 55680,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-53",
+      "text": "one: Jeremiyah",
+      "startMs": 55760,
+      "endMs": 57360,
+      "words": [
+        {
+          "text": "one:",
+          "startMs": 55760,
+          "endMs": 56400,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "Jeremiyah",
+          "startMs": 56540,
+          "endMs": 57360,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-54",
+      "text": "Love, Arizona.",
+      "startMs": 57456,
+      "endMs": 59040,
+      "words": [
+        {
+          "text": "Love,",
+          "startMs": 57456,
+          "endMs": 58320,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "Arizona.",
+          "startMs": 58380,
+          "endMs": 59040,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-55",
+      "text": "Third pick",
+      "startMs": 59160,
+      "endMs": 60080,
+      "words": [
+        {
+          "text": "Third",
+          "startMs": 59160,
+          "endMs": 59760,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "pick",
+          "startMs": 59824,
+          "endMs": 60080,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-56",
+      "text": "in the draft.",
+      "startMs": 60107,
+      "endMs": 60780,
+      "words": [
+        {
+          "text": "in",
+          "startMs": 60107,
+          "endMs": 60160,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "the",
+          "startMs": 60180,
+          "endMs": 60240,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "draft.",
+          "startMs": 60320,
+          "endMs": 60800,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-57",
+      "text": "The last",
+      "startMs": 60800,
+      "endMs": 61840,
+      "words": [
+        {
+          "text": "The",
+          "startMs": 60800,
+          "endMs": 61520,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "last",
+          "startMs": 61584,
+          "endMs": 61840,
+          "speaker": "george",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "id": "caption-58",
+      "text": "nine backs",
+      "startMs": 61904,
+      "endMs": 62560,
+      "words": [
+        {
+          "text": "nine",
+          "startMs": 61904,
+          "endMs": 62160,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "backs",
+          "startMs": 62227,
+          "endMs": 62560,
+          "speaker": "george",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "id": "caption-59",
+      "text": "taken that high",
+      "startMs": 62613,
+      "endMs": 63440,
+      "words": [
+        {
+          "text": "taken",
+          "startMs": 62613,
+          "endMs": 62880,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "that",
+          "startMs": 62912,
+          "endMs": 63040,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "high",
+          "startMs": 63120,
+          "endMs": 63440,
+          "speaker": "george",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "id": "caption-60",
+      "text": "all finished",
+      "startMs": 63520,
+      "endMs": 64240,
+      "words": [
+        {
+          "text": "all",
+          "startMs": 63520,
+          "endMs": 63760,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "finished",
+          "startMs": 63813,
+          "endMs": 64240,
+          "speaker": "george",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "id": "caption-61",
+      "text": "top twelve as",
+      "startMs": 64300,
+      "endMs": 64960,
+      "words": [
+        {
+          "text": "top",
+          "startMs": 64300,
+          "endMs": 64480,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "twelve",
+          "startMs": 64537,
+          "endMs": 64880,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "as",
+          "startMs": 64907,
+          "endMs": 64960,
+          "speaker": "george",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "id": "caption-62",
+      "text": "rookies. All",
+      "startMs": 65030,
+      "endMs": 66240,
+      "words": [
+        {
+          "text": "rookies.",
+          "startMs": 65030,
+          "endMs": 65760,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "All",
+          "startMs": 65880,
+          "endMs": 66240,
+          "speaker": "george",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "id": "caption-63",
+      "text": "nine.",
+      "startMs": 66336,
+      "endMs": 66780,
+      "words": [
+        {
+          "text": "nine.",
+          "startMs": 66336,
+          "endMs": 66800,
+          "speaker": "george",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "id": "caption-64",
+      "text": "Draft the",
+      "startMs": 66800,
+      "endMs": 68000,
+      "words": [
+        {
+          "text": "Draft",
+          "startMs": 66800,
+          "endMs": 67840,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "the",
+          "startMs": 67880,
+          "endMs": 68000,
+          "speaker": "george",
+          "lineIndex": 9
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "id": "caption-65",
+      "text": "job, not the",
+      "startMs": 68100,
+      "endMs": 68960,
+      "words": [
+        {
+          "text": "job,",
+          "startMs": 68100,
+          "endMs": 68640,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "not",
+          "startMs": 68700,
+          "endMs": 68880,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "the",
+          "startMs": 68900,
+          "endMs": 68960,
+          "speaker": "george",
+          "lineIndex": 9
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "id": "caption-66",
+      "text": "name. That's",
+      "startMs": 69056,
+      "endMs": 70241,
+      "words": [
+        {
+          "text": "name.",
+          "startMs": 69056,
+          "endMs": 69680,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "That's",
+          "startMs": 69792,
+          "endMs": 70241,
+          "speaker": "george",
+          "lineIndex": 9
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "id": "caption-67",
+      "text": "how you win",
+      "startMs": 70300,
+      "endMs": 71040,
+      "words": [
+        {
+          "text": "how",
+          "startMs": 70300,
+          "endMs": 70480,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "you",
+          "startMs": 70500,
+          "endMs": 70560,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "win",
+          "startMs": 70680,
+          "endMs": 71040,
+          "speaker": "george",
+          "lineIndex": 9
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 9
+    },
+    {
+      "id": "caption-68",
+      "text": "in August.",
+      "startMs": 71147,
+      "endMs": 72240,
+      "words": [
+        {
+          "text": "in",
+          "startMs": 71147,
+          "endMs": 71360,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "August.",
+          "startMs": 71440,
+          "endMs": 72240,
+          "speaker": "george",
+          "lineIndex": 9
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 9
+    }
+  ],
+  "cues": [
+    {
+      "id": "line-1",
+      "cue": "Five running backs are about to smash in 2026 — and it's all for the same reason.",
+      "startMs": 0,
+      "endMs": 6079,
+      "score": 1,
+      "matchedText": "Five running backs are about to smash in 2026 — and it's all for the same reason.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "line-2",
+      "cue": "They all just inherited a starting job — and nobody's drafting them high enough yet.",
+      "startMs": 6079,
+      "endMs": 11120,
+      "score": 1,
+      "matchedText": "They all just inherited a starting job — and nobody's drafting them high enough yet.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "line-3",
+      "cue": "Number five: Kenneth Gainwell, Tampa Bay. Career highs last year, new team, and the coach already calling him the one-B. That's a role.",
+      "startMs": 11120,
+      "endMs": 23359,
+      "score": 1,
+      "matchedText": "Number five: Kenneth Gainwell, Tampa Bay. Career highs last year, new team, and the coach already calling him the one-B. That's a role.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "line-4",
+      "cue": "Number four: Jonah Coleman, Denver. That backfield is wide open, and he's the most explosive guy in the room.",
+      "startMs": 23359,
+      "endMs": 31040,
+      "score": 1,
+      "matchedText": "Number four: Jonah Coleman, Denver. That backfield is wide open, and he's the most explosive guy in the room.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "line-5",
+      "cue": "Number three: Quinshon Judkins, Cleveland. Brand-new offensive line, a full workload waiting. He was already good — now he's got room to run.",
+      "startMs": 31040,
+      "endMs": 43200,
+      "score": 1,
+      "matchedText": "Number three: Quinshon Judkins, Cleveland. Brand-new offensive line, a full workload waiting. He was already good — now he's got room to run.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "line-6",
+      "cue": "Number two: Bhayshul Tuten, Jacksonville. Etienne walked — that's eleven hundred yards, gone.",
+      "startMs": 43200,
+      "endMs": 52000,
+      "score": 1,
+      "matchedText": "Number two: Bhayshul Tuten, Jacksonville. Etienne walked — that's eleven hundred yards, gone.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "line-7",
+      "cue": "And Tuten runs a four-three.",
+      "startMs": 52000,
+      "endMs": 54080,
+      "score": 1,
+      "matchedText": "And Tuten runs a four-three.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 6
+    },
+    {
+      "id": "line-8",
+      "cue": "And number one: Jeremiyah Love, Arizona. Third pick in the draft.",
+      "startMs": 54080,
+      "endMs": 60800,
+      "score": 1,
+      "matchedText": "And number one: Jeremiyah Love, Arizona. Third pick in the draft.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "line-9",
+      "cue": "The last nine backs taken that high all finished top twelve as rookies. All nine.",
+      "startMs": 60800,
+      "endMs": 66800,
+      "score": 1,
+      "matchedText": "The last nine backs taken that high all finished top twelve as rookies. All nine.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 8
+    },
+    {
+      "id": "line-10",
+      "cue": "Draft the job, not the name. That's how you win in August.",
+      "startMs": 66800,
+      "endMs": 73640,
+      "score": 1,
+      "matchedText": "Draft the job, not the name. That's how you win in August.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 9
+    }
+  ],
+  "lineTimings": [
+    {
+      "id": "line-1",
+      "lineIndex": 0,
+      "speaker": "george",
+      "text": "Five running backs are about to smash in 2026 — and it's all for the same reason.",
+      "visual": "hook",
+      "viz": {
+        "kind": "title",
+        "big": "5 RBs. 1 REASON.",
+        "sub": "THEY ALL JUST GOT THE JOB"
+      },
+      "startMs": 0,
+      "endMs": 6079,
+      "words": [
+        {
+          "text": "Five",
+          "startMs": 0,
+          "endMs": 320,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "running",
+          "startMs": 350,
+          "endMs": 560,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "backs",
+          "startMs": 613,
+          "endMs": 880,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "are",
+          "startMs": 900,
+          "endMs": 960,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "about",
+          "startMs": 1013,
+          "endMs": 1280,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "to",
+          "startMs": 1333,
+          "endMs": 1440,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "smash",
+          "startMs": 1573,
+          "endMs": 2240,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "in",
+          "startMs": 2293,
+          "endMs": 2400,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "2026",
+          "startMs": 2840,
+          "endMs": 3600,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "—",
+          "startMs": 3600,
+          "endMs": 3860,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "and",
+          "startMs": 3860,
+          "endMs": 3920,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "it's",
+          "startMs": 3973,
+          "endMs": 4160,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "all",
+          "startMs": 4220,
+          "endMs": 4400,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "for",
+          "startMs": 4440,
+          "endMs": 4560,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "the",
+          "startMs": 4580,
+          "endMs": 4640,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "same",
+          "startMs": 4704,
+          "endMs": 4960,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "reason.",
+          "startMs": 5017,
+          "endMs": 6079,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "line-2",
+      "lineIndex": 1,
+      "speaker": "george",
+      "text": "They all just inherited a starting job — and nobody's drafting them high enough yet.",
+      "visual": "thesis",
+      "viz": {
+        "kind": "statBig",
+        "value": "OPPORTUNITY > TALENT",
+        "label": "THE ONLY RULE THAT MATTERS",
+        "sub": "the ball equals points. period."
+      },
+      "startMs": 6079,
+      "endMs": 11120,
+      "words": [
+        {
+          "text": "They",
+          "startMs": 6079,
+          "endMs": 6240,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "all",
+          "startMs": 6280,
+          "endMs": 6400,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "just",
+          "startMs": 6464,
+          "endMs": 6720,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "inherited",
+          "startMs": 6776,
+          "endMs": 7280,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "a",
+          "startMs": 7360,
+          "endMs": 7440,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "starting",
+          "startMs": 7493,
+          "endMs": 7920,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "job",
+          "startMs": 8120,
+          "endMs": 8720,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "—",
+          "startMs": 8720,
+          "endMs": 8900,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "and",
+          "startMs": 8900,
+          "endMs": 8960,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "nobody's",
+          "startMs": 9017,
+          "endMs": 9440,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "drafting",
+          "startMs": 9484,
+          "endMs": 9840,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "them",
+          "startMs": 9872,
+          "endMs": 10000,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "high",
+          "startMs": 10048,
+          "endMs": 10240,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "enough",
+          "startMs": 10286,
+          "endMs": 10560,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "yet.",
+          "startMs": 10640,
+          "endMs": 11120,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "line-3",
+      "lineIndex": 2,
+      "speaker": "george",
+      "text": "Number five: Kenneth Gainwell, Tampa Bay. Career highs last year, new team, and the coach already calling him the one-B. That's a role.",
+      "visual": "gainwell-climb",
+      "viz": {
+        "kind": "riseRank",
+        "label": "TAMPA BAY PECKING ORDER",
+        "rungs": [
+          {
+            "rank": "1-A",
+            "ghost": "IRVING"
+          },
+          {
+            "rank": "1-B",
+            "note": "COACH SAID IT"
+          },
+          {
+            "rank": "RB3",
+            "ghost": "LAST YEAR"
+          },
+          {
+            "rank": "RB4"
+          }
+        ],
+        "climber": {
+          "name": "GAINWELL",
+          "label": "14",
+          "stat": "1,023 YDS"
+        },
+        "fromIndex": 2,
+        "toIndex": 1
+      },
+      "startMs": 11120,
+      "endMs": 23359,
+      "words": [
+        {
+          "text": "Number",
+          "startMs": 11120,
+          "endMs": 12320,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "five:",
+          "startMs": 12416,
+          "endMs": 12880,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "Kenneth",
+          "startMs": 12990,
+          "endMs": 13760,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "Gainwell,",
+          "startMs": 13824,
+          "endMs": 14560,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "Tampa",
+          "startMs": 14613,
+          "endMs": 14880,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "Bay.",
+          "startMs": 14960,
+          "endMs": 15201,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "Career",
+          "startMs": 15371,
+          "endMs": 16400,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "highs",
+          "startMs": 16467,
+          "endMs": 16800,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "last",
+          "startMs": 16864,
+          "endMs": 17120,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "year,",
+          "startMs": 17184,
+          "endMs": 17680,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "new",
+          "startMs": 17720,
+          "endMs": 17840,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "team,",
+          "startMs": 17936,
+          "endMs": 18400,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "and",
+          "startMs": 18480,
+          "endMs": 18720,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "the",
+          "startMs": 18740,
+          "endMs": 18800,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "coach",
+          "startMs": 18853,
+          "endMs": 19120,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "already",
+          "startMs": 19160,
+          "endMs": 19440,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "calling",
+          "startMs": 19490,
+          "endMs": 19840,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "him",
+          "startMs": 19900,
+          "endMs": 20080,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "the",
+          "startMs": 20200,
+          "endMs": 20560,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "one-B.",
+          "startMs": 20680,
+          "endMs": 21920,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "That's",
+          "startMs": 22032,
+          "endMs": 22481,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "a",
+          "startMs": 22520,
+          "endMs": 22560,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "role.",
+          "startMs": 22656,
+          "endMs": 23359,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "line-4",
+      "lineIndex": 3,
+      "speaker": "george",
+      "text": "Number four: Jonah Coleman, Denver. That backfield is wide open, and he's the most explosive guy in the room.",
+      "visual": "coleman-open",
+      "viz": {
+        "kind": "zoneHeat",
+        "label": "DENVER BACKFIELD · 2026",
+        "zones": [
+          {
+            "lane": "middle",
+            "depth": "backfield",
+            "intensity": 1,
+            "focus": true,
+            "stat": "WIDE OPEN"
+          },
+          {
+            "lane": "middle",
+            "depth": "short",
+            "intensity": 0.75,
+            "stat": "200+ TOUCHES"
+          },
+          {
+            "lane": "left",
+            "depth": "short",
+            "intensity": 0.55
+          },
+          {
+            "lane": "right",
+            "depth": "short",
+            "intensity": 0.55
+          },
+          {
+            "lane": "middle",
+            "depth": "mid",
+            "intensity": 0.4
+          },
+          {
+            "lane": "left",
+            "depth": "mid",
+            "intensity": 0.25
+          },
+          {
+            "lane": "right",
+            "depth": "mid",
+            "intensity": 0.25
+          }
+        ],
+        "marker": {
+          "name": "COLEMAN",
+          "label": "25",
+          "lane": "middle",
+          "depth": "backfield"
+        }
+      },
+      "startMs": 23359,
+      "endMs": 31040,
+      "words": [
+        {
+          "text": "Number",
+          "startMs": 23359,
+          "endMs": 23600,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "four:",
+          "startMs": 23664,
+          "endMs": 24080,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Jonah",
+          "startMs": 24213,
+          "endMs": 24880,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Coleman,",
+          "startMs": 24940,
+          "endMs": 25720,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Denver.",
+          "startMs": 25771,
+          "endMs": 26560,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "That",
+          "startMs": 26656,
+          "endMs": 27040,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "backfield",
+          "startMs": 27104,
+          "endMs": 27520,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "is",
+          "startMs": 27573,
+          "endMs": 27680,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "wide",
+          "startMs": 27744,
+          "endMs": 28000,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "open,",
+          "startMs": 28080,
+          "endMs": 28560,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "and",
+          "startMs": 28620,
+          "endMs": 28800,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "he's",
+          "startMs": 28853,
+          "endMs": 29040,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "the",
+          "startMs": 29060,
+          "endMs": 29120,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "most",
+          "startMs": 29168,
+          "endMs": 29360,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "explosive",
+          "startMs": 29416,
+          "endMs": 29920,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "guy",
+          "startMs": 29980,
+          "endMs": 30160,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "in",
+          "startMs": 30187,
+          "endMs": 30240,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "the",
+          "startMs": 30260,
+          "endMs": 30320,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "room.",
+          "startMs": 30400,
+          "endMs": 31040,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "line-5",
+      "lineIndex": 4,
+      "speaker": "george",
+      "text": "Number three: Quinshon Judkins, Cleveland. Brand-new offensive line, a full workload waiting. He was already good — now he's got room to run.",
+      "visual": "judkins-lane",
+      "viz": {
+        "kind": "fieldPlay",
+        "label": "CLEVELAND · REBUILT O-LINE",
+        "losLabel": "CLE 25",
+        "firstDownYd": 10,
+        "players": [
+          {
+            "id": "lt",
+            "label": "LT",
+            "team": "offense",
+            "role": "blocker",
+            "x": 20.6,
+            "y": 0
+          },
+          {
+            "id": "lg",
+            "label": "LG",
+            "team": "offense",
+            "role": "blocker",
+            "x": 23.6,
+            "y": 0
+          },
+          {
+            "id": "c",
+            "label": "C",
+            "team": "offense",
+            "role": "blocker",
+            "x": 26.6,
+            "y": 0
+          },
+          {
+            "id": "rg",
+            "label": "RG",
+            "team": "offense",
+            "role": "blocker",
+            "x": 29.6,
+            "y": 0
+          },
+          {
+            "id": "rt",
+            "label": "RT",
+            "team": "offense",
+            "role": "blocker",
+            "x": 32.6,
+            "y": 0
+          },
+          {
+            "id": "qj",
+            "label": "10",
+            "name": "JUDKINS",
+            "team": "offense",
+            "role": "hero",
+            "x": 26.6,
+            "y": -7
+          },
+          {
+            "id": "nt",
+            "label": "NT",
+            "team": "defense",
+            "x": 27.5,
+            "y": 1.2
+          },
+          {
+            "id": "mlb",
+            "label": "M",
+            "team": "defense",
+            "x": 28,
+            "y": 5
+          },
+          {
+            "id": "ss",
+            "label": "S",
+            "team": "defense",
+            "x": 29.5,
+            "y": 15
+          },
+          {
+            "id": "fs",
+            "label": "F",
+            "team": "defense",
+            "x": 24,
+            "y": 21
+          }
+        ],
+        "blocks": [
+          {
+            "id": "c",
+            "dx": -1.6,
+            "dy": 1
+          },
+          {
+            "id": "rg",
+            "dx": 1.8,
+            "dy": 1.2
+          }
+        ],
+        "lane": {
+          "x": 28.2,
+          "width": 4
+        },
+        "run": {
+          "playerId": "qj",
+          "path": [
+            {
+              "x": 26.6,
+              "y": -7
+            },
+            {
+              "x": 27.6,
+              "y": -1
+            },
+            {
+              "x": 28.2,
+              "y": 3
+            },
+            {
+              "x": 28.2,
+              "y": 14
+            },
+            {
+              "x": 30.5,
+              "y": 24
+            }
+          ]
+        },
+        "fadeOnPass": [
+          "nt",
+          "mlb",
+          "ss"
+        ],
+        "callout": {
+          "text": "ROOM TO RUN",
+          "sub": "FULL WORKLOAD WAITING"
+        }
+      },
+      "startMs": 31040,
+      "endMs": 43200,
+      "words": [
+        {
+          "text": "Number",
+          "startMs": 31040,
+          "endMs": 32320,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "three:",
+          "startMs": 32387,
+          "endMs": 32800,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "Quinshon",
+          "startMs": 33013,
+          "endMs": 33920,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "Judkins,",
+          "startMs": 34000,
+          "endMs": 34640,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "Cleveland.",
+          "startMs": 34720,
+          "endMs": 35520,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "Brand-new",
+          "startMs": 35680,
+          "endMs": 36800,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "offensive",
+          "startMs": 36864,
+          "endMs": 37440,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "line,",
+          "startMs": 37520,
+          "endMs": 37920,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "a",
+          "startMs": 38080,
+          "endMs": 38240,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "full",
+          "startMs": 38304,
+          "endMs": 38560,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "workload",
+          "startMs": 38622,
+          "endMs": 39120,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "waiting.",
+          "startMs": 39170,
+          "endMs": 39760,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "He",
+          "startMs": 39893,
+          "endMs": 40160,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "was",
+          "startMs": 40200,
+          "endMs": 40320,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "already",
+          "startMs": 40360,
+          "endMs": 40640,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "good",
+          "startMs": 40720,
+          "endMs": 41040,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "—",
+          "startMs": 41040,
+          "endMs": 41640,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "now",
+          "startMs": 41640,
+          "endMs": 41760,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "he's",
+          "startMs": 41813,
+          "endMs": 42000,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "got",
+          "startMs": 42040,
+          "endMs": 42160,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "room",
+          "startMs": 42208,
+          "endMs": 42400,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "to",
+          "startMs": 42427,
+          "endMs": 42480,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "run.",
+          "startMs": 42600,
+          "endMs": 43200,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ]
+    },
+    {
+      "id": "line-6",
+      "lineIndex": 5,
+      "speaker": "george",
+      "text": "Number two: Bhayshul Tuten, Jacksonville. Etienne walked — that's eleven hundred yards, gone.",
+      "visual": "tuten-flow",
+      "viz": {
+        "kind": "depthFlow",
+        "label": "JACKSONVILLE BACKFIELD",
+        "out": {
+          "name": "ETIENNE",
+          "jersey": "1",
+          "stat": "1,107",
+          "statLabel": "RUSH YDS"
+        },
+        "riser": {
+          "name": "TUTEN",
+          "jersey": "33",
+          "note": "THE JOB IS HIS"
+        },
+        "flow": {
+          "to": 1107,
+          "unit": "YDS OF WORK"
+        }
+      },
+      "startMs": 43200,
+      "endMs": 52000,
+      "words": [
+        {
+          "text": "Number",
+          "startMs": 43200,
+          "endMs": 44400,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "two:",
+          "startMs": 44500,
+          "endMs": 44880,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Bhayshul",
+          "startMs": 45147,
+          "endMs": 46080,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Tuten,",
+          "startMs": 46200,
+          "endMs": 46720,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Jacksonville.",
+          "startMs": 46794,
+          "endMs": 48120,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "Etienne",
+          "startMs": 48267,
+          "endMs": 48880,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "walked",
+          "startMs": 48949,
+          "endMs": 49360,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "—",
+          "startMs": 49360,
+          "endMs": 49696,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "that's",
+          "startMs": 49696,
+          "endMs": 49840,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "eleven",
+          "startMs": 49886,
+          "endMs": 50160,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "hundred",
+          "startMs": 50190,
+          "endMs": 50400,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "yards,",
+          "startMs": 50493,
+          "endMs": 51200,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "gone.",
+          "startMs": 51312,
+          "endMs": 52000,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ]
+    },
+    {
+      "id": "line-7",
+      "lineIndex": 6,
+      "speaker": "george",
+      "text": "And Tuten runs a four-three.",
+      "visual": "tuten-race",
+      "viz": {
+        "kind": "speedRace",
+        "label": "THE 40",
+        "distanceYd": 40,
+        "runners": [
+          {
+            "name": "TUTEN",
+            "label": "33",
+            "time": 4.32,
+            "tone": "accent"
+          },
+          {
+            "name": "NFL RB AVG",
+            "label": "RB",
+            "time": 4.55,
+            "tone": "bone"
+          }
+        ],
+        "note": "4.3 SPEED"
+      },
+      "startMs": 52000,
+      "endMs": 54080,
+      "words": [
+        {
+          "text": "And",
+          "startMs": 52000,
+          "endMs": 52400,
+          "speaker": "george",
+          "lineIndex": 6
+        },
+        {
+          "text": "Tuten",
+          "startMs": 52480,
+          "endMs": 52880,
+          "speaker": "george",
+          "lineIndex": 6
+        },
+        {
+          "text": "runs",
+          "startMs": 52944,
+          "endMs": 53200,
+          "speaker": "george",
+          "lineIndex": 6
+        },
+        {
+          "text": "a",
+          "startMs": 53240,
+          "endMs": 53280,
+          "speaker": "george",
+          "lineIndex": 6
+        },
+        {
+          "text": "four-three.",
+          "startMs": 53360,
+          "endMs": 54080,
+          "speaker": "george",
+          "lineIndex": 6
+        }
+      ]
+    },
+    {
+      "id": "line-8",
+      "lineIndex": 7,
+      "speaker": "george",
+      "text": "And number one: Jeremiyah Love, Arizona. Third pick in the draft.",
+      "visual": "love-board",
+      "viz": {
+        "kind": "riseRank",
+        "label": "NFL DRAFT · ROUND 1",
+        "rungs": [
+          {
+            "rank": "1",
+            "ghost": "QB"
+          },
+          {
+            "rank": "2",
+            "ghost": "EDGE"
+          },
+          {
+            "rank": "3",
+            "note": "A RUNNING BACK. HERE."
+          },
+          {
+            "rank": "8"
+          },
+          {
+            "rank": "15"
+          }
+        ],
+        "climber": {
+          "name": "LOVE",
+          "label": "4",
+          "stat": "PICK 3"
+        },
+        "fromIndex": 4,
+        "toIndex": 2
+      },
+      "startMs": 54080,
+      "endMs": 60800,
+      "words": [
+        {
+          "text": "And",
+          "startMs": 54080,
+          "endMs": 55440,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "number",
+          "startMs": 55474,
+          "endMs": 55680,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "one:",
+          "startMs": 55760,
+          "endMs": 56400,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "Jeremiyah",
+          "startMs": 56540,
+          "endMs": 57360,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "Love,",
+          "startMs": 57456,
+          "endMs": 58320,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "Arizona.",
+          "startMs": 58380,
+          "endMs": 59040,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "Third",
+          "startMs": 59160,
+          "endMs": 59760,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "pick",
+          "startMs": 59824,
+          "endMs": 60080,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "in",
+          "startMs": 60107,
+          "endMs": 60160,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "the",
+          "startMs": 60180,
+          "endMs": 60240,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "draft.",
+          "startMs": 60320,
+          "endMs": 60800,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ]
+    },
+    {
+      "id": "line-9",
+      "lineIndex": 8,
+      "speaker": "george",
+      "text": "The last nine backs taken that high all finished top twelve as rookies. All nine.",
+      "visual": "love-run",
+      "viz": {
+        "kind": "fieldPlay",
+        "label": "ARIZONA · PICK 3 PEDIGREE",
+        "losLabel": "ARI 30",
+        "firstDownYd": 10,
+        "players": [
+          {
+            "id": "lt",
+            "label": "LT",
+            "team": "offense",
+            "role": "blocker",
+            "x": 20.6,
+            "y": 0
+          },
+          {
+            "id": "lg",
+            "label": "LG",
+            "team": "offense",
+            "role": "blocker",
+            "x": 23.6,
+            "y": 0
+          },
+          {
+            "id": "c",
+            "label": "C",
+            "team": "offense",
+            "role": "blocker",
+            "x": 26.6,
+            "y": 0
+          },
+          {
+            "id": "rg",
+            "label": "RG",
+            "team": "offense",
+            "role": "blocker",
+            "x": 29.6,
+            "y": 0
+          },
+          {
+            "id": "rt",
+            "label": "RT",
+            "team": "offense",
+            "role": "blocker",
+            "x": 32.6,
+            "y": 0
+          },
+          {
+            "id": "jl",
+            "label": "4",
+            "name": "LOVE",
+            "team": "offense",
+            "role": "hero",
+            "x": 27.8,
+            "y": -6.5
+          },
+          {
+            "id": "mlb",
+            "label": "M",
+            "team": "defense",
+            "x": 26,
+            "y": 5
+          },
+          {
+            "id": "ss",
+            "label": "S",
+            "team": "defense",
+            "x": 31,
+            "y": 17
+          },
+          {
+            "id": "cb",
+            "label": "C",
+            "team": "defense",
+            "x": 40,
+            "y": 12
+          }
+        ],
+        "blocks": [
+          {
+            "id": "lg",
+            "dx": -1.8,
+            "dy": 0.8
+          },
+          {
+            "id": "rt",
+            "dx": 1.8,
+            "dy": 0.8
+          }
+        ],
+        "lane": {
+          "x": 27,
+          "width": 3.5
+        },
+        "run": {
+          "playerId": "jl",
+          "path": [
+            {
+              "x": 27.8,
+              "y": -6.5
+            },
+            {
+              "x": 27,
+              "y": 0
+            },
+            {
+              "x": 27,
+              "y": 6
+            },
+            {
+              "x": 31,
+              "y": 14
+            },
+            {
+              "x": 33.5,
+              "y": 26
+            }
+          ]
+        },
+        "fadeOnPass": [
+          "mlb",
+          "ss"
+        ],
+        "callout": {
+          "text": "9 FOR 9",
+          "sub": "TOP-12 ROOKIE FINISHES"
+        }
+      },
+      "startMs": 60800,
+      "endMs": 66800,
+      "words": [
+        {
+          "text": "The",
+          "startMs": 60800,
+          "endMs": 61520,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "last",
+          "startMs": 61584,
+          "endMs": 61840,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "nine",
+          "startMs": 61904,
+          "endMs": 62160,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "backs",
+          "startMs": 62227,
+          "endMs": 62560,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "taken",
+          "startMs": 62613,
+          "endMs": 62880,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "that",
+          "startMs": 62912,
+          "endMs": 63040,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "high",
+          "startMs": 63120,
+          "endMs": 63440,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "all",
+          "startMs": 63520,
+          "endMs": 63760,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "finished",
+          "startMs": 63813,
+          "endMs": 64240,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "top",
+          "startMs": 64300,
+          "endMs": 64480,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "twelve",
+          "startMs": 64537,
+          "endMs": 64880,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "as",
+          "startMs": 64907,
+          "endMs": 64960,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "rookies.",
+          "startMs": 65030,
+          "endMs": 65760,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "All",
+          "startMs": 65880,
+          "endMs": 66240,
+          "speaker": "george",
+          "lineIndex": 8
+        },
+        {
+          "text": "nine.",
+          "startMs": 66336,
+          "endMs": 66800,
+          "speaker": "george",
+          "lineIndex": 8
+        }
+      ]
+    },
+    {
+      "id": "line-10",
+      "lineIndex": 9,
+      "speaker": "george",
+      "text": "Draft the job, not the name. That's how you win in August.",
+      "visual": "payoff",
+      "viz": {
+        "kind": "title",
+        "big": "DRAFT THE JOB.",
+        "sub": "NOT THE NAME."
+      },
+      "startMs": 66800,
+      "endMs": 72240,
+      "words": [
+        {
+          "text": "Draft",
+          "startMs": 66800,
+          "endMs": 67840,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "the",
+          "startMs": 67880,
+          "endMs": 68000,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "job,",
+          "startMs": 68100,
+          "endMs": 68640,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "not",
+          "startMs": 68700,
+          "endMs": 68880,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "the",
+          "startMs": 68900,
+          "endMs": 68960,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "name.",
+          "startMs": 69056,
+          "endMs": 69680,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "That's",
+          "startMs": 69792,
+          "endMs": 70241,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "how",
+          "startMs": 70300,
+          "endMs": 70480,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "you",
+          "startMs": 70500,
+          "endMs": 70560,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "win",
+          "startMs": 70680,
+          "endMs": 71040,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "in",
+          "startMs": 71147,
+          "endMs": 71360,
+          "speaker": "george",
+          "lineIndex": 9
+        },
+        {
+          "text": "August.",
+          "startMs": 71440,
+          "endMs": 72240,
+          "speaker": "george",
+          "lineIndex": 9
+        }
+      ]
+    }
+  ]
+}

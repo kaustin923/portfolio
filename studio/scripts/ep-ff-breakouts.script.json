@@ -1,0 +1,189 @@
+{
+  "id": "ep-ff-breakouts",
+  "title": "5 RBs About to Smash",
+  "format": "narrator",
+  "eyebrow": "2026 FANTASY BREAKOUTS",
+  "theme": { "name": "Gridiron Green", "accent": "#22C55E", "accentSoft": "rgba(34,197,94,.42)" },
+  "voices": { "jessica": { "voiceId": "cjVigY5qzO86Huf0OWal" }, "george": { "voiceId": "cjVigY5qzO86Huf0OWal" } },
+  "dialogueModel": "eleven_v3",
+  "dialogueSettings": { "stability": 0.45 },
+  "playbackSpeed": 1.35,
+  "lines": [
+    {
+      "speaker": "george",
+      "text": "Five running backs are about to smash in 2026 — and it's all for the same reason.",
+      "visual": "hook",
+      "viz": { "kind": "title", "big": "5 RBs. 1 REASON.", "sub": "THEY ALL JUST GOT THE JOB" }
+    },
+    {
+      "speaker": "george",
+      "text": "They all just inherited a starting job — and nobody's drafting them high enough yet.",
+      "visual": "thesis",
+      "viz": { "kind": "statBig", "value": "OPPORTUNITY > TALENT", "label": "THE ONLY RULE THAT MATTERS", "sub": "the ball equals points. period." }
+    },
+    {
+      "speaker": "george",
+      "text": "Number five: Kenneth Gainwell, Tampa Bay. Career highs last year, new team, and the coach already calling him the one-B. That's a role.",
+      "visual": "gainwell-climb",
+      "viz": {
+        "kind": "riseRank",
+        "label": "TAMPA BAY PECKING ORDER",
+        "rungs": [
+          { "rank": "1-A", "ghost": "IRVING" },
+          { "rank": "1-B", "note": "COACH SAID IT" },
+          { "rank": "RB3", "ghost": "LAST YEAR" },
+          { "rank": "RB4" }
+        ],
+        "climber": { "name": "GAINWELL", "label": "14", "stat": "1,023 YDS" },
+        "fromIndex": 2,
+        "toIndex": 1
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Number four: Jonah Coleman, Denver. That backfield is wide open, and he's the most explosive guy in the room.",
+      "visual": "coleman-open",
+      "viz": {
+        "kind": "zoneHeat",
+        "label": "DENVER BACKFIELD · 2026",
+        "zones": [
+          { "lane": "middle", "depth": "backfield", "intensity": 1, "focus": true, "stat": "WIDE OPEN" },
+          { "lane": "middle", "depth": "short", "intensity": 0.75, "stat": "200+ TOUCHES" },
+          { "lane": "left", "depth": "short", "intensity": 0.55 },
+          { "lane": "right", "depth": "short", "intensity": 0.55 },
+          { "lane": "middle", "depth": "mid", "intensity": 0.4 },
+          { "lane": "left", "depth": "mid", "intensity": 0.25 },
+          { "lane": "right", "depth": "mid", "intensity": 0.25 }
+        ],
+        "marker": { "name": "COLEMAN", "label": "25", "lane": "middle", "depth": "backfield" }
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Number three: Quinshon Judkins, Cleveland. Brand-new offensive line, a full workload waiting. He was already good — now he's got room to run.",
+      "visual": "judkins-lane",
+      "viz": {
+        "kind": "fieldPlay",
+        "label": "CLEVELAND · REBUILT O-LINE",
+        "losLabel": "CLE 25",
+        "firstDownYd": 10,
+        "players": [
+          { "id": "lt", "label": "LT", "team": "offense", "role": "blocker", "x": 20.6, "y": 0 },
+          { "id": "lg", "label": "LG", "team": "offense", "role": "blocker", "x": 23.6, "y": 0 },
+          { "id": "c",  "label": "C",  "team": "offense", "role": "blocker", "x": 26.6, "y": 0 },
+          { "id": "rg", "label": "RG", "team": "offense", "role": "blocker", "x": 29.6, "y": 0 },
+          { "id": "rt", "label": "RT", "team": "offense", "role": "blocker", "x": 32.6, "y": 0 },
+          { "id": "qj", "label": "10", "name": "JUDKINS", "team": "offense", "role": "hero", "x": 26.6, "y": -7 },
+          { "id": "nt", "label": "NT", "team": "defense", "x": 27.5, "y": 1.2 },
+          { "id": "mlb", "label": "M", "team": "defense", "x": 28, "y": 5 },
+          { "id": "ss", "label": "S", "team": "defense", "x": 29.5, "y": 15 },
+          { "id": "fs", "label": "F", "team": "defense", "x": 24, "y": 21 }
+        ],
+        "blocks": [
+          { "id": "c",  "dx": -1.6, "dy": 1 },
+          { "id": "rg", "dx": 1.8,  "dy": 1.2 }
+        ],
+        "lane": { "x": 28.2, "width": 4 },
+        "run": {
+          "playerId": "qj",
+          "path": [
+            { "x": 26.6, "y": -7 }, { "x": 27.6, "y": -1 }, { "x": 28.2, "y": 3 },
+            { "x": 28.2, "y": 14 }, { "x": 30.5, "y": 24 }
+          ]
+        },
+        "fadeOnPass": ["nt", "mlb", "ss"],
+        "callout": { "text": "ROOM TO RUN", "sub": "FULL WORKLOAD WAITING" }
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Number two: Bhayshul Tuten, Jacksonville. Etienne walked — that's eleven hundred yards, gone.",
+      "visual": "tuten-flow",
+      "viz": {
+        "kind": "depthFlow",
+        "label": "JACKSONVILLE BACKFIELD",
+        "out": { "name": "ETIENNE", "jersey": "1", "stat": "1,107", "statLabel": "RUSH YDS" },
+        "riser": { "name": "TUTEN", "jersey": "33", "note": "THE JOB IS HIS" },
+        "flow": { "to": 1107, "unit": "YDS OF WORK" }
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "And Tuten runs a four-three.",
+      "visual": "tuten-race",
+      "viz": {
+        "kind": "speedRace",
+        "label": "THE 40",
+        "distanceYd": 40,
+        "runners": [
+          { "name": "TUTEN", "label": "33", "time": 4.32, "tone": "accent" },
+          { "name": "NFL RB AVG", "label": "RB", "time": 4.55, "tone": "bone" }
+        ],
+        "note": "4.3 SPEED"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "And number one: Jeremiyah Love, Arizona. Third pick in the draft.",
+      "visual": "love-board",
+      "viz": {
+        "kind": "riseRank",
+        "label": "NFL DRAFT · ROUND 1",
+        "rungs": [
+          { "rank": "1", "ghost": "QB" },
+          { "rank": "2", "ghost": "EDGE" },
+          { "rank": "3", "note": "A RUNNING BACK. HERE." },
+          { "rank": "8" },
+          { "rank": "15" }
+        ],
+        "climber": { "name": "LOVE", "label": "4", "stat": "PICK 3" },
+        "fromIndex": 4,
+        "toIndex": 2
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "The last nine backs taken that high all finished top twelve as rookies. All nine.",
+      "visual": "love-run",
+      "viz": {
+        "kind": "fieldPlay",
+        "label": "ARIZONA · PICK 3 PEDIGREE",
+        "losLabel": "ARI 30",
+        "firstDownYd": 10,
+        "players": [
+          { "id": "lt", "label": "LT", "team": "offense", "role": "blocker", "x": 20.6, "y": 0 },
+          { "id": "lg", "label": "LG", "team": "offense", "role": "blocker", "x": 23.6, "y": 0 },
+          { "id": "c",  "label": "C",  "team": "offense", "role": "blocker", "x": 26.6, "y": 0 },
+          { "id": "rg", "label": "RG", "team": "offense", "role": "blocker", "x": 29.6, "y": 0 },
+          { "id": "rt", "label": "RT", "team": "offense", "role": "blocker", "x": 32.6, "y": 0 },
+          { "id": "jl", "label": "4", "name": "LOVE", "team": "offense", "role": "hero", "x": 27.8, "y": -6.5 },
+          { "id": "mlb", "label": "M", "team": "defense", "x": 26, "y": 5 },
+          { "id": "ss", "label": "S", "team": "defense", "x": 31, "y": 17 },
+          { "id": "cb", "label": "C", "team": "defense", "x": 40, "y": 12 }
+        ],
+        "blocks": [
+          { "id": "lg", "dx": -1.8, "dy": 0.8 },
+          { "id": "rt", "dx": 1.8, "dy": 0.8 }
+        ],
+        "lane": { "x": 27, "width": 3.5 },
+        "run": {
+          "playerId": "jl",
+          "path": [
+            { "x": 27.8, "y": -6.5 }, { "x": 27, "y": 0 }, { "x": 27, "y": 6 },
+            { "x": 31, "y": 14 }, { "x": 33.5, "y": 26 }
+          ]
+        },
+        "fadeOnPass": ["mlb", "ss"],
+        "callout": { "text": "9 FOR 9", "sub": "TOP-12 ROOKIE FINISHES" }
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Draft the job, not the name. That's how you win in August.",
+      "visual": "payoff",
+      "viz": { "kind": "title", "big": "DRAFT THE JOB.", "sub": "NOT THE NAME." }
+    }
+  ],
+  "caption": "5 running backs about to smash in 2026 — and they all share one thing: a brand-new starting job nobody's drafting high enough yet. Draft the job, not the name.",
+  "hashtags": ["#FantasyFootball", "#NFL", "#FantasyFootball2026", "#Breakouts", "#Sleepers", "#DraftDay"]
+}

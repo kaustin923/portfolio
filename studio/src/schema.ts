@@ -3,7 +3,78 @@ export type VoiceConfig = {
   rate: number;
 };
 
+export type EpisodeFormat = 'dialogue' | 'narrator';
+
 export type DialogueSpeaker = 'jessica' | 'george';
+
+export type FieldPt = {x: number; y: number};
+
+export type FieldPlayViz = {
+  kind: 'fieldPlay';
+  label?: string;
+  losLabel?: string;
+  firstDownYd?: number;
+  players: Array<{
+    id: string;
+    label: string;
+    name?: string;
+    team: 'offense' | 'defense';
+    role?: 'hero' | 'blocker' | 'defender';
+    x: number;
+    y: number;
+  }>;
+  blocks?: Array<{id: string; dx: number; dy: number}>;
+  lane?: {x: number; width: number};
+  run: {playerId: string; path: FieldPt[]};
+  fadeOnPass?: string[];
+  callout?: {text: string; sub?: string};
+};
+
+export type DepthFlowViz = {
+  kind: 'depthFlow';
+  label: string;
+  out: {name: string; jersey: string; stat: string; statLabel: string};
+  riser: {name: string; jersey: string; note?: string};
+  flow: {to: number; unit: string};
+};
+
+export type SpeedRaceViz = {
+  kind: 'speedRace';
+  label?: string;
+  distanceYd?: number;
+  runners: [
+    {name: string; label: string; time: number; tone?: 'accent' | 'bone'},
+    {name: string; label: string; time: number; tone?: 'accent' | 'bone'},
+  ];
+  note?: string;
+};
+
+export type ZoneHeatViz = {
+  kind: 'zoneHeat';
+  label: string;
+  zones: Array<{
+    lane: 'left' | 'middle' | 'right';
+    depth: 'backfield' | 'short' | 'mid' | 'deep';
+    intensity: number;
+    stat?: string;
+    focus?: boolean;
+  }>;
+  marker?: {
+    name: string;
+    label: string;
+    lane: 'left' | 'middle' | 'right';
+    depth: 'backfield' | 'short' | 'mid' | 'deep';
+  };
+};
+
+export type RiseRankViz = {
+  kind: 'riseRank';
+  label?: string;
+  rungs: Array<{rank: string; ghost?: string; note?: string}>;
+  climber: {name: string; label: string; stat?: string};
+  fromIndex: number;
+  toIndex: number;
+};
 
 export type Viz =
   | {kind: 'title'; big: string; sub?: string; dateChip?: string}
@@ -48,7 +119,12 @@ export type Viz =
       left: {label: string; value: string};
       right: {label: string; value: string};
       stamp?: string;
-    };
+    }
+  | FieldPlayViz
+  | DepthFlowViz
+  | SpeedRaceViz
+  | ZoneHeatViz
+  | RiseRankViz;
 
 export type DialogueLineScript = {
   speaker: DialogueSpeaker;
@@ -97,6 +173,8 @@ export type SceneScript = {
 export type EpisodeScriptInput = {
   id: string;
   title: string;
+  format?: EpisodeFormat;
+  eyebrow?: string;
   playbackSpeed?: number;
   voice?: VoiceConfig;
   narration?: string;
@@ -108,7 +186,8 @@ export type EpisodeScriptInput = {
   theme?: EpisodeTheme;
 };
 
-export type EpisodeScript = Omit<EpisodeScriptInput, 'narration' | 'scenes' | 'voices'> & {
+export type EpisodeScript = Omit<EpisodeScriptInput, 'narration' | 'scenes' | 'voices' | 'format'> & {
+  format: EpisodeFormat;
   narration: string;
   scenes: SceneScript[];
   voices?: DialogueVoices;
@@ -181,6 +260,29 @@ const assertNumber = (value: unknown, path: string) => {
 
 const assertOptionalBoolean = (value: unknown, path: string) => {
   if (value !== undefined && typeof value !== 'boolean') throw new Error(`${path} must be a boolean.`);
+};
+
+const assertEnum = (value: unknown, allowed: readonly string[], path: string) => {
+  if (typeof value !== 'string' || !allowed.includes(value)) {
+    throw new Error(`${path} must be one of: ${allowed.join(', ')}.`);
+  }
+};
+
+const assertMaxLength = (value: unknown, maximum: number, path: string) => {
+  if (typeof value === 'string' && value.length > maximum) throw new Error(`${path} must be at most ${maximum} characters.`);
+};
+
+const assertRange = (value: unknown, minimum: number, maximum: number, path: string) => {
+  assertNumber(value, path);
+  if ((value as number) < minimum || (value as number) > maximum) {
+    throw new Error(`${path} must be between ${minimum} and ${maximum}.`);
+  }
+};
+
+const assertFieldPoint = (value: unknown, path: string) => {
+  if (!isRecord(value)) throw new Error(`${path} must be an object.`);
+  assertRange(value.x, 0, 53.33, `${path}.x`);
+  assertRange(value.y, -15, 35, `${path}.y`);
 };
 
 const assertViz: (value: unknown, lineIndex: number) => asserts value is Viz = (value, lineIndex) => {
@@ -278,6 +380,151 @@ const assertViz: (value: unknown, lineIndex: number) => asserts value is Viz = (
       }
       assertString(value.stamp, `${path}.stamp`, true);
       return;
+    case 'fieldPlay': {
+      assertString(value.label, `${path}.label`, true);
+      assertString(value.losLabel, `${path}.losLabel`, true);
+      if (value.firstDownYd !== undefined) assertRange(value.firstDownYd, Number.EPSILON, 30, `${path}.firstDownYd`);
+      if (!Array.isArray(value.players) || value.players.length < 2 || value.players.length > 14) {
+        throw new Error(`${path}.players requires 2 to 14 players.`);
+      }
+      const playerIds = new Set<string>();
+      for (const [index, player] of value.players.entries()) {
+        const playerPath = `${path}.players[${index}]`;
+        if (!isRecord(player)) throw new Error(`${playerPath} must be an object.`);
+        assertString(player.id, `${playerPath}.id`);
+        if (playerIds.has(player.id as string)) throw new Error(`${playerPath}.id must be unique.`);
+        playerIds.add(player.id as string);
+        assertString(player.label, `${playerPath}.label`);
+        assertMaxLength(player.label, 3, `${playerPath}.label`);
+        assertString(player.name, `${playerPath}.name`, true);
+        assertEnum(player.team, ['offense', 'defense'], `${playerPath}.team`);
+        if (player.role !== undefined) assertEnum(player.role, ['hero', 'blocker', 'defender'], `${playerPath}.role`);
+        assertFieldPoint(player, playerPath);
+      }
+      if (!isRecord(value.run)) throw new Error(`${path}.run must be an object.`);
+      assertString(value.run.playerId, `${path}.run.playerId`);
+      if (!playerIds.has(value.run.playerId as string)) throw new Error(`${path}.run.playerId must match a player id.`);
+      if (!Array.isArray(value.run.path) || value.run.path.length < 2) throw new Error(`${path}.run.path requires at least two points.`);
+      value.run.path.forEach((point, index) => assertFieldPoint(point, `${path}.run.path[${index}]`));
+      if (value.blocks !== undefined) {
+        if (!Array.isArray(value.blocks)) throw new Error(`${path}.blocks must be an array.`);
+        for (const [index, block] of value.blocks.entries()) {
+          const blockPath = `${path}.blocks[${index}]`;
+          if (!isRecord(block)) throw new Error(`${blockPath} must be an object.`);
+          assertString(block.id, `${blockPath}.id`);
+          if (!playerIds.has(block.id as string)) throw new Error(`${blockPath}.id must match a player id.`);
+          assertRange(block.dx, -6, 6, `${blockPath}.dx`);
+          assertRange(block.dy, -6, 6, `${blockPath}.dy`);
+        }
+      }
+      if (value.lane !== undefined) {
+        if (!isRecord(value.lane)) throw new Error(`${path}.lane must be an object.`);
+        assertRange(value.lane.x, 0, 53.33, `${path}.lane.x`);
+        assertNumber(value.lane.width, `${path}.lane.width`);
+        if ((value.lane.width as number) <= 0 || (value.lane.width as number) > 15) throw new Error(`${path}.lane.width must be greater than 0 and at most 15.`);
+      }
+      if (value.fadeOnPass !== undefined) {
+        if (!Array.isArray(value.fadeOnPass)) throw new Error(`${path}.fadeOnPass must be an array.`);
+        for (const [index, id] of value.fadeOnPass.entries()) {
+          assertString(id, `${path}.fadeOnPass[${index}]`);
+          if (!playerIds.has(id as string)) throw new Error(`${path}.fadeOnPass[${index}] must match a player id.`);
+        }
+      }
+      if (value.callout !== undefined) {
+        if (!isRecord(value.callout)) throw new Error(`${path}.callout must be an object.`);
+        assertString(value.callout.text, `${path}.callout.text`);
+        assertMaxLength(value.callout.text, 28, `${path}.callout.text`);
+        assertString(value.callout.sub, `${path}.callout.sub`, true);
+      }
+      return;
+    }
+    case 'depthFlow': {
+      assertString(value.label, `${path}.label`);
+      const out = value.out;
+      const riser = value.riser;
+      const flow = value.flow;
+      if (!isRecord(out)) throw new Error(`${path}.out must be an object.`);
+      if (!isRecord(riser)) throw new Error(`${path}.riser must be an object.`);
+      if (!isRecord(flow)) throw new Error(`${path}.flow must be an object.`);
+      for (const key of ['name', 'jersey', 'stat', 'statLabel'] as const) assertString(out[key], `${path}.out.${key}`);
+      assertMaxLength(out.jersey, 3, `${path}.out.jersey`);
+      for (const key of ['name', 'jersey'] as const) assertString(riser[key], `${path}.riser.${key}`);
+      assertMaxLength(riser.jersey, 3, `${path}.riser.jersey`);
+      assertString(riser.note, `${path}.riser.note`, true);
+      assertNumber(flow.to, `${path}.flow.to`);
+      if ((flow.to as number) <= 0) throw new Error(`${path}.flow.to must be greater than 0.`);
+      assertString(flow.unit, `${path}.flow.unit`);
+      return;
+    }
+    case 'speedRace': {
+      assertString(value.label, `${path}.label`, true);
+      assertString(value.note, `${path}.note`, true);
+      if (value.distanceYd !== undefined) assertRange(value.distanceYd, 10, 100, `${path}.distanceYd`);
+      if (!Array.isArray(value.runners) || value.runners.length !== 2) throw new Error(`${path}.runners requires exactly two runners.`);
+      for (const [index, runner] of value.runners.entries()) {
+        const runnerPath = `${path}.runners[${index}]`;
+        if (!isRecord(runner)) throw new Error(`${runnerPath} must be an object.`);
+        assertString(runner.name, `${runnerPath}.name`);
+        assertString(runner.label, `${runnerPath}.label`);
+        assertMaxLength(runner.label, 3, `${runnerPath}.label`);
+        assertNumber(runner.time, `${runnerPath}.time`);
+        if ((runner.time as number) <= 0) throw new Error(`${runnerPath}.time must be greater than 0.`);
+        if (runner.tone !== undefined) assertEnum(runner.tone, ['accent', 'bone'], `${runnerPath}.tone`);
+      }
+      return;
+    }
+    case 'zoneHeat': {
+      assertString(value.label, `${path}.label`);
+      if (!Array.isArray(value.zones) || value.zones.length < 1 || value.zones.length > 12) {
+        throw new Error(`${path}.zones requires 1 to 12 zones.`);
+      }
+      let focusCount = 0;
+      for (const [index, zone] of value.zones.entries()) {
+        const zonePath = `${path}.zones[${index}]`;
+        if (!isRecord(zone)) throw new Error(`${zonePath} must be an object.`);
+        assertEnum(zone.lane, ['left', 'middle', 'right'], `${zonePath}.lane`);
+        assertEnum(zone.depth, ['backfield', 'short', 'mid', 'deep'], `${zonePath}.depth`);
+        assertRange(zone.intensity, 0, 1, `${zonePath}.intensity`);
+        assertString(zone.stat, `${zonePath}.stat`, true);
+        assertMaxLength(zone.stat, 24, `${zonePath}.stat`);
+        assertOptionalBoolean(zone.focus, `${zonePath}.focus`);
+        if (zone.focus === true) focusCount++;
+      }
+      if (focusCount > 1) throw new Error(`${path}.zones may contain at most one focus zone.`);
+      if (value.marker !== undefined) {
+        if (!isRecord(value.marker)) throw new Error(`${path}.marker must be an object.`);
+        assertString(value.marker.name, `${path}.marker.name`);
+        assertString(value.marker.label, `${path}.marker.label`);
+        assertMaxLength(value.marker.label, 3, `${path}.marker.label`);
+        assertEnum(value.marker.lane, ['left', 'middle', 'right'], `${path}.marker.lane`);
+        assertEnum(value.marker.depth, ['backfield', 'short', 'mid', 'deep'], `${path}.marker.depth`);
+      }
+      return;
+    }
+    case 'riseRank': {
+      assertString(value.label, `${path}.label`, true);
+      if (!Array.isArray(value.rungs) || value.rungs.length < 2 || value.rungs.length > 6) {
+        throw new Error(`${path}.rungs requires 2 to 6 rows.`);
+      }
+      for (const [index, rung] of value.rungs.entries()) {
+        const rungPath = `${path}.rungs[${index}]`;
+        if (!isRecord(rung)) throw new Error(`${rungPath} must be an object.`);
+        assertString(rung.rank, `${rungPath}.rank`);
+        assertString(rung.ghost, `${rungPath}.ghost`, true);
+        assertString(rung.note, `${rungPath}.note`, true);
+      }
+      if (!isRecord(value.climber)) throw new Error(`${path}.climber must be an object.`);
+      assertString(value.climber.name, `${path}.climber.name`);
+      assertString(value.climber.label, `${path}.climber.label`);
+      assertMaxLength(value.climber.label, 3, `${path}.climber.label`);
+      assertString(value.climber.stat, `${path}.climber.stat`, true);
+      assertNumber(value.fromIndex, `${path}.fromIndex`);
+      assertNumber(value.toIndex, `${path}.toIndex`);
+      if (!Number.isInteger(value.fromIndex) || !Number.isInteger(value.toIndex) || (value.toIndex as number) < 0 || (value.toIndex as number) >= (value.fromIndex as number) || (value.fromIndex as number) > value.rungs.length - 1) {
+        throw new Error(`${path} requires integer indexes with 0 <= toIndex < fromIndex <= rungs.length - 1.`);
+      }
+      return;
+    }
     default:
       throw new Error(`${path}.kind is not supported: ${value.kind}`);
   }
@@ -291,6 +538,11 @@ export const assertEpisodeScript = (value: unknown): EpisodeScript => {
   if (!candidate.id || !candidate.title) {
     throw new Error('Script requires non-empty id and title fields.');
   }
+  if (candidate.format !== undefined && !['dialogue', 'narrator'].includes(candidate.format)) {
+    throw new Error('Script format must be dialogue or narrator.');
+  }
+  assertString(candidate.eyebrow, 'Script eyebrow', true);
+  const format = candidate.format ?? 'dialogue';
   if (candidate.theme) {
     for (const key of ['name', 'accent', 'accentSoft'] as const) {
       if (!candidate.theme[key]?.trim()) throw new Error(`Script theme requires non-empty ${key}.`);
@@ -329,6 +581,7 @@ export const assertEpisodeScript = (value: unknown): EpisodeScript => {
       ...candidate,
       id: candidate.id,
       title: candidate.title,
+      format,
       playbackSpeed,
       narration: candidate.lines!.map((line) => line.text.trim()).join(' '),
       dialogueModel: candidate.dialogueModel?.trim() || 'eleven_v3',
@@ -357,5 +610,6 @@ export const assertEpisodeScript = (value: unknown): EpisodeScript => {
     }
   }
   candidate.playbackSpeed = playbackSpeed;
+  candidate.format = format;
   return candidate as EpisodeScript;
 };

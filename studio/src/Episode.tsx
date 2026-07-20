@@ -1,7 +1,7 @@
 import type {CSSProperties} from 'react';
 import {AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import {Captions} from './components/Captions';
-import type {DialogueLineScript, EpisodeProps, ResolvedCue, SceneScript} from './schema';
+import type {DialogueLineScript, EpisodeFormat, EpisodeProps, ResolvedCue, SceneScript} from './schema';
 import {CallOneScene} from './scenes/CallOneScene';
 import {CallThreeScene} from './scenes/CallThreeScene';
 import {CallTwoScene} from './scenes/CallTwoScene';
@@ -21,9 +21,9 @@ import {resolveThemeTokens} from './tokens';
 const amplitude = (db: number) => Math.pow(10, db / 20);
 const msToFrame = (ms: number) => Math.round((ms / 1000) * 30);
 
-const SceneForCue = ({cue, duration, scene, line}: {cue: ResolvedCue; duration: number; scene?: SceneScript; line?: DialogueLineScript}) => {
+const SceneForCue = ({cue, duration, scene, line, format, eyebrow}: {cue: ResolvedCue; duration: number; scene?: SceneScript; line?: DialogueLineScript; format: EpisodeFormat; eyebrow: string}) => {
   if (scene?.type === 'edu-dialogue' && line) {
-    return <EduDialogueScene duration={duration} line={line} lineIndex={cue.lineIndex ?? 0} />;
+    return <EduDialogueScene duration={duration} line={line} lineIndex={cue.lineIndex ?? 0} format={format} eyebrow={eyebrow} />;
   }
   if (scene?.type === 'edu-hook') return <EduHookScene duration={duration} />;
   if (scene?.type === 'edu-cloud') return <EduCloudScene duration={duration} />;
@@ -102,6 +102,7 @@ export const Episode = ({episode, timing, assetBase}: EpisodeProps) => {
   const firstDuration = firstCue ? Math.max(1, Math.min(timing.durationInFrames, msToFrame(firstCue.endMs)) - msToFrame(firstCue.startMs)) : 1;
   const educational = episode.scenes[0]?.type === 'edu-hook';
   const dialogue = episode.scenes[0]?.type === 'edu-dialogue' && Boolean(episode.lines?.[0]);
+  const eyebrow = episode.eyebrow ?? episode.title.toUpperCase();
   return (
     <AbsoluteFill style={themeStyle}>
       {timing.cues.map((cue) => {
@@ -113,22 +114,22 @@ export const Episode = ({episode, timing, assetBase}: EpisodeProps) => {
         const duration = Math.max(1, end - start);
         return (
           <Sequence key={cue.id} from={start} durationInFrames={duration} name={cue.id}>
-            <SceneForCue cue={cue} duration={duration} scene={scene} line={line} />
+            <SceneForCue cue={cue} duration={duration} scene={scene} line={line} format={episode.format} eyebrow={eyebrow} />
           </Sequence>
         );
       })}
-      <Captions pages={timing.captions} theme={episode.theme} />
+      <Captions pages={timing.captions} theme={episode.theme} format={episode.format} />
       <Soundtrack assetBase={assetBase} cues={timing.cues} />
       {frame === timing.durationInFrames - 1 ? (
         <AbsoluteFill style={{zIndex: 999}}>
           {dialogue ? (
-            <EduDialogueScene duration={firstDuration} line={episode.lines![0]} lineIndex={0} frameOverride={0} />
+            <EduDialogueScene duration={firstDuration} line={episode.lines![0]} lineIndex={0} format={episode.format} eyebrow={eyebrow} frameOverride={0} />
           ) : educational ? (
             <EduHookScene duration={firstDuration} frameOverride={0} />
           ) : (
             <HookScene frameOverride={0} />
           )}
-          <Captions pages={timing.captions} theme={episode.theme} frameOverride={0} />
+          <Captions pages={timing.captions} theme={episode.theme} format={episode.format} frameOverride={0} />
         </AbsoluteFill>
       ) : null}
       <div style={{display: 'none'}}>{episode.title}</div>

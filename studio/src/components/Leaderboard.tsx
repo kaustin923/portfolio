@@ -11,8 +11,7 @@ export const Leaderboard = ({rows, stamp, progress}: Omit<LeaderboardViz, 'kind'
   const rowHeight = Math.min(82, 388 / rows.length);
 
   return (
-    <div style={{position: 'relative', height: 500, boxSizing: 'border-box', padding: '54px 34px 34px', borderRadius: TOKENS.radius.card, border: `2px solid ${TOKENS.color.boneHairline}`, background: 'rgba(242,237,228,.03)', overflow: 'hidden'}}>
-      <div style={{position: 'absolute', top: 16, left: 34, right: 34, display: 'flex', justifyContent: 'space-between', fontFamily: TOKENS.font.mono, color: TOKENS.color.boneMuted, fontSize: 17, fontWeight: 700, letterSpacing: '.15em'}}><span>RANK</span><span>LIVE BOARD</span></div>
+    <div style={{position: 'relative', height: 500, boxSizing: 'border-box', padding: '34px', borderRadius: TOKENS.radius.card, border: `2px solid ${TOKENS.color.boneHairline}`, background: 'rgba(242,237,228,.03)', overflow: 'hidden'}}>
       <div style={{position: 'relative', height: rowHeight * rows.length}}>
         {rows.map((row, index) => {
           const finalIndex = finalPositions.get(index) ?? index;

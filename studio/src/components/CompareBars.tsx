@@ -27,7 +27,6 @@ export const CompareBars = ({unit, bars, reference, progress}: Omit<CompareBarsV
 
   return (
     <div style={{position: 'relative', width: 888, height: 530, borderRadius: TOKENS.radius.card, border: `2px solid ${TOKENS.color.boneHairline}`, background: 'rgba(242,237,228,.025)', overflow: 'hidden'}}>
-      <div style={{position: 'absolute', top: 18, left: 24, fontFamily: TOKENS.font.mono, color: TOKENS.color.boneMuted, fontSize: 18, fontWeight: 700, letterSpacing: '.16em'}}>REAL VALUES / {unit.toUpperCase()}</div>
       <div style={{position: 'absolute', left: plotLeft, width: plotWidth, top: plotTop + zeroY, height: 3, background: TOKENS.color.boneHairline}} />
       {reference ? (() => {
         const top = plotTop + ((domainMax - reference.value) / span) * plotHeight;

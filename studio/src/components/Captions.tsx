@@ -1,8 +1,8 @@
 import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
-import type {CaptionPage, EpisodeTheme} from '../schema';
+import type {CaptionPage, EpisodeFormat, EpisodeTheme} from '../schema';
 import {resolveThemeTokens, TOKENS} from '../tokens';
 
-export const Captions = ({pages, theme, frameOverride}: {pages: CaptionPage[]; theme?: EpisodeTheme; frameOverride?: number}) => {
+export const Captions = ({pages, theme, format = 'dialogue', frameOverride}: {pages: CaptionPage[]; theme?: EpisodeTheme; format?: EpisodeFormat; frameOverride?: number}) => {
   const currentFrame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const themeTokens = resolveThemeTokens(theme);
@@ -10,13 +10,14 @@ export const Captions = ({pages, theme, frameOverride}: {pages: CaptionPage[]; t
   const nowMs = (frame / fps) * 1000;
   const page = pages.find((candidate) => nowMs >= candidate.startMs && nowMs <= candidate.endMs);
   if (!page) return null;
-  const dialogue = Boolean(page.speaker);
+  const narrator = format === 'narrator';
+  const dialogue = Boolean(page.speaker) && !narrator;
   const jessica = page.speaker === 'jessica';
-  const speakerColor = jessica ? themeTokens.accent : TOKENS.color.bone;
+  const speakerColor = dialogue && jessica ? themeTokens.accent : TOKENS.color.bone;
   const pageFrame = frame - Math.round((page.startMs / 1000) * fps);
   const scale = interpolate(pageFrame, [0, 1, 2], [1.12, 0.97, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   return (
-    <div style={{position: 'absolute', left: 96, right: 96, bottom: 274, display: 'flex', justifyContent: jessica ? 'flex-start' : dialogue ? 'flex-end' : 'center', zIndex: 80, transform: `scale(${scale})`, transformOrigin: jessica ? 'left center' : dialogue ? 'right center' : 'center'}}>
+    <div style={{position: 'absolute', left: 96, right: 96, bottom: 274, display: 'flex', justifyContent: dialogue ? (jessica ? 'flex-start' : 'flex-end') : 'center', zIndex: 80, transform: `scale(${scale})`, transformOrigin: dialogue ? (jessica ? 'left center' : 'right center') : 'center'}}>
       <div
         style={{
           maxWidth: 888,
@@ -52,9 +53,10 @@ export const Captions = ({pages, theme, frameOverride}: {pages: CaptionPage[]; t
                 style={{
                   display: 'inline-block',
                   marginRight: index < page.words!.length - 1 ? '.22em' : 0,
+                  color: narrator && active ? themeTokens.accent : undefined,
                   opacity: spoken ? 1 : .48,
                   transform: active ? 'translateY(-2px)' : 'none',
-                  textShadow: active ? `0 0 18px ${jessica ? themeTokens.accentSoft : 'rgba(242,237,228,.3)'}` : 'none',
+                  textShadow: active ? `0 0 18px ${narrator || jessica ? themeTokens.accentSoft : 'rgba(242,237,228,.3)'}` : 'none',
                 }}
               >
                 {word.text}
