@@ -36,16 +36,20 @@ const DEFAULT_DIALOGUE_VOICES = {
 };
 
 const usage = () => {
-  console.log('Usage: npx studio render <script.json> [--out path] [--voice name] [--rate wpm] [--reuse-audio]');
+  console.log('Usage: npx studio render <script.json> [--out path] [--voice name] [--rate wpm] [--reuse-audio] [--silent]');
 };
 
 const parseArgs = (argv) => {
   if (argv[0] !== 'render' || !argv[1]) return null;
-  const result = {command: argv[0], script: argv[1], out: null, voice: null, rate: null, reuseAudio: false};
+  const result = {command: argv[0], script: argv[1], out: null, voice: null, rate: null, reuseAudio: false, silent: false};
   for (let index = 2; index < argv.length; index++) {
     const flag = argv[index];
     if (flag === '--reuse-audio') {
       result.reuseAudio = true;
+      continue;
+    }
+    if (flag === '--silent') {
+      result.silent = true;
       continue;
     }
     const value = argv[index + 1];
@@ -549,6 +553,48 @@ const makeSyntheticDialogueWords = (lineTimings) => lineTimings.flatMap((line) =
   }));
 });
 
+const SILENT_WORDS_PER_SECOND = 2.8;
+const SILENT_MINIMUM_LINE_MS = 1600;
+
+const makeSilentNarration = async ({episode, generatedDir}) => {
+  const audio = path.join(generatedDir, 'vo.silent.m4a');
+  let lineTimings = [];
+  let words;
+  let durationMs;
+  if (episode.lines?.length) {
+    let cursorMs = 0;
+    lineTimings = episode.lines.map((line, index) => {
+      const wordCount = line.text.trim().split(/\s+/).filter(Boolean).length;
+      const lineDurationMs = Math.max(SILENT_MINIMUM_LINE_MS, (wordCount / SILENT_WORDS_PER_SECOND) * 1000);
+      const startMs = Math.round(cursorMs);
+      cursorMs += lineDurationMs;
+      const endMs = Math.round(cursorMs);
+      return makeDialogueLineTiming({
+        episode,
+        index,
+        startMs,
+        endMs,
+        words: makeWordsForSpan(line.text, startMs, endMs),
+      });
+    });
+    durationMs = Math.round(cursorMs);
+    words = lineTimings.flatMap((line) => line.words);
+  } else {
+    const wordCount = episode.narration.trim().split(/\s+/).filter(Boolean).length;
+    durationMs = Math.round(Math.max(SILENT_MINIMUM_LINE_MS, (wordCount / SILENT_WORDS_PER_SECOND) * 1000));
+    words = makeSyntheticWords(episode.narration, durationMs);
+  }
+  await run(FFMPEG, [
+    '-y', '-v', 'error',
+    '-f', 'lavfi', '-i', 'anullsrc=channel_layout=mono:sample_rate=48000',
+    '-t', (durationMs / 1000).toFixed(3),
+    '-c:a', 'aac', '-b:a', '192k',
+    audio,
+  ], {label: `Generating ${((durationMs) / 1000).toFixed(2)}s silent AAC track`, quiet: true});
+  console.log('[studio] Silent mode: TTS, credentials, and Whisper are skipped.');
+  return {audio, durationMs, lineTimings, words};
+};
+
 const synthesizeOfflineFallback = async ({episode, output, voice, rate, forced = false}) => {
   console.warn(
     forced
@@ -977,7 +1023,7 @@ const makeSfx = async () => {
   await run(FFMPEG, ['-y', '-v', 'error', '-f', 'lavfi', '-i', 'sine=frequency=2000:duration=0.055:sample_rate=44100', '-af', 'volume=0.18,afade=t=out:st=0.012:d=0.043', '-ac', '1', '-c:a', 'pcm_s16le', path.join(sfxDir, 'tick.wav')], {quiet: true});
 };
 
-const renderEpisode = async ({episode, timing, assetBase, output}) => {
+const renderEpisode = async ({episode, timing, assetBase, audioFile = 'vo.wav', enableSfx = true, silent = false, output}) => {
   const noDownload = () => {
     throw new Error('Browser download disabled: run npm install while online before rendering.');
   };
@@ -1000,7 +1046,7 @@ const renderEpisode = async ({episode, timing, assetBase, output}) => {
     },
   });
   process.stdout.write('\r[studio] Bundle 100%\n');
-  const inputProps = {episode, timing, assetBase};
+  const inputProps = {episode, timing, assetBase, audioFile, enableSfx};
   const composition = await selectComposition({
     serveUrl,
     id: 'CalledItEpisode',
@@ -1047,7 +1093,9 @@ const renderEpisode = async ({episode, timing, assetBase, output}) => {
       await renderMedia({...commonRenderOptions, crf: 19, hardwareAcceleration: 'disable'});
     }
     process.stdout.write('\r[studio] Render 100%\n');
-    if (episode.playbackSpeed === 1) {
+    if (silent) {
+      await rename(intermediateOutput, output);
+    } else if (episode.playbackSpeed === 1) {
       await loudnormFinalMix({input: intermediateOutput, output});
     } else {
       await loudnormFinalMix({input: intermediateOutput, output: normalizedOutput});
@@ -1073,21 +1121,30 @@ const main = async () => {
   const episode = validateScript(JSON.parse(await readFile(scriptPath, 'utf8')));
   const safeId = episode.id.replace(/[^a-zA-Z0-9_-]+/g, '-');
   const generatedDir = path.join(STUDIO_DIR, 'public/generated', safeId);
-  const output = path.resolve(process.cwd(), args.out ?? path.join('out', `${safeId}.mp4`));
+  const silent = args.silent && !args.reuseAudio;
+  if (args.silent && args.reuseAudio) {
+    console.warn('[studio] Both --reuse-audio and --silent were supplied; reusing real audio and timing.');
+  }
+  const defaultName = `${safeId}${silent ? '.silent' : ''}.mp4`;
+  const output = path.resolve(process.cwd(), args.out ?? path.join('out', defaultName));
   await mkdir(generatedDir, {recursive: true});
   await mkdir(path.dirname(output), {recursive: true});
   const dialogue = episode.lines?.length > 0;
-  const voice = dialogue ? 'ElevenLabs' : await selectVoice(args.voice ?? episode.voice.name);
+  const voice = dialogue ? 'ElevenLabs' : silent ? episode.voice.name : await selectVoice(args.voice ?? episode.voice.name);
   const rate = dialogue ? null : args.rate ?? episode.voice.rate;
   if (!dialogue) episode.voice = {...episode.voice, name: voice, rate};
   console.log(`[studio] Episode ${episode.id}`);
   const narrationResult = args.reuseAudio
     ? await reuseNarration({episode, generatedDir})
-    : await synthesizeNarration({episode, generatedDir, voice, rate});
+    : silent
+      ? await makeSilentNarration({episode, generatedDir})
+      : await synthesizeNarration({episode, generatedDir, voice, rate});
   const {whisperWav, durationMs, dialogueTiming} = narrationResult;
   let lineTimings = narrationResult.lineTimings ?? [];
-  let words = await transcribe({episode, generatedDir, whisperWav, durationMs, lineTimings});
-  if (dialogue && !args.reuseAudio) {
+  let words = silent
+    ? narrationResult.words
+    : await transcribe({episode, generatedDir, whisperWav, durationMs, lineTimings});
+  if (dialogue && !args.reuseAudio && !silent) {
     const resolvedDialogue = resolveDialogueLineTimings({episode, words, durationMs, dialogueTiming});
     lineTimings = resolvedDialogue.lineTimings;
     words = resolvedDialogue.words;
@@ -1104,15 +1161,27 @@ const main = async () => {
     lineTimings,
     fps: FPS,
   });
-  await writeFile(path.join(generatedDir, 'words.json'), `${JSON.stringify(words, null, 2)}\n`);
-  await writeFile(path.join(generatedDir, 'cues.json'), `${JSON.stringify(timing, null, 2)}\n`);
+  const artifactSuffix = silent ? '.silent' : '';
+  if (silent && dialogue) {
+    await writeFile(path.join(generatedDir, `lines${artifactSuffix}.json`), `${JSON.stringify(lineTimings, null, 2)}\n`);
+  }
+  await writeFile(path.join(generatedDir, `words${artifactSuffix}.json`), `${JSON.stringify(words, null, 2)}\n`);
+  await writeFile(path.join(generatedDir, `cues${artifactSuffix}.json`), `${JSON.stringify(timing, null, 2)}\n`);
   console.log('\n[studio] Resolved scene cues');
   for (const cue of timing.cues) {
     const warning = cue.fallback ? '  WARNING: proportional fallback' : '';
     console.log(`  ${String(cue.id).padEnd(9)} ${(cue.startMs / 1000).toFixed(2).padStart(6)}s → ${(cue.endMs / 1000).toFixed(2).padStart(6)}s  score=${cue.score.toFixed(3)}${warning}`);
   }
-  await makeSfx();
-  await renderEpisode({episode, timing, assetBase: `generated/${safeId}`, output});
+  if (!silent) await makeSfx();
+  await renderEpisode({
+    episode,
+    timing,
+    assetBase: `generated/${safeId}`,
+    audioFile: path.basename(narrationResult.audio ?? narrationResult.wav),
+    enableSfx: !silent,
+    silent,
+    output,
+  });
   const media = await probeMedia(output);
   const file = await stat(output);
   const wallSeconds = (Date.now() - started) / 1000;

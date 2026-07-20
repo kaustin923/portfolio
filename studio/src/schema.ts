@@ -244,6 +244,8 @@ export type EpisodeProps = {
   episode: EpisodeScript;
   timing: EpisodeTiming;
   assetBase: string;
+  audioFile?: string;
+  enableSfx?: boolean;
 };
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>

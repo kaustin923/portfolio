@@ -22,9 +22,12 @@ npm run typecheck
 npx studio render scripts/demo.script.json --out out/custom.mp4
 npx studio render scripts/demo.script.json --voice Daniel --rate 176
 npx studio render scripts/episode-1.script.json --out out/episode-1.mp4 --reuse-audio
+npx studio render scripts/new-visual.script.json --silent
 ```
 
 The CLI attempts hardware H.264 encoding first and automatically falls back to x264 CRF 19 if VideoToolbox is unavailable. Finished files are encoded as limited-range BT.709 `yuv420p`, and the final mux uses two-pass loudness normalization targeting -14 LUFS integrated and -1.5 dBTP.
+
+Use `--silent` for credit-free visual iteration before narration exists. It skips TTS, credential loading, Whisper, and procedural SFX; assigns each dialogue line `words / 2.8` seconds with a 1.6-second minimum; and renders proportional script-text captions against a silent AAC track. The default output is `out/<episode-id>.silent.mp4`. Once `vo.wav`, `vo16k.wav`, and dialogue `lines.json` exist, prefer `--reuse-audio` so the render retains the real spoken timing. If both flags are supplied, `--reuse-audio` wins.
 
 ## Architecture
 

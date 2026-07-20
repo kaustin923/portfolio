@@ -39,7 +39,7 @@ const SceneForCue = ({cue, duration, scene, line, format, eyebrow}: {cue: Resolv
   return <LoopScene duration={duration} />;
 };
 
-const Soundtrack = ({assetBase, cues}: {assetBase: string; cues: ResolvedCue[]}) => {
+const Soundtrack = ({assetBase, audioFile, enableSfx, cues}: {assetBase: string; audioFile: string; enableSfx: boolean; cues: ResolvedCue[]}) => {
   if (!assetBase) return null;
   const frames = cues.map((cue) => ({cue, start: msToFrame(cue.startMs), end: msToFrame(cue.endMs)}));
   const receipt = frames.find(({cue}) => cue.id === 'receipt');
@@ -50,13 +50,13 @@ const Soundtrack = ({assetBase, cues}: {assetBase: string; cues: ResolvedCue[]})
   const whooshFrames = [5, ...frames.slice(1).map(({start}) => start)];
   return (
     <>
-      <Audio src={staticFile(`${assetBase}/vo.wav`)} volume={1} />
-      {whooshFrames.map((from, index) => (
+      <Audio src={staticFile(`${assetBase}/${audioFile}`)} volume={1} />
+      {enableSfx ? whooshFrames.map((from, index) => (
         <Sequence key={`whoosh-${index}`} from={from} durationInFrames={12} layout="none">
           <Audio src={staticFile('generated/sfx/whoosh.wav')} volume={amplitude(-16)} />
         </Sequence>
-      ))}
-      {receipt ? (
+      )) : null}
+      {enableSfx && receipt ? (
         <>
           <Sequence from={receipt.start + receiptStampFrame(receipt.end - receipt.start) + 4} durationInFrames={16} layout="none">
             <Audio src={staticFile('generated/sfx/bass.wav')} volume={amplitude(-6)} />
@@ -66,22 +66,22 @@ const Soundtrack = ({assetBase, cues}: {assetBase: string; cues: ResolvedCue[]})
           </Sequence>
         </>
       ) : null}
-      {callThree ? (
+      {enableSfx && callThree ? (
         <Sequence from={callThree.start + longShotImpactFrame(callThree.end - callThree.start)} durationInFrames={16} layout="none">
           <Audio src={staticFile('generated/sfx/bass.wav')} volume={amplitude(-6)} />
         </Sequence>
       ) : null}
-      {shrink ? (
+      {enableSfx && shrink ? (
         <Sequence from={shrink.start + Math.round((shrink.end - shrink.start) * .58)} durationInFrames={16} layout="none">
           <Audio src={staticFile('generated/sfx/bass.wav')} volume={amplitude(-10)} />
         </Sequence>
       ) : null}
-      {privacy ? (
+      {enableSfx && privacy ? (
         <Sequence from={privacy.start + Math.round((privacy.end - privacy.start) * .59)} durationInFrames={8} layout="none">
           <Audio src={staticFile('generated/sfx/tick.wav')} volume={0.14} />
         </Sequence>
       ) : null}
-      {everywhere ? [0.06, .32, .57].map((ratio, index) => (
+      {enableSfx && everywhere ? [0.06, .32, .57].map((ratio, index) => (
         <Sequence key={`fact-tick-${index}`} from={everywhere.start + Math.round((everywhere.end - everywhere.start) * ratio)} durationInFrames={8} layout="none">
           <Audio src={staticFile('generated/sfx/tick.wav')} volume={0.12} />
         </Sequence>
@@ -90,7 +90,7 @@ const Soundtrack = ({assetBase, cues}: {assetBase: string; cues: ResolvedCue[]})
   );
 };
 
-export const Episode = ({episode, timing, assetBase}: EpisodeProps) => {
+export const Episode = ({episode, timing, assetBase, audioFile = 'vo.wav', enableSfx = true}: EpisodeProps) => {
   const frame = useCurrentFrame();
   const theme = resolveThemeTokens(episode.theme);
   const themeStyle = {
@@ -119,7 +119,7 @@ export const Episode = ({episode, timing, assetBase}: EpisodeProps) => {
         );
       })}
       <Captions pages={timing.captions} theme={episode.theme} format={episode.format} />
-      <Soundtrack assetBase={assetBase} cues={timing.cues} />
+      <Soundtrack assetBase={assetBase} audioFile={audioFile} enableSfx={enableSfx} cues={timing.cues} />
       {frame === timing.durationInFrames - 1 ? (
         <AbsoluteFill style={{zIndex: 999}}>
           {dialogue ? (
