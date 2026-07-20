@@ -1,0 +1,103 @@
+{
+  "id": "ep-usopen-early",
+  "title": "The US Open Starts in Canada",
+  "format": "narrator",
+  "eyebrow": "US OPEN \u00b7 EARLY SIGNAL",
+  "theme": {
+    "name": "Hard Court Blue",
+    "accent": "#3B82F6",
+    "accentSoft": "rgba(59,130,246,.42)"
+  },
+  "voices": {
+    "jessica": {
+      "voiceId": "cjVigY5qzO86Huf0OWal"
+    },
+    "george": {
+      "voiceId": "cjVigY5qzO86Huf0OWal"
+    }
+  },
+  "dialogueModel": "eleven_v3",
+  "dialogueSettings": {
+    "stability": 0.3
+  },
+  "playbackSpeed": 1.35,
+  "lines": [
+    {
+      "speaker": "george",
+      "text": "The US Open gets decided in August \u2014 in Canada. [exhales] Most fans watch the wrong tournament.",
+      "visual": "hook",
+      "viz": {
+        "kind": "title",
+        "big": "THE US OPEN STARTS IN CANADA.",
+        "sub": "THE SIGNAL MOST FANS MISS"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Here's the calendar nobody thinks about. Canada, August first. Cincinnati, the eleventh. Then the Open. Same surface, back to back to back.",
+      "visual": "swing timeline",
+      "viz": {
+        "kind": "leaderboard",
+        "rows": [
+          {
+            "label": "NATIONAL BANK OPEN \u00b7 AUG 1"
+          },
+          {
+            "label": "CINCINNATI \u00b7 AUG 11"
+          },
+          {
+            "label": "US OPEN \u00b7 AUG 31",
+            "highlight": true
+          }
+        ],
+        "stamp": "ONE HARD-COURT RUNWAY"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "So the guys who show up flying in Toronto and Montreal? That's not a warm-up. That's the form that wins in New York three weeks later.",
+      "visual": "form signal",
+      "viz": {
+        "kind": "statBig",
+        "value": "FORM TRAVELS",
+        "label": "SAME SURFACE \u00b7 3 WEEKS OUT",
+        "sub": "hard-court heat doesn't cool off"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Last summer? Ben Shelton won Canada. Victoria Mboko shocked Osaka for the women's title. Nobody casual was watching either one.",
+      "visual": "defenders",
+      "viz": {
+        "kind": "split",
+        "left": {
+          "label": "2025 MEN'S CHAMP",
+          "value": "SHELTON"
+        },
+        "right": {
+          "label": "2025 WOMEN'S CHAMP",
+          "value": "MBOKO"
+        },
+        "stamp": "BOTH BACK IN 2026"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "So while everyone waits for New York... watch Canada. Whoever's cooking in week one of August \u2014 that's your US Open pick, two weeks before the odds catch up.",
+      "visual": "payoff",
+      "viz": {
+        "kind": "title",
+        "big": "WATCH CANADA.",
+        "sub": "PICK YOUR CHAMP BEFORE THE ODDS MOVE."
+      }
+    }
+  ],
+  "caption": "The US Open gets decided in August \u2014 in Canada. The hard-court runway most fans ignore, and why week one of August tells you who wins New York.",
+  "hashtags": [
+    "#USOpen",
+    "#Tennis",
+    "#NationalBankOpen",
+    "#SportsBetting",
+    "#TennisTok"
+  ]
+}

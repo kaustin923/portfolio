@@ -1,0 +1,952 @@
+[
+  {
+    "id": "line-1",
+    "lineIndex": 0,
+    "speaker": "george",
+    "text": "SummerSlam looks like a wrestling show. [exhales] It's actually a streaming product now — and once you see it, you can't unsee it.",
+    "visual": "hook",
+    "viz": {
+      "kind": "title",
+      "big": "WWE ISN'T A WRESTLING COMPANY.",
+      "sub": "WHAT SUMMERSLAM ACTUALLY IS",
+      "dateChip": "AUG 1-2, 2026"
+    },
+    "startMs": 0,
+    "endMs": 8214,
+    "words": [
+      {
+        "text": "SummerSlam",
+        "startMs": 0,
+        "endMs": 321,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "looks",
+        "startMs": 357,
+        "endMs": 679,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "like",
+        "startMs": 714,
+        "endMs": 1036,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "a",
+        "startMs": 1071,
+        "endMs": 1393,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "wrestling",
+        "startMs": 1429,
+        "endMs": 1750,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "show.",
+        "startMs": 1786,
+        "endMs": 2107,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "[exhales]",
+        "startMs": 2143,
+        "endMs": 2464,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "It's",
+        "startMs": 2500,
+        "endMs": 2821,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "actually",
+        "startMs": 2857,
+        "endMs": 3178,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "a",
+        "startMs": 3214,
+        "endMs": 3536,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "streaming",
+        "startMs": 3571,
+        "endMs": 3893,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "product",
+        "startMs": 3928,
+        "endMs": 4250,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "now",
+        "startMs": 4286,
+        "endMs": 4607,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "—",
+        "startMs": 4643,
+        "endMs": 4964,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "and",
+        "startMs": 5000,
+        "endMs": 5321,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "once",
+        "startMs": 5357,
+        "endMs": 5678,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "you",
+        "startMs": 5714,
+        "endMs": 6036,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "see",
+        "startMs": 6071,
+        "endMs": 6393,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "it,",
+        "startMs": 6428,
+        "endMs": 6750,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "you",
+        "startMs": 6785,
+        "endMs": 7107,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "can't",
+        "startMs": 7143,
+        "endMs": 7464,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "unsee",
+        "startMs": 7500,
+        "endMs": 7821,
+        "speaker": "george",
+        "lineIndex": 0
+      },
+      {
+        "text": "it.",
+        "startMs": 7857,
+        "endMs": 8178,
+        "speaker": "george",
+        "lineIndex": 0
+      }
+    ]
+  },
+  {
+    "id": "line-2",
+    "lineIndex": 1,
+    "speaker": "george",
+    "text": "Follow the money. Netflix pays five billion over ten years — Raw's the crown jewel. ESPN pays another one-point-six billion just for the big events, like SummerSlam.",
+    "visual": "the deals",
+    "viz": {
+      "kind": "split",
+      "left": {
+        "label": "NETFLIX · 10 YRS",
+        "value": "$5B"
+      },
+      "right": {
+        "label": "ESPN · BIG EVENTS",
+        "value": "$1.6B"
+      },
+      "stamp": "THE REAL PRODUCT"
+    },
+    "startMs": 8214,
+    "endMs": 17857,
+    "words": [
+      {
+        "text": "Follow",
+        "startMs": 8214,
+        "endMs": 8535,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "the",
+        "startMs": 8571,
+        "endMs": 8893,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "money.",
+        "startMs": 8928,
+        "endMs": 9250,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "Netflix",
+        "startMs": 9285,
+        "endMs": 9607,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "pays",
+        "startMs": 9643,
+        "endMs": 9964,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "five",
+        "startMs": 10000,
+        "endMs": 10321,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "billion",
+        "startMs": 10357,
+        "endMs": 10678,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "over",
+        "startMs": 10714,
+        "endMs": 11035,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "ten",
+        "startMs": 11071,
+        "endMs": 11393,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "years",
+        "startMs": 11428,
+        "endMs": 11750,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "—",
+        "startMs": 11785,
+        "endMs": 12107,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "Raw's",
+        "startMs": 12143,
+        "endMs": 12464,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "the",
+        "startMs": 12500,
+        "endMs": 12821,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "crown",
+        "startMs": 12857,
+        "endMs": 13178,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "jewel.",
+        "startMs": 13214,
+        "endMs": 13536,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "ESPN",
+        "startMs": 13571,
+        "endMs": 13893,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "pays",
+        "startMs": 13928,
+        "endMs": 14250,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "another",
+        "startMs": 14286,
+        "endMs": 14607,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "one-point-six",
+        "startMs": 14643,
+        "endMs": 14964,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "billion",
+        "startMs": 15000,
+        "endMs": 15321,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "just",
+        "startMs": 15357,
+        "endMs": 15678,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "for",
+        "startMs": 15714,
+        "endMs": 16036,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "the",
+        "startMs": 16071,
+        "endMs": 16393,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "big",
+        "startMs": 16428,
+        "endMs": 16750,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "events,",
+        "startMs": 16786,
+        "endMs": 17107,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "like",
+        "startMs": 17143,
+        "endMs": 17464,
+        "speaker": "george",
+        "lineIndex": 1
+      },
+      {
+        "text": "SummerSlam.",
+        "startMs": 17500,
+        "endMs": 17821,
+        "speaker": "george",
+        "lineIndex": 1
+      }
+    ]
+  },
+  {
+    "id": "line-3",
+    "lineIndex": 2,
+    "speaker": "george",
+    "text": "Media money is now fifty-nine percent of everything WWE makes. Tickets? Twenty-four. The show in the arena is basically a TV set.",
+    "visual": "revenue mix",
+    "viz": {
+      "kind": "compareBars",
+      "unit": "%",
+      "bars": [
+        {
+          "label": "MEDIA RIGHTS",
+          "value": 59,
+          "tone": "accent"
+        },
+        {
+          "label": "LIVE EVENTS",
+          "value": 24,
+          "tone": "bone"
+        }
+      ],
+      "reference": {
+        "label": "OF $1.7B REVENUE, 2025",
+        "value": 59
+      }
+    },
+    "startMs": 17857,
+    "endMs": 25714,
+    "words": [
+      {
+        "text": "Media",
+        "startMs": 17857,
+        "endMs": 18178,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "money",
+        "startMs": 18214,
+        "endMs": 18536,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "is",
+        "startMs": 18571,
+        "endMs": 18893,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "now",
+        "startMs": 18928,
+        "endMs": 19250,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "fifty-nine",
+        "startMs": 19286,
+        "endMs": 19607,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "percent",
+        "startMs": 19643,
+        "endMs": 19964,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "of",
+        "startMs": 20000,
+        "endMs": 20321,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "everything",
+        "startMs": 20357,
+        "endMs": 20678,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "WWE",
+        "startMs": 20714,
+        "endMs": 21036,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "makes.",
+        "startMs": 21071,
+        "endMs": 21393,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "Tickets?",
+        "startMs": 21428,
+        "endMs": 21750,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "Twenty-four.",
+        "startMs": 21786,
+        "endMs": 22107,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "The",
+        "startMs": 22143,
+        "endMs": 22464,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "show",
+        "startMs": 22500,
+        "endMs": 22821,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "in",
+        "startMs": 22857,
+        "endMs": 23178,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "the",
+        "startMs": 23214,
+        "endMs": 23535,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "arena",
+        "startMs": 23571,
+        "endMs": 23893,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "is",
+        "startMs": 23928,
+        "endMs": 24250,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "basically",
+        "startMs": 24285,
+        "endMs": 24607,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "a",
+        "startMs": 24643,
+        "endMs": 24964,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "TV",
+        "startMs": 25000,
+        "endMs": 25321,
+        "speaker": "george",
+        "lineIndex": 2
+      },
+      {
+        "text": "set.",
+        "startMs": 25357,
+        "endMs": 25678,
+        "speaker": "george",
+        "lineIndex": 2
+      }
+    ]
+  },
+  {
+    "id": "line-4",
+    "lineIndex": 3,
+    "speaker": "george",
+    "text": "And it's working. Last year WWE out-earned UFC — one-point-seven billion to one-point-five. First time since they merged under TKO.",
+    "visual": "vs ufc",
+    "viz": {
+      "kind": "split",
+      "left": {
+        "label": "WWE · 2025",
+        "value": "$1.71B"
+      },
+      "right": {
+        "label": "UFC · 2025",
+        "value": "$1.50B"
+      },
+      "stamp": "FIRST TIME IN THE TKO ERA"
+    },
+    "startMs": 25714,
+    "endMs": 32857,
+    "words": [
+      {
+        "text": "And",
+        "startMs": 25714,
+        "endMs": 26035,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "it's",
+        "startMs": 26071,
+        "endMs": 26393,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "working.",
+        "startMs": 26428,
+        "endMs": 26750,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "Last",
+        "startMs": 26785,
+        "endMs": 27107,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "year",
+        "startMs": 27143,
+        "endMs": 27464,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "WWE",
+        "startMs": 27500,
+        "endMs": 27821,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "out-earned",
+        "startMs": 27857,
+        "endMs": 28178,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "UFC",
+        "startMs": 28214,
+        "endMs": 28535,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "—",
+        "startMs": 28571,
+        "endMs": 28893,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "one-point-seven",
+        "startMs": 28928,
+        "endMs": 29250,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "billion",
+        "startMs": 29286,
+        "endMs": 29607,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "to",
+        "startMs": 29643,
+        "endMs": 29964,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "one-point-five.",
+        "startMs": 30000,
+        "endMs": 30321,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "First",
+        "startMs": 30357,
+        "endMs": 30678,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "time",
+        "startMs": 30714,
+        "endMs": 31036,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "since",
+        "startMs": 31071,
+        "endMs": 31393,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "they",
+        "startMs": 31428,
+        "endMs": 31750,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "merged",
+        "startMs": 31786,
+        "endMs": 32107,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "under",
+        "startMs": 32143,
+        "endMs": 32464,
+        "speaker": "george",
+        "lineIndex": 3
+      },
+      {
+        "text": "TKO.",
+        "startMs": 32500,
+        "endMs": 32821,
+        "speaker": "george",
+        "lineIndex": 3
+      }
+    ]
+  },
+  {
+    "id": "line-5",
+    "lineIndex": 4,
+    "speaker": "george",
+    "text": "So this weekend, watch SummerSlam like an investor. Every big moment is built to travel — a clip, a thumbnail, a reason to subscribe. That's the real match.",
+    "visual": "payoff",
+    "viz": {
+      "kind": "title",
+      "big": "WATCH IT LIKE AN INVESTOR.",
+      "sub": "EVERY MOMENT IS BUILT TO TRAVEL."
+    },
+    "startMs": 32857,
+    "endMs": 42857,
+    "words": [
+      {
+        "text": "So",
+        "startMs": 32857,
+        "endMs": 33178,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "this",
+        "startMs": 33214,
+        "endMs": 33536,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "weekend,",
+        "startMs": 33571,
+        "endMs": 33893,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "watch",
+        "startMs": 33928,
+        "endMs": 34250,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "SummerSlam",
+        "startMs": 34286,
+        "endMs": 34607,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "like",
+        "startMs": 34643,
+        "endMs": 34964,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "an",
+        "startMs": 35000,
+        "endMs": 35321,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "investor.",
+        "startMs": 35357,
+        "endMs": 35678,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "Every",
+        "startMs": 35714,
+        "endMs": 36036,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "big",
+        "startMs": 36071,
+        "endMs": 36393,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "moment",
+        "startMs": 36428,
+        "endMs": 36750,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "is",
+        "startMs": 36786,
+        "endMs": 37107,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "built",
+        "startMs": 37143,
+        "endMs": 37464,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "to",
+        "startMs": 37500,
+        "endMs": 37821,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "travel",
+        "startMs": 37857,
+        "endMs": 38178,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "—",
+        "startMs": 38214,
+        "endMs": 38536,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "a",
+        "startMs": 38571,
+        "endMs": 38893,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "clip,",
+        "startMs": 38928,
+        "endMs": 39250,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "a",
+        "startMs": 39286,
+        "endMs": 39607,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "thumbnail,",
+        "startMs": 39643,
+        "endMs": 39964,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "a",
+        "startMs": 40000,
+        "endMs": 40321,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "reason",
+        "startMs": 40357,
+        "endMs": 40678,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "to",
+        "startMs": 40714,
+        "endMs": 41036,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "subscribe.",
+        "startMs": 41071,
+        "endMs": 41393,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "That's",
+        "startMs": 41428,
+        "endMs": 41750,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "the",
+        "startMs": 41786,
+        "endMs": 42107,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "real",
+        "startMs": 42143,
+        "endMs": 42464,
+        "speaker": "george",
+        "lineIndex": 4
+      },
+      {
+        "text": "match.",
+        "startMs": 42500,
+        "endMs": 42821,
+        "speaker": "george",
+        "lineIndex": 4
+      }
+    ]
+  }
+]
