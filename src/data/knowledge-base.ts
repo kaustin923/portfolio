@@ -48,7 +48,7 @@ export const careerHistory = [
 export const education = {
   degree: "Bachelor of Business Administration, Kent State University, 2020",
   detail: "Major in Economics, minor in Entrepreneurship & Finance.",
-  note: "Kyle is not a CS graduate. He learned to build by building, and now leads engineers.",
+  note: "Kyle came up through economics and analytics, then moved into engineering. He learned to build by building, and now architects systems and leads developers.",
 };
 
 export const recognition = [

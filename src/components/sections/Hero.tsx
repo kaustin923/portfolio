@@ -104,9 +104,10 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.38 }}
           className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg"
         >
-          I embed with a client, get working software into their hands in weeks,
-          then scale it without a rewrite. Agent orchestration, knowledge graphs,
-          and production RAG. I lead a 5-developer team and still write the code.
+          I&apos;m a player-coach. I lead a five-developer team building AI for
+          Fortune 500 clients, and I still write code every day. I like the
+          problems where the answer has to be right: cost and schedule
+          forecasting, decarbonization, regulated reporting.
         </motion.p>
 
         {/* Proof strip */}

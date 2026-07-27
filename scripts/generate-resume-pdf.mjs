@@ -32,14 +32,23 @@ try {
   // Chromium only applies @page and print media through emulateMedia.
   await page.emulateMedia({ media: "print" });
   await mkdir(dirname(OUT), { recursive: true });
-  await page.pdf({
+  const buf = await page.pdf({
     path: OUT,
     format: "Letter",
     printBackground: true,
     preferCSSPageSize: true,
   });
 
-  console.log(`Wrote ${OUT}`);
+  // A resume that spills onto a second page is a bug, not a preference.
+  const pages = (buf.toString("latin1").match(/\/Type\s*\/Page[^s]/g) ?? [])
+    .length;
+  console.log(`Wrote ${OUT} (${pages} page${pages === 1 ? "" : "s"})`);
+  if (pages !== 1) {
+    console.error(
+      `\nERROR: expected 1 page, got ${pages}. Trim src/data/resume.ts or tighten src/app/resume/print/page.tsx.`
+    );
+    process.exitCode = 1;
+  }
 } finally {
   await browser.close();
 }

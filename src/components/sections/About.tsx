@@ -6,7 +6,7 @@ import { SectionWrapper } from "@/components/layout/SectionWrapper";
 const FACTS = [
   { label: "Now", value: "Manager at PwC, Tier 1 rated all four years" },
   { label: "Before", value: "Pricing Analyst at Progressive, $680M in premium" },
-  { label: "Studied", value: "BBA Economics, Kent State. Not a CS grad" },
+  { label: "Studied", value: "BBA Economics, Kent State University" },
   { label: "Industries", value: "Energy, financial services, consumer products, insurance, capital projects" },
 ];
 

@@ -2,7 +2,7 @@ import type { ResumeData } from "@/types";
 
 export const resumeData: ResumeData = {
   summary:
-    "Forward-deployed engineer and solutions architect who still writes the code. Manager at PwC, rated Tier 1 all four years. Six years in enterprise consulting and analytics, the last four building and leading AI delivery. I embed with a client, get working software into their hands in weeks, and scale it without a rewrite. Right now that means a 5-developer onshore and offshore team on a $1.5M capital project platform, a Neo4j knowledge graph suite for decarbonization, and an agent harness that runs the whole engagement out of GitHub. I co-founded our practice's AI Transformation Office and grew adoption from 54% to 99%. Recipient of the PwC [A]mplify [I]mpact Luminary Award, the firm's highest AI honor, as 1 of 9 recipients across the US Acceleration Centers.",
+    "Forward-deployed engineer and solutions architect who still writes the code. Manager at PwC, rated Tier 1 all four years, leading a 5-developer onshore and offshore team on a $1.5M capital project platform. Six years in enterprise consulting and analytics, the last four building and leading AI delivery: agent orchestration, Neo4j knowledge graphs, and production RAG. Recipient of the PwC [A]mplify [I]mpact Luminary Award, the firm's highest AI honor, 1 of 9 recipients across the US Acceleration Centers.",
 
   skills: [
     {
@@ -28,14 +28,13 @@ export const resumeData: ResumeData = {
       company: "PwC (PricewaterhouseCoopers)",
       period: "July 2025 - Present",
       bullets: [
-        "Lead a 5-developer onshore and offshore team building a $1.5M capital project platform that unifies cost, schedule, and risk in one cockpit. Integrates Primavera P6 and Excel, and AI forecasts schedule slip and cost overrun, triaging the data for early risk detection across projects. Got working software into the client's hands in 3 weeks, now shipping on 3-week cycles from proof of concept to scaled app",
-        "Run that delivery entirely out of GitHub, one hub for code, project management, and reporting, built with Claude Code and Codex. Custom Teams and SharePoint MCP servers pull daily standup notes and generate action items, weekly status reports, client comms, milestone and risk tracking, and resource plans. Status is derived from what shipped, not from what someone remembered to report",
+        "Lead a 5-developer onshore and offshore team on a $1.5M capital project platform unifying cost, schedule, and risk in one cockpit. Integrates Primavera P6 and Excel; AI forecasts schedule slip and cost overrun for early risk detection across projects. Working software in 3 weeks, now shipping on 3-week cycles",
+        "Run the entire delivery out of GitHub, built with Claude Code and Codex. Custom Teams and SharePoint MCP servers pull daily standup notes and generate action items, weekly status, client comms, and risk tracking, so reporting derives from what actually shipped",
         "Architect and manage the dev team on a Neo4j knowledge graph suite for decarbonization modeling and reporting. Cypher traversals expose data lineage gaps and downstream impact. Deployed on AKS via Azure DevOps CI/CD with Azure SSO, Key Vault secrets management, and automated security scanning gates",
         "Co-founded the AI Transformation Office for a 500+ person practice. Grew AI adoption from 54% to 99% through hands-on training, executive coaching, and reworking how we deliver AI-powered services",
         "Won and delivered a $325K engagement for a global food and beverage company. Shipped Power Automate and CoPilot Studio agent flows with Claude Code. Initial solution in 2 days, 12-week timeline compressed to 4",
         "Shipped a RAG-powered gap assessment tool (92% accuracy vs. manual review) used on 20+ client engagements; ingests Excel, PDF, and Word via ADA-003 embeddings and semantic similarity search",
-        "Prototyped AI solutions for 25+ go-to-market efforts and presented to Fortune 500 executives across four industries; run biweekly engineering upskilling and weekly partner/director sessions",
-        "Presented at the NARUC Spring Conference (April 2026) on AI, data centers, and large load rate impacts, and led a 75-minute AI session at an executive leadership conference",
+        "Function as a solutions engineer across the full sales cycle: prototyped AI for 25+ go-to-market efforts, led ~15 client conversations, and presented to Fortune 500 executives across four industries",
       ],
     },
     {
@@ -43,11 +42,10 @@ export const resumeData: ResumeData = {
       company: "PwC",
       period: "June 2023 - July 2025",
       bullets: [
-        "Led a 1.5-year enterprise data migration end-to-end: untangled data across organizational silos, built the migration strategy with executives, and consolidated 27 distinct migration scenarios into a structured Postgres database on GCP",
-        "Developed GenAI automation on Azure OpenAI for Fortune 500 clients: end-to-end review pipelines with custom UX across multiple industries",
-        "Architected a climate platform with financial impact modeling and interactive visualizations; integrated context-aware AI agents with RAG-powered chat, source citations, and prompt injection safeguards",
-        "Built a GenAI model that scored and ranked 600+ climate surveys for go-to-market targeting; featured firm-wide in Assurance Inside as an AI innovation example",
-        "Created a GenAI emissions extraction tool in Python to scrape granular data from large PDFs, paired with a Climate Disclosure Report writer ensuring regulatory compliance",
+        "Led an 18-month enterprise data migration end-to-end: untangled data across organizational silos, built strategy with executives, and consolidated 27 distinct migration scenarios into Postgres on GCP",
+        "Architected a climate platform with financial impact modeling, context-aware AI agents, RAG-powered chat with source citations, and prompt injection safeguards on Azure OpenAI",
+        "Built GenAI review pipelines with custom UX for Fortune 500 clients across multiple industries",
+        "Built a GenAI model scoring 600+ climate surveys for go-to-market targeting, featured firm-wide in Assurance Inside; plus a Python emissions extraction tool and Climate Disclosure Report writer for regulatory compliance",
       ],
     },
     {

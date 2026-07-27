@@ -33,10 +33,10 @@ export default function ResumePrintPage() {
         .sheet {
           color: #111;
           font-size: 8.9pt;
-          line-height: 1.3;
+          line-height: 1.27;
           max-width: 7.4in;
           margin: 0 auto;
-          padding: 0.1in 0 0;
+          padding: 0.02in 0 0;
         }
         .sheet h1 {
           font-size: 18pt; font-weight: 700; letter-spacing: -0.02em; margin: 0;
@@ -47,18 +47,19 @@ export default function ResumePrintPage() {
         .sheet h2 {
           font-size: 9.6pt; font-weight: 700; text-transform: uppercase;
           letter-spacing: 0.06em; color: #2D5A3D;
-          margin: 9pt 0 3.5pt; padding-bottom: 1.5pt;
+          margin: 7pt 0 3pt; padding-bottom: 1.5pt;
           border-bottom: 0.8pt solid #2D5A3D;
         }
-        .sheet .role { display: flex; justify-content: space-between; gap: 12pt; margin-top: 6pt; }
+        .sheet .role { display: flex; justify-content: space-between; gap: 12pt; margin-top: 5pt; }
         .sheet .role:first-of-type { margin-top: 0; }
         .sheet .role strong { font-weight: 700; }
         .sheet .period { color: #444; white-space: nowrap; font-size: 8.2pt; }
         /* Tailwind's reset strips list markers, so put them back for print. */
         .sheet ul { margin: 2pt 0 0; padding-left: 11pt; list-style: disc outside; }
-        .sheet li { margin-bottom: 1.8pt; }
+        .sheet li { margin-bottom: 1.4pt; }
         .sheet li::marker { color: #2D5A3D; }
         .sheet .skill { margin-bottom: 2.5pt; }
+        .sheet .project { margin-bottom: 2.5pt; }
         .sheet .skill b { font-weight: 700; }
         .sheet p { margin: 0; }
         /* Keep a role and its first bullets together across a page break. */
@@ -104,17 +105,11 @@ export default function ResumePrintPage() {
 
         <section>
           <h2>Personal Projects</h2>
+          {/* One line each. Bulleting these is what pushed the PDF to two pages. */}
           {resumeData.personalProjects.map((p) => (
-            <div className="role-block" key={p.name}>
-              <div className="role">
-                <span>
-                  <strong>{p.name}</strong> ({p.tech})
-                </span>
-              </div>
-              <ul>
-                <li>{p.description}</li>
-              </ul>
-            </div>
+            <p className="project" key={p.name}>
+              <strong>{p.name}</strong> ({p.tech}): {p.description}
+            </p>
           ))}
         </section>
 

@@ -19,20 +19,20 @@ test.describe("Resume", () => {
       resume.getByText("PricewaterhouseCoopers", { exact: false })
     ).toBeVisible();
 
-    // Education should be closed (content not visible)
-    await expect(page.getByText("Kent State University")).not.toBeVisible();
+    // Education should be closed (content not visible). Scope to the resume
+    // section; the About section also names the school.
+    await expect(resume.getByText("Kent State University")).not.toBeVisible();
   });
 
   test("click to expand and collapse sections", async ({ page }) => {
-    // Expand Education
-    const eduButton = page.getByRole("button", { name: "Education" });
+    const resume = page.locator("#resume");
+    const eduButton = resume.getByRole("button", { name: "Education" });
     await eduButton.scrollIntoViewIfNeeded();
     await eduButton.click();
-    await expect(page.getByText("Kent State University")).toBeVisible();
+    await expect(resume.getByText("Kent State University")).toBeVisible();
 
-    // Collapse it
     await eduButton.click();
-    await expect(page.getByText("Kent State University")).not.toBeVisible();
+    await expect(resume.getByText("Kent State University")).not.toBeVisible();
   });
 
   test("PDF download link has correct attributes", async ({ page }) => {
