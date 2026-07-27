@@ -1,0 +1,1522 @@
+{
+  "durationMs": 43224,
+  "durationInFrames": 1297,
+  "words": [
+    {
+      "text": "Put",
+      "startMs": 190,
+      "endMs": 230
+    },
+    {
+      "text": "your",
+      "startMs": 230,
+      "endMs": 580
+    },
+    {
+      "text": "phone",
+      "startMs": 580,
+      "endMs": 910
+    },
+    {
+      "text": "in",
+      "startMs": 910,
+      "endMs": 1060
+    },
+    {
+      "text": "airplane",
+      "startMs": 1060,
+      "endMs": 1670
+    },
+    {
+      "text": "mode.",
+      "startMs": 1670,
+      "endMs": 2030
+    },
+    {
+      "text": "It",
+      "startMs": 2250,
+      "endMs": 2290
+    },
+    {
+      "text": "can",
+      "startMs": 2290,
+      "endMs": 2480
+    },
+    {
+      "text": "still",
+      "startMs": 2480,
+      "endMs": 2870
+    },
+    {
+      "text": "transcribe",
+      "startMs": 2870,
+      "endMs": 3350
+    },
+    {
+      "text": "every",
+      "startMs": 3680,
+      "endMs": 3970
+    },
+    {
+      "text": "word",
+      "startMs": 3970,
+      "endMs": 4190
+    },
+    {
+      "text": "you",
+      "startMs": 4190,
+      "endMs": 4370
+    },
+    {
+      "text": "say.",
+      "startMs": 4370,
+      "endMs": 4560
+    },
+    {
+      "text": "Here's",
+      "startMs": 5360,
+      "endMs": 5400
+    },
+    {
+      "text": "what",
+      "startMs": 5550,
+      "endMs": 5710
+    },
+    {
+      "text": "changed:",
+      "startMs": 5710,
+      "endMs": 6440
+    },
+    {
+      "text": "speech",
+      "startMs": 6800,
+      "endMs": 7230
+    },
+    {
+      "text": "AI",
+      "startMs": 7230,
+      "endMs": 7620
+    },
+    {
+      "text": "used",
+      "startMs": 7620,
+      "endMs": 7660
+    },
+    {
+      "text": "to",
+      "startMs": 7660,
+      "endMs": 7800
+    },
+    {
+      "text": "live",
+      "startMs": 7800,
+      "endMs": 8090
+    },
+    {
+      "text": "on",
+      "startMs": 8090,
+      "endMs": 8230
+    },
+    {
+      "text": "giant",
+      "startMs": 8230,
+      "endMs": 8590
+    },
+    {
+      "text": "servers.",
+      "startMs": 8590,
+      "endMs": 9100
+    },
+    {
+      "text": "Engineers",
+      "startMs": 9360,
+      "endMs": 10960
+    },
+    {
+      "text": "shrank",
+      "startMs": 11000,
+      "endMs": 11200
+    },
+    {
+      "text": "those",
+      "startMs": 11200,
+      "endMs": 11440
+    },
+    {
+      "text": "models",
+      "startMs": 11440,
+      "endMs": 11840
+    },
+    {
+      "text": "until",
+      "startMs": 11840,
+      "endMs": 12190
+    },
+    {
+      "text": "they",
+      "startMs": 12190,
+      "endMs": 12420
+    },
+    {
+      "text": "fit",
+      "startMs": 12420,
+      "endMs": 12530
+    },
+    {
+      "text": "on",
+      "startMs": 12530,
+      "endMs": 12640
+    },
+    {
+      "text": "the",
+      "startMs": 12640,
+      "endMs": 12840
+    },
+    {
+      "text": "chip",
+      "startMs": 12840,
+      "endMs": 13140
+    },
+    {
+      "text": "already",
+      "startMs": 13140,
+      "endMs": 13450
+    },
+    {
+      "text": "in",
+      "startMs": 13450,
+      "endMs": 13560
+    },
+    {
+      "text": "your",
+      "startMs": 13560,
+      "endMs": 14100
+    },
+    {
+      "text": "pocket",
+      "startMs": 14100,
+      "endMs": 14140
+    },
+    {
+      "text": "—",
+      "startMs": 14140,
+      "endMs": 14400
+    },
+    {
+      "text": "same",
+      "startMs": 14400,
+      "endMs": 14790
+    },
+    {
+      "text": "ability,",
+      "startMs": 14790,
+      "endMs": 15320
+    },
+    {
+      "text": "a",
+      "startMs": 15480,
+      "endMs": 15560
+    },
+    {
+      "text": "fraction",
+      "startMs": 15560,
+      "endMs": 16230
+    },
+    {
+      "text": "of",
+      "startMs": 16230,
+      "endMs": 16390
+    },
+    {
+      "text": "the",
+      "startMs": 16390,
+      "endMs": 16590
+    },
+    {
+      "text": "size.",
+      "startMs": 16590,
+      "endMs": 16970
+    },
+    {
+      "text": "That",
+      "startMs": 17760,
+      "endMs": 17950
+    },
+    {
+      "text": "shrink",
+      "startMs": 17950,
+      "endMs": 18110
+    },
+    {
+      "text": "is",
+      "startMs": 18110,
+      "endMs": 18340
+    },
+    {
+      "text": "a",
+      "startMs": 18340,
+      "endMs": 18380
+    },
+    {
+      "text": "privacy",
+      "startMs": 18380,
+      "endMs": 18930
+    },
+    {
+      "text": "shift:",
+      "startMs": 18930,
+      "endMs": 19350
+    },
+    {
+      "text": "your",
+      "startMs": 19600,
+      "endMs": 20020
+    },
+    {
+      "text": "voice",
+      "startMs": 20020,
+      "endMs": 20350
+    },
+    {
+      "text": "becomes",
+      "startMs": 20350,
+      "endMs": 20930
+    },
+    {
+      "text": "text",
+      "startMs": 20930,
+      "endMs": 21260
+    },
+    {
+      "text": "on",
+      "startMs": 21260,
+      "endMs": 21420
+    },
+    {
+      "text": "the",
+      "startMs": 21420,
+      "endMs": 21670
+    },
+    {
+      "text": "device,",
+      "startMs": 21670,
+      "endMs": 22240
+    },
+    {
+      "text": "so",
+      "startMs": 22240,
+      "endMs": 22430
+    },
+    {
+      "text": "the",
+      "startMs": 22430,
+      "endMs": 22590
+    },
+    {
+      "text": "recording",
+      "startMs": 22590,
+      "endMs": 23180
+    },
+    {
+      "text": "never",
+      "startMs": 23180,
+      "endMs": 23530
+    },
+    {
+      "text": "leaves",
+      "startMs": 23530,
+      "endMs": 23930
+    },
+    {
+      "text": "your",
+      "startMs": 23930,
+      "endMs": 24470
+    },
+    {
+      "text": "hand.",
+      "startMs": 24470,
+      "endMs": 24510
+    },
+    {
+      "text": "And",
+      "startMs": 24670,
+      "endMs": 24870
+    },
+    {
+      "text": "offline",
+      "startMs": 24870,
+      "endMs": 25350
+    },
+    {
+      "text": "means",
+      "startMs": 25350,
+      "endMs": 25690
+    },
+    {
+      "text": "everywhere",
+      "startMs": 25690,
+      "endMs": 26370
+    },
+    {
+      "text": "—",
+      "startMs": 26370,
+      "endMs": 26620
+    },
+    {
+      "text": "live",
+      "startMs": 26620,
+      "endMs": 27840
+    },
+    {
+      "text": "captions",
+      "startMs": 27960,
+      "endMs": 28230
+    },
+    {
+      "text": "in",
+      "startMs": 28230,
+      "endMs": 28400
+    },
+    {
+      "text": "a",
+      "startMs": 28400,
+      "endMs": 28480
+    },
+    {
+      "text": "subway,",
+      "startMs": 28670,
+      "endMs": 29060
+    },
+    {
+      "text": "translation",
+      "startMs": 29120,
+      "endMs": 30010
+    },
+    {
+      "text": "on",
+      "startMs": 30010,
+      "endMs": 30170
+    },
+    {
+      "text": "a",
+      "startMs": 30170,
+      "endMs": 30250
+    },
+    {
+      "text": "plane,",
+      "startMs": 30250,
+      "endMs": 30740
+    },
+    {
+      "text": "voice",
+      "startMs": 30910,
+      "endMs": 31210
+    },
+    {
+      "text": "notes",
+      "startMs": 31210,
+      "endMs": 31610
+    },
+    {
+      "text": "with",
+      "startMs": 31610,
+      "endMs": 31930
+    },
+    {
+      "text": "zero",
+      "startMs": 31930,
+      "endMs": 32250
+    },
+    {
+      "text": "signal.",
+      "startMs": 32250,
+      "endMs": 32730
+    },
+    {
+      "text": "Your",
+      "startMs": 33040,
+      "endMs": 34080
+    },
+    {
+      "text": "phone's",
+      "startMs": 34080,
+      "endMs": 34120
+    },
+    {
+      "text": "mic",
+      "startMs": 34340,
+      "endMs": 34720
+    },
+    {
+      "text": "just",
+      "startMs": 34720,
+      "endMs": 35010
+    },
+    {
+      "text": "became",
+      "startMs": 35010,
+      "endMs": 35380
+    },
+    {
+      "text": "a",
+      "startMs": 35380,
+      "endMs": 35520
+    },
+    {
+      "text": "private",
+      "startMs": 35520,
+      "endMs": 36000
+    },
+    {
+      "text": "interpreter",
+      "startMs": 36000,
+      "endMs": 36850
+    },
+    {
+      "text": "that",
+      "startMs": 36850,
+      "endMs": 37160
+    },
+    {
+      "text": "works",
+      "startMs": 37160,
+      "endMs": 37540
+    },
+    {
+      "text": "anywhere.",
+      "startMs": 37540,
+      "endMs": 38260
+    },
+    {
+      "text": "The",
+      "startMs": 38410,
+      "endMs": 38620
+    },
+    {
+      "text": "next",
+      "startMs": 38620,
+      "endMs": 38940
+    },
+    {
+      "text": "wave",
+      "startMs": 38940,
+      "endMs": 39240
+    },
+    {
+      "text": "of",
+      "startMs": 39240,
+      "endMs": 39390
+    },
+    {
+      "text": "apps",
+      "startMs": 39390,
+      "endMs": 39700
+    },
+    {
+      "text": "will",
+      "startMs": 39700,
+      "endMs": 40010
+    },
+    {
+      "text": "quietly",
+      "startMs": 40010,
+      "endMs": 40550
+    },
+    {
+      "text": "assume",
+      "startMs": 40550,
+      "endMs": 41000
+    },
+    {
+      "text": "this.",
+      "startMs": 41000,
+      "endMs": 41600
+    },
+    {
+      "text": "You're",
+      "startMs": 41600,
+      "endMs": 41780
+    },
+    {
+      "text": "just",
+      "startMs": 41920,
+      "endMs": 42160
+    },
+    {
+      "text": "early.",
+      "startMs": 42160,
+      "endMs": 42870
+    }
+  ],
+  "captions": [
+    {
+      "id": "caption-1",
+      "text": "Put your phone in",
+      "startMs": 190,
+      "endMs": 1040,
+      "words": [
+        {
+          "text": "Put",
+          "startMs": 190,
+          "endMs": 230
+        },
+        {
+          "text": "your",
+          "startMs": 230,
+          "endMs": 580
+        },
+        {
+          "text": "phone",
+          "startMs": 580,
+          "endMs": 910
+        },
+        {
+          "text": "in",
+          "startMs": 910,
+          "endMs": 1060
+        }
+      ]
+    },
+    {
+      "id": "caption-2",
+      "text": "airplane mode.",
+      "startMs": 1060,
+      "endMs": 2030,
+      "words": [
+        {
+          "text": "airplane",
+          "startMs": 1060,
+          "endMs": 1670
+        },
+        {
+          "text": "mode.",
+          "startMs": 1670,
+          "endMs": 2030
+        }
+      ]
+    },
+    {
+      "id": "caption-3",
+      "text": "It can still",
+      "startMs": 2250,
+      "endMs": 2850,
+      "words": [
+        {
+          "text": "It",
+          "startMs": 2250,
+          "endMs": 2290
+        },
+        {
+          "text": "can",
+          "startMs": 2290,
+          "endMs": 2480
+        },
+        {
+          "text": "still",
+          "startMs": 2480,
+          "endMs": 2870
+        }
+      ]
+    },
+    {
+      "id": "caption-4",
+      "text": "transcribe every",
+      "startMs": 2870,
+      "endMs": 3950,
+      "words": [
+        {
+          "text": "transcribe",
+          "startMs": 2870,
+          "endMs": 3350
+        },
+        {
+          "text": "every",
+          "startMs": 3680,
+          "endMs": 3970
+        }
+      ]
+    },
+    {
+      "id": "caption-5",
+      "text": "word you say.",
+      "startMs": 3970,
+      "endMs": 4590,
+      "words": [
+        {
+          "text": "word",
+          "startMs": 3970,
+          "endMs": 4190
+        },
+        {
+          "text": "you",
+          "startMs": 4190,
+          "endMs": 4370
+        },
+        {
+          "text": "say.",
+          "startMs": 4370,
+          "endMs": 4560
+        }
+      ]
+    },
+    {
+      "id": "caption-6",
+      "text": "Here's what",
+      "startMs": 5360,
+      "endMs": 5920,
+      "words": [
+        {
+          "text": "Here's",
+          "startMs": 5360,
+          "endMs": 5400
+        },
+        {
+          "text": "what",
+          "startMs": 5550,
+          "endMs": 5710
+        }
+      ]
+    },
+    {
+      "id": "caption-7",
+      "text": "changed: speech",
+      "startMs": 5710,
+      "endMs": 7210,
+      "words": [
+        {
+          "text": "changed:",
+          "startMs": 5710,
+          "endMs": 6440
+        },
+        {
+          "text": "speech",
+          "startMs": 6800,
+          "endMs": 7230
+        }
+      ]
+    },
+    {
+      "id": "caption-8",
+      "text": "AI used to live",
+      "startMs": 7230,
+      "endMs": 8070,
+      "words": [
+        {
+          "text": "AI",
+          "startMs": 7230,
+          "endMs": 7620
+        },
+        {
+          "text": "used",
+          "startMs": 7620,
+          "endMs": 7660
+        },
+        {
+          "text": "to",
+          "startMs": 7660,
+          "endMs": 7800
+        },
+        {
+          "text": "live",
+          "startMs": 7800,
+          "endMs": 8090
+        }
+      ]
+    },
+    {
+      "id": "caption-9",
+      "text": "on giant",
+      "startMs": 8090,
+      "endMs": 8650,
+      "words": [
+        {
+          "text": "on",
+          "startMs": 8090,
+          "endMs": 8230
+        },
+        {
+          "text": "giant",
+          "startMs": 8230,
+          "endMs": 8590
+        }
+      ]
+    },
+    {
+      "id": "caption-10",
+      "text": "servers. Engineers",
+      "startMs": 8590,
+      "endMs": 10960,
+      "words": [
+        {
+          "text": "servers.",
+          "startMs": 8590,
+          "endMs": 9100
+        },
+        {
+          "text": "Engineers",
+          "startMs": 9360,
+          "endMs": 10960
+        }
+      ]
+    },
+    {
+      "id": "caption-11",
+      "text": "shrank those models",
+      "startMs": 11000,
+      "endMs": 11820,
+      "words": [
+        {
+          "text": "shrank",
+          "startMs": 11000,
+          "endMs": 11200
+        },
+        {
+          "text": "those",
+          "startMs": 11200,
+          "endMs": 11440
+        },
+        {
+          "text": "models",
+          "startMs": 11440,
+          "endMs": 11840
+        }
+      ]
+    },
+    {
+      "id": "caption-12",
+      "text": "until they fit on",
+      "startMs": 11840,
+      "endMs": 12620,
+      "words": [
+        {
+          "text": "until",
+          "startMs": 11840,
+          "endMs": 12190
+        },
+        {
+          "text": "they",
+          "startMs": 12190,
+          "endMs": 12420
+        },
+        {
+          "text": "fit",
+          "startMs": 12420,
+          "endMs": 12530
+        },
+        {
+          "text": "on",
+          "startMs": 12530,
+          "endMs": 12640
+        }
+      ]
+    },
+    {
+      "id": "caption-13",
+      "text": "the chip already",
+      "startMs": 12640,
+      "endMs": 13430,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 12640,
+          "endMs": 12840
+        },
+        {
+          "text": "chip",
+          "startMs": 12840,
+          "endMs": 13140
+        },
+        {
+          "text": "already",
+          "startMs": 13140,
+          "endMs": 13450
+        }
+      ]
+    },
+    {
+      "id": "caption-14",
+      "text": "in your pocket",
+      "startMs": 13450,
+      "endMs": 14120,
+      "words": [
+        {
+          "text": "in",
+          "startMs": 13450,
+          "endMs": 13560
+        },
+        {
+          "text": "your",
+          "startMs": 13560,
+          "endMs": 14100
+        },
+        {
+          "text": "pocket",
+          "startMs": 14100,
+          "endMs": 14140
+        }
+      ]
+    },
+    {
+      "id": "caption-15",
+      "text": "— same",
+      "startMs": 14140,
+      "endMs": 14770,
+      "words": [
+        {
+          "text": "—",
+          "startMs": 14140,
+          "endMs": 14400
+        },
+        {
+          "text": "same",
+          "startMs": 14400,
+          "endMs": 14790
+        }
+      ]
+    },
+    {
+      "id": "caption-16",
+      "text": "ability, a",
+      "startMs": 14790,
+      "endMs": 15540,
+      "words": [
+        {
+          "text": "ability,",
+          "startMs": 14790,
+          "endMs": 15320
+        },
+        {
+          "text": "a",
+          "startMs": 15480,
+          "endMs": 15560
+        }
+      ]
+    },
+    {
+      "id": "caption-17",
+      "text": "fraction of",
+      "startMs": 15560,
+      "endMs": 16370,
+      "words": [
+        {
+          "text": "fraction",
+          "startMs": 15560,
+          "endMs": 16230
+        },
+        {
+          "text": "of",
+          "startMs": 16230,
+          "endMs": 16390
+        }
+      ]
+    },
+    {
+      "id": "caption-18",
+      "text": "the size.",
+      "startMs": 16390,
+      "endMs": 17010,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 16390,
+          "endMs": 16590
+        },
+        {
+          "text": "size.",
+          "startMs": 16590,
+          "endMs": 16970
+        }
+      ]
+    },
+    {
+      "id": "caption-19",
+      "text": "That shrink is a",
+      "startMs": 17760,
+      "endMs": 18360,
+      "words": [
+        {
+          "text": "That",
+          "startMs": 17760,
+          "endMs": 17950
+        },
+        {
+          "text": "shrink",
+          "startMs": 17950,
+          "endMs": 18110
+        },
+        {
+          "text": "is",
+          "startMs": 18110,
+          "endMs": 18340
+        },
+        {
+          "text": "a",
+          "startMs": 18340,
+          "endMs": 18380
+        }
+      ]
+    },
+    {
+      "id": "caption-20",
+      "text": "privacy shift:",
+      "startMs": 18380,
+      "endMs": 19350,
+      "words": [
+        {
+          "text": "privacy",
+          "startMs": 18380,
+          "endMs": 18930
+        },
+        {
+          "text": "shift:",
+          "startMs": 18930,
+          "endMs": 19350
+        }
+      ]
+    },
+    {
+      "id": "caption-21",
+      "text": "your voice",
+      "startMs": 19600,
+      "endMs": 20330,
+      "words": [
+        {
+          "text": "your",
+          "startMs": 19600,
+          "endMs": 20020
+        },
+        {
+          "text": "voice",
+          "startMs": 20020,
+          "endMs": 20350
+        }
+      ]
+    },
+    {
+      "id": "caption-22",
+      "text": "becomes text",
+      "startMs": 20350,
+      "endMs": 21240,
+      "words": [
+        {
+          "text": "becomes",
+          "startMs": 20350,
+          "endMs": 20930
+        },
+        {
+          "text": "text",
+          "startMs": 20930,
+          "endMs": 21260
+        }
+      ]
+    },
+    {
+      "id": "caption-23",
+      "text": "on the",
+      "startMs": 21260,
+      "endMs": 21820,
+      "words": [
+        {
+          "text": "on",
+          "startMs": 21260,
+          "endMs": 21420
+        },
+        {
+          "text": "the",
+          "startMs": 21420,
+          "endMs": 21670
+        }
+      ]
+    },
+    {
+      "id": "caption-24",
+      "text": "device, so",
+      "startMs": 21670,
+      "endMs": 22410,
+      "words": [
+        {
+          "text": "device,",
+          "startMs": 21670,
+          "endMs": 22240
+        },
+        {
+          "text": "so",
+          "startMs": 22240,
+          "endMs": 22430
+        }
+      ]
+    },
+    {
+      "id": "caption-25",
+      "text": "the recording",
+      "startMs": 22430,
+      "endMs": 23160,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 22430,
+          "endMs": 22590
+        },
+        {
+          "text": "recording",
+          "startMs": 22590,
+          "endMs": 23180
+        }
+      ]
+    },
+    {
+      "id": "caption-26",
+      "text": "never leaves",
+      "startMs": 23180,
+      "endMs": 23910,
+      "words": [
+        {
+          "text": "never",
+          "startMs": 23180,
+          "endMs": 23530
+        },
+        {
+          "text": "leaves",
+          "startMs": 23530,
+          "endMs": 23930
+        }
+      ]
+    },
+    {
+      "id": "caption-27",
+      "text": "your hand.",
+      "startMs": 23930,
+      "endMs": 24550,
+      "words": [
+        {
+          "text": "your",
+          "startMs": 23930,
+          "endMs": 24470
+        },
+        {
+          "text": "hand.",
+          "startMs": 24470,
+          "endMs": 24510
+        }
+      ]
+    },
+    {
+      "id": "caption-28",
+      "text": "And offline",
+      "startMs": 24670,
+      "endMs": 25330,
+      "words": [
+        {
+          "text": "And",
+          "startMs": 24670,
+          "endMs": 24870
+        },
+        {
+          "text": "offline",
+          "startMs": 24870,
+          "endMs": 25350
+        }
+      ]
+    },
+    {
+      "id": "caption-29",
+      "text": "means everywhere",
+      "startMs": 25350,
+      "endMs": 26350,
+      "words": [
+        {
+          "text": "means",
+          "startMs": 25350,
+          "endMs": 25690
+        },
+        {
+          "text": "everywhere",
+          "startMs": 25690,
+          "endMs": 26370
+        }
+      ]
+    },
+    {
+      "id": "caption-30",
+      "text": "— live",
+      "startMs": 26370,
+      "endMs": 27840,
+      "words": [
+        {
+          "text": "—",
+          "startMs": 26370,
+          "endMs": 26620
+        },
+        {
+          "text": "live",
+          "startMs": 26620,
+          "endMs": 27840
+        }
+      ]
+    },
+    {
+      "id": "caption-31",
+      "text": "captions in a",
+      "startMs": 27960,
+      "endMs": 28580,
+      "words": [
+        {
+          "text": "captions",
+          "startMs": 27960,
+          "endMs": 28230
+        },
+        {
+          "text": "in",
+          "startMs": 28230,
+          "endMs": 28400
+        },
+        {
+          "text": "a",
+          "startMs": 28400,
+          "endMs": 28480
+        }
+      ]
+    },
+    {
+      "id": "caption-32",
+      "text": "subway, translation",
+      "startMs": 28670,
+      "endMs": 29990,
+      "words": [
+        {
+          "text": "subway,",
+          "startMs": 28670,
+          "endMs": 29060
+        },
+        {
+          "text": "translation",
+          "startMs": 29120,
+          "endMs": 30010
+        }
+      ]
+    },
+    {
+      "id": "caption-33",
+      "text": "on a plane,",
+      "startMs": 30010,
+      "endMs": 30740,
+      "words": [
+        {
+          "text": "on",
+          "startMs": 30010,
+          "endMs": 30170
+        },
+        {
+          "text": "a",
+          "startMs": 30170,
+          "endMs": 30250
+        },
+        {
+          "text": "plane,",
+          "startMs": 30250,
+          "endMs": 30740
+        }
+      ]
+    },
+    {
+      "id": "caption-34",
+      "text": "voice notes",
+      "startMs": 30910,
+      "endMs": 31590,
+      "words": [
+        {
+          "text": "voice",
+          "startMs": 30910,
+          "endMs": 31210
+        },
+        {
+          "text": "notes",
+          "startMs": 31210,
+          "endMs": 31610
+        }
+      ]
+    },
+    {
+      "id": "caption-35",
+      "text": "with zero",
+      "startMs": 31610,
+      "endMs": 32230,
+      "words": [
+        {
+          "text": "with",
+          "startMs": 31610,
+          "endMs": 31930
+        },
+        {
+          "text": "zero",
+          "startMs": 31930,
+          "endMs": 32250
+        }
+      ]
+    },
+    {
+      "id": "caption-36",
+      "text": "signal. Your",
+      "startMs": 32250,
+      "endMs": 34060,
+      "words": [
+        {
+          "text": "signal.",
+          "startMs": 32250,
+          "endMs": 32730
+        },
+        {
+          "text": "Your",
+          "startMs": 33040,
+          "endMs": 34080
+        }
+      ]
+    },
+    {
+      "id": "caption-37",
+      "text": "phone's mic",
+      "startMs": 34080,
+      "endMs": 34700,
+      "words": [
+        {
+          "text": "phone's",
+          "startMs": 34080,
+          "endMs": 34120
+        },
+        {
+          "text": "mic",
+          "startMs": 34340,
+          "endMs": 34720
+        }
+      ]
+    },
+    {
+      "id": "caption-38",
+      "text": "just became a",
+      "startMs": 34720,
+      "endMs": 35500,
+      "words": [
+        {
+          "text": "just",
+          "startMs": 34720,
+          "endMs": 35010
+        },
+        {
+          "text": "became",
+          "startMs": 35010,
+          "endMs": 35380
+        },
+        {
+          "text": "a",
+          "startMs": 35380,
+          "endMs": 35520
+        }
+      ]
+    },
+    {
+      "id": "caption-39",
+      "text": "private interpreter",
+      "startMs": 35520,
+      "endMs": 36830,
+      "words": [
+        {
+          "text": "private",
+          "startMs": 35520,
+          "endMs": 36000
+        },
+        {
+          "text": "interpreter",
+          "startMs": 36000,
+          "endMs": 36850
+        }
+      ]
+    },
+    {
+      "id": "caption-40",
+      "text": "that works",
+      "startMs": 36850,
+      "endMs": 37520,
+      "words": [
+        {
+          "text": "that",
+          "startMs": 36850,
+          "endMs": 37160
+        },
+        {
+          "text": "works",
+          "startMs": 37160,
+          "endMs": 37540
+        }
+      ]
+    },
+    {
+      "id": "caption-41",
+      "text": "anywhere. The",
+      "startMs": 37540,
+      "endMs": 38600,
+      "words": [
+        {
+          "text": "anywhere.",
+          "startMs": 37540,
+          "endMs": 38260
+        },
+        {
+          "text": "The",
+          "startMs": 38410,
+          "endMs": 38620
+        }
+      ]
+    },
+    {
+      "id": "caption-42",
+      "text": "next wave of",
+      "startMs": 38620,
+      "endMs": 39370,
+      "words": [
+        {
+          "text": "next",
+          "startMs": 38620,
+          "endMs": 38940
+        },
+        {
+          "text": "wave",
+          "startMs": 38940,
+          "endMs": 39240
+        },
+        {
+          "text": "of",
+          "startMs": 39240,
+          "endMs": 39390
+        }
+      ]
+    },
+    {
+      "id": "caption-43",
+      "text": "apps will",
+      "startMs": 39390,
+      "endMs": 39990,
+      "words": [
+        {
+          "text": "apps",
+          "startMs": 39390,
+          "endMs": 39700
+        },
+        {
+          "text": "will",
+          "startMs": 39700,
+          "endMs": 40010
+        }
+      ]
+    },
+    {
+      "id": "caption-44",
+      "text": "quietly assume",
+      "startMs": 40010,
+      "endMs": 40980,
+      "words": [
+        {
+          "text": "quietly",
+          "startMs": 40010,
+          "endMs": 40550
+        },
+        {
+          "text": "assume",
+          "startMs": 40550,
+          "endMs": 41000
+        }
+      ]
+    },
+    {
+      "id": "caption-45",
+      "text": "this. You're",
+      "startMs": 41000,
+      "endMs": 41780,
+      "words": [
+        {
+          "text": "this.",
+          "startMs": 41000,
+          "endMs": 41600
+        },
+        {
+          "text": "You're",
+          "startMs": 41600,
+          "endMs": 41780
+        }
+      ]
+    },
+    {
+      "id": "caption-46",
+      "text": "just early.",
+      "startMs": 41920,
+      "endMs": 42870,
+      "words": [
+        {
+          "text": "just",
+          "startMs": 41920,
+          "endMs": 42160
+        },
+        {
+          "text": "early.",
+          "startMs": 42160,
+          "endMs": 42870
+        }
+      ]
+    }
+  ],
+  "cues": [
+    {
+      "id": "hook",
+      "cue": "Put your phone in airplane mode",
+      "startMs": 0,
+      "score": 1,
+      "matchedText": "Put your phone in airplane mode.",
+      "fallback": false,
+      "endMs": 5360
+    },
+    {
+      "id": "cloud",
+      "cue": "Here's what changed",
+      "startMs": 5360,
+      "score": 1,
+      "matchedText": "Here's what changed:",
+      "fallback": false,
+      "endMs": 9360
+    },
+    {
+      "id": "shrink",
+      "cue": "Engineers shrank those models",
+      "startMs": 9360,
+      "score": 1,
+      "matchedText": "Engineers shrank those models",
+      "fallback": false,
+      "endMs": 17760
+    },
+    {
+      "id": "privacy",
+      "cue": "That shrink is a privacy shift",
+      "startMs": 17760,
+      "score": 1,
+      "matchedText": "That shrink is a privacy shift:",
+      "fallback": false,
+      "endMs": 24670
+    },
+    {
+      "id": "everywhere",
+      "cue": "And offline means everywhere",
+      "startMs": 24670,
+      "score": 1,
+      "matchedText": "And offline means everywhere",
+      "fallback": false,
+      "endMs": 33040
+    },
+    {
+      "id": "outro",
+      "cue": "Your phone's mic just became",
+      "startMs": 33040,
+      "score": 1,
+      "matchedText": "Your phone's mic just became",
+      "fallback": false,
+      "endMs": 43224
+    }
+  ]
+}

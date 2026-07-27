@@ -1,0 +1,5 @@
+[
+  { "source": "gdelt", "externalId": "gdelt-europe-heatwave", "title": "Europe heatwave", "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=Europe+heatwave&mode=timelinevol&timespan=7d&format=json", "score": 640, "velocity": 0.72, "category": "news-velocity", "capturedAt": "2026-07-19T09:00:00Z" },
+  { "source": "gdelt", "externalId": "gdelt-world-cup-qualifier", "title": "World Cup qualifier", "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=World+Cup+qualifier&mode=timelinevol&timespan=7d&format=json", "score": 510, "velocity": 0.58, "category": "news-velocity", "capturedAt": "2026-07-19T09:00:00Z" },
+  { "source": "gdelt", "externalId": "gdelt-console-showcase", "title": "Console studio showcase", "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=Console+studio+showcase&mode=timelinevol&timespan=7d&format=json", "score": 280, "velocity": 0.43, "category": "news-velocity", "capturedAt": "2026-07-19T09:00:00Z" }
+]

@@ -1,0 +1,854 @@
+{
+  "durationMs": 14342,
+  "durationInFrames": 431,
+  "words": [
+    {
+      "text": "George,",
+      "startMs": 70,
+      "endMs": 410,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "why",
+      "startMs": 530,
+      "endMs": 730,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "do",
+      "startMs": 730,
+      "endMs": 860,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "AI",
+      "startMs": 860,
+      "endMs": 1000,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "demos",
+      "startMs": 1000,
+      "endMs": 1370,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "feel",
+      "startMs": 1370,
+      "endMs": 1590,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "the",
+      "startMs": 1590,
+      "endMs": 1800,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "same?",
+      "startMs": 1800,
+      "endMs": 2320,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "One",
+      "startMs": 2320,
+      "endMs": 2560,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "voice",
+      "startMs": 2560,
+      "endMs": 2950,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "does",
+      "startMs": 2950,
+      "endMs": 3270,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "all",
+      "startMs": 3270,
+      "endMs": 3510,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "the",
+      "startMs": 3510,
+      "endMs": 3750,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "talking.",
+      "startMs": 3750,
+      "endMs": 4360,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "Let's",
+      "startMs": 4360,
+      "endMs": 4590,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "split",
+      "startMs": 4590,
+      "endMs": 4970,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "speakers",
+      "startMs": 4970,
+      "endMs": 5580,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "and",
+      "startMs": 5580,
+      "endMs": 5810,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "color",
+      "startMs": 5810,
+      "endMs": 6190,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "each",
+      "startMs": 6190,
+      "endMs": 6790,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "beat.",
+      "startMs": 6790,
+      "endMs": 6840,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "Charts",
+      "startMs": 7010,
+      "endMs": 7290,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "right,",
+      "startMs": 7290,
+      "endMs": 7620,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "counters",
+      "startMs": 7750,
+      "endMs": 8290,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "left.",
+      "startMs": 8290,
+      "endMs": 8560,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Better.",
+      "startMs": 8720,
+      "endMs": 9360,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Captions",
+      "startMs": 9680,
+      "endMs": 9940,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "follow",
+      "startMs": 10200,
+      "endMs": 10590,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "whoever",
+      "startMs": 10590,
+      "endMs": 11050,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "has",
+      "startMs": 11050,
+      "endMs": 11230,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "the",
+      "startMs": 11230,
+      "endMs": 11420,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "floor.",
+      "startMs": 11420,
+      "endMs": 11960,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "Now",
+      "startMs": 11960,
+      "endMs": 12250,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "it",
+      "startMs": 12250,
+      "endMs": 12440,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "feels",
+      "startMs": 12440,
+      "endMs": 12920,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "like",
+      "startMs": 12920,
+      "endMs": 13330,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "a",
+      "startMs": 13330,
+      "endMs": 13390,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "conversation.",
+      "startMs": 13390,
+      "endMs": 14550,
+      "speaker": "george",
+      "lineIndex": 5
+    }
+  ],
+  "captions": [
+    {
+      "id": "caption-1",
+      "text": "George, why do",
+      "startMs": 70,
+      "endMs": 840,
+      "words": [
+        {
+          "text": "George,",
+          "startMs": 70,
+          "endMs": 410,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "why",
+          "startMs": 530,
+          "endMs": 730,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "do",
+          "startMs": 730,
+          "endMs": 860,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-2",
+      "text": "AI demos feel",
+      "startMs": 860,
+      "endMs": 1570,
+      "words": [
+        {
+          "text": "AI",
+          "startMs": 860,
+          "endMs": 1000,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "demos",
+          "startMs": 1000,
+          "endMs": 1370,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "feel",
+          "startMs": 1370,
+          "endMs": 1590,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-3",
+      "text": "the same?",
+      "startMs": 1590,
+      "endMs": 2300,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 1590,
+          "endMs": 1800,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "same?",
+          "startMs": 1800,
+          "endMs": 2320,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-4",
+      "text": "One voice",
+      "startMs": 2320,
+      "endMs": 2930,
+      "words": [
+        {
+          "text": "One",
+          "startMs": 2320,
+          "endMs": 2560,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "voice",
+          "startMs": 2560,
+          "endMs": 2950,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-5",
+      "text": "does all the",
+      "startMs": 2950,
+      "endMs": 3730,
+      "words": [
+        {
+          "text": "does",
+          "startMs": 2950,
+          "endMs": 3270,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "all",
+          "startMs": 3270,
+          "endMs": 3510,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "the",
+          "startMs": 3510,
+          "endMs": 3750,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-6",
+      "text": "talking.",
+      "startMs": 3750,
+      "endMs": 4340,
+      "words": [
+        {
+          "text": "talking.",
+          "startMs": 3750,
+          "endMs": 4360,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-7",
+      "text": "Let's split",
+      "startMs": 4360,
+      "endMs": 4950,
+      "words": [
+        {
+          "text": "Let's",
+          "startMs": 4360,
+          "endMs": 4590,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "split",
+          "startMs": 4590,
+          "endMs": 4970,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-8",
+      "text": "speakers and",
+      "startMs": 4970,
+      "endMs": 5790,
+      "words": [
+        {
+          "text": "speakers",
+          "startMs": 4970,
+          "endMs": 5580,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "and",
+          "startMs": 5580,
+          "endMs": 5810,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-9",
+      "text": "color each",
+      "startMs": 5810,
+      "endMs": 6770,
+      "words": [
+        {
+          "text": "color",
+          "startMs": 5810,
+          "endMs": 6190,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "each",
+          "startMs": 6190,
+          "endMs": 6790,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-10",
+      "text": "beat.",
+      "startMs": 6790,
+      "endMs": 6990,
+      "words": [
+        {
+          "text": "beat.",
+          "startMs": 6790,
+          "endMs": 6840,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-11",
+      "text": "Charts right,",
+      "startMs": 7010,
+      "endMs": 7630,
+      "words": [
+        {
+          "text": "Charts",
+          "startMs": 7010,
+          "endMs": 7290,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "right,",
+          "startMs": 7290,
+          "endMs": 7620,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-12",
+      "text": "counters left.",
+      "startMs": 7750,
+      "endMs": 8560,
+      "words": [
+        {
+          "text": "counters",
+          "startMs": 7750,
+          "endMs": 8290,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "left.",
+          "startMs": 8290,
+          "endMs": 8560,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-13",
+      "text": "Better.",
+      "startMs": 8720,
+      "endMs": 9360,
+      "words": [
+        {
+          "text": "Better.",
+          "startMs": 8720,
+          "endMs": 9360,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-14",
+      "text": "Captions follow",
+      "startMs": 9680,
+      "endMs": 10570,
+      "words": [
+        {
+          "text": "Captions",
+          "startMs": 9680,
+          "endMs": 9940,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "follow",
+          "startMs": 10200,
+          "endMs": 10590,
+          "speaker": "jessica",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-15",
+      "text": "whoever has the",
+      "startMs": 10590,
+      "endMs": 11400,
+      "words": [
+        {
+          "text": "whoever",
+          "startMs": 10590,
+          "endMs": 11050,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "has",
+          "startMs": 11050,
+          "endMs": 11230,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "the",
+          "startMs": 11230,
+          "endMs": 11420,
+          "speaker": "jessica",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-16",
+      "text": "floor.",
+      "startMs": 11420,
+      "endMs": 11940,
+      "words": [
+        {
+          "text": "floor.",
+          "startMs": 11420,
+          "endMs": 11960,
+          "speaker": "jessica",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-17",
+      "text": "Now it",
+      "startMs": 11960,
+      "endMs": 12520,
+      "words": [
+        {
+          "text": "Now",
+          "startMs": 11960,
+          "endMs": 12250,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "it",
+          "startMs": 12250,
+          "endMs": 12440,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-18",
+      "text": "feels like",
+      "startMs": 12440,
+      "endMs": 13310,
+      "words": [
+        {
+          "text": "feels",
+          "startMs": 12440,
+          "endMs": 12920,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "like",
+          "startMs": 12920,
+          "endMs": 13330,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-19",
+      "text": "a conversation.",
+      "startMs": 13330,
+      "endMs": 14550,
+      "words": [
+        {
+          "text": "a",
+          "startMs": 13330,
+          "endMs": 13390,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "conversation.",
+          "startMs": 13390,
+          "endMs": 14550,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    }
+  ],
+  "cues": [
+    {
+      "id": "line-1",
+      "cue": "George, why do AI demos feel the same?",
+      "startMs": 0,
+      "endMs": 2416,
+      "score": 1,
+      "matchedText": "George, why do AI demos feel the same?",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "line-2",
+      "cue": "One voice does all the talking.",
+      "startMs": 2416,
+      "endMs": 4367,
+      "score": 1,
+      "matchedText": "One voice does all the talking.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "line-3",
+      "cue": "Let's split speakers and color each beat.",
+      "startMs": 4367,
+      "endMs": 6875,
+      "score": 1,
+      "matchedText": "Let's split speakers and color each beat.",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "line-4",
+      "cue": "Charts right, counters left. Better.",
+      "startMs": 6875,
+      "endMs": 9662,
+      "score": 1,
+      "matchedText": "Charts right, counters left. Better.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "line-5",
+      "cue": "Captions follow whoever has the floor.",
+      "startMs": 9662,
+      "endMs": 11985,
+      "score": 1,
+      "matchedText": "Captions follow whoever has the floor.",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "line-6",
+      "cue": "Now it feels like a conversation.",
+      "startMs": 11985,
+      "endMs": 14342,
+      "score": 1,
+      "matchedText": "Now it feels like a conversation.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 5
+    }
+  ],
+  "lineTimings": [
+    {
+      "id": "line-1",
+      "lineIndex": 0,
+      "speaker": "jessica",
+      "text": "George, why do AI demos feel the same?",
+      "visual": "phone waveform reacting to two speakers",
+      "startMs": 0,
+      "endMs": 2276
+    },
+    {
+      "id": "line-2",
+      "lineIndex": 1,
+      "speaker": "george",
+      "text": "One voice does all the talking.",
+      "visual": "counter showing one voice",
+      "startMs": 2416,
+      "endMs": 4227
+    },
+    {
+      "id": "line-3",
+      "lineIndex": 2,
+      "speaker": "jessica",
+      "text": "Let's split speakers and color each beat.",
+      "visual": "card with two speaker channels",
+      "startMs": 4367,
+      "endMs": 6735
+    },
+    {
+      "id": "line-4",
+      "lineIndex": 3,
+      "speaker": "george",
+      "text": "Charts right, counters left. Better.",
+      "visual": "bar chart comparing one voice and two voices",
+      "startMs": 6875,
+      "endMs": 9522
+    },
+    {
+      "id": "line-5",
+      "lineIndex": 4,
+      "speaker": "jessica",
+      "text": "Captions follow whoever has the floor.",
+      "visual": "active words hand the spotlight back and forth",
+      "startMs": 9662,
+      "endMs": 11845
+    },
+    {
+      "id": "line-6",
+      "lineIndex": 5,
+      "speaker": "george",
+      "text": "Now it feels like a conversation.",
+      "visual": "phone audio waveform resolving into two voices",
+      "startMs": 11985,
+      "endMs": 13982
+    }
+  ]
+}

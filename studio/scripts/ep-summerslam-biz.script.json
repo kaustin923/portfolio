@@ -1,0 +1,45 @@
+{
+  "id": "ep-summerslam-biz",
+  "title": "WWE Isn't a Wrestling Company",
+  "format": "narrator",
+  "eyebrow": "SUMMERSLAM · AUG 1-2",
+  "theme": { "name": "Gold Rope", "accent": "#D4AF37", "accentSoft": "rgba(212,175,55,.42)" },
+  "voices": { "jessica": { "voiceId": "cjVigY5qzO86Huf0OWal" }, "george": { "voiceId": "cjVigY5qzO86Huf0OWal" } },
+  "dialogueModel": "eleven_v3",
+  "dialogueSettings": { "stability": 0.3 },
+  "playbackSpeed": 1.35,
+  "lines": [
+    {
+      "speaker": "george",
+      "text": "SummerSlam looks like a wrestling show. [exhales] It's actually a streaming product now — and once you see it, you can't unsee it.",
+      "visual": "hook",
+      "viz": { "kind": "title", "big": "WWE ISN'T A WRESTLING COMPANY.", "sub": "WHAT SUMMERSLAM ACTUALLY IS", "dateChip": "AUG 1-2, 2026" }
+    },
+    {
+      "speaker": "george",
+      "text": "Follow the money. Netflix pays five billion over ten years — Raw's the crown jewel. ESPN pays another one-point-six billion just for the big events, like SummerSlam.",
+      "visual": "the deals",
+      "viz": { "kind": "split", "left": { "label": "NETFLIX · 10 YRS", "value": "$5B" }, "right": { "label": "ESPN · BIG EVENTS", "value": "$1.6B" }, "stamp": "THE REAL PRODUCT" }
+    },
+    {
+      "speaker": "george",
+      "text": "Media money is now fifty-nine percent of everything WWE makes. Tickets? Twenty-four. The show in the arena is basically a TV set.",
+      "visual": "revenue mix",
+      "viz": { "kind": "compareBars", "unit": "%", "bars": [ { "label": "MEDIA RIGHTS", "value": 59, "tone": "accent" }, { "label": "LIVE EVENTS", "value": 24, "tone": "bone" } ], "reference": { "label": "OF $1.7B REVENUE, 2025", "value": 59 } }
+    },
+    {
+      "speaker": "george",
+      "text": "And it's working. Last year WWE out-earned UFC — one-point-seven billion to one-point-five. First time since they merged under TKO.",
+      "visual": "vs ufc",
+      "viz": { "kind": "split", "left": { "label": "WWE · 2025", "value": "$1.71B" }, "right": { "label": "UFC · 2025", "value": "$1.50B" }, "stamp": "FIRST TIME IN THE TKO ERA" }
+    },
+    {
+      "speaker": "george",
+      "text": "So this weekend, watch SummerSlam like an investor. Every big moment is built to travel — a clip, a thumbnail, a reason to subscribe. That's the real match.",
+      "visual": "payoff",
+      "viz": { "kind": "title", "big": "WATCH IT LIKE AN INVESTOR.", "sub": "EVERY MOMENT IS BUILT TO TRAVEL." }
+    }
+  ],
+  "caption": "SummerSlam looks like wrestling. It's actually a streaming product — $5B from Netflix, $1.6B from ESPN, and the first year WWE out-earned UFC. Watch it like an investor.",
+  "hashtags": ["#SummerSlam", "#WWE", "#Netflix", "#SportsBusiness", "#TKO"]
+}

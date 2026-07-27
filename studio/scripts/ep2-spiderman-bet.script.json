@@ -1,0 +1,126 @@
+{
+  "id": "ep2-spiderman-bet",
+  "title": "The Spider-Man Bet",
+  "theme": {
+    "name": "Web Red / Midnight Blue",
+    "accent": "#E0342B",
+    "accentSoft": "rgba(30,58,138,.5)"
+  },
+  "voices": {
+    "jessica": {
+      "voiceId": "cgSgspJ2msm6clMCkdW9"
+    },
+    "george": {
+      "voiceId": "cjVigY5qzO86Huf0OWal"
+    }
+  },
+  "dialogueModel": "eleven_v3",
+  "lines": [
+    {
+      "speaker": "jessica",
+      "text": "Okay \u2014 theaters just bet their whole year on one Spider-Man movie?",
+      "visual": "title",
+      "viz": {
+        "kind": "title",
+        "big": "ONE MOVIE. ONE QUARTER.",
+        "sub": "THE THEATER-CHAIN BET",
+        "dateChip": "JULY 31, 2026"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Pretty much. Brand New Day opens July thirty-first, and it's tracking near a hundred-ninety million. Biggest opening of the year.",
+      "visual": "range bar",
+      "viz": {
+        "kind": "rangeBar",
+        "label": "OPENING WEEKEND \u2014 DEADLINE TRACKING",
+        "unit": "M",
+        "low": 180,
+        "high": 190,
+        "compare": {
+          "label": "TOY STORY 5 \u2014 2026'S #1",
+          "value": 160
+        },
+        "badge": "BIGGEST OF 2026"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "That sounds amazing though. Why's it a bet?",
+      "visual": "skeptical"
+    },
+    {
+      "speaker": "george",
+      "text": "Because AMC lost six hundred thirty-two million last year. And every extra hundred million at the box office only adds them eighteen.",
+      "visual": "counter",
+      "viz": {
+        "kind": "counter",
+        "label": "AMC NET LOSS \u2014 FY2025, SEC FILING",
+        "prefix": "$",
+        "to": 632.4,
+        "unit": "M",
+        "negative": true,
+        "sub": "+$100M BOX OFFICE  \u2192  +$18M AMC EBITDA"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "So they don't just want it big. They need it huge.",
+      "visual": "meter",
+      "viz": {
+        "kind": "meter",
+        "from": "LOW",
+        "to": "MAX",
+        "label": "STAKES FOR AMC"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "And here's the catch: zero IMAX screens. Nolan's new movie locked every one of them for three weeks.",
+      "visual": "grid",
+      "viz": {
+        "kind": "grid",
+        "total": 24,
+        "filled": 24,
+        "filledLabel": "ODYSSEY",
+        "resultLabel": "BRAND NEW DAY  US IMAX: 0",
+        "caption": "3-WEEK EXCLUSIVE WINDOW"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "And if it misses?",
+      "visual": "downturn"
+    },
+    {
+      "speaker": "george",
+      "text": "Four billion in debt, stock under two bucks. So this isn't a premiere. It's the whole bet.",
+      "visual": "split",
+      "viz": {
+        "kind": "split",
+        "left": {
+          "label": "AMC DEBT",
+          "value": "$4.09B"
+        },
+        "right": {
+          "label": "AMC STOCK",
+          "value": "$1.95"
+        },
+        "stamp": "THE SPIDER-MAN BET \u2014 JULY 31"
+      }
+    }
+  ],
+  "caption": "Theater chains lost hundreds of millions last year. Now the whole quarter rides on one July 31 opening. Here's the math behind the Spider-Man bet.",
+  "hashtags": [
+    "#SpiderMan",
+    "#BoxOffice",
+    "#AMC",
+    "#MovieTheaters",
+    "#BrandNewDay",
+    "#Marvel"
+  ],
+  "dialogueSettings": {
+    "stability": 0.6,
+    "speed": 1.15
+  }
+}

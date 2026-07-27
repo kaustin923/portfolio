@@ -1,0 +1,1530 @@
+{
+  "durationMs": 23980,
+  "durationInFrames": 720,
+  "words": [
+    {
+      "text": "The",
+      "startMs": 0,
+      "endMs": 375,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "release",
+      "startMs": 417,
+      "endMs": 792,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "rewrote",
+      "startMs": 833,
+      "endMs": 1208,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "the",
+      "startMs": 1250,
+      "endMs": 1625,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "opening",
+      "startMs": 1667,
+      "endMs": 2042,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "weekend.",
+      "startMs": 2083,
+      "endMs": 2458,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "text": "The",
+      "startMs": 2640,
+      "endMs": 2921,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "forecast",
+      "startMs": 2953,
+      "endMs": 3234,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "cleared",
+      "startMs": 3265,
+      "endMs": 3546,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "the",
+      "startMs": 3578,
+      "endMs": 3859,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "old",
+      "startMs": 3890,
+      "endMs": 4171,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "benchmark",
+      "startMs": 4203,
+      "endMs": 4484,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "before",
+      "startMs": 4515,
+      "endMs": 4796,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "noon.",
+      "startMs": 4828,
+      "endMs": 5109,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "The",
+      "startMs": 5280,
+      "endMs": 5561,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "launch",
+      "startMs": 5593,
+      "endMs": 5874,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "still",
+      "startMs": 5905,
+      "endMs": 6186,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "carried",
+      "startMs": 6218,
+      "endMs": 6499,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "a",
+      "startMs": 6530,
+      "endMs": 6811,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "measurable",
+      "startMs": 6843,
+      "endMs": 7124,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "marketing",
+      "startMs": 7155,
+      "endMs": 7436,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "loss.",
+      "startMs": 7468,
+      "endMs": 7749,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "text": "One",
+      "startMs": 7920,
+      "endMs": 8241,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "licensing",
+      "startMs": 8277,
+      "endMs": 8599,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "deal",
+      "startMs": 8634,
+      "endMs": 8956,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "carried",
+      "startMs": 8991,
+      "endMs": 9313,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "the",
+      "startMs": 9349,
+      "endMs": 9670,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "entire",
+      "startMs": 9706,
+      "endMs": 10027,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "quarter.",
+      "startMs": 10063,
+      "endMs": 10384,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "The",
+      "startMs": 10560,
+      "endMs": 10810,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "channel",
+      "startMs": 10838,
+      "endMs": 11088,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "mix",
+      "startMs": 11116,
+      "endMs": 11366,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "landed",
+      "startMs": 11393,
+      "endMs": 11643,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "above",
+      "startMs": 11671,
+      "endMs": 11921,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "the",
+      "startMs": 11949,
+      "endMs": 12199,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "fifty",
+      "startMs": 12227,
+      "endMs": 12477,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "percent",
+      "startMs": 12504,
+      "endMs": 12754,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "target.",
+      "startMs": 12782,
+      "endMs": 13032,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "text": "Orbital",
+      "startMs": 13200,
+      "endMs": 13450,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "jumped",
+      "startMs": 13478,
+      "endMs": 13728,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "from",
+      "startMs": 13756,
+      "endMs": 14006,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "fourth",
+      "startMs": 14033,
+      "endMs": 14283,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "place",
+      "startMs": 14311,
+      "endMs": 14561,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "to",
+      "startMs": 14589,
+      "endMs": 14839,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "the",
+      "startMs": 14867,
+      "endMs": 15117,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "top",
+      "startMs": 15144,
+      "endMs": 15394,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "spot.",
+      "startMs": 15422,
+      "endMs": 15672,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "text": "Audience",
+      "startMs": 15840,
+      "endMs": 16161,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "demand",
+      "startMs": 16197,
+      "endMs": 16519,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "moved",
+      "startMs": 16554,
+      "endMs": 16876,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "from",
+      "startMs": 16911,
+      "endMs": 17233,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "low",
+      "startMs": 17269,
+      "endMs": 17590,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "to",
+      "startMs": 17626,
+      "endMs": 17947,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "maximum.",
+      "startMs": 17983,
+      "endMs": 18304,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "text": "Seven",
+      "startMs": 18480,
+      "endMs": 18705,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "premium",
+      "startMs": 18730,
+      "endMs": 18955,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "screens",
+      "startMs": 18980,
+      "endMs": 19205,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "sold",
+      "startMs": 19230,
+      "endMs": 19455,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "out,",
+      "startMs": 19480,
+      "endMs": 19705,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "while",
+      "startMs": 19730,
+      "endMs": 19955,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "IMAX",
+      "startMs": 19980,
+      "endMs": 20205,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "stayed",
+      "startMs": 20230,
+      "endMs": 20455,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "at",
+      "startMs": 20480,
+      "endMs": 20705,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "zero.",
+      "startMs": 20730,
+      "endMs": 20955,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "text": "Domestic",
+      "startMs": 21120,
+      "endMs": 21401,
+      "speaker": "jessica",
+      "lineIndex": 8
+    },
+    {
+      "text": "and",
+      "startMs": 21433,
+      "endMs": 21714,
+      "speaker": "jessica",
+      "lineIndex": 8
+    },
+    {
+      "text": "international",
+      "startMs": 21745,
+      "endMs": 22026,
+      "speaker": "jessica",
+      "lineIndex": 8
+    },
+    {
+      "text": "revenue",
+      "startMs": 22058,
+      "endMs": 22339,
+      "speaker": "jessica",
+      "lineIndex": 8
+    },
+    {
+      "text": "closed",
+      "startMs": 22370,
+      "endMs": 22651,
+      "speaker": "jessica",
+      "lineIndex": 8
+    },
+    {
+      "text": "at",
+      "startMs": 22683,
+      "endMs": 22964,
+      "speaker": "jessica",
+      "lineIndex": 8
+    },
+    {
+      "text": "different",
+      "startMs": 22995,
+      "endMs": 23276,
+      "speaker": "jessica",
+      "lineIndex": 8
+    },
+    {
+      "text": "scales.",
+      "startMs": 23308,
+      "endMs": 23589,
+      "speaker": "jessica",
+      "lineIndex": 8
+    }
+  ],
+  "captions": [
+    {
+      "id": "caption-1",
+      "text": "The release",
+      "startMs": 0,
+      "endMs": 792,
+      "words": [
+        {
+          "text": "The",
+          "startMs": 0,
+          "endMs": 375,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "release",
+          "startMs": 417,
+          "endMs": 792,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-2",
+      "text": "rewrote the",
+      "startMs": 833,
+      "endMs": 1625,
+      "words": [
+        {
+          "text": "rewrote",
+          "startMs": 833,
+          "endMs": 1208,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "the",
+          "startMs": 1250,
+          "endMs": 1625,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-3",
+      "text": "opening weekend.",
+      "startMs": 1667,
+      "endMs": 2458,
+      "words": [
+        {
+          "text": "opening",
+          "startMs": 1667,
+          "endMs": 2042,
+          "speaker": "jessica",
+          "lineIndex": 0
+        },
+        {
+          "text": "weekend.",
+          "startMs": 2083,
+          "endMs": 2458,
+          "speaker": "jessica",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-4",
+      "text": "The forecast",
+      "startMs": 2640,
+      "endMs": 3245,
+      "words": [
+        {
+          "text": "The",
+          "startMs": 2640,
+          "endMs": 2921,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "forecast",
+          "startMs": 2953,
+          "endMs": 3234,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-5",
+      "text": "cleared the",
+      "startMs": 3265,
+      "endMs": 3870,
+      "words": [
+        {
+          "text": "cleared",
+          "startMs": 3265,
+          "endMs": 3546,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "the",
+          "startMs": 3578,
+          "endMs": 3859,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-6",
+      "text": "old benchmark",
+      "startMs": 3890,
+      "endMs": 4495,
+      "words": [
+        {
+          "text": "old",
+          "startMs": 3890,
+          "endMs": 4171,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "benchmark",
+          "startMs": 4203,
+          "endMs": 4484,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-7",
+      "text": "before noon.",
+      "startMs": 4515,
+      "endMs": 5135,
+      "words": [
+        {
+          "text": "before",
+          "startMs": 4515,
+          "endMs": 4796,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "noon.",
+          "startMs": 4828,
+          "endMs": 5109,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-8",
+      "text": "The launch",
+      "startMs": 5280,
+      "endMs": 5885,
+      "words": [
+        {
+          "text": "The",
+          "startMs": 5280,
+          "endMs": 5561,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "launch",
+          "startMs": 5593,
+          "endMs": 5874,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-9",
+      "text": "still carried",
+      "startMs": 5905,
+      "endMs": 6510,
+      "words": [
+        {
+          "text": "still",
+          "startMs": 5905,
+          "endMs": 6186,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "carried",
+          "startMs": 6218,
+          "endMs": 6499,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-10",
+      "text": "a measurable",
+      "startMs": 6530,
+      "endMs": 7135,
+      "words": [
+        {
+          "text": "a",
+          "startMs": 6530,
+          "endMs": 6811,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "measurable",
+          "startMs": 6843,
+          "endMs": 7124,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-11",
+      "text": "marketing loss.",
+      "startMs": 7155,
+      "endMs": 7775,
+      "words": [
+        {
+          "text": "marketing",
+          "startMs": 7155,
+          "endMs": 7436,
+          "speaker": "jessica",
+          "lineIndex": 2
+        },
+        {
+          "text": "loss.",
+          "startMs": 7468,
+          "endMs": 7749,
+          "speaker": "jessica",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-12",
+      "text": "One licensing",
+      "startMs": 7920,
+      "endMs": 8599,
+      "words": [
+        {
+          "text": "One",
+          "startMs": 7920,
+          "endMs": 8241,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "licensing",
+          "startMs": 8277,
+          "endMs": 8599,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-13",
+      "text": "deal carried",
+      "startMs": 8634,
+      "endMs": 9313,
+      "words": [
+        {
+          "text": "deal",
+          "startMs": 8634,
+          "endMs": 8956,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "carried",
+          "startMs": 8991,
+          "endMs": 9313,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-14",
+      "text": "the entire",
+      "startMs": 9349,
+      "endMs": 10027,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 9349,
+          "endMs": 9670,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "entire",
+          "startMs": 9706,
+          "endMs": 10027,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-15",
+      "text": "quarter.",
+      "startMs": 10063,
+      "endMs": 10540,
+      "words": [
+        {
+          "text": "quarter.",
+          "startMs": 10063,
+          "endMs": 10384,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-16",
+      "text": "The channel mix",
+      "startMs": 10560,
+      "endMs": 11366,
+      "words": [
+        {
+          "text": "The",
+          "startMs": 10560,
+          "endMs": 10810,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "channel",
+          "startMs": 10838,
+          "endMs": 11088,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "mix",
+          "startMs": 11116,
+          "endMs": 11366,
+          "speaker": "jessica",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-17",
+      "text": "landed above the",
+      "startMs": 11393,
+      "endMs": 12199,
+      "words": [
+        {
+          "text": "landed",
+          "startMs": 11393,
+          "endMs": 11643,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "above",
+          "startMs": 11671,
+          "endMs": 11921,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "the",
+          "startMs": 11949,
+          "endMs": 12199,
+          "speaker": "jessica",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-18",
+      "text": "fifty percent target.",
+      "startMs": 12227,
+      "endMs": 13032,
+      "words": [
+        {
+          "text": "fifty",
+          "startMs": 12227,
+          "endMs": 12477,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "percent",
+          "startMs": 12504,
+          "endMs": 12754,
+          "speaker": "jessica",
+          "lineIndex": 4
+        },
+        {
+          "text": "target.",
+          "startMs": 12782,
+          "endMs": 13032,
+          "speaker": "jessica",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-19",
+      "text": "Orbital jumped from",
+      "startMs": 13200,
+      "endMs": 14006,
+      "words": [
+        {
+          "text": "Orbital",
+          "startMs": 13200,
+          "endMs": 13450,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "jumped",
+          "startMs": 13478,
+          "endMs": 13728,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "from",
+          "startMs": 13756,
+          "endMs": 14006,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-20",
+      "text": "fourth place to",
+      "startMs": 14033,
+      "endMs": 14839,
+      "words": [
+        {
+          "text": "fourth",
+          "startMs": 14033,
+          "endMs": 14283,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "place",
+          "startMs": 14311,
+          "endMs": 14561,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "to",
+          "startMs": 14589,
+          "endMs": 14839,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-21",
+      "text": "the top spot.",
+      "startMs": 14867,
+      "endMs": 15672,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 14867,
+          "endMs": 15117,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "top",
+          "startMs": 15144,
+          "endMs": 15394,
+          "speaker": "george",
+          "lineIndex": 5
+        },
+        {
+          "text": "spot.",
+          "startMs": 15422,
+          "endMs": 15672,
+          "speaker": "george",
+          "lineIndex": 5
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "caption-22",
+      "text": "Audience demand",
+      "startMs": 15840,
+      "endMs": 16519,
+      "words": [
+        {
+          "text": "Audience",
+          "startMs": 15840,
+          "endMs": 16161,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "demand",
+          "startMs": 16197,
+          "endMs": 16519,
+          "speaker": "jessica",
+          "lineIndex": 6
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "id": "caption-23",
+      "text": "moved from",
+      "startMs": 16554,
+      "endMs": 17233,
+      "words": [
+        {
+          "text": "moved",
+          "startMs": 16554,
+          "endMs": 16876,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "from",
+          "startMs": 16911,
+          "endMs": 17233,
+          "speaker": "jessica",
+          "lineIndex": 6
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "id": "caption-24",
+      "text": "low to",
+      "startMs": 17269,
+      "endMs": 17947,
+      "words": [
+        {
+          "text": "low",
+          "startMs": 17269,
+          "endMs": 17590,
+          "speaker": "jessica",
+          "lineIndex": 6
+        },
+        {
+          "text": "to",
+          "startMs": 17626,
+          "endMs": 17947,
+          "speaker": "jessica",
+          "lineIndex": 6
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "id": "caption-25",
+      "text": "maximum.",
+      "startMs": 17983,
+      "endMs": 18460,
+      "words": [
+        {
+          "text": "maximum.",
+          "startMs": 17983,
+          "endMs": 18304,
+          "speaker": "jessica",
+          "lineIndex": 6
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "id": "caption-26",
+      "text": "Seven premium screens",
+      "startMs": 18480,
+      "endMs": 19205,
+      "words": [
+        {
+          "text": "Seven",
+          "startMs": 18480,
+          "endMs": 18705,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "premium",
+          "startMs": 18730,
+          "endMs": 18955,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "screens",
+          "startMs": 18980,
+          "endMs": 19205,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-27",
+      "text": "sold out, while",
+      "startMs": 19230,
+      "endMs": 19955,
+      "words": [
+        {
+          "text": "sold",
+          "startMs": 19230,
+          "endMs": 19455,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "out,",
+          "startMs": 19480,
+          "endMs": 19705,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "while",
+          "startMs": 19730,
+          "endMs": 19955,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-28",
+      "text": "IMAX stayed at",
+      "startMs": 19980,
+      "endMs": 20705,
+      "words": [
+        {
+          "text": "IMAX",
+          "startMs": 19980,
+          "endMs": 20205,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "stayed",
+          "startMs": 20230,
+          "endMs": 20455,
+          "speaker": "george",
+          "lineIndex": 7
+        },
+        {
+          "text": "at",
+          "startMs": 20480,
+          "endMs": 20705,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-29",
+      "text": "zero.",
+      "startMs": 20730,
+      "endMs": 21100,
+      "words": [
+        {
+          "text": "zero.",
+          "startMs": 20730,
+          "endMs": 20955,
+          "speaker": "george",
+          "lineIndex": 7
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "caption-30",
+      "text": "Domestic and",
+      "startMs": 21120,
+      "endMs": 21725,
+      "words": [
+        {
+          "text": "Domestic",
+          "startMs": 21120,
+          "endMs": 21401,
+          "speaker": "jessica",
+          "lineIndex": 8
+        },
+        {
+          "text": "and",
+          "startMs": 21433,
+          "endMs": 21714,
+          "speaker": "jessica",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 8
+    },
+    {
+      "id": "caption-31",
+      "text": "international revenue",
+      "startMs": 21745,
+      "endMs": 22350,
+      "words": [
+        {
+          "text": "international",
+          "startMs": 21745,
+          "endMs": 22026,
+          "speaker": "jessica",
+          "lineIndex": 8
+        },
+        {
+          "text": "revenue",
+          "startMs": 22058,
+          "endMs": 22339,
+          "speaker": "jessica",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 8
+    },
+    {
+      "id": "caption-32",
+      "text": "closed at",
+      "startMs": 22370,
+      "endMs": 22975,
+      "words": [
+        {
+          "text": "closed",
+          "startMs": 22370,
+          "endMs": 22651,
+          "speaker": "jessica",
+          "lineIndex": 8
+        },
+        {
+          "text": "at",
+          "startMs": 22683,
+          "endMs": 22964,
+          "speaker": "jessica",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 8
+    },
+    {
+      "id": "caption-33",
+      "text": "different scales.",
+      "startMs": 22995,
+      "endMs": 23615,
+      "words": [
+        {
+          "text": "different",
+          "startMs": 22995,
+          "endMs": 23276,
+          "speaker": "jessica",
+          "lineIndex": 8
+        },
+        {
+          "text": "scales.",
+          "startMs": 23308,
+          "endMs": 23589,
+          "speaker": "jessica",
+          "lineIndex": 8
+        }
+      ],
+      "speaker": "jessica",
+      "lineIndex": 8
+    }
+  ],
+  "cues": [
+    {
+      "id": "line-1",
+      "cue": "The release rewrote the opening weekend.",
+      "startMs": 0,
+      "endMs": 2640,
+      "score": 1,
+      "matchedText": "The release rewrote the opening weekend.",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 0
+    },
+    {
+      "id": "line-2",
+      "cue": "The forecast cleared the old benchmark before noon.",
+      "startMs": 2640,
+      "endMs": 5280,
+      "score": 1,
+      "matchedText": "The forecast cleared the old benchmark before noon.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "line-3",
+      "cue": "The launch still carried a measurable marketing loss.",
+      "startMs": 5280,
+      "endMs": 7920,
+      "score": 1,
+      "matchedText": "The launch still carried a measurable marketing loss.",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 2
+    },
+    {
+      "id": "line-4",
+      "cue": "One licensing deal carried the entire quarter.",
+      "startMs": 7920,
+      "endMs": 10560,
+      "score": 1,
+      "matchedText": "One licensing deal carried the entire quarter.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "line-5",
+      "cue": "The channel mix landed above the fifty percent target.",
+      "startMs": 10560,
+      "endMs": 13200,
+      "score": 1,
+      "matchedText": "The channel mix landed above the fifty percent target.",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 4
+    },
+    {
+      "id": "line-6",
+      "cue": "Orbital jumped from fourth place to the top spot.",
+      "startMs": 13200,
+      "endMs": 15840,
+      "score": 1,
+      "matchedText": "Orbital jumped from fourth place to the top spot.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 5
+    },
+    {
+      "id": "line-7",
+      "cue": "Audience demand moved from low to maximum.",
+      "startMs": 15840,
+      "endMs": 18480,
+      "score": 1,
+      "matchedText": "Audience demand moved from low to maximum.",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 6
+    },
+    {
+      "id": "line-8",
+      "cue": "Seven premium screens sold out, while IMAX stayed at zero.",
+      "startMs": 18480,
+      "endMs": 21120,
+      "score": 1,
+      "matchedText": "Seven premium screens sold out, while IMAX stayed at zero.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 7
+    },
+    {
+      "id": "line-9",
+      "cue": "Domestic and international revenue closed at different scales.",
+      "startMs": 21120,
+      "endMs": 23980,
+      "score": 1,
+      "matchedText": "Domestic and international revenue closed at different scales.",
+      "fallback": false,
+      "speaker": "jessica",
+      "lineIndex": 8
+    }
+  ],
+  "lineTimings": [
+    {
+      "id": "line-1",
+      "lineIndex": 0,
+      "speaker": "jessica",
+      "text": "The release rewrote the opening weekend.",
+      "visual": "writer note",
+      "startMs": 0,
+      "endMs": 2500
+    },
+    {
+      "id": "line-2",
+      "lineIndex": 1,
+      "speaker": "george",
+      "text": "The forecast cleared the old benchmark before noon.",
+      "visual": "writer note",
+      "startMs": 2640,
+      "endMs": 5140
+    },
+    {
+      "id": "line-3",
+      "lineIndex": 2,
+      "speaker": "jessica",
+      "text": "The launch still carried a measurable marketing loss.",
+      "visual": "writer note",
+      "startMs": 5280,
+      "endMs": 7780
+    },
+    {
+      "id": "line-4",
+      "lineIndex": 3,
+      "speaker": "george",
+      "text": "One licensing deal carried the entire quarter.",
+      "visual": "writer note",
+      "startMs": 7920,
+      "endMs": 10420
+    },
+    {
+      "id": "line-5",
+      "lineIndex": 4,
+      "speaker": "jessica",
+      "text": "The channel mix landed above the fifty percent target.",
+      "visual": "writer note",
+      "startMs": 10560,
+      "endMs": 13060
+    },
+    {
+      "id": "line-6",
+      "lineIndex": 5,
+      "speaker": "george",
+      "text": "Orbital jumped from fourth place to the top spot.",
+      "visual": "writer note",
+      "startMs": 13200,
+      "endMs": 15700
+    },
+    {
+      "id": "line-7",
+      "lineIndex": 6,
+      "speaker": "jessica",
+      "text": "Audience demand moved from low to maximum.",
+      "visual": "writer note",
+      "startMs": 15840,
+      "endMs": 18340
+    },
+    {
+      "id": "line-8",
+      "lineIndex": 7,
+      "speaker": "george",
+      "text": "Seven premium screens sold out, while IMAX stayed at zero.",
+      "visual": "writer note",
+      "startMs": 18480,
+      "endMs": 20980
+    },
+    {
+      "id": "line-9",
+      "lineIndex": 8,
+      "speaker": "jessica",
+      "text": "Domestic and international revenue closed at different scales.",
+      "visual": "writer note",
+      "startMs": 21120,
+      "endMs": 23620
+    }
+  ]
+}

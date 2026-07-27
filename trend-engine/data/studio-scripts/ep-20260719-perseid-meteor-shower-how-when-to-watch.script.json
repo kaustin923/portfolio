@@ -1,0 +1,41 @@
+{
+  "id": "ep-20260719-perseid-meteor-shower-how-when-to-watch",
+  "title": "Perseid meteor shower — how/when to watch",
+  "narration": "Why does this story matter now? First, timing explains attention: a visible event gives people a reason to care today, while the larger pattern was already forming. Second, stakes turn information into a useful decision because they show exactly who is affected and what may change next. Third, context keeps the lesson honest by separating evidence, interpretation, and uncertainty. Notice the early payoff: follow the event, identify the stakes, then test the angle against what actually happened. That simple sequence makes a fast story educational instead of merely urgent. So, why does this story matter now? Because timing, stakes, and context make the answer useful.",
+  "voice": {
+    "name": "ElevenLabs",
+    "rate": 178
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "cue": "Why does this story matter now",
+      "type": "edu-hook"
+    },
+    {
+      "id": "timing",
+      "cue": "First timing explains attention a visible",
+      "type": "edu-cloud"
+    },
+    {
+      "id": "stakes",
+      "cue": "Second stakes turn information into a",
+      "type": "edu-shrink"
+    },
+    {
+      "id": "context",
+      "cue": "Third context keeps the lesson honest",
+      "type": "edu-privacy"
+    },
+    {
+      "id": "payoff",
+      "cue": "Notice the early payoff follow the",
+      "type": "edu-everywhere"
+    },
+    {
+      "id": "outro",
+      "cue": "So why does this story matter",
+      "type": "edu-outro"
+    }
+  ]
+}

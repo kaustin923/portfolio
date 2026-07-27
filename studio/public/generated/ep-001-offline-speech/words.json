@@ -1,0 +1,652 @@
+[
+  {
+    "text": "put",
+    "startMs": 190,
+    "endMs": 230
+  },
+  {
+    "text": "your",
+    "startMs": 230,
+    "endMs": 580
+  },
+  {
+    "text": "phone",
+    "startMs": 580,
+    "endMs": 910
+  },
+  {
+    "text": "in",
+    "startMs": 910,
+    "endMs": 1060
+  },
+  {
+    "text": "airplane",
+    "startMs": 1060,
+    "endMs": 1670
+  },
+  {
+    "text": "mode",
+    "startMs": 1670,
+    "endMs": 2030
+  },
+  {
+    "text": ",",
+    "startMs": 2030,
+    "endMs": 2250
+  },
+  {
+    "text": "it",
+    "startMs": 2250,
+    "endMs": 2290
+  },
+  {
+    "text": "can",
+    "startMs": 2260,
+    "endMs": 2480
+  },
+  {
+    "text": "still",
+    "startMs": 2480,
+    "endMs": 2870
+  },
+  {
+    "text": "transc",
+    "startMs": 2870,
+    "endMs": 3350
+  },
+  {
+    "text": "ribe",
+    "startMs": 3350,
+    "endMs": 3680
+  },
+  {
+    "text": "every",
+    "startMs": 3680,
+    "endMs": 3970
+  },
+  {
+    "text": "word",
+    "startMs": 3970,
+    "endMs": 4190
+  },
+  {
+    "text": "you",
+    "startMs": 4190,
+    "endMs": 4370
+  },
+  {
+    "text": "say",
+    "startMs": 4370,
+    "endMs": 4560
+  },
+  {
+    "text": ".",
+    "startMs": 4560,
+    "endMs": 4620
+  },
+  {
+    "text": "Here",
+    "startMs": 5360,
+    "endMs": 5400
+  },
+  {
+    "text": "'s",
+    "startMs": 5360,
+    "endMs": 5550
+  },
+  {
+    "text": "what",
+    "startMs": 5550,
+    "endMs": 5710
+  },
+  {
+    "text": "changed",
+    "startMs": 5710,
+    "endMs": 6440
+  },
+  {
+    "text": ".",
+    "startMs": 6440,
+    "endMs": 6800
+  },
+  {
+    "text": "Speech",
+    "startMs": 6800,
+    "endMs": 7230
+  },
+  {
+    "text": "AI",
+    "startMs": 7230,
+    "endMs": 7620
+  },
+  {
+    "text": "used",
+    "startMs": 7620,
+    "endMs": 7660
+  },
+  {
+    "text": "to",
+    "startMs": 7660,
+    "endMs": 7800
+  },
+  {
+    "text": "live",
+    "startMs": 7800,
+    "endMs": 8090
+  },
+  {
+    "text": "on",
+    "startMs": 8090,
+    "endMs": 8230
+  },
+  {
+    "text": "giant",
+    "startMs": 8230,
+    "endMs": 8590
+  },
+  {
+    "text": "servers",
+    "startMs": 8590,
+    "endMs": 9100
+  },
+  {
+    "text": ".",
+    "startMs": 9100,
+    "endMs": 9360
+  },
+  {
+    "text": "Engineers",
+    "startMs": 9360,
+    "endMs": 10960
+  },
+  {
+    "text": "shr",
+    "startMs": 10960,
+    "endMs": 11000
+  },
+  {
+    "text": "ank",
+    "startMs": 11000,
+    "endMs": 11200
+  },
+  {
+    "text": "those",
+    "startMs": 11200,
+    "endMs": 11440
+  },
+  {
+    "text": "models",
+    "startMs": 11440,
+    "endMs": 11840
+  },
+  {
+    "text": "until",
+    "startMs": 11840,
+    "endMs": 12190
+  },
+  {
+    "text": "they",
+    "startMs": 12190,
+    "endMs": 12420
+  },
+  {
+    "text": "fit",
+    "startMs": 12420,
+    "endMs": 12530
+  },
+  {
+    "text": "on",
+    "startMs": 12530,
+    "endMs": 12640
+  },
+  {
+    "text": "the",
+    "startMs": 12640,
+    "endMs": 12840
+  },
+  {
+    "text": "chip",
+    "startMs": 12840,
+    "endMs": 13140
+  },
+  {
+    "text": "already",
+    "startMs": 13140,
+    "endMs": 13450
+  },
+  {
+    "text": "in",
+    "startMs": 13450,
+    "endMs": 13560
+  },
+  {
+    "text": "your",
+    "startMs": 13560,
+    "endMs": 14100
+  },
+  {
+    "text": "pocket",
+    "startMs": 14100,
+    "endMs": 14140
+  },
+  {
+    "text": ".",
+    "startMs": 14140,
+    "endMs": 14400
+  },
+  {
+    "text": "Same",
+    "startMs": 14400,
+    "endMs": 14790
+  },
+  {
+    "text": "ability",
+    "startMs": 14790,
+    "endMs": 15320
+  },
+  {
+    "text": ",",
+    "startMs": 15320,
+    "endMs": 15480
+  },
+  {
+    "text": "a",
+    "startMs": 15480,
+    "endMs": 15560
+  },
+  {
+    "text": "fraction",
+    "startMs": 15560,
+    "endMs": 16230
+  },
+  {
+    "text": "of",
+    "startMs": 16230,
+    "endMs": 16390
+  },
+  {
+    "text": "the",
+    "startMs": 16390,
+    "endMs": 16590
+  },
+  {
+    "text": "size",
+    "startMs": 16590,
+    "endMs": 16970
+  },
+  {
+    "text": ".",
+    "startMs": 16970,
+    "endMs": 17280
+  },
+  {
+    "text": "That",
+    "startMs": 17760,
+    "endMs": 17950
+  },
+  {
+    "text": "shrink",
+    "startMs": 17950,
+    "endMs": 18110
+  },
+  {
+    "text": "is",
+    "startMs": 18110,
+    "endMs": 18340
+  },
+  {
+    "text": "a",
+    "startMs": 18340,
+    "endMs": 18380
+  },
+  {
+    "text": "privacy",
+    "startMs": 18350,
+    "endMs": 18930
+  },
+  {
+    "text": "shift",
+    "startMs": 18930,
+    "endMs": 19350
+  },
+  {
+    "text": ".",
+    "startMs": 19350,
+    "endMs": 19600
+  },
+  {
+    "text": "Your",
+    "startMs": 19600,
+    "endMs": 20020
+  },
+  {
+    "text": "voice",
+    "startMs": 20020,
+    "endMs": 20350
+  },
+  {
+    "text": "becomes",
+    "startMs": 20350,
+    "endMs": 20930
+  },
+  {
+    "text": "text",
+    "startMs": 20930,
+    "endMs": 21260
+  },
+  {
+    "text": "on",
+    "startMs": 21260,
+    "endMs": 21420
+  },
+  {
+    "text": "the",
+    "startMs": 21420,
+    "endMs": 21670
+  },
+  {
+    "text": "device",
+    "startMs": 21670,
+    "endMs": 22240
+  },
+  {
+    "text": ",",
+    "startMs": 22240,
+    "endMs": 22280
+  },
+  {
+    "text": "so",
+    "startMs": 22240,
+    "endMs": 22430
+  },
+  {
+    "text": "the",
+    "startMs": 22430,
+    "endMs": 22590
+  },
+  {
+    "text": "recording",
+    "startMs": 22590,
+    "endMs": 23180
+  },
+  {
+    "text": "never",
+    "startMs": 23180,
+    "endMs": 23530
+  },
+  {
+    "text": "leaves",
+    "startMs": 23530,
+    "endMs": 23930
+  },
+  {
+    "text": "your",
+    "startMs": 23930,
+    "endMs": 24470
+  },
+  {
+    "text": "hand",
+    "startMs": 24470,
+    "endMs": 24510
+  },
+  {
+    "text": ".",
+    "startMs": 24500,
+    "endMs": 24670
+  },
+  {
+    "text": "And",
+    "startMs": 24670,
+    "endMs": 24870
+  },
+  {
+    "text": "offline",
+    "startMs": 24870,
+    "endMs": 25350
+  },
+  {
+    "text": "means",
+    "startMs": 25350,
+    "endMs": 25690
+  },
+  {
+    "text": "everywhere",
+    "startMs": 25690,
+    "endMs": 26370
+  },
+  {
+    "text": ".",
+    "startMs": 26370,
+    "endMs": 26620
+  },
+  {
+    "text": "Live",
+    "startMs": 26620,
+    "endMs": 27840
+  },
+  {
+    "text": "capt",
+    "startMs": 27840,
+    "endMs": 27960
+  },
+  {
+    "text": "ions",
+    "startMs": 27960,
+    "endMs": 28230
+  },
+  {
+    "text": "in",
+    "startMs": 28230,
+    "endMs": 28400
+  },
+  {
+    "text": "a",
+    "startMs": 28400,
+    "endMs": 28480
+  },
+  {
+    "text": "subway",
+    "startMs": 28670,
+    "endMs": 29060
+  },
+  {
+    "text": ",",
+    "startMs": 29060,
+    "endMs": 29120
+  },
+  {
+    "text": "translation",
+    "startMs": 29120,
+    "endMs": 30010
+  },
+  {
+    "text": "on",
+    "startMs": 30010,
+    "endMs": 30170
+  },
+  {
+    "text": "a",
+    "startMs": 30170,
+    "endMs": 30250
+  },
+  {
+    "text": "plane",
+    "startMs": 30250,
+    "endMs": 30740
+  },
+  {
+    "text": ",",
+    "startMs": 30740,
+    "endMs": 30910
+  },
+  {
+    "text": "voice",
+    "startMs": 30910,
+    "endMs": 31210
+  },
+  {
+    "text": "notes",
+    "startMs": 31210,
+    "endMs": 31610
+  },
+  {
+    "text": "with",
+    "startMs": 31610,
+    "endMs": 31930
+  },
+  {
+    "text": "zero",
+    "startMs": 31930,
+    "endMs": 32250
+  },
+  {
+    "text": "signal",
+    "startMs": 32250,
+    "endMs": 32730
+  },
+  {
+    "text": ".",
+    "startMs": 32730,
+    "endMs": 33040
+  },
+  {
+    "text": "Your",
+    "startMs": 33040,
+    "endMs": 34080
+  },
+  {
+    "text": "phone",
+    "startMs": 34080,
+    "endMs": 34120
+  },
+  {
+    "text": "'s",
+    "startMs": 34110,
+    "endMs": 34340
+  },
+  {
+    "text": "mic",
+    "startMs": 34340,
+    "endMs": 34720
+  },
+  {
+    "text": "just",
+    "startMs": 34720,
+    "endMs": 35010
+  },
+  {
+    "text": "became",
+    "startMs": 35010,
+    "endMs": 35380
+  },
+  {
+    "text": "a",
+    "startMs": 35380,
+    "endMs": 35520
+  },
+  {
+    "text": "private",
+    "startMs": 35520,
+    "endMs": 36000
+  },
+  {
+    "text": "interpreter",
+    "startMs": 36000,
+    "endMs": 36850
+  },
+  {
+    "text": "that",
+    "startMs": 36850,
+    "endMs": 37160
+  },
+  {
+    "text": "works",
+    "startMs": 37160,
+    "endMs": 37540
+  },
+  {
+    "text": "anywhere",
+    "startMs": 37540,
+    "endMs": 38260
+  },
+  {
+    "text": ".",
+    "startMs": 38260,
+    "endMs": 38410
+  },
+  {
+    "text": "The",
+    "startMs": 38410,
+    "endMs": 38620
+  },
+  {
+    "text": "next",
+    "startMs": 38620,
+    "endMs": 38940
+  },
+  {
+    "text": "wave",
+    "startMs": 38940,
+    "endMs": 39240
+  },
+  {
+    "text": "of",
+    "startMs": 39240,
+    "endMs": 39390
+  },
+  {
+    "text": "apps",
+    "startMs": 39390,
+    "endMs": 39700
+  },
+  {
+    "text": "will",
+    "startMs": 39700,
+    "endMs": 40010
+  },
+  {
+    "text": "quietly",
+    "startMs": 40010,
+    "endMs": 40550
+  },
+  {
+    "text": "assume",
+    "startMs": 40550,
+    "endMs": 41000
+  },
+  {
+    "text": "this",
+    "startMs": 41000,
+    "endMs": 41600
+  },
+  {
+    "text": ".",
+    "startMs": 41600,
+    "endMs": 41640
+  },
+  {
+    "text": "You",
+    "startMs": 41600,
+    "endMs": 41780
+  },
+  {
+    "text": "'re",
+    "startMs": 41780,
+    "endMs": 41920
+  },
+  {
+    "text": "just",
+    "startMs": 41920,
+    "endMs": 42160
+  },
+  {
+    "text": "early",
+    "startMs": 42160,
+    "endMs": 42870
+  },
+  {
+    "text": ".",
+    "startMs": 42870,
+    "endMs": 42930
+  }
+]

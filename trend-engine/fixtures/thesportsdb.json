@@ -1,0 +1,6 @@
+[
+  { "source": "thesportsdb", "externalId": "tsdb-nfl-kickoff", "title": "NFL: Hall of Fame Game preseason opener (2026-07-30)", "url": "https://www.thesportsdb.com/league/4391-NFL", "score": 67, "category": "American Football", "capturedAt": "2026-07-19T09:00:00Z" },
+  { "source": "thesportsdb", "externalId": "tsdb-mls-rivalry", "title": "MLS: Summer rivalry matchweek (2026-07-25)", "url": "https://www.thesportsdb.com/league/4346-American-Major-League-Soccer", "score": 82, "category": "Soccer", "capturedAt": "2026-07-19T09:00:00Z" },
+  { "source": "thesportsdb", "externalId": "tsdb-mlb-deadline", "title": "MLB: Trade-deadline showcase game (2026-07-31)", "url": "https://www.thesportsdb.com/league/4424-MLB", "score": 64, "category": "Baseball", "capturedAt": "2026-07-19T09:00:00Z" },
+  { "source": "thesportsdb", "externalId": "tsdb-nba-summer", "title": "NBA: Summer League championship (2026-07-20)", "url": "https://www.thesportsdb.com/league/4387-NBA", "score": 97, "category": "Basketball", "capturedAt": "2026-07-19T09:00:00Z" }
+]

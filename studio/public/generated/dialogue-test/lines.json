@@ -1,0 +1,56 @@
+[
+  {
+    "id": "line-1",
+    "lineIndex": 0,
+    "speaker": "jessica",
+    "text": "George, why do AI demos feel the same?",
+    "visual": "phone waveform reacting to two speakers",
+    "startMs": 0,
+    "endMs": 2276
+  },
+  {
+    "id": "line-2",
+    "lineIndex": 1,
+    "speaker": "george",
+    "text": "One voice does all the talking.",
+    "visual": "counter showing one voice",
+    "startMs": 2416,
+    "endMs": 4227
+  },
+  {
+    "id": "line-3",
+    "lineIndex": 2,
+    "speaker": "jessica",
+    "text": "Let's split speakers and color each beat.",
+    "visual": "card with two speaker channels",
+    "startMs": 4367,
+    "endMs": 6735
+  },
+  {
+    "id": "line-4",
+    "lineIndex": 3,
+    "speaker": "george",
+    "text": "Charts right, counters left. Better.",
+    "visual": "bar chart comparing one voice and two voices",
+    "startMs": 6875,
+    "endMs": 9522
+  },
+  {
+    "id": "line-5",
+    "lineIndex": 4,
+    "speaker": "jessica",
+    "text": "Captions follow whoever has the floor.",
+    "visual": "active words hand the spotlight back and forth",
+    "startMs": 9662,
+    "endMs": 11845
+  },
+  {
+    "id": "line-6",
+    "lineIndex": 5,
+    "speaker": "george",
+    "text": "Now it feels like a conversation.",
+    "visual": "phone audio waveform resolving into two voices",
+    "startMs": 11985,
+    "endMs": 13982
+  }
+]

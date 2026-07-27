@@ -1,0 +1,419 @@
+import { spawn } from 'node:child_process';
+import { createWriteStream } from 'node:fs';
+import { mkdir, unlink, writeFile } from 'node:fs/promises';
+import { dirname } from 'node:path';
+import { Readable } from 'node:stream';
+import { pipeline } from 'node:stream/promises';
+
+import { config } from '../config.js';
+import type { AspectRatio } from '../types.js';
+import {
+  buildAss,
+  escapeDrawtext,
+  escapeFilterFilename,
+  SAFE_AREA,
+  wrapText,
+} from './captions.js';
+
+export interface ProcessResult {
+  stdout: string;
+  stderr: string;
+}
+
+interface ProbeJson {
+  streams?: Array<{
+    codec_type?: string;
+    codec_name?: string;
+    width?: number;
+    height?: number;
+    duration?: string;
+  }>;
+  format?: { duration?: string };
+}
+
+export function spawnProcess(bin: string, args: string[]): Promise<ProcessResult> {
+  return new Promise((resolve, reject) => {
+    const child = spawn(bin, args, {
+      shell: false,
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk: string) => {
+      stdout += chunk;
+    });
+    child.stderr.on('data', (chunk: string) => {
+      stderr += chunk;
+    });
+
+    child.once('error', reject);
+    child.once('close', (code, signal) => {
+      if (code === 0) {
+        resolve({ stdout, stderr });
+        return;
+      }
+
+      const detail = stderr.slice(-2000);
+      const status = code == null ? `signal ${signal ?? 'unknown'}` : `code ${code}`;
+      reject(new Error(`${bin} exited with ${status}${detail ? `:\n${detail}` : ''}`));
+    });
+  });
+}
+
+export function isMissingBinary(error: unknown): boolean {
+  return error instanceof Error && (error as NodeJS.ErrnoException).code === 'ENOENT';
+}
+
+async function runTool(
+  tool: 'ffmpeg' | 'ffprobe',
+  primaryBin: string,
+  fallbackBin: string,
+  args: string[],
+): Promise<ProcessResult> {
+  try {
+    return await spawnProcess(primaryBin, args);
+  } catch (error) {
+    if (!isMissingBinary(error)) throw error;
+  }
+
+  if (primaryBin !== fallbackBin) {
+    try {
+      return await spawnProcess(fallbackBin, args);
+    } catch (error) {
+      if (!isMissingBinary(error)) throw error;
+    }
+  }
+
+  const envName = tool === 'ffmpeg' ? 'FFMPEG_PATH' : 'FFPROBE_PATH';
+  throw new Error(`${tool} not found — install ${tool} or set ${envName}`);
+}
+
+export async function runFfmpeg(
+  args: string[],
+  opts: { bin?: string } = {},
+): Promise<{ stderr: string }> {
+  const result = await runTool(
+    'ffmpeg',
+    opts.bin ?? config.ffmpegPath,
+    '/opt/homebrew/bin/ffmpeg',
+    args,
+  );
+  return { stderr: result.stderr };
+}
+
+export async function probe(filePath: string): Promise<{
+  width: number;
+  height: number;
+  durationSec: number;
+  videoCodec: string;
+  hasAudio: boolean;
+}> {
+  const result = await runTool(
+    'ffprobe',
+    config.ffprobePath,
+    '/opt/homebrew/bin/ffprobe',
+    ['-v', 'error', '-show_streams', '-show_format', '-of', 'json', filePath],
+  );
+
+  let parsed: ProbeJson;
+  try {
+    parsed = JSON.parse(result.stdout) as ProbeJson;
+  } catch (error) {
+    throw new Error(`Invalid ffprobe output for ${filePath}`, { cause: error });
+  }
+
+  const video = parsed.streams?.find((stream) => stream.codec_type === 'video');
+  if (!video) throw new Error(`ffprobe found no video stream in ${filePath}`);
+
+  const duration = Number(parsed.format?.duration ?? video.duration ?? 0);
+  return {
+    width: Number(video.width ?? 0),
+    height: Number(video.height ?? 0),
+    durationSec: Number.isFinite(duration) ? duration : 0,
+    videoCodec: video.codec_name ?? '',
+    hasAudio: parsed.streams?.some((stream) => stream.codec_type === 'audio') ?? false,
+  };
+}
+
+/** Read an audio-only file's container duration without requiring a video stream. */
+export async function probeAudioDurationSec(filePath: string): Promise<number> {
+  const result = await runTool(
+    'ffprobe',
+    config.ffprobePath,
+    '/opt/homebrew/bin/ffprobe',
+    ['-v', 'error', '-show_format', '-of', 'json', filePath],
+  );
+
+  let parsed: Pick<ProbeJson, 'format'>;
+  try {
+    parsed = JSON.parse(result.stdout) as Pick<ProbeJson, 'format'>;
+  } catch (error) {
+    throw new Error(`Invalid ffprobe output for ${filePath}`, { cause: error });
+  }
+  return Number(parsed.format?.duration);
+}
+
+export interface FfmpegCapabilities {
+  drawtext: boolean;
+  subtitles: boolean;
+  loudnorm: boolean;
+}
+
+let capabilitiesPromise: Promise<FfmpegCapabilities> | undefined;
+let capabilityProbeCount = 0;
+let loudnormAnalysisCount = 0;
+
+export function detectCapabilities(): Promise<FfmpegCapabilities> {
+  if (!capabilitiesPromise) {
+    capabilityProbeCount += 1;
+    capabilitiesPromise = runTool(
+      'ffmpeg',
+      config.ffmpegPath,
+      '/opt/homebrew/bin/ffmpeg',
+      ['-hide_banner', '-filters'],
+    )
+      .then(({ stdout, stderr }) => {
+        const filters = `${stdout}\n${stderr}`;
+        return {
+          drawtext: filters.includes(' drawtext '),
+          subtitles: filters.includes(' subtitles '),
+          loudnorm: filters.includes(' loudnorm '),
+        };
+      })
+      // A capability *probe* must never throw: if ffmpeg is absent or the probe
+      // fails, report "no capabilities" so DRY_RUN stays fully offline. Live
+      // rendering still fails loudly at probe()/runFfmpeg() when ffmpeg is missing.
+      .catch(() => ({ drawtext: false, subtitles: false, loudnorm: false }));
+  }
+  return capabilitiesPromise;
+}
+
+/** Clear the memoized ffmpeg filter detection result (primarily for tests). */
+export function resetCapabilitiesCache(): void {
+  capabilitiesPromise = undefined;
+}
+
+/** Number of real ffmpeg filter probes started by this module. */
+export function getCapabilityProbeCount(): number {
+  return capabilityProbeCount;
+}
+
+export interface LoudnormStats {
+  input_i: number;
+  input_tp: number;
+  input_lra: number;
+  input_thresh: number;
+  target_offset: number;
+}
+
+/** Extract the final JSON statistics block emitted by ffmpeg's loudnorm filter. */
+export function parseLoudnormStats(stderr: string): LoudnormStats | null {
+  const block = stderr.match(/\{[\s\S]*?\}/g)?.at(-1);
+  if (!block) return null;
+
+  try {
+    const parsed = JSON.parse(block) as unknown;
+    if (typeof parsed !== 'object' || parsed == null) return null;
+    const record = parsed as Record<string, unknown>;
+    const stats: LoudnormStats = {
+      input_i: Number(record.input_i),
+      input_tp: Number(record.input_tp),
+      input_lra: Number(record.input_lra),
+      input_thresh: Number(record.input_thresh),
+      target_offset: Number(record.target_offset),
+    };
+    return Object.values(stats).every((value) => Number.isFinite(value))
+      ? stats
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Build the measured second-pass loudnorm filter for the vertical render. */
+export function buildLoudnormFilter(m: LoudnormStats): string {
+  return `loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true`;
+}
+
+/** Number of loudnorm analysis passes started by this module. */
+export function getLoudnormAnalysisCount(): number {
+  return loudnormAnalysisCount;
+}
+
+export async function downloadToFile(url: string, destPath: string): Promise<void> {
+  await mkdir(dirname(destPath), { recursive: true });
+  const response = await fetch(url);
+  if (!response.ok || !response.body) {
+    throw new Error(`Download failed (${response.status}) for ${url}`);
+  }
+
+  await pipeline(
+    Readable.fromWeb(response.body as ReadableStream),
+    createWriteStream(destPath),
+  );
+}
+
+export function dimensionsFor(aspectRatio: AspectRatio): { width: number; height: number } {
+  switch (aspectRatio) {
+    case '9:16':
+      return { width: 1080, height: 1920 };
+    case '1:1':
+      return { width: 1080, height: 1080 };
+    case '16:9':
+      return { width: 1920, height: 1080 };
+  }
+}
+
+/** Build the drawtext textfile filter without allowing `%{...}` expansion. */
+export function captionTextfileFilter(textFilePath: string, width: number): string {
+  const fontsize = Math.round(width * 0.045);
+  return `drawtext=expansion=none:textfile=${escapeFilterFilename(textFilePath)}:x=(w-tw)/2:y=h*0.72:fontsize=${fontsize}:fontcolor=white:borderw=2:bordercolor=black:box=1:boxcolor=black@0.55:line_spacing=10`;
+}
+
+export async function renderToVertical(opts: {
+  inputPath: string;
+  outputPath: string;
+  maxSec: number;
+  aspectRatio?: AspectRatio;
+  caption?: string;
+  attributionText?: string;
+}): Promise<void> {
+  const input = await probe(opts.inputPath);
+  const { width, height } = dimensionsFor(opts.aspectRatio ?? '9:16');
+  const filterParts = [
+    `scale=${width}:${height}:force_original_aspect_ratio=increase`,
+    `crop=${width}:${height}`,
+    'setsar=1',
+    'fps=30',
+  ];
+  const capabilities = await detectCapabilities();
+  let loudnormFilter: string | undefined;
+  if (input.hasAudio && capabilities.loudnorm) {
+    loudnormAnalysisCount += 1;
+    try {
+      const { stderr } = await runFfmpeg([
+        '-hide_banner',
+        '-i',
+        opts.inputPath,
+        '-t',
+        String(Math.min(opts.maxSec, 179)),
+        '-map',
+        '0:a:0',
+        '-af',
+        'loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json',
+        '-f',
+        'null',
+        '-',
+      ]);
+      const stats = parseLoudnormStats(stderr);
+      if (stats) {
+        loudnormFilter = buildLoudnormFilter(stats);
+      } else {
+        console.warn('[editor] loudness analysis returned invalid statistics; continuing without normalization.');
+      }
+    } catch {
+      console.warn('[editor] loudness analysis failed; continuing without normalization.');
+    }
+  }
+  let captionTextPath: string | undefined;
+  let attributionHandledByAss = false;
+
+  if (opts.caption && capabilities.subtitles) {
+    const assPath = `${opts.outputPath}.ass`;
+    await writeFile(assPath, buildAss(opts.caption, opts.attributionText, opts.maxSec));
+    filterParts.push(`subtitles=${escapeFilterFilename(assPath)}`);
+    attributionHandledByAss = opts.attributionText !== undefined;
+  } else if (opts.caption && capabilities.drawtext) {
+    const fontsize = Math.round(width * 0.045);
+    const maxChars = Math.max(12, Math.floor((width * 0.9) / (fontsize * 0.55)));
+    captionTextPath = `${opts.outputPath}.caption.txt`;
+    await writeFile(captionTextPath, wrapText(opts.caption, maxChars).join('\n'));
+    filterParts.push(captionTextfileFilter(captionTextPath, width));
+  } else if (opts.caption) {
+    console.warn('[editor] ffmpeg subtitles and drawtext are unavailable; caption cannot be burned in.');
+  }
+
+  if (
+    opts.attributionText !== undefined &&
+    capabilities.drawtext &&
+    !attributionHandledByAss
+  ) {
+    filterParts.push(
+      `drawtext=text=${escapeDrawtext(opts.attributionText)}:x=(w-tw)/2:y=h-${SAFE_AREA.bottomMarginPx}:fontsize=36:fontcolor=white:borderw=2:bordercolor=black`,
+    );
+  }
+
+  const args = ['-y', '-i', opts.inputPath];
+  if (!input.hasAudio) {
+    args.push(
+      '-f',
+      'lavfi',
+      '-i',
+      'anullsrc=channel_layout=stereo:sample_rate=48000',
+      '-shortest',
+      '-map',
+      '0:v:0',
+      '-map',
+      '1:a:0',
+    );
+  }
+
+  args.push('-vf', filterParts.join(','));
+  if (loudnormFilter) args.push('-af', loudnormFilter);
+  args.push(
+    '-t',
+    String(Math.min(opts.maxSec, 179)),
+    '-c:v',
+    'libx264',
+    '-profile:v',
+    'high',
+    '-preset',
+    'medium',
+    '-crf',
+    '20',
+    '-maxrate',
+    '12M',
+    '-bufsize',
+    '24M',
+    '-pix_fmt',
+    'yuv420p',
+    '-c:a',
+    'aac',
+    '-b:a',
+    '192k',
+    '-ar',
+    '48000',
+    '-ac',
+    '2',
+    '-movflags',
+    '+faststart',
+    opts.outputPath,
+  );
+
+  try {
+    await runFfmpeg(args);
+  } finally {
+    if (captionTextPath) {
+      try {
+        await unlink(captionTextPath);
+      } catch (error) {
+        console.warn('[editor] failed to remove temporary caption file:', error);
+      }
+    }
+  }
+
+  const output = await probe(opts.outputPath);
+  if (
+    output.width !== width ||
+    output.height !== height ||
+    output.videoCodec !== 'h264' ||
+    output.durationSec <= 0
+  ) {
+    throw new Error(
+      `Rendered output failed verification: expected ${width}x${height} h264 with positive duration, got ${output.width}x${output.height} ${output.videoCodec} ${output.durationSec}s`,
+    );
+  }
+}

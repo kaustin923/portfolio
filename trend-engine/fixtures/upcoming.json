@@ -1,0 +1,7 @@
+[
+  { "id": "u1", "title": "FIFA World Cup 2026 opens (US/Canada/Mexico)", "date": "2026-06-11", "daysUntil": -38, "category": "sports", "confidence": 0.98, "source": "fixture" },
+  { "id": "u2", "title": "Back-to-school season ramps up (US)", "date": "2026-08-10", "daysUntil": 22, "category": "seasonal", "confidence": 0.9, "source": "fixture" },
+  { "id": "u3", "title": "Major console studio summer showcase (rumored lineup reveal)", "date": "2026-08-02", "daysUntil": 14, "category": "gaming", "confidence": 0.7, "source": "fixture" },
+  { "id": "u4", "title": "Perseid meteor shower peak", "date": "2026-08-12", "daysUntil": 24, "category": "science", "confidence": 0.85, "source": "fixture" },
+  { "id": "u5", "title": "Flagship phone launch event (annual fall cycle teaser)", "date": "2026-08-06", "daysUntil": 18, "category": "tech", "confidence": 0.75, "source": "fixture" }
+]

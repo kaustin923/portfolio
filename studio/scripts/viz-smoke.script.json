@@ -1,0 +1,232 @@
+{
+  "id": "viz-smoke",
+  "title": "STRUCTURED VISUAL SMOKE TEST",
+  "theme": {
+    "name": "Signal Red / Deep Blue",
+    "accent": "#E0342B",
+    "accentSoft": "rgba(30,58,138,.5)"
+  },
+  "voices": {
+    "jessica": {"voiceId": "cgSgspJ2msm6clMCkdW9"},
+    "george": {"voiceId": "JBFqnCBsd6RMkjVDRZzb"}
+  },
+  "lines": [
+    {
+      "speaker": "jessica",
+      "text": "The release rewrote the opening weekend.",
+      "visual": "WRITER NOTE ONLY: DEEP-BLUE FULL-BLEED WITH HUGE WHITE TYPE AND RED SLASHES",
+      "viz": {
+        "kind": "title",
+        "big": "THE $4.2B SHIFT",
+        "sub": "A release-window reset measured in real dollars",
+        "dateChip": "JUL 19 2026"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "The forecast cleared the old benchmark before noon.",
+      "visual": "WRITER NOTE ONLY: DRAW A RANGE AND MAKE THE OLD FORECAST GET CRUSHED",
+      "viz": {
+        "kind": "rangeBar",
+        "label": "GLOBAL OPENING FORECAST",
+        "unit": "M",
+        "low": 380,
+        "high": 620,
+        "compare": {"label": "OLD RECORD", "value": 412},
+        "badge": "+50.5% CEILING"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "The launch still carried a measurable marketing loss.",
+      "visual": "WRITER NOTE ONLY: ANGRY RED COUNTER TUMBLING THROUGH FAKE NUMBERS",
+      "viz": {
+        "kind": "counter",
+        "label": "NET MARKETING LOSS",
+        "to": -2400000,
+        "prefix": "$",
+        "from": 0,
+        "negative": true,
+        "sub": "AUDITED SPEND / OPENING WEEK"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "One licensing deal carried the entire quarter.",
+      "visual": "WRITER NOTE ONLY: CREAM CARD WITH A MADE-UP NUMBER IN THE CENTER",
+      "viz": {
+        "kind": "statBig",
+        "value": "$4B",
+        "label": "GLOBAL LICENSING VALUE",
+        "sub": "SIGNED / FOUR TERRITORIES / ONE QUARTER"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "The channel mix landed above the fifty percent target.",
+      "visual": "WRITER NOTE ONLY: GENERIC BAR CHART ONE TWO PACE STYLE FLOW",
+      "viz": {
+        "kind": "compareBars",
+        "unit": "%",
+        "bars": [
+          {"label": "STREAMING", "value": 28, "tone": "blue"},
+          {"label": "THEATRICAL", "value": 64, "tone": "accent"},
+          {"label": "HYBRID", "value": 47, "tone": "bone"}
+        ],
+        "reference": {"label": "TARGET", "value": 50}
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Orbital jumped from fourth place to the top spot.",
+      "visual": "WRITER NOTE ONLY: RANKED LIST WITH RANDOM PLACEHOLDER TITLES",
+      "viz": {
+        "kind": "leaderboard",
+        "rows": [
+          {"label": "MIDNIGHT RUN"},
+          {"label": "COASTLINE"},
+          {"label": "THE LAST SIGNAL"},
+          {"label": "ORBITAL", "highlight": true},
+          {"label": "PAPER CROWN"}
+        ],
+        "stamp": "#1 / ORBITAL"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "Audience demand moved from low to maximum.",
+      "visual": "WRITER NOTE ONLY: SPEEDOMETER NEEDLE SHAKES LIKE A CAR COMMERCIAL",
+      "viz": {
+        "kind": "meter",
+        "from": "LOW",
+        "to": "MAX",
+        "label": "WEEKEND DEMAND INDEX"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "Seven premium screens sold out, while IMAX stayed at zero.",
+      "visual": "WRITER NOTE ONLY: TWENTY-FOUR TILES AND A GIANT FAKE RESULT",
+      "viz": {
+        "kind": "grid",
+        "total": 24,
+        "filled": 7,
+        "filledLabel": "PREMIUM SCREENS SOLD OUT",
+        "resultLabel": "BRAND NEW DAY US IMAX SCREENS: 0",
+        "caption": "VERIFIED AGAINST THE DOMESTIC FORMAT ROSTER"
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "Domestic and international revenue closed at different scales.",
+      "visual": "WRITER NOTE ONLY: SPLIT THE CARD AND STAMP A CINEMATIC SLOGAN",
+      "viz": {
+        "kind": "split",
+        "left": {"label": "DOMESTIC", "value": "$186M"},
+        "right": {"label": "INTERNATIONAL", "value": "$341M"},
+        "stamp": "$527M GLOBAL"
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "The runner climbs one rung in the pecking order.",
+      "visual": "FIELD ENGINE SMOKE: RISE RANK",
+      "viz": {
+        "kind": "riseRank",
+        "label": "TAMPA BAY PECKING ORDER",
+        "rungs": [
+          { "rank": "1-A", "ghost": "IRVING" },
+          { "rank": "1-B", "note": "COACH SAID IT" },
+          { "rank": "RB3", "ghost": "LAST YEAR" },
+          { "rank": "RB4" }
+        ],
+        "climber": { "name": "GAINWELL", "label": "14", "stat": "1,023 YDS" },
+        "fromIndex": 2,
+        "toIndex": 1
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "One backfield zone lights brighter than the rest.",
+      "visual": "FIELD ENGINE SMOKE: ZONE HEAT",
+      "viz": {
+        "kind": "zoneHeat",
+        "label": "DENVER BACKFIELD · 2026",
+        "zones": [
+          { "lane": "middle", "depth": "backfield", "intensity": 1, "focus": true, "stat": "WIDE OPEN" },
+          { "lane": "middle", "depth": "short", "intensity": 0.75, "stat": "200+ TOUCHES" },
+          { "lane": "left", "depth": "short", "intensity": 0.55 },
+          { "lane": "right", "depth": "short", "intensity": 0.55 },
+          { "lane": "middle", "depth": "mid", "intensity": 0.4 },
+          { "lane": "left", "depth": "mid", "intensity": 0.25 },
+          { "lane": "right", "depth": "mid", "intensity": 0.25 }
+        ],
+        "marker": { "name": "COLEMAN", "label": "25", "lane": "middle", "depth": "backfield" }
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "The rebuilt line parts and opens a running lane.",
+      "visual": "FIELD ENGINE SMOKE: FIELD PLAY",
+      "viz": {
+        "kind": "fieldPlay",
+        "label": "CLEVELAND · REBUILT O-LINE",
+        "losLabel": "CLE 25",
+        "firstDownYd": 10,
+        "players": [
+          { "id": "lt", "label": "LT", "team": "offense", "role": "blocker", "x": 20.6, "y": 0 },
+          { "id": "lg", "label": "LG", "team": "offense", "role": "blocker", "x": 23.6, "y": 0 },
+          { "id": "c",  "label": "C",  "team": "offense", "role": "blocker", "x": 26.6, "y": 0 },
+          { "id": "rg", "label": "RG", "team": "offense", "role": "blocker", "x": 29.6, "y": 0 },
+          { "id": "rt", "label": "RT", "team": "offense", "role": "blocker", "x": 32.6, "y": 0 },
+          { "id": "qj", "label": "10", "name": "JUDKINS", "team": "offense", "role": "hero", "x": 26.6, "y": -7 },
+          { "id": "nt", "label": "NT", "team": "defense", "x": 27.5, "y": 1.2 },
+          { "id": "mlb", "label": "M", "team": "defense", "x": 28, "y": 5 },
+          { "id": "ss", "label": "S", "team": "defense", "x": 29.5, "y": 15 },
+          { "id": "fs", "label": "F", "team": "defense", "x": 24, "y": 21 }
+        ],
+        "blocks": [
+          { "id": "c",  "dx": -1.6, "dy": 1 },
+          { "id": "rg", "dx": 1.8,  "dy": 1.2 }
+        ],
+        "lane": { "x": 28.2, "width": 4 },
+        "run": {
+          "playerId": "qj",
+          "path": [
+            { "x": 26.6, "y": -7 }, { "x": 27.6, "y": -1 }, { "x": 28.2, "y": 3 },
+            { "x": 28.2, "y": 14 }, { "x": 30.5, "y": 24 }
+          ]
+        },
+        "fadeOnPass": ["nt", "mlb", "ss"],
+        "callout": { "text": "ROOM TO RUN", "sub": "FULL WORKLOAD WAITING" }
+      }
+    },
+    {
+      "speaker": "jessica",
+      "text": "The departed workload flows down to the new starter.",
+      "visual": "FIELD ENGINE SMOKE: DEPTH FLOW",
+      "viz": {
+        "kind": "depthFlow",
+        "label": "JACKSONVILLE BACKFIELD",
+        "out": { "name": "ETIENNE", "jersey": "1", "stat": "1,107", "statLabel": "RUSH YDS" },
+        "riser": { "name": "TUTEN", "jersey": "33", "note": "THE JOB IS HIS" },
+        "flow": { "to": 1107, "unit": "YDS OF WORK" }
+      }
+    },
+    {
+      "speaker": "george",
+      "text": "The faster runner wins the forty yard race.",
+      "visual": "FIELD ENGINE SMOKE: SPEED RACE",
+      "viz": {
+        "kind": "speedRace",
+        "label": "THE 40",
+        "distanceYd": 40,
+        "runners": [
+          { "name": "TUTEN", "label": "33", "time": 4.32, "tone": "accent" },
+          { "name": "NFL RB AVG", "label": "RB", "time": 4.55, "tone": "bone" }
+        ],
+        "note": "4.3 SPEED"
+      }
+    }
+  ]
+}

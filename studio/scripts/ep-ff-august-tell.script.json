@@ -1,0 +1,58 @@
+{
+  "id": "ep-ff-august-tell",
+  "title": "The August Tell",
+  "theme": { "name": "Gridiron Green", "accent": "#22C55E", "accentSoft": "rgba(34,197,94,.42)" },
+  "voices": { "jessica": { "voiceId": "cgSgspJ2msm6clMCkdW9" }, "george": { "voiceId": "cjVigY5qzO86Huf0OWal" } },
+  "dialogueModel": "eleven_v3",
+  "dialogueSettings": { "stability": 0.6, "speed": 1.15 },
+  "playbackSpeed": 1.3,
+  "lines": [
+    {
+      "speaker": "jessica",
+      "text": "You win your fantasy league in August — and it's not by drafting the big names.",
+      "visual": "title",
+      "viz": { "kind": "title", "big": "WON IN AUGUST", "sub": "THE FANTASY TELL NOBODY WATCHES" }
+    },
+    {
+      "speaker": "george",
+      "text": "Here's the whole secret: fantasy points come from touches. The ball. More touches, more points. That's it.",
+      "visual": "simple truth",
+      "viz": { "kind": "statBig", "value": "TOUCHES = POINTS", "label": "THE ONLY MATH THAT MATTERS", "sub": "the guy who gets the ball wins" }
+    },
+    {
+      "speaker": "jessica",
+      "text": "Okay, so how do I find the guy who's about to get a ton of touches?",
+      "visual": "question beat"
+    },
+    {
+      "speaker": "george",
+      "text": "You look for an empty job. When a starting running back leaves a team, someone inherits all of those touches.",
+      "visual": "empty job",
+      "viz": { "kind": "statBig", "value": "AN EMPTY JOB", "label": "A STARTER LEAVES →", "sub": "all those touches are up for grabs" }
+    },
+    {
+      "speaker": "jessica",
+      "text": "So who's got an empty job this year?",
+      "visual": "who beat"
+    },
+    {
+      "speaker": "george",
+      "text": "Bhayshul Tuten. The Jaguars let Travis Etienne walk — that's eleven hundred yards, gone. Tuten's their number one now, and he ran the fastest forty of any back in his draft class.",
+      "visual": "vacated split",
+      "viz": { "kind": "split", "left": { "label": "GONE — ETIENNE", "value": "1,107 YDS" }, "right": { "label": "NEW RB1 — TUTEN", "value": "FASTEST 40" }, "stamp": "THE JOB IS OPEN" }
+    },
+    {
+      "speaker": "jessica",
+      "text": "And everyone's still sleeping on him?",
+      "visual": "sleeping beat"
+    },
+    {
+      "speaker": "george",
+      "text": "Because he was a backup last year, so he's cheap. That's the game — draft the job before the price catches up.",
+      "visual": "payoff",
+      "viz": { "kind": "title", "big": "DRAFT THE JOB.", "sub": "NOT THE NAME." }
+    }
+  ],
+  "caption": "The simplest way to win your fantasy league: don't chase the stars. Find the empty job. Here's the one August tell the pros watch — and the name it's flashing on right now.",
+  "hashtags": ["#FantasyFootball", "#NFL", "#FantasyFootball2026", "#Sleepers", "#Jaguars", "#DraftDay"]
+}

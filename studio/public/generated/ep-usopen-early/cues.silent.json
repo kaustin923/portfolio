@@ -1,0 +1,3140 @@
+{
+  "durationMs": 41074,
+  "durationInFrames": 1233,
+  "words": [
+    {
+      "text": "The",
+      "startMs": 0,
+      "endMs": 321,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "US",
+      "startMs": 357,
+      "endMs": 679,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "Open",
+      "startMs": 714,
+      "endMs": 1036,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "gets",
+      "startMs": 1071,
+      "endMs": 1393,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "decided",
+      "startMs": 1428,
+      "endMs": 1750,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "in",
+      "startMs": 1786,
+      "endMs": 2107,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "August",
+      "startMs": 2143,
+      "endMs": 2464,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "—",
+      "startMs": 2464,
+      "endMs": 2857,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "in",
+      "startMs": 2857,
+      "endMs": 3178,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "Canada.",
+      "startMs": 3214,
+      "endMs": 3535,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "[exhales]",
+      "startMs": 3571,
+      "endMs": 3893,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "Most",
+      "startMs": 3928,
+      "endMs": 4250,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "fans",
+      "startMs": 4285,
+      "endMs": 4607,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "watch",
+      "startMs": 4643,
+      "endMs": 4964,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "the",
+      "startMs": 5000,
+      "endMs": 5321,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "wrong",
+      "startMs": 5357,
+      "endMs": 5678,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "tournament.",
+      "startMs": 5714,
+      "endMs": 6035,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "text": "Here's",
+      "startMs": 6071,
+      "endMs": 6392,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "the",
+      "startMs": 6428,
+      "endMs": 6750,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "calendar",
+      "startMs": 6785,
+      "endMs": 7107,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "nobody",
+      "startMs": 7143,
+      "endMs": 7464,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "thinks",
+      "startMs": 7500,
+      "endMs": 7821,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "about.",
+      "startMs": 7857,
+      "endMs": 8178,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "Canada,",
+      "startMs": 8214,
+      "endMs": 8536,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "August",
+      "startMs": 8571,
+      "endMs": 8893,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "first.",
+      "startMs": 8928,
+      "endMs": 9250,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "Cincinnati,",
+      "startMs": 9286,
+      "endMs": 9607,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "the",
+      "startMs": 9643,
+      "endMs": 9964,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "eleventh.",
+      "startMs": 10000,
+      "endMs": 10321,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "Then",
+      "startMs": 10357,
+      "endMs": 10679,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "the",
+      "startMs": 10714,
+      "endMs": 11036,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "Open.",
+      "startMs": 11072,
+      "endMs": 11393,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "Same",
+      "startMs": 11429,
+      "endMs": 11750,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "surface,",
+      "startMs": 11786,
+      "endMs": 12107,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "back",
+      "startMs": 12143,
+      "endMs": 12465,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "to",
+      "startMs": 12500,
+      "endMs": 12822,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "back",
+      "startMs": 12857,
+      "endMs": 13179,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "to",
+      "startMs": 13215,
+      "endMs": 13536,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "back.",
+      "startMs": 13572,
+      "endMs": 13893,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "text": "So",
+      "startMs": 13929,
+      "endMs": 14250,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "the",
+      "startMs": 14286,
+      "endMs": 14608,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "guys",
+      "startMs": 14643,
+      "endMs": 14965,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "who",
+      "startMs": 15000,
+      "endMs": 15322,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "show",
+      "startMs": 15357,
+      "endMs": 15679,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "up",
+      "startMs": 15715,
+      "endMs": 16036,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "flying",
+      "startMs": 16072,
+      "endMs": 16393,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "in",
+      "startMs": 16429,
+      "endMs": 16750,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "Toronto",
+      "startMs": 16786,
+      "endMs": 17107,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "and",
+      "startMs": 17143,
+      "endMs": 17464,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "Montreal?",
+      "startMs": 17500,
+      "endMs": 17822,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "That's",
+      "startMs": 17857,
+      "endMs": 18179,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "not",
+      "startMs": 18214,
+      "endMs": 18536,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "a",
+      "startMs": 18572,
+      "endMs": 18893,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "warm-up.",
+      "startMs": 18929,
+      "endMs": 19250,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "That's",
+      "startMs": 19286,
+      "endMs": 19607,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "the",
+      "startMs": 19643,
+      "endMs": 19964,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "form",
+      "startMs": 20000,
+      "endMs": 20321,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "that",
+      "startMs": 20357,
+      "endMs": 20678,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "wins",
+      "startMs": 20714,
+      "endMs": 21036,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "in",
+      "startMs": 21071,
+      "endMs": 21393,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "New",
+      "startMs": 21428,
+      "endMs": 21750,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "York",
+      "startMs": 21786,
+      "endMs": 22107,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "three",
+      "startMs": 22143,
+      "endMs": 22464,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "weeks",
+      "startMs": 22500,
+      "endMs": 22821,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "later.",
+      "startMs": 22857,
+      "endMs": 23178,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "text": "Last",
+      "startMs": 23214,
+      "endMs": 23535,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "summer?",
+      "startMs": 23571,
+      "endMs": 23893,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Ben",
+      "startMs": 23928,
+      "endMs": 24250,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Shelton",
+      "startMs": 24285,
+      "endMs": 24607,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "won",
+      "startMs": 24643,
+      "endMs": 24964,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Canada.",
+      "startMs": 25000,
+      "endMs": 25321,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Victoria",
+      "startMs": 25357,
+      "endMs": 25678,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Mboko",
+      "startMs": 25714,
+      "endMs": 26035,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "shocked",
+      "startMs": 26071,
+      "endMs": 26393,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Osaka",
+      "startMs": 26428,
+      "endMs": 26750,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "for",
+      "startMs": 26786,
+      "endMs": 27107,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "the",
+      "startMs": 27143,
+      "endMs": 27464,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "women's",
+      "startMs": 27500,
+      "endMs": 27821,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "title.",
+      "startMs": 27857,
+      "endMs": 28178,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "Nobody",
+      "startMs": 28214,
+      "endMs": 28536,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "casual",
+      "startMs": 28571,
+      "endMs": 28893,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "was",
+      "startMs": 28928,
+      "endMs": 29250,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "watching",
+      "startMs": 29286,
+      "endMs": 29607,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "either",
+      "startMs": 29643,
+      "endMs": 29964,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "one.",
+      "startMs": 30000,
+      "endMs": 30321,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "text": "So",
+      "startMs": 30357,
+      "endMs": 30678,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "while",
+      "startMs": 30714,
+      "endMs": 31036,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "everyone",
+      "startMs": 31071,
+      "endMs": 31393,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "waits",
+      "startMs": 31428,
+      "endMs": 31750,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "for",
+      "startMs": 31786,
+      "endMs": 32107,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "New",
+      "startMs": 32143,
+      "endMs": 32464,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "York...",
+      "startMs": 32500,
+      "endMs": 32821,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "watch",
+      "startMs": 32857,
+      "endMs": 33178,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "Canada.",
+      "startMs": 33214,
+      "endMs": 33536,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "Whoever's",
+      "startMs": 33571,
+      "endMs": 33893,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "cooking",
+      "startMs": 33928,
+      "endMs": 34250,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "in",
+      "startMs": 34286,
+      "endMs": 34607,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "week",
+      "startMs": 34643,
+      "endMs": 34964,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "one",
+      "startMs": 35000,
+      "endMs": 35321,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "of",
+      "startMs": 35357,
+      "endMs": 35678,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "August",
+      "startMs": 35714,
+      "endMs": 36035,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "—",
+      "startMs": 36035,
+      "endMs": 36428,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "that's",
+      "startMs": 36428,
+      "endMs": 36750,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "your",
+      "startMs": 36785,
+      "endMs": 37107,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "US",
+      "startMs": 37143,
+      "endMs": 37464,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "Open",
+      "startMs": 37500,
+      "endMs": 37821,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "pick,",
+      "startMs": 37857,
+      "endMs": 38178,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "two",
+      "startMs": 38214,
+      "endMs": 38535,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "weeks",
+      "startMs": 38571,
+      "endMs": 38893,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "before",
+      "startMs": 38928,
+      "endMs": 39250,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "the",
+      "startMs": 39285,
+      "endMs": 39607,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "odds",
+      "startMs": 39643,
+      "endMs": 39964,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "catch",
+      "startMs": 40000,
+      "endMs": 40321,
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "text": "up.",
+      "startMs": 40357,
+      "endMs": 40678,
+      "speaker": "george",
+      "lineIndex": 4
+    }
+  ],
+  "captions": [
+    {
+      "id": "caption-1",
+      "text": "The US",
+      "startMs": 0,
+      "endMs": 679,
+      "words": [
+        {
+          "text": "The",
+          "startMs": 0,
+          "endMs": 321,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "US",
+          "startMs": 357,
+          "endMs": 679,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-2",
+      "text": "Open gets",
+      "startMs": 714,
+      "endMs": 1393,
+      "words": [
+        {
+          "text": "Open",
+          "startMs": 714,
+          "endMs": 1036,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "gets",
+          "startMs": 1071,
+          "endMs": 1393,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-3",
+      "text": "decided in",
+      "startMs": 1428,
+      "endMs": 2107,
+      "words": [
+        {
+          "text": "decided",
+          "startMs": 1428,
+          "endMs": 1750,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "in",
+          "startMs": 1786,
+          "endMs": 2107,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-4",
+      "text": "August —",
+      "startMs": 2143,
+      "endMs": 2837,
+      "words": [
+        {
+          "text": "August",
+          "startMs": 2143,
+          "endMs": 2464,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "—",
+          "startMs": 2464,
+          "endMs": 2857,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-5",
+      "text": "in Canada.",
+      "startMs": 2857,
+      "endMs": 3535,
+      "words": [
+        {
+          "text": "in",
+          "startMs": 2857,
+          "endMs": 3178,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "Canada.",
+          "startMs": 3214,
+          "endMs": 3535,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-6",
+      "text": "[exhales] Most",
+      "startMs": 3571,
+      "endMs": 4250,
+      "words": [
+        {
+          "text": "[exhales]",
+          "startMs": 3571,
+          "endMs": 3893,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "Most",
+          "startMs": 3928,
+          "endMs": 4250,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-7",
+      "text": "fans watch",
+      "startMs": 4285,
+      "endMs": 4964,
+      "words": [
+        {
+          "text": "fans",
+          "startMs": 4285,
+          "endMs": 4607,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "watch",
+          "startMs": 4643,
+          "endMs": 4964,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-8",
+      "text": "the wrong",
+      "startMs": 5000,
+      "endMs": 5678,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 5000,
+          "endMs": 5321,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "wrong",
+          "startMs": 5357,
+          "endMs": 5678,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-9",
+      "text": "tournament.",
+      "startMs": 5714,
+      "endMs": 6051,
+      "words": [
+        {
+          "text": "tournament.",
+          "startMs": 5714,
+          "endMs": 6035,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "caption-10",
+      "text": "Here's the",
+      "startMs": 6071,
+      "endMs": 6750,
+      "words": [
+        {
+          "text": "Here's",
+          "startMs": 6071,
+          "endMs": 6392,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "the",
+          "startMs": 6428,
+          "endMs": 6750,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-11",
+      "text": "calendar nobody",
+      "startMs": 6785,
+      "endMs": 7464,
+      "words": [
+        {
+          "text": "calendar",
+          "startMs": 6785,
+          "endMs": 7107,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "nobody",
+          "startMs": 7143,
+          "endMs": 7464,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-12",
+      "text": "thinks about.",
+      "startMs": 7500,
+      "endMs": 8178,
+      "words": [
+        {
+          "text": "thinks",
+          "startMs": 7500,
+          "endMs": 7821,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "about.",
+          "startMs": 7857,
+          "endMs": 8178,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-13",
+      "text": "Canada, August",
+      "startMs": 8214,
+      "endMs": 8893,
+      "words": [
+        {
+          "text": "Canada,",
+          "startMs": 8214,
+          "endMs": 8536,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "August",
+          "startMs": 8571,
+          "endMs": 8893,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-14",
+      "text": "first. Cincinnati,",
+      "startMs": 8928,
+      "endMs": 9607,
+      "words": [
+        {
+          "text": "first.",
+          "startMs": 8928,
+          "endMs": 9250,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "Cincinnati,",
+          "startMs": 9286,
+          "endMs": 9607,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-15",
+      "text": "the eleventh.",
+      "startMs": 9643,
+      "endMs": 10321,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 9643,
+          "endMs": 9964,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "eleventh.",
+          "startMs": 10000,
+          "endMs": 10321,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-16",
+      "text": "Then the",
+      "startMs": 10357,
+      "endMs": 11036,
+      "words": [
+        {
+          "text": "Then",
+          "startMs": 10357,
+          "endMs": 10679,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "the",
+          "startMs": 10714,
+          "endMs": 11036,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-17",
+      "text": "Open. Same",
+      "startMs": 11072,
+      "endMs": 11750,
+      "words": [
+        {
+          "text": "Open.",
+          "startMs": 11072,
+          "endMs": 11393,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "Same",
+          "startMs": 11429,
+          "endMs": 11750,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-18",
+      "text": "surface, back",
+      "startMs": 11786,
+      "endMs": 12465,
+      "words": [
+        {
+          "text": "surface,",
+          "startMs": 11786,
+          "endMs": 12107,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "back",
+          "startMs": 12143,
+          "endMs": 12465,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-19",
+      "text": "to back",
+      "startMs": 12500,
+      "endMs": 13179,
+      "words": [
+        {
+          "text": "to",
+          "startMs": 12500,
+          "endMs": 12822,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "back",
+          "startMs": 12857,
+          "endMs": 13179,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-20",
+      "text": "to back.",
+      "startMs": 13215,
+      "endMs": 13893,
+      "words": [
+        {
+          "text": "to",
+          "startMs": 13215,
+          "endMs": 13536,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "back.",
+          "startMs": 13572,
+          "endMs": 13893,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "caption-21",
+      "text": "So the",
+      "startMs": 13929,
+      "endMs": 14608,
+      "words": [
+        {
+          "text": "So",
+          "startMs": 13929,
+          "endMs": 14250,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "the",
+          "startMs": 14286,
+          "endMs": 14608,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-22",
+      "text": "guys who",
+      "startMs": 14643,
+      "endMs": 15322,
+      "words": [
+        {
+          "text": "guys",
+          "startMs": 14643,
+          "endMs": 14965,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "who",
+          "startMs": 15000,
+          "endMs": 15322,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-23",
+      "text": "show up",
+      "startMs": 15357,
+      "endMs": 16036,
+      "words": [
+        {
+          "text": "show",
+          "startMs": 15357,
+          "endMs": 15679,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "up",
+          "startMs": 15715,
+          "endMs": 16036,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-24",
+      "text": "flying in",
+      "startMs": 16072,
+      "endMs": 16750,
+      "words": [
+        {
+          "text": "flying",
+          "startMs": 16072,
+          "endMs": 16393,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "in",
+          "startMs": 16429,
+          "endMs": 16750,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-25",
+      "text": "Toronto and",
+      "startMs": 16786,
+      "endMs": 17464,
+      "words": [
+        {
+          "text": "Toronto",
+          "startMs": 16786,
+          "endMs": 17107,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "and",
+          "startMs": 17143,
+          "endMs": 17464,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-26",
+      "text": "Montreal? That's",
+      "startMs": 17500,
+      "endMs": 18179,
+      "words": [
+        {
+          "text": "Montreal?",
+          "startMs": 17500,
+          "endMs": 17822,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "That's",
+          "startMs": 17857,
+          "endMs": 18179,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-27",
+      "text": "not a",
+      "startMs": 18214,
+      "endMs": 18893,
+      "words": [
+        {
+          "text": "not",
+          "startMs": 18214,
+          "endMs": 18536,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "a",
+          "startMs": 18572,
+          "endMs": 18893,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-28",
+      "text": "warm-up. That's",
+      "startMs": 18929,
+      "endMs": 19607,
+      "words": [
+        {
+          "text": "warm-up.",
+          "startMs": 18929,
+          "endMs": 19250,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "That's",
+          "startMs": 19286,
+          "endMs": 19607,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-29",
+      "text": "the form",
+      "startMs": 19643,
+      "endMs": 20321,
+      "words": [
+        {
+          "text": "the",
+          "startMs": 19643,
+          "endMs": 19964,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "form",
+          "startMs": 20000,
+          "endMs": 20321,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-30",
+      "text": "that wins",
+      "startMs": 20357,
+      "endMs": 21036,
+      "words": [
+        {
+          "text": "that",
+          "startMs": 20357,
+          "endMs": 20678,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "wins",
+          "startMs": 20714,
+          "endMs": 21036,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-31",
+      "text": "in New",
+      "startMs": 21071,
+      "endMs": 21750,
+      "words": [
+        {
+          "text": "in",
+          "startMs": 21071,
+          "endMs": 21393,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "New",
+          "startMs": 21428,
+          "endMs": 21750,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-32",
+      "text": "York three",
+      "startMs": 21786,
+      "endMs": 22464,
+      "words": [
+        {
+          "text": "York",
+          "startMs": 21786,
+          "endMs": 22107,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "three",
+          "startMs": 22143,
+          "endMs": 22464,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-33",
+      "text": "weeks later.",
+      "startMs": 22500,
+      "endMs": 23178,
+      "words": [
+        {
+          "text": "weeks",
+          "startMs": 22500,
+          "endMs": 22821,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "later.",
+          "startMs": 22857,
+          "endMs": 23178,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "caption-34",
+      "text": "Last summer?",
+      "startMs": 23214,
+      "endMs": 23893,
+      "words": [
+        {
+          "text": "Last",
+          "startMs": 23214,
+          "endMs": 23535,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "summer?",
+          "startMs": 23571,
+          "endMs": 23893,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-35",
+      "text": "Ben Shelton",
+      "startMs": 23928,
+      "endMs": 24607,
+      "words": [
+        {
+          "text": "Ben",
+          "startMs": 23928,
+          "endMs": 24250,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Shelton",
+          "startMs": 24285,
+          "endMs": 24607,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-36",
+      "text": "won Canada.",
+      "startMs": 24643,
+      "endMs": 25321,
+      "words": [
+        {
+          "text": "won",
+          "startMs": 24643,
+          "endMs": 24964,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Canada.",
+          "startMs": 25000,
+          "endMs": 25321,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-37",
+      "text": "Victoria Mboko",
+      "startMs": 25357,
+      "endMs": 26035,
+      "words": [
+        {
+          "text": "Victoria",
+          "startMs": 25357,
+          "endMs": 25678,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Mboko",
+          "startMs": 25714,
+          "endMs": 26035,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-38",
+      "text": "shocked Osaka",
+      "startMs": 26071,
+      "endMs": 26750,
+      "words": [
+        {
+          "text": "shocked",
+          "startMs": 26071,
+          "endMs": 26393,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Osaka",
+          "startMs": 26428,
+          "endMs": 26750,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-39",
+      "text": "for the",
+      "startMs": 26786,
+      "endMs": 27464,
+      "words": [
+        {
+          "text": "for",
+          "startMs": 26786,
+          "endMs": 27107,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "the",
+          "startMs": 27143,
+          "endMs": 27464,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-40",
+      "text": "women's title.",
+      "startMs": 27500,
+      "endMs": 28178,
+      "words": [
+        {
+          "text": "women's",
+          "startMs": 27500,
+          "endMs": 27821,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "title.",
+          "startMs": 27857,
+          "endMs": 28178,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-41",
+      "text": "Nobody casual",
+      "startMs": 28214,
+      "endMs": 28893,
+      "words": [
+        {
+          "text": "Nobody",
+          "startMs": 28214,
+          "endMs": 28536,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "casual",
+          "startMs": 28571,
+          "endMs": 28893,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-42",
+      "text": "was watching",
+      "startMs": 28928,
+      "endMs": 29607,
+      "words": [
+        {
+          "text": "was",
+          "startMs": 28928,
+          "endMs": 29250,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "watching",
+          "startMs": 29286,
+          "endMs": 29607,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-43",
+      "text": "either one.",
+      "startMs": 29643,
+      "endMs": 30321,
+      "words": [
+        {
+          "text": "either",
+          "startMs": 29643,
+          "endMs": 29964,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "one.",
+          "startMs": 30000,
+          "endMs": 30321,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "caption-44",
+      "text": "So while",
+      "startMs": 30357,
+      "endMs": 31036,
+      "words": [
+        {
+          "text": "So",
+          "startMs": 30357,
+          "endMs": 30678,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "while",
+          "startMs": 30714,
+          "endMs": 31036,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-45",
+      "text": "everyone waits",
+      "startMs": 31071,
+      "endMs": 31750,
+      "words": [
+        {
+          "text": "everyone",
+          "startMs": 31071,
+          "endMs": 31393,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "waits",
+          "startMs": 31428,
+          "endMs": 31750,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-46",
+      "text": "for New",
+      "startMs": 31786,
+      "endMs": 32464,
+      "words": [
+        {
+          "text": "for",
+          "startMs": 31786,
+          "endMs": 32107,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "New",
+          "startMs": 32143,
+          "endMs": 32464,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-47",
+      "text": "York... watch",
+      "startMs": 32500,
+      "endMs": 33178,
+      "words": [
+        {
+          "text": "York...",
+          "startMs": 32500,
+          "endMs": 32821,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "watch",
+          "startMs": 32857,
+          "endMs": 33178,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-48",
+      "text": "Canada. Whoever's",
+      "startMs": 33214,
+      "endMs": 33893,
+      "words": [
+        {
+          "text": "Canada.",
+          "startMs": 33214,
+          "endMs": 33536,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "Whoever's",
+          "startMs": 33571,
+          "endMs": 33893,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-49",
+      "text": "cooking in",
+      "startMs": 33928,
+      "endMs": 34607,
+      "words": [
+        {
+          "text": "cooking",
+          "startMs": 33928,
+          "endMs": 34250,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "in",
+          "startMs": 34286,
+          "endMs": 34607,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-50",
+      "text": "week one",
+      "startMs": 34643,
+      "endMs": 35321,
+      "words": [
+        {
+          "text": "week",
+          "startMs": 34643,
+          "endMs": 34964,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "one",
+          "startMs": 35000,
+          "endMs": 35321,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-51",
+      "text": "of August",
+      "startMs": 35357,
+      "endMs": 36015,
+      "words": [
+        {
+          "text": "of",
+          "startMs": 35357,
+          "endMs": 35678,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "August",
+          "startMs": 35714,
+          "endMs": 36035,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-52",
+      "text": "— that's",
+      "startMs": 36035,
+      "endMs": 36750,
+      "words": [
+        {
+          "text": "—",
+          "startMs": 36035,
+          "endMs": 36428,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "that's",
+          "startMs": 36428,
+          "endMs": 36750,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-53",
+      "text": "your US",
+      "startMs": 36785,
+      "endMs": 37464,
+      "words": [
+        {
+          "text": "your",
+          "startMs": 36785,
+          "endMs": 37107,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "US",
+          "startMs": 37143,
+          "endMs": 37464,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-54",
+      "text": "Open pick,",
+      "startMs": 37500,
+      "endMs": 38178,
+      "words": [
+        {
+          "text": "Open",
+          "startMs": 37500,
+          "endMs": 37821,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "pick,",
+          "startMs": 37857,
+          "endMs": 38178,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-55",
+      "text": "two weeks",
+      "startMs": 38214,
+      "endMs": 38893,
+      "words": [
+        {
+          "text": "two",
+          "startMs": 38214,
+          "endMs": 38535,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "weeks",
+          "startMs": 38571,
+          "endMs": 38893,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-56",
+      "text": "before the",
+      "startMs": 38928,
+      "endMs": 39607,
+      "words": [
+        {
+          "text": "before",
+          "startMs": 38928,
+          "endMs": 39250,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "the",
+          "startMs": 39285,
+          "endMs": 39607,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-57",
+      "text": "odds catch",
+      "startMs": 39643,
+      "endMs": 40321,
+      "words": [
+        {
+          "text": "odds",
+          "startMs": 39643,
+          "endMs": 39964,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "catch",
+          "startMs": 40000,
+          "endMs": 40321,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    },
+    {
+      "id": "caption-58",
+      "text": "up.",
+      "startMs": 40357,
+      "endMs": 40977,
+      "words": [
+        {
+          "text": "up.",
+          "startMs": 40357,
+          "endMs": 40678,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ],
+      "speaker": "george",
+      "lineIndex": 4
+    }
+  ],
+  "cues": [
+    {
+      "id": "line-1",
+      "cue": "The US Open gets decided in August — in Canada. [exhales] Most fans watch the wrong tournament.",
+      "startMs": 0,
+      "endMs": 6071,
+      "score": 1,
+      "matchedText": "The US Open gets decided in August — in Canada. [exhales] Most fans watch the wrong tournament.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 0
+    },
+    {
+      "id": "line-2",
+      "cue": "Here's the calendar nobody thinks about. Canada, August first. Cincinnati, the eleventh. Then the Open. Same surface, back to back to back.",
+      "startMs": 6071,
+      "endMs": 13929,
+      "score": 1,
+      "matchedText": "Here's the calendar nobody thinks about. Canada, August first. Cincinnati, the eleventh. Then the Open. Same surface, back to back to back.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 1
+    },
+    {
+      "id": "line-3",
+      "cue": "So the guys who show up flying in Toronto and Montreal? That's not a warm-up. That's the form that wins in New York three weeks later.",
+      "startMs": 13929,
+      "endMs": 23214,
+      "score": 1,
+      "matchedText": "So the guys who show up flying in Toronto and Montreal? That's not a warm-up. That's the form that wins in New York three weeks later.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 2
+    },
+    {
+      "id": "line-4",
+      "cue": "Last summer? Ben Shelton won Canada. Victoria Mboko shocked Osaka for the women's title. Nobody casual was watching either one.",
+      "startMs": 23214,
+      "endMs": 30357,
+      "score": 1,
+      "matchedText": "Last summer? Ben Shelton won Canada. Victoria Mboko shocked Osaka for the women's title. Nobody casual was watching either one.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 3
+    },
+    {
+      "id": "line-5",
+      "cue": "So while everyone waits for New York... watch Canada. Whoever's cooking in week one of August — that's your US Open pick, two weeks before the odds catch up.",
+      "startMs": 30357,
+      "endMs": 41074,
+      "score": 1,
+      "matchedText": "So while everyone waits for New York... watch Canada. Whoever's cooking in week one of August — that's your US Open pick, two weeks before the odds catch up.",
+      "fallback": false,
+      "speaker": "george",
+      "lineIndex": 4
+    }
+  ],
+  "lineTimings": [
+    {
+      "id": "line-1",
+      "lineIndex": 0,
+      "speaker": "george",
+      "text": "The US Open gets decided in August — in Canada. [exhales] Most fans watch the wrong tournament.",
+      "visual": "hook",
+      "viz": {
+        "kind": "title",
+        "big": "THE US OPEN STARTS IN CANADA.",
+        "sub": "THE SIGNAL MOST FANS MISS"
+      },
+      "startMs": 0,
+      "endMs": 6071,
+      "words": [
+        {
+          "text": "The",
+          "startMs": 0,
+          "endMs": 321,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "US",
+          "startMs": 357,
+          "endMs": 679,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "Open",
+          "startMs": 714,
+          "endMs": 1036,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "gets",
+          "startMs": 1071,
+          "endMs": 1393,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "decided",
+          "startMs": 1428,
+          "endMs": 1750,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "in",
+          "startMs": 1786,
+          "endMs": 2107,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "August",
+          "startMs": 2143,
+          "endMs": 2464,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "—",
+          "startMs": 2500,
+          "endMs": 2821,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "in",
+          "startMs": 2857,
+          "endMs": 3178,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "Canada.",
+          "startMs": 3214,
+          "endMs": 3535,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "[exhales]",
+          "startMs": 3571,
+          "endMs": 3893,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "Most",
+          "startMs": 3928,
+          "endMs": 4250,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "fans",
+          "startMs": 4285,
+          "endMs": 4607,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "watch",
+          "startMs": 4643,
+          "endMs": 4964,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "the",
+          "startMs": 5000,
+          "endMs": 5321,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "wrong",
+          "startMs": 5357,
+          "endMs": 5678,
+          "speaker": "george",
+          "lineIndex": 0
+        },
+        {
+          "text": "tournament.",
+          "startMs": 5714,
+          "endMs": 6035,
+          "speaker": "george",
+          "lineIndex": 0
+        }
+      ]
+    },
+    {
+      "id": "line-2",
+      "lineIndex": 1,
+      "speaker": "george",
+      "text": "Here's the calendar nobody thinks about. Canada, August first. Cincinnati, the eleventh. Then the Open. Same surface, back to back to back.",
+      "visual": "swing timeline",
+      "viz": {
+        "kind": "leaderboard",
+        "rows": [
+          {
+            "label": "NATIONAL BANK OPEN · AUG 1"
+          },
+          {
+            "label": "CINCINNATI · AUG 11"
+          },
+          {
+            "label": "US OPEN · AUG 31",
+            "highlight": true
+          }
+        ],
+        "stamp": "ONE HARD-COURT RUNWAY"
+      },
+      "startMs": 6071,
+      "endMs": 13929,
+      "words": [
+        {
+          "text": "Here's",
+          "startMs": 6071,
+          "endMs": 6392,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "the",
+          "startMs": 6428,
+          "endMs": 6750,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "calendar",
+          "startMs": 6785,
+          "endMs": 7107,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "nobody",
+          "startMs": 7143,
+          "endMs": 7464,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "thinks",
+          "startMs": 7500,
+          "endMs": 7821,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "about.",
+          "startMs": 7857,
+          "endMs": 8178,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "Canada,",
+          "startMs": 8214,
+          "endMs": 8536,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "August",
+          "startMs": 8571,
+          "endMs": 8893,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "first.",
+          "startMs": 8928,
+          "endMs": 9250,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "Cincinnati,",
+          "startMs": 9286,
+          "endMs": 9607,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "the",
+          "startMs": 9643,
+          "endMs": 9964,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "eleventh.",
+          "startMs": 10000,
+          "endMs": 10321,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "Then",
+          "startMs": 10357,
+          "endMs": 10679,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "the",
+          "startMs": 10714,
+          "endMs": 11036,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "Open.",
+          "startMs": 11072,
+          "endMs": 11393,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "Same",
+          "startMs": 11429,
+          "endMs": 11750,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "surface,",
+          "startMs": 11786,
+          "endMs": 12107,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "back",
+          "startMs": 12143,
+          "endMs": 12465,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "to",
+          "startMs": 12500,
+          "endMs": 12822,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "back",
+          "startMs": 12857,
+          "endMs": 13179,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "to",
+          "startMs": 13215,
+          "endMs": 13536,
+          "speaker": "george",
+          "lineIndex": 1
+        },
+        {
+          "text": "back.",
+          "startMs": 13572,
+          "endMs": 13893,
+          "speaker": "george",
+          "lineIndex": 1
+        }
+      ]
+    },
+    {
+      "id": "line-3",
+      "lineIndex": 2,
+      "speaker": "george",
+      "text": "So the guys who show up flying in Toronto and Montreal? That's not a warm-up. That's the form that wins in New York three weeks later.",
+      "visual": "form signal",
+      "viz": {
+        "kind": "statBig",
+        "value": "FORM TRAVELS",
+        "label": "SAME SURFACE · 3 WEEKS OUT",
+        "sub": "hard-court heat doesn't cool off"
+      },
+      "startMs": 13929,
+      "endMs": 23214,
+      "words": [
+        {
+          "text": "So",
+          "startMs": 13929,
+          "endMs": 14250,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "the",
+          "startMs": 14286,
+          "endMs": 14608,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "guys",
+          "startMs": 14643,
+          "endMs": 14965,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "who",
+          "startMs": 15000,
+          "endMs": 15322,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "show",
+          "startMs": 15357,
+          "endMs": 15679,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "up",
+          "startMs": 15715,
+          "endMs": 16036,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "flying",
+          "startMs": 16072,
+          "endMs": 16393,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "in",
+          "startMs": 16429,
+          "endMs": 16750,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "Toronto",
+          "startMs": 16786,
+          "endMs": 17107,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "and",
+          "startMs": 17143,
+          "endMs": 17464,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "Montreal?",
+          "startMs": 17500,
+          "endMs": 17822,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "That's",
+          "startMs": 17857,
+          "endMs": 18179,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "not",
+          "startMs": 18214,
+          "endMs": 18536,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "a",
+          "startMs": 18572,
+          "endMs": 18893,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "warm-up.",
+          "startMs": 18929,
+          "endMs": 19250,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "That's",
+          "startMs": 19286,
+          "endMs": 19607,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "the",
+          "startMs": 19643,
+          "endMs": 19964,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "form",
+          "startMs": 20000,
+          "endMs": 20321,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "that",
+          "startMs": 20357,
+          "endMs": 20678,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "wins",
+          "startMs": 20714,
+          "endMs": 21036,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "in",
+          "startMs": 21071,
+          "endMs": 21393,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "New",
+          "startMs": 21428,
+          "endMs": 21750,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "York",
+          "startMs": 21786,
+          "endMs": 22107,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "three",
+          "startMs": 22143,
+          "endMs": 22464,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "weeks",
+          "startMs": 22500,
+          "endMs": 22821,
+          "speaker": "george",
+          "lineIndex": 2
+        },
+        {
+          "text": "later.",
+          "startMs": 22857,
+          "endMs": 23178,
+          "speaker": "george",
+          "lineIndex": 2
+        }
+      ]
+    },
+    {
+      "id": "line-4",
+      "lineIndex": 3,
+      "speaker": "george",
+      "text": "Last summer? Ben Shelton won Canada. Victoria Mboko shocked Osaka for the women's title. Nobody casual was watching either one.",
+      "visual": "defenders",
+      "viz": {
+        "kind": "split",
+        "left": {
+          "label": "2025 MEN'S CHAMP",
+          "value": "SHELTON"
+        },
+        "right": {
+          "label": "2025 WOMEN'S CHAMP",
+          "value": "MBOKO"
+        },
+        "stamp": "BOTH BACK IN 2026"
+      },
+      "startMs": 23214,
+      "endMs": 30357,
+      "words": [
+        {
+          "text": "Last",
+          "startMs": 23214,
+          "endMs": 23535,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "summer?",
+          "startMs": 23571,
+          "endMs": 23893,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Ben",
+          "startMs": 23928,
+          "endMs": 24250,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Shelton",
+          "startMs": 24285,
+          "endMs": 24607,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "won",
+          "startMs": 24643,
+          "endMs": 24964,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Canada.",
+          "startMs": 25000,
+          "endMs": 25321,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Victoria",
+          "startMs": 25357,
+          "endMs": 25678,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Mboko",
+          "startMs": 25714,
+          "endMs": 26035,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "shocked",
+          "startMs": 26071,
+          "endMs": 26393,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Osaka",
+          "startMs": 26428,
+          "endMs": 26750,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "for",
+          "startMs": 26786,
+          "endMs": 27107,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "the",
+          "startMs": 27143,
+          "endMs": 27464,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "women's",
+          "startMs": 27500,
+          "endMs": 27821,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "title.",
+          "startMs": 27857,
+          "endMs": 28178,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "Nobody",
+          "startMs": 28214,
+          "endMs": 28536,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "casual",
+          "startMs": 28571,
+          "endMs": 28893,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "was",
+          "startMs": 28928,
+          "endMs": 29250,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "watching",
+          "startMs": 29286,
+          "endMs": 29607,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "either",
+          "startMs": 29643,
+          "endMs": 29964,
+          "speaker": "george",
+          "lineIndex": 3
+        },
+        {
+          "text": "one.",
+          "startMs": 30000,
+          "endMs": 30321,
+          "speaker": "george",
+          "lineIndex": 3
+        }
+      ]
+    },
+    {
+      "id": "line-5",
+      "lineIndex": 4,
+      "speaker": "george",
+      "text": "So while everyone waits for New York... watch Canada. Whoever's cooking in week one of August — that's your US Open pick, two weeks before the odds catch up.",
+      "visual": "payoff",
+      "viz": {
+        "kind": "title",
+        "big": "WATCH CANADA.",
+        "sub": "PICK YOUR CHAMP BEFORE THE ODDS MOVE."
+      },
+      "startMs": 30357,
+      "endMs": 40714,
+      "words": [
+        {
+          "text": "So",
+          "startMs": 30357,
+          "endMs": 30678,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "while",
+          "startMs": 30714,
+          "endMs": 31036,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "everyone",
+          "startMs": 31071,
+          "endMs": 31393,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "waits",
+          "startMs": 31428,
+          "endMs": 31750,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "for",
+          "startMs": 31786,
+          "endMs": 32107,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "New",
+          "startMs": 32143,
+          "endMs": 32464,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "York...",
+          "startMs": 32500,
+          "endMs": 32821,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "watch",
+          "startMs": 32857,
+          "endMs": 33178,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "Canada.",
+          "startMs": 33214,
+          "endMs": 33536,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "Whoever's",
+          "startMs": 33571,
+          "endMs": 33893,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "cooking",
+          "startMs": 33928,
+          "endMs": 34250,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "in",
+          "startMs": 34286,
+          "endMs": 34607,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "week",
+          "startMs": 34643,
+          "endMs": 34964,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "one",
+          "startMs": 35000,
+          "endMs": 35321,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "of",
+          "startMs": 35357,
+          "endMs": 35678,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "August",
+          "startMs": 35714,
+          "endMs": 36035,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "—",
+          "startMs": 36071,
+          "endMs": 36393,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "that's",
+          "startMs": 36428,
+          "endMs": 36750,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "your",
+          "startMs": 36785,
+          "endMs": 37107,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "US",
+          "startMs": 37143,
+          "endMs": 37464,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "Open",
+          "startMs": 37500,
+          "endMs": 37821,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "pick,",
+          "startMs": 37857,
+          "endMs": 38178,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "two",
+          "startMs": 38214,
+          "endMs": 38535,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "weeks",
+          "startMs": 38571,
+          "endMs": 38893,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "before",
+          "startMs": 38928,
+          "endMs": 39250,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "the",
+          "startMs": 39285,
+          "endMs": 39607,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "odds",
+          "startMs": 39643,
+          "endMs": 39964,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "catch",
+          "startMs": 40000,
+          "endMs": 40321,
+          "speaker": "george",
+          "lineIndex": 4
+        },
+        {
+          "text": "up.",
+          "startMs": 40357,
+          "endMs": 40678,
+          "speaker": "george",
+          "lineIndex": 4
+        }
+      ]
+    }
+  ]
+}

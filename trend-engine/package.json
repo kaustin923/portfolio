@@ -1,0 +1,26 @@
+{
+  "name": "trend-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Multi-agent workflow: trend detection → licensed sourcing → clipping → human-approved multi-platform publishing.",
+  "scripts": {
+    "scout": "node --env-file-if-exists=.env --import tsx src/index.ts scout",
+    "start": "node --env-file-if-exists=.env --import tsx src/index.ts run",
+    "daemon": "node --env-file-if-exists=.env --import tsx src/index.ts daemon",
+    "oauth:youtube": "node --env-file-if-exists=.env --import tsx scripts/youtube-oauth.ts",
+    "track": "node --env-file-if-exists=.env --import tsx src/track.ts",
+    "report": "node --env-file-if-exists=.env --import tsx src/report.ts",
+    "typecheck": "tsc --noEmit",
+    "policy:check": "node --env-file-if-exists=.env --import tsx src/policyWatch.ts",
+    "test": "node --import tsx --test --test-concurrency=1 test/*.test.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.80.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "tsx": "^4.19.0",
+    "typescript": "^5"
+  }
+}

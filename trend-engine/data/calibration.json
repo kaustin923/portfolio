@@ -1,0 +1,7 @@
+{
+  "generatedAt": "2026-07-19T23:12:20.032Z",
+  "joinedCount": 0,
+  "buckets": [],
+  "predictors": [],
+  "summary": "Forecast calibration cold start: only 0 forecast→outcome pairs recorded (need 8) — no calibration statistics yet."
+}
