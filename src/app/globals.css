@@ -1,16 +1,36 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #FAF7F2;
-  --color-card: #FDFCFA;
-  --color-primary: #2D5A3D;
-  --color-primary-hover: #3A7350;
-  --color-primary-light: #EDF5F0;
-  --color-text: #1A1A1A;
-  --color-muted: #6B7280;
-  --color-border: #E5E2DC;
-  --color-accent: #C8965A;
-  --color-white: #FDFCFA;
+  /* Surfaces */
+  --color-background: #faf7f2;
+  --color-card: #fffdfa;
+  --color-raised: #ffffff;
+  --color-sunken: #f4efe7;
+
+  /* Brand */
+  --color-primary: #2d5a3d;
+  --color-primary-hover: #24492f;
+  --color-primary-light: #edf5f0;
+  --color-primary-deep: #1c3826;
+
+  /* Accent. Darkened from the original gold so it clears 4.5:1 as text,
+     including on its own tinted badge background. */
+  --color-accent: #8a662f;
+  --color-accent-soft: #c8965a;
+  --color-accent-light: #fbf3e8;
+
+  /* Type. Every value below clears WCAG AA 4.5:1 on background, card, and
+     sunken, so small metadata text stays legible wherever it lands. */
+  --color-text: #14181a;
+  --color-muted: #4d545e;
+  --color-subtle: #646c79;
+
+  /* Lines */
+  --color-border: #e6e1d8;
+  --color-border-strong: #d5cec1;
+
+  --color-white: #fffdfa;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -18,26 +38,116 @@
 body {
   background: var(--color-background);
   color: var(--color-text);
+  /* Slightly tighter tracking reads better at the sizes used across the site. */
+  letter-spacing: -0.011em;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Next 16 no longer forces smooth scrolling during navigation without this. */
+  scroll-padding-top: 5rem;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+/* Headings carry the weight, so pull the tracking in a little further. */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.025em;
+}
+
+/* Metric figures should line up in a column. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Consistent focus ring for every interactive element. */
+.focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Thin scrollbar inside the chat panel and any scrolling region. */
+.scroll-slim {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+.scroll-slim::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.scroll-slim::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 999px;
+}
+.scroll-slim::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 @keyframes gradient-drift {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(30px, -20px) scale(1.05); }
-  50% { transform: translate(-20px, 30px) scale(0.95); }
-  75% { transform: translate(20px, 20px) scale(1.02); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -20px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 30px) scale(0.95);
+  }
+  75% {
+    transform: translate(20px, 20px) scale(1.02);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(45, 90, 61, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(45, 90, 61, 0); }
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(45, 90, 61, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(45, 90, 61, 0);
+  }
+}
+
+@keyframes caret-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Streaming caret for the chat agent. */
+.streaming-caret::after {
+  content: "";
+  display: inline-block;
+  width: 0.5ch;
+  height: 1em;
+  margin-left: 0.15em;
+  vertical-align: text-bottom;
+  background: var(--color-primary);
+  animation: caret-blink 1s step-end infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

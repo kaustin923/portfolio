@@ -9,7 +9,8 @@
     "lint": "eslint",
     "test:e2e": "playwright test",
     "test:e2e:api": "E2E_TESTING=1 playwright test e2e/chat-api.spec.ts",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "resume:pdf": "node scripts/generate-resume-pdf.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.80.0",

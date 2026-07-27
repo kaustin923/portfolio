@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const SECTIONS = ["about", "resume", "projects"] as const;
+const SECTIONS = ["capabilities", "projects", "about", "resume"] as const;
 export type SectionId = (typeof SECTIONS)[number];
 
 export function useSectionInView() {

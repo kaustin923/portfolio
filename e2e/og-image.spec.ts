@@ -14,11 +14,8 @@ test.describe("OG Image", () => {
     );
 
     if (ogImage) {
-      // If we found the meta tag, verify the image is valid
-      const imageUrl = ogImage.startsWith("http")
-        ? ogImage
-        : `http://localhost:3000${ogImage}`;
-      const response = await request.get(imageUrl);
+      // Relative URLs resolve against the configured baseURL, not a hardcoded port.
+      const response = await request.get(ogImage);
       expect(response.status()).toBe(200);
       const contentType = response.headers()["content-type"];
       expect(contentType).toContain("image/png");

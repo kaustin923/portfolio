@@ -2,23 +2,31 @@ import type { Highlight } from "@/types";
 
 export const highlights: Highlight[] = [
   {
+    title: "PwC [A]mplify [I]mpact Luminary Award",
+    subtitle: "The firm's highest AI honor",
+    badge: "Award",
+    featured: true,
+    description:
+      "1 of 9 recipients across the PwC US Acceleration Centers. It recognizes contributions to AI across the firm: upskilling engineers, delivering real client work, and changing how a practice uses AI rather than talking about it.",
+  },
+  {
+    title: "AI Transformation Office",
+    subtitle: "Co-Founder",
+    description:
+      "Built and scaled AI adoption across a 500+ person practice, from 54% to 99%, by reworking service delivery rather than running more training sessions.",
+  },
+  {
     title: "NARUC Spring Conference",
-    subtitle: "April 19-23, 2026 \u00B7 Charlotte, NC",
+    subtitle: "April 2026 · Charlotte, NC",
     eventDate: "2026-04-23",
     description:
-      "Presenting to the Staff Subcommittee on Accounting and Finance on AI, data centers, and large load impacts.",
+      "Presented to the Staff Subcommittee on Accounting and Finance on AI, data centers, and large load rate impacts.",
   },
   {
     title: "Executive Leadership Conference",
     subtitle: "April 2026",
     eventDate: "2026-04-30",
     description:
-      "Leading a 75-minute session on AI strategy and practical adoption for executive leadership.",
-  },
-  {
-    title: "AI Transformation Office",
-    subtitle: "Co-Founder",
-    description:
-      "Built and scaled AI adoption across a 500+ person practice. Grew adoption from 54% to 89% through hands-on training and reworking service delivery.",
+      "Led a 75-minute session on AI strategy and what practical adoption actually takes.",
   },
 ];

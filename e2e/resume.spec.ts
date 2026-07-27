@@ -9,10 +9,15 @@ test.describe("Resume", () => {
 
   test("default open/closed state of sections", async ({ page }) => {
     const resume = page.locator("#resume");
+    await resume.scrollIntoViewIfNeeded();
     // Summary, Technical Skills, Experience should be open (content visible)
-    await expect(resume.getByText("Tier 1, highest rating", { exact: false })).toBeVisible();
+    await expect(
+      resume.getByText("Forward-deployed engineer", { exact: false })
+    ).toBeVisible();
     await expect(resume.getByText("AI & LLM")).toBeVisible();
-    await expect(resume.getByText("PricewaterhouseCoopers", { exact: false })).toBeVisible();
+    await expect(
+      resume.getByText("PricewaterhouseCoopers", { exact: false })
+    ).toBeVisible();
 
     // Education should be closed (content not visible)
     await expect(page.getByText("Kent State University")).not.toBeVisible();

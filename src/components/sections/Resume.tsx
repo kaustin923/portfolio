@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, ChevronDown } from "lucide-react";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
@@ -16,30 +16,37 @@ function CollapsibleSection({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(defaultOpen);
+  const id = useId();
 
   return (
-    <div className="border border-border rounded-xl overflow-hidden">
+    <div className="overflow-hidden rounded-xl border border-border bg-card">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-primary-light/50 transition-colors"
+        aria-expanded={open}
+        aria-controls={id}
+        className="focus-ring flex w-full items-center justify-between px-5 py-4 text-left transition-colors hover:bg-primary-light/50"
       >
         <span className="font-semibold text-text">{title}</span>
         <ChevronDown
-          className={`h-4 w-4 text-muted transition-transform ${
+          className={`h-4 w-4 shrink-0 text-muted transition-transform ${
             open ? "rotate-180" : ""
           }`}
+          aria-hidden="true"
         />
       </button>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {open && (
           <motion.div
+            id={id}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.28, ease: "easeOut" }}
             className="overflow-hidden"
           >
-            <div className="px-5 pb-5">{children}</div>
+            <div className="border-t border-border px-5 pb-5 pt-4">
+              {children}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -50,31 +57,40 @@ function CollapsibleSection({
 export function Resume() {
   return (
     <SectionWrapper id="resume">
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl font-bold text-text">Resume</h2>
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h2 className="text-3xl font-bold text-text">Resume</h2>
+          <p className="mt-2 text-muted">
+            The full version. Everything here is also in the PDF.
+          </p>
+        </div>
         <a
           href="/kyle-austin-resume.pdf"
           download
-          className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-primary-hover transition-colors"
+          className="focus-ring inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
         >
-          <Download className="h-4 w-4" />
+          <Download className="h-4 w-4" aria-hidden="true" />
           Download PDF
         </a>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-3">
         <CollapsibleSection title="Summary" defaultOpen>
-          <p className="text-muted leading-relaxed">{resumeData.summary}</p>
+          <p className="max-w-3xl leading-relaxed text-muted">
+            {resumeData.summary}
+          </p>
         </CollapsibleSection>
 
         <CollapsibleSection title="Technical Skills" defaultOpen>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {resumeData.skills.map((skill) => (
               <div key={skill.category}>
-                <span className="text-sm font-medium text-text">
-                  {skill.category}:
-                </span>{" "}
-                <span className="text-sm text-muted">{skill.items}</span>
+                <p className="text-xs font-semibold uppercase tracking-wider text-subtle">
+                  {skill.category}
+                </p>
+                <p className="mt-1 text-sm leading-relaxed text-muted">
+                  {skill.items}
+                </p>
               </div>
             ))}
           </div>
@@ -83,13 +99,13 @@ export function Resume() {
         <CollapsibleSection title="Experience" defaultOpen>
           <div className="space-y-8">
             {resumeData.experience.map((exp) => (
-              <div key={`${exp.title}-${exp.company}`}>
-                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-3">
+              <div key={`${exp.title}-${exp.company}-${exp.period}`}>
+                <div className="mb-3 flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                   <div>
-                    <span className="font-medium text-text">{exp.title}</span>
+                    <span className="font-semibold text-text">{exp.title}</span>
                     <span className="text-muted">, {exp.company}</span>
                   </div>
-                  <span className="text-sm text-muted shrink-0">
+                  <span className="shrink-0 text-sm text-subtle">
                     {exp.period}
                   </span>
                 </div>
@@ -97,7 +113,7 @@ export function Resume() {
                   {exp.bullets.map((bullet, i) => (
                     <li
                       key={i}
-                      className="text-sm text-muted leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:rounded-full before:bg-primary/30"
+                      className="relative pl-4 text-sm leading-relaxed text-muted before:absolute before:left-0 before:top-[0.6em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary/40 before:content-['']"
                     >
                       {bullet}
                     </li>
@@ -112,11 +128,11 @@ export function Resume() {
           <div className="space-y-4">
             {resumeData.personalProjects.map((proj) => (
               <div key={proj.name}>
-                <div className="flex items-baseline gap-2 mb-1">
+                <div className="mb-1 flex flex-wrap items-baseline gap-2">
                   <span className="font-medium text-text">{proj.name}</span>
-                  <span className="text-xs text-muted">({proj.tech})</span>
+                  <span className="text-xs text-subtle">({proj.tech})</span>
                 </div>
-                <p className="text-sm text-muted leading-relaxed">
+                <p className="text-sm leading-relaxed text-muted">
                   {proj.description}
                 </p>
               </div>
@@ -132,7 +148,7 @@ export function Resume() {
             <span className="text-muted">
               , {resumeData.education.school}, {resumeData.education.year}
             </span>
-            <p className="text-sm text-muted mt-1">
+            <p className="mt-1 text-sm text-subtle">
               {resumeData.education.details}
             </p>
           </div>
