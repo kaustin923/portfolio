@@ -2,7 +2,7 @@ import type { ResumeData } from "@/types";
 
 export const resumeData: ResumeData = {
   summary:
-    "Forward-deployed engineer and solutions architect who still writes the code. Manager at PwC, rated Tier 1 all four years, leading a 5-developer onshore and offshore team on a $1.5M capital project platform. Six years in enterprise consulting and analytics, the last four building and leading AI delivery: agent orchestration, Neo4j knowledge graphs, and production RAG. Recipient of the PwC [A]mplify [I]mpact Luminary Award, the firm's highest AI honor, 1 of 9 recipients across the US Acceleration Centers.",
+    "Forward-deployed engineer and solutions architect who still writes the code. Manager at PwC, rated Tier 1 all four years, accountable for $2M+ in client revenue and leading a 5-developer onshore and offshore team. Six years in enterprise consulting and analytics, the last four building and leading AI delivery: agent orchestration, Neo4j knowledge graphs, and production RAG. Recipient of the PwC [A]mplify [I]mpact Luminary Award, the firm's highest AI honor, 1 of 9 recipients across the US Acceleration Centers.",
 
   skills: [
     {
@@ -28,7 +28,7 @@ export const resumeData: ResumeData = {
       company: "PwC (PricewaterhouseCoopers)",
       period: "July 2025 - Present",
       bullets: [
-        "Lead a 5-developer onshore and offshore team on a $1.5M capital project platform unifying cost, schedule, and risk in one cockpit. Integrates Primavera P6 and Excel; AI forecasts schedule slip and cost overrun for early risk detection across projects. Working software in 3 weeks, now shipping on 3-week cycles",
+        "Lead a $1.5M capital project engagement with a 5-developer onshore and offshore team, delivering a platform that unifies cost, schedule, and risk in one cockpit. Integrates Primavera P6 and Excel; AI forecasts schedule slip and cost overrun for early risk detection across projects. Working software in 3 weeks, now shipping on 3-week cycles",
         "Run the entire delivery out of GitHub, built with Claude Code and Codex. Custom Teams and SharePoint MCP servers pull daily standup notes and generate action items, weekly status, client comms, and risk tracking, so reporting derives from what actually shipped",
         "Architect and manage the dev team on a Neo4j knowledge graph suite for decarbonization modeling and reporting. Cypher traversals expose data lineage gaps and downstream impact. Deployed on AKS via Azure DevOps CI/CD with Azure SSO, Key Vault secrets management, and automated security scanning gates",
         "Co-founded the AI Transformation Office for a 500+ person practice. Grew AI adoption from 54% to 99% through hands-on training, executive coaching, and reworking how we deliver AI-powered services",

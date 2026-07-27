@@ -65,7 +65,7 @@ export const capabilities: Capability[] = [
     proof:
       "I get something working in a client's hands fast, then scale it without a delivery freeze. On the capital project platform that meant a working solution in 3 weeks, then a 3-week shipping cadence from POC through scaled app.",
     evidence: [
-      "$1.5M capital project platform unifying cost, schedule, and risk, integrating Primavera P6 and Excel",
+      "$1.5M capital project engagement: a platform unifying cost, schedule, and risk, integrating Primavera P6 and Excel",
       "AKS deployments via Azure DevOps CI/CD with SSO, Key Vault secrets, and security scan gates",
       "Enterprise data migration consolidating 27 distinct scenarios into Postgres on GCP",
       "12-week timeline compressed to 4 on a food and beverage engagement",

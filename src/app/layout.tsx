@@ -27,7 +27,7 @@ const SITE_URL =
 
 const TITLE = "Kyle Austin | Forward-Deployed Engineer & Solutions Architect";
 const DESCRIPTION =
-  "I embed with clients, get working software into their hands in weeks, then scale it without a rewrite. Agent orchestration, knowledge graphs, and production RAG. Manager at PwC leading a 5-developer team on a $1.5M platform.";
+  "Player-coach who leads a five-developer team building AI for Fortune 500 clients and still writes code. Agent orchestration, knowledge graphs, and production RAG. Manager at PwC, accountable for $2M+ in client revenue.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

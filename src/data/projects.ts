@@ -12,11 +12,11 @@ export const projects: Project[] = [
     period: "2025 to present",
     spotlight: true,
     description:
-      "A $1.5M platform that unifies cost, schedule, and risk in one cockpit. Integrates Primavera P6 and Excel, and uses AI to forecast schedule slip and cost overrun for early risk detection.",
-    metric: "Working solution in 3 weeks, 5-developer team",
+      "The platform behind a $1.5M engagement. Unifies cost, schedule, and risk in one cockpit, integrates Primavera P6 and Excel, and uses AI to forecast schedule slip and cost overrun for early risk detection.",
+    metric: "$1.5M engagement, working solution in 3 weeks",
     detail: {
       longDescription:
-        "A $1.5M capital project platform I lead with a 5-developer onshore and offshore team. Capital projects normally run cost, schedule, and risk in three disconnected places. Schedules live in Primavera P6. Budgets live in Excel. Risk lives in someone's status deck. Nobody sees the whole picture until the project is already in trouble.\n\nThe platform pulls all three into a single cockpit. It integrates directly with P6 and the client's cost workbooks, normalizes the data, and layers forecasting on top. Models predict schedule slip and cost overrun at the activity and project level, and triage incoming data to surface early risk signals across the portfolio before they show up as variances.\n\nThe speed-to-value story matters here. We got the client something usable in about 3 weeks by shipping a local single-file HTML build with the calculations embedded, while working with their IT to deploy properly into their systems. That bought trust early. We now ship on 3-week cycles, moving from proof of concept to scaled application without pausing delivery.\n\nMy role is player-coach. I set the architecture, review every PR, and still write code.",
+        "A $1.5M client engagement I lead with a 5-developer onshore and offshore team, delivering a capital project platform. Capital projects normally run cost, schedule, and risk in three disconnected places. Schedules live in Primavera P6. Budgets live in Excel. Risk lives in someone's status deck. Nobody sees the whole picture until the project is already in trouble.\n\nThe platform pulls all three into a single cockpit. It integrates directly with P6 and the client's cost workbooks, normalizes the data, and layers forecasting on top. Models predict schedule slip and cost overrun at the activity and project level, and triage incoming data to surface early risk signals across the portfolio before they show up as variances.\n\nThe speed-to-value story matters here. We got the client something usable in about 3 weeks by shipping a local single-file HTML build with the calculations embedded, while working with their IT to deploy properly into their systems. That bought trust early. We now ship on 3-week cycles, moving from proof of concept to scaled application without pausing delivery.\n\nMy role is player-coach. I set the architecture, review every PR, and still write code.",
       challenges: [
         "Reconciling Primavera P6 schedule data with Excel cost workbooks that were never designed to be joined, including inconsistent WBS codes and activity naming",
         "Building forecasting that flags slip and overrun early enough to act on, without so many false alarms that project managers tune it out",
@@ -27,7 +27,7 @@ export const projects: Project[] = [
         "Working solution in the client's hands in about 3 weeks, then a sustained 3-week shipping cadence",
         "Cost, schedule, and risk unified into one cockpit, replacing three disconnected systems",
         "AI triage surfaces early risk across projects, shifting the client from reactive variance reporting to early detection",
-        "Grew into a $1.5M program with a 5-developer onshore and offshore team",
+        "Grew into a $1.5M engagement with a 5-developer onshore and offshore team",
       ],
       architecture:
         "Python backend with a Primavera P6 and Excel ingestion layer that normalizes schedule and cost into a common model. AI forecasting services predict schedule slip and cost overrun. A risk triage pipeline scores and ranks signals across the portfolio, feeding a unified cockpit UI. Built and shipped end to end with Claude Code and Codex.",

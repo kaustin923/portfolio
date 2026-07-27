@@ -29,7 +29,7 @@ test.describe("Homepage", () => {
     const band = page.getByLabel("Key numbers");
     await expect(band).toBeVisible();
     await expect(band.getByText("1 of 9")).toBeVisible();
-    await expect(band.getByText("$1.5M")).toBeVisible();
+    await expect(band.getByText("$2M+")).toBeVisible();
     await expect(band.getByText("92%")).toBeVisible();
   });
 

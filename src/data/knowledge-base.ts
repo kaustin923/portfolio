@@ -23,7 +23,7 @@ export const careerHistory = [
     role: "Manager, PwC",
     period: "July 2025 to present",
     summary:
-      "Leads a 5-developer onshore and offshore team on a $1.5M capital project platform. Architects a Neo4j knowledge graph suite for decarbonization. Runs delivery out of GitHub through an agent harness he built. Co-founded the AI Transformation Office.",
+      "Leads a 5-developer onshore and offshore team delivering a capital project platform on a $1.5M engagement. Architects a Neo4j knowledge graph suite for decarbonization. Runs delivery out of GitHub through an agent harness he built. Co-founded the AI Transformation Office.",
   },
   {
     role: "Senior Associate, PwC",
@@ -89,6 +89,11 @@ export const talkingPoints = [
       "Kyle leads an offshore team in India alongside an onshore team. He uses AI to close the time-zone gap with meeting recaps, recordings, and end-of-day update emails, plus a daily morning connect. Coordination runs through GitHub, which provides the governance and review gates.",
   },
   {
+    topic: "Book of business",
+    answer:
+      "Kyle is accountable for over $2M in client revenue year to date in 2026. That is the $1.5M capital project engagement he currently leads, a $325K data and AI engagement he won and delivered for a global food and beverage company, and a $500K follow-on with that same client. When the site says $1.5M capital project, that is the engagement value, not the cost of the software.",
+  },
+  {
     topic: "How he wins work",
     answer:
       "Kyle functions as a solutions engineer across the full sales cycle and has led around 15 client conversations selling AI solutions. He won the capital project work in a tight competitive situation against another firm, on the strength of a relationship built over time: he understood what leadership actually needed, showed up every week with working features plus a rollout plan, and made the stakeholder's vision real. He won a $325K food and beverage engagement the same way, off a 10-year relationship.",
@@ -129,7 +134,7 @@ export const chatSuggestions: ChatSuggestion[] = [
   },
   {
     label: "The capital project",
-    question: "Tell me about the $1.5M capital project platform.",
+    question: "Tell me about the capital project platform and the engagement behind it.",
     topic: "work",
   },
   {

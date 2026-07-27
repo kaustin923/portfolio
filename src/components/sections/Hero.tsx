@@ -5,7 +5,7 @@ import { ArrowDown, Download, MessageSquare, Award } from "lucide-react";
 import Image from "next/image";
 
 const PROOF = [
-  { label: "$1.5M platform", detail: "5 engineers, 2 shores" },
+  { label: "$2M+ managed", detail: "Client revenue, YTD 2026" },
   { label: "54% → 99%", detail: "AI adoption, 500+ people" },
   { label: "92% accuracy", detail: "RAG tool, 20+ engagements" },
 ];

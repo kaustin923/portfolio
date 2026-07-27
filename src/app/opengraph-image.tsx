@@ -10,7 +10,7 @@ export const contentType = "image/png";
 
 const PROOF = [
   { value: "1 of 9", label: "PwC Luminary Award" },
-  { value: "$1.5M", label: "Platform led" },
+  { value: "$2M+", label: "Revenue managed" },
   { value: "54% → 99%", label: "AI adoption" },
   { value: "92%", label: "RAG accuracy" },
 ];

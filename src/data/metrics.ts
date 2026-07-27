@@ -8,9 +8,9 @@ export const metrics: Metric[] = [
     context: "PwC's highest AI honor, across the US Acceleration Centers",
   },
   {
-    value: "$1.5M",
-    label: "Platform led",
-    context: "Capital project cockpit, 5-developer onshore and offshore team",
+    value: "$2M+",
+    label: "Revenue managed",
+    context: "Client engagements led, year to date 2026",
   },
   {
     value: "54% → 99%",
